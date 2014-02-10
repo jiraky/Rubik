@@ -1,1 +1,7 @@
 * text=auto !eol
+/appletpage.htm -text svneol=unset#text/html
+/manifest.txt -text svneol=unset#text/plain
+/rubikcube.jnlp -text svneol=unset#application/x-java-jnlp-file
+src/it/univr/rubikcube/algorithms/package-info.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/gui/MainWindow.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/gui/package-info.java -text svneol=unset#text/x-java-source
