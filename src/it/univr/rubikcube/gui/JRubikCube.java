@@ -4,10 +4,12 @@ import javax.media.j3d.BoundingSphere;
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.Canvas3D;
 import javax.media.j3d.DirectionalLight;
+import javax.media.j3d.Transform3D;
 import javax.media.j3d.TransformGroup;
 import javax.vecmath.Color3f;
 import javax.vecmath.Point3d;
 import javax.vecmath.Vector3f;
+import com.sun.j3d.utils.behaviors.vp.OrbitBehavior;
 import com.sun.j3d.utils.geometry.ColorCube;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 
@@ -40,7 +42,22 @@ public class JRubikCube extends Canvas3D {
         this.sceneTransform.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
         this.scene.addChild(this.sceneTransform);
         // TODO Add all the subcubes here
-        this.sceneTransform.addChild(new ColorCube(0.4));
+        // FIXME Fix the scale
+        //this.sceneTransform.addChild(new ColorCube(0.4));
+        for (int i = -1; i <= 1; ++i) {
+            for (int j = -1; j <= 1; ++j) {
+                for (int k = -1; k <= 1; ++k) {
+                    TransformGroup tg = new TransformGroup();
+                    Transform3D transform = new Transform3D();
+                    Vector3f vector = new Vector3f(i, j, k);
+                    transform.setTranslation(vector);
+                    tg.setTransform(transform);
+                    // TODO Add the colors
+                    tg.addChild(new ColorCube(0.4));
+                    this.sceneTransform.addChild(tg);
+                }
+            }
+        }
         // TODO Add the right side light
         Color3f sideLightColor = new Color3f(0.5f, 0.5f, 0.5f);
         BoundingSphere sideLightBounds = new BoundingSphere(new Point3d(0.0, 0.0, 0.0), 100.0);
@@ -50,6 +67,11 @@ public class JRubikCube extends Canvas3D {
         this.sceneTransform.addChild(sideLight);
         // Move the view back a bit to allow all objects to be viewed
         this.universe.getViewingPlatform().setNominalViewingTransform();
+        // Allow the view to be rotated with the mouse
+        OrbitBehavior orbit = new OrbitBehavior();
+        orbit.setReverseRotate(true);
+        orbit.setSchedulingBounds(new BoundingSphere());
+        this.universe.getViewingPlatform().setViewPlatformBehavior(orbit);
         // Optimize the scene graph and add it to the universe
         this.scene.compile();
         this.universe.addBranchGraph(this.scene);
