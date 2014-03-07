@@ -70,6 +70,7 @@ public class JRubikCube extends Canvas3D {
         // Allow the view to be rotated with the mouse
         OrbitBehavior orbit = new OrbitBehavior();
         orbit.setReverseRotate(true);
+        orbit.setTranslateEnable(false);
         orbit.setSchedulingBounds(new BoundingSphere());
         this.universe.getViewingPlatform().setViewPlatformBehavior(orbit);
         // Optimize the scene graph and add it to the universe
