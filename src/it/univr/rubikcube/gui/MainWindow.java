@@ -3,16 +3,20 @@ package it.univr.rubikcube.gui;
 import it.univr.rubikcube.algorithms.Move;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
 import javax.swing.JApplet;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
@@ -22,6 +26,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * Main window for the Rubik Cube Solver.
+ * 
  * @author Alessandro Menti
  */
 public class MainWindow extends JApplet implements ActionListener {
@@ -41,7 +46,13 @@ public class MainWindow extends JApplet implements ActionListener {
     JList<Move> movesList;
 
     /**
+     * Rubik cube control.
+     */
+    JRubikCube rubikCube;
+
+    /**
      * Entry point for the application.
+     * 
      * @param args Command-line arguments.
      */
     public static void main(String[] args) {
@@ -49,7 +60,7 @@ public class MainWindow extends JApplet implements ActionListener {
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainWindow.setLocale(new Locale("en", "US"));
         // FIXME Set the correct minimum dimension below and in the manifest
-        mainWindow.setMinimumSize(new Dimension(200, 200));
+        mainWindow.setBounds(100, 100, 450, 300);
         mainWindow.setResizable(true);
         mainWindow.setTitle("Rubik Cube Solver");
         startedAsApplication = true;
@@ -58,6 +69,7 @@ public class MainWindow extends JApplet implements ActionListener {
         applet.start();
         mainWindow.add(applet);
         mainWindow.setVisible(true);
+        mainWindow.pack();
     }
 
     /**
@@ -69,13 +81,13 @@ public class MainWindow extends JApplet implements ActionListener {
             SwingUtilities.invokeAndWait(new Runnable() {
                 @Override
                 public void run() {
+                    GridBagLayout gbl = new GridBagLayout();
+                    GridBagConstraints gbc;
                     JRootPane appRootPane = MainWindow.this.getRootPane();
-                    JPanel buttonsPanel = new JPanel();
-                    JButton executeButton = new JButton();
-                    JButton quitButton = new JButton();
                     // Set the native look and feel for the platform
                     try {
-                        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                        UIManager.setLookAndFeel(UIManager
+                                .getSystemLookAndFeelClassName());
                         SwingUtilities.updateComponentTreeUI(MainWindow.this);
                         // FIXME - do we need to call pack() afterwards?
                     } catch (ClassNotFoundException | InstantiationException
@@ -83,46 +95,100 @@ public class MainWindow extends JApplet implements ActionListener {
                         | UnsupportedLookAndFeelException e) {
                         // Nothing to do
                     }
-                    appRootPane.setLayout(new GridBagLayout());
-                    GridBagConstraints gbc = new GridBagConstraints();
+                    gbl.columnWidths = new int[] {200, 200};
+                    gbl.rowHeights = new int[] {50, 50};
+                    gbl.columnWeights = new double[]{1.0, 1.0};
+                    gbl.rowWeights = new double[]{1.0, 1.0};
+                    appRootPane.setLayout(gbl);
+
+                    // Rubik cube
+                    JRubikCube jrcCube = new JRubikCube();
+                    gbc = new GridBagConstraints();
+                    gbc.insets = new Insets(0, 0, 5, 5);
+                    gbc.fill = GridBagConstraints.BOTH;
                     gbc.gridx = 0;
                     gbc.gridy = 0;
-                    // FIXME Add the 3D view here
-                    gbc.gridx = 0;
-                    gbc.gridy = 1;
-                    MainWindow.this.movesList = new JList<>();
-                    MainWindow.this.movesList.getAccessibleContext()
-                        .setAccessibleDescription("List of moves that take the cube in its final configuration.");
-                    MainWindow.this.movesList.setMinimumSize(new Dimension(50, 50));
-                    appRootPane.add(MainWindow.this.movesList, gbc);
-                    // Frame con algoritmo e numero facce
+                    appRootPane.add(jrcCube, gbc);
+
+                    // Options frame
+                    JPanel pnlOptions = new JPanel();
+                    gbc = new GridBagConstraints();
+                    gbc.insets = new Insets(0, 0, 5, 0);
+                    gbc.fill = GridBagConstraints.BOTH;
                     gbc.gridx = 1;
                     gbc.gridy = 0;
-                    // Execute and Quit buttons
+                    appRootPane.add(pnlOptions, gbc);
+                    GridBagLayout gblOptions = new GridBagLayout();
+                    gblOptions.columnWidths = new int[] {0, 0, 0};
+                    gblOptions.rowHeights = new int[] {0, 0, 0};
+                    gblOptions.columnWeights = new double[] {0.0, 1.0,
+                        Double.MIN_VALUE};
+                    gblOptions.rowWeights = new double[] {0.0, 0.0,
+                        Double.MIN_VALUE};
+                    pnlOptions.setLayout(gblOptions);
+
+                    JLabel lblAlgorithm = new JLabel("Algorithm to use");
+                    gbc = new GridBagConstraints();
+                    gbc.insets = new Insets(0, 0, 5, 5);
+                    gbc.anchor = GridBagConstraints.EAST;
+                    gbc.gridx = 0;
+                    gbc.gridy = 0;
+                    pnlOptions.add(lblAlgorithm, gbc);
+
+                    JComboBox<Integer> cmbAlgorithm = new JComboBox<Integer>();
+                    gbc = new GridBagConstraints();
+                    gbc.insets = new Insets(0, 0, 5, 0);
+                    gbc.fill = GridBagConstraints.HORIZONTAL;
+                    gbc.gridx = 1;
+                    gbc.gridy = 0;
+                    pnlOptions.add(cmbAlgorithm, gbc);
+
+                    JLabel lblFaces = new JLabel("Number of faces");
+                    gbc = new GridBagConstraints();
+                    gbc.anchor = GridBagConstraints.EAST;
+                    gbc.insets = new Insets(0, 0, 0, 5);
+                    gbc.gridx = 0;
+                    gbc.gridy = 1;
+                    pnlOptions.add(lblFaces, gbc);
+
+                    JComboBox<?> cmbFaces = new JComboBox<Object>();
+                    gbc = new GridBagConstraints();
+                    gbc.fill = GridBagConstraints.HORIZONTAL;
                     gbc.gridx = 1;
                     gbc.gridy = 1;
-                    buttonsPanel.setLayout(new FlowLayout());
-                    buttonsPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-                    executeButton.setText("Execute");
-                    executeButton.setMnemonic('E');
-                    executeButton.setToolTipText("Executes the selected algorithm.");
-                    executeButton.setActionCommand("execute");
-                    executeButton.addActionListener(MainWindow.this);
-                    quitButton.setText("Quit");
-                    quitButton.setMnemonic('Q');
-                    quitButton.setToolTipText("Quits the program.");
-                    quitButton.setActionCommand("quit");
-                    quitButton.addActionListener(MainWindow.this);
-                    buttonsPanel.add(executeButton);
-                    // FIXME Add the check back when the UI is finished
-                    //if (startedAsApplication) {
-                        buttonsPanel.add(quitButton);
-                    //}
-                    appRootPane.add(buttonsPanel, gbc);
+                    pnlOptions.add(cmbFaces, gbc);
+
+                    JList<?> lstMoves = new JList<Object>();
+                    gbc = new GridBagConstraints();
+                    gbc.insets = new Insets(0, 0, 0, 5);
+                    gbc.fill = GridBagConstraints.BOTH;
+                    gbc.gridx = 0;
+                    gbc.gridy = 1;
+                    appRootPane.add(lstMoves, gbc);
+
+                    JPanel pnlCommands = new JPanel();
+                    gbc = new GridBagConstraints();
+                    gbc.fill = GridBagConstraints.BOTH;
+                    gbc.gridx = 1;
+                    gbc.gridy = 1;
+                    appRootPane.add(pnlCommands, gbc);
+
+                    JButton cmdExecute = new JButton("Execute");
+                    cmdExecute.setMnemonic('e');
+                    cmdExecute.setActionCommand("execute");
+                    cmdExecute.addActionListener(MainWindow.this);
+                    pnlCommands.add(cmdExecute);
+
+                    JButton cmdQuit = new JButton("Quit");
+                    cmdQuit.setMnemonic('q');
+                    cmdQuit.setActionCommand("quit");
+                    cmdQuit.addActionListener(MainWindow.this);
+                    pnlCommands.add(cmdQuit);
                 }
             });
         } catch (InvocationTargetException | InterruptedException e) {
             System.err.println("Unable to create the GUI");
+            e.printStackTrace();
         }
     }
 
