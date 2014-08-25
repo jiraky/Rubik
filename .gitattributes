@@ -1,5 +1,9 @@
 * text=auto !eol
+/.classpath -text
+/.project -text
+.settings/org.eclipse.jdt.core.prefs -text
 /appletpage.htm -text svneol=unset#text/html
+/launchRubik.sh -text
 /manifest.txt -text svneol=unset#text/plain
 /rubikcube.jnlp -text svneol=unset#application/x-java-jnlp-file
 src/it/univr/rubikcube/algorithms/Move.java -text svneol=unset#text/x-java-source

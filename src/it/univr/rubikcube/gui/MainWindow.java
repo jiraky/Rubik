@@ -189,6 +189,7 @@ public class MainWindow extends JApplet implements ActionListener {
         } catch (InvocationTargetException | InterruptedException e) {
             System.err.println("Unable to create the GUI");
             e.printStackTrace();
+            System.exit(1);
         }
     }
 
