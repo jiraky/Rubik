@@ -25,7 +25,7 @@ public class JRubikCube extends Canvas3D {
     private SimpleUniverse universe;
     private BranchGroup scene;
     private TransformGroup sceneTransform;
-    
+
     /**
      * Creates a new instance of the Rubik cube control.
      */
@@ -43,7 +43,6 @@ public class JRubikCube extends Canvas3D {
         this.scene.addChild(this.sceneTransform);
         // TODO Add all the subcubes here
         // FIXME Fix the scale
-        //this.sceneTransform.addChild(new ColorCube(0.4));
         for (int i = -1; i <= 1; ++i) {
             for (int j = -1; j <= 1; ++j) {
                 for (int k = -1; k <= 1; ++k) {
