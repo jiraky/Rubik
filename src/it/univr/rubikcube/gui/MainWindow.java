@@ -1,10 +1,6 @@
 package it.univr.rubikcube.gui;
 
 import it.univr.rubikcube.algorithms.Move;
-import java.awt.ComponentOrientation;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -26,7 +22,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * Main window for the Rubik Cube Solver.
- * 
+ *
  * @author Alessandro Menti
  */
 public class MainWindow extends JApplet implements ActionListener {
@@ -38,21 +34,20 @@ public class MainWindow extends JApplet implements ActionListener {
     /**
      * Specifies if this program was started as an applet or as an application.
      */
-    static boolean startedAsApplication = false;
+    private static boolean startedAsApplication = false;
 
     /**
      * List of moves.
      */
-    JList<Move> movesList;
+    private JList<Move> movesList;
 
     /**
      * Rubik cube control.
      */
-    JRubikCube rubikCube;
+    private JRubikCube rubikCube;
 
     /**
      * Entry point for the application.
-     * 
      * @param args Command-line arguments.
      */
     public static void main(String[] args) {
@@ -76,7 +71,7 @@ public class MainWindow extends JApplet implements ActionListener {
      * Initializes the applet.
      */
     @Override
-    public void init() {
+    public final void init() {
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
                 @Override
@@ -194,7 +189,7 @@ public class MainWindow extends JApplet implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public final void actionPerformed(final ActionEvent e) {
         if ("execute".equals(e.getActionCommand())) {
             // FIXME
         } else if ("quit".equals(e.getActionCommand())) {
