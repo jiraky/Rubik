@@ -1,5 +1,6 @@
 package it.univr.rubikcube.gui;
 
+import it.univr.rubikcube.model.RubikCubeModel;
 import javax.media.j3d.BoundingSphere;
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.Canvas3D;
@@ -33,11 +34,16 @@ public class JRubikCube extends Canvas3D {
      * Scene transformation.
      */
     private TransformGroup sceneTransform;
+    /**
+     * Cube model.
+     */
+    private RubikCubeModel cubeModel;
 
     /**
      * Creates a new instance of the Rubik cube control.
+     * @param faces Number of faces.
      */
-    public JRubikCube() {
+    public JRubikCube(final int faces) {
         super(SimpleUniverse.getPreferredConfiguration());
         // Create the universe
         this.universe = new SimpleUniverse(this);
@@ -46,11 +52,22 @@ public class JRubikCube extends Canvas3D {
             .setMinimumFrameCycleTime(MINIMUM_CYCLE_TIME);
         // Create the scene graph.
         this.scene = new BranchGroup();
+        cubeModel = new RubikCubeModel(faces);
+    }
+
+    public final void setNumberOfFaces(final int numberOfFaces) {
         // Add an identity transformation we can edit later
         this.sceneTransform = new TransformGroup();
         this.sceneTransform.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
         this.scene.addChild(this.sceneTransform);
         // FIXME Add the subcubes
+        // If the number of subcubes is odd, add a cube to the center and the
+        // others around it; if not, put the cubes around the origin.
+        if (numberOfFaces % 2 != 0) {
+            // FIXME
+        } else {
+            // FIXME
+        }
         this.sceneTransform.addChild(new ColorCube(0.4));
         // Move the view back a bit to allow all objects to be viewed
         this.universe.getViewingPlatform().setNominalViewingTransform();

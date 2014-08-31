@@ -1,6 +1,6 @@
 package it.univr.rubikcube.gui;
 
-import it.univr.rubikcube.algorithms.Move;
+import it.univr.rubikcube.model.Move;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -97,7 +97,7 @@ public class MainWindow extends JApplet implements ActionListener {
                     appRootPane.setLayout(gbl);
 
                     // Rubik cube
-                    JRubikCube jrcCube = new JRubikCube();
+                    JRubikCube jrcCube = new JRubikCube(3);
                     gbc = new GridBagConstraints();
                     gbc.insets = new Insets(0, 0, 5, 5);
                     gbc.fill = GridBagConstraints.BOTH;

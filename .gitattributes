@@ -6,8 +6,18 @@
 /launchRubik.sh -text
 /manifest.txt -text svneol=unset#text/plain
 /rubikcube.jnlp -text svneol=unset#application/x-java-jnlp-file
-src/it/univr/rubikcube/algorithms/Move.java -text svneol=unset#text/x-java-source
-src/it/univr/rubikcube/algorithms/package-info.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/gui/JRubikCube.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/gui/MainWindow.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/gui/package-info.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/model/ColumnRotation.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/model/Move.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/model/RowRotation.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/model/RubikCubeFaceColor.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/model/RubikCubeModel.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/model/RubikCubeModelColumnRotated.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/model/RubikCubeModelDimensionChanged.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/model/RubikCubeModelEvent.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/model/RubikCubeModelFaceChanged.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/model/RubikCubeModelRowRotated.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/model/RubikCubeSide.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/model/package-info.java -text svneol=unset#text/x-java-source
