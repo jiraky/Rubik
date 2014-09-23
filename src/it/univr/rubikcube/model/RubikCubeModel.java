@@ -96,6 +96,7 @@ public class RubikCubeModel extends Observable {
      * @throws IllegalArgumentException Thrown if <tt>rotation</tt> has an
      * invalid value.
      */
+    // FIXME: check the orientation (refer to http://www.cems.uvm.edu/~rsnapp/teaching/cs32/lectures/rubik.pdf)!
     public final void rotateRow(final int index, final RowRotation rotation) {
         RubikCubeFaceColor[] tmpRow;
         if (index >= this.dimension || index < 0) {
@@ -105,7 +106,7 @@ public class RubikCubeModel extends Observable {
         tmpRow = new RubikCubeFaceColor[this.dimension];
         // Backup the front row and rotate the row in the specified direction
         tmpRow = this.configuration[RubikCubeSide.FRONT.getValue()][index];
-        if (rotation == RowRotation.CLOCKWISE) {
+        if (rotation == RowRotation.ANTICLOCKWISE) {
             this.configuration[RubikCubeSide.FRONT.getValue()][index] =
                     this.configuration[RubikCubeSide.LEFT.getValue()][index];
             this.configuration[RubikCubeSide.LEFT.getValue()][index] =
@@ -113,7 +114,7 @@ public class RubikCubeModel extends Observable {
             this.configuration[RubikCubeSide.BACK.getValue()][index] =
                     this.configuration[RubikCubeSide.RIGHT.getValue()][index];
             this.configuration[RubikCubeSide.RIGHT.getValue()][index] = tmpRow;
-        } else if (rotation == RowRotation.ANTICLOCKWISE) {
+        } else if (rotation == RowRotation.CLOCKWISE) {
             this.configuration[RubikCubeSide.FRONT.getValue()][index] =
                     this.configuration[RubikCubeSide.RIGHT.getValue()][index];
             this.configuration[RubikCubeSide.RIGHT.getValue()][index] =
@@ -136,6 +137,7 @@ public class RubikCubeModel extends Observable {
      * @throws IllegalArgumentException Thrown if <tt>rotation</tt> has an
      * invalid value.
      */
+    // FIXME: check the orientation (refer to http://www.cems.uvm.edu/~rsnapp/teaching/cs32/lectures/rubik.pdf)!
     public final void rotateColumn(final int index,
                                    final ColumnRotation rotation) {
         RubikCubeFaceColor[] tmpCol;
@@ -196,6 +198,7 @@ public class RubikCubeModel extends Observable {
      * @throws IllegalArgumentException Thrown if <tt>rotation</tt> is an
      * invalid direction.
      */
+    // FIXME: check the orientation (refer to http://www.cems.uvm.edu/~rsnapp/teaching/cs32/lectures/rubik.pdf)!
     public final void rotateCube(final CubeRotation rotation) {
         // Save the front side in a temporary variable since this move is the
         // same for every rotation
@@ -244,4 +247,5 @@ public class RubikCubeModel extends Observable {
         // Notify the listeners that the cube was rotated.
         notifyObservers(new RubikCubeModelCubeRotated(rotation));
     }
+    // FIXME Rotate lateral column
 }
