@@ -93,6 +93,8 @@ public class RubikCubeModel extends Observable {
      * @param rotation Direction of the rotation.
      * @throws IndexOutOfBoundsException Thrown if <tt>index</tt> is greater or
      * equal to the dimension of the cube or is less than zero.
+     * @throws IllegalArgumentException Thrown if <tt>rotation</tt> has an
+     * invalid value.
      */
     public final void rotateRow(final int index, final RowRotation rotation) {
         RubikCubeFaceColor[] tmpRow;
@@ -111,7 +113,7 @@ public class RubikCubeModel extends Observable {
             this.configuration[RubikCubeSide.BACK.getValue()][index] =
                     this.configuration[RubikCubeSide.RIGHT.getValue()][index];
             this.configuration[RubikCubeSide.RIGHT.getValue()][index] = tmpRow;
-        } else {
+        } else if (rotation == RowRotation.ANTICLOCKWISE) {
             this.configuration[RubikCubeSide.FRONT.getValue()][index] =
                     this.configuration[RubikCubeSide.RIGHT.getValue()][index];
             this.configuration[RubikCubeSide.RIGHT.getValue()][index] =
@@ -119,6 +121,8 @@ public class RubikCubeModel extends Observable {
             this.configuration[RubikCubeSide.BACK.getValue()][index] =
                     this.configuration[RubikCubeSide.LEFT.getValue()][index];
             this.configuration[RubikCubeSide.LEFT.getValue()][index] = tmpRow;
+        } else {
+            throw new IllegalArgumentException();
         }
         // Notify the listeners that the row has changed
         notifyObservers(new RubikCubeModelRowRotated(index, rotation));
@@ -129,6 +133,8 @@ public class RubikCubeModel extends Observable {
      * @param rotation Direction of the rotation.
      * @throws IndexOutOfBoundsException Thrown if <tt>index</tt> is greater or
      * equal to the dimension of the cube or is less than zero.
+     * @throws IllegalArgumentException Thrown if <tt>rotation</tt> has an
+     * invalid value.
      */
     public final void rotateColumn(final int index,
                                    final ColumnRotation rotation) {
@@ -161,7 +167,7 @@ public class RubikCubeModel extends Observable {
                 this.configuration[RubikCubeSide.DOWN.getValue()][i][index]
                         = tmpCol[i];
             }
-        } else {
+        } else if (rotation == ColumnRotation.TOP) {
             for (int i = 0; i < this.dimension; ++i) {
                 this.configuration[RubikCubeSide.FRONT.getValue()][i][index]
                         = this.configuration[RubikCubeSide.DOWN.getValue()][i][index];
@@ -178,8 +184,64 @@ public class RubikCubeModel extends Observable {
                 this.configuration[RubikCubeSide.UP.getValue()][i][index]
                         = tmpCol[i];
             }
+        } else {
+            throw new IllegalArgumentException();
         }
         // Notify the listeners that the column has changed.
         notifyObservers(new RubikCubeModelColumnRotated(index, rotation));
+    }
+    /**
+     * Rotates the entire cube in the specified direction.
+     * @param rotation Direction of the rotation.
+     * @throws IllegalArgumentException Thrown if <tt>rotation</tt> is an
+     * invalid direction.
+     */
+    public final void rotateCube(final CubeRotation rotation) {
+        // Save the front side in a temporary variable since this move is the
+        // same for every rotation
+        RubikCubeFaceColor[][] tmp = this.configuration[RubikCubeSide.FRONT
+                                                        .getValue()];
+        switch (rotation) {
+            case UPWISE:
+                this.configuration[RubikCubeSide.FRONT.getValue()]
+                        = this.configuration[RubikCubeSide.DOWN.getValue()];
+                this.configuration[RubikCubeSide.DOWN.getValue()]
+                        = this.configuration[RubikCubeSide.BACK.getValue()];
+                this.configuration[RubikCubeSide.BACK.getValue()]
+                        = this.configuration[RubikCubeSide.UP.getValue()];
+                this.configuration[RubikCubeSide.UP.getValue()] = tmp;
+                break;
+            case DOWNWISE:
+                this.configuration[RubikCubeSide.FRONT.getValue()]
+                        = this.configuration[RubikCubeSide.UP.getValue()];
+                this.configuration[RubikCubeSide.UP.getValue()]
+                        = this.configuration[RubikCubeSide.BACK.getValue()];
+                this.configuration[RubikCubeSide.BACK.getValue()]
+                        = this.configuration[RubikCubeSide.DOWN.getValue()];
+                this.configuration[RubikCubeSide.DOWN.getValue()] = tmp;
+                break;
+            case CLOCKWISE:
+                this.configuration[RubikCubeSide.FRONT.getValue()]
+                        = this.configuration[RubikCubeSide.LEFT.getValue()];
+                this.configuration[RubikCubeSide.LEFT.getValue()]
+                        = this.configuration[RubikCubeSide.BACK.getValue()];
+                this.configuration[RubikCubeSide.BACK.getValue()]
+                        = this.configuration[RubikCubeSide.RIGHT.getValue()];
+                this.configuration[RubikCubeSide.RIGHT.getValue()] = tmp;
+                break;
+            case ANTICLOCKWISE:
+                this.configuration[RubikCubeSide.FRONT.getValue()]
+                        = this.configuration[RubikCubeSide.RIGHT.getValue()];
+                this.configuration[RubikCubeSide.RIGHT.getValue()]
+                        = this.configuration[RubikCubeSide.BACK.getValue()];
+                this.configuration[RubikCubeSide.BACK.getValue()]
+                        = this.configuration[RubikCubeSide.LEFT.getValue()];
+                this.configuration[RubikCubeSide.LEFT.getValue()] = tmp;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+        // Notify the listeners that the cube was rotated.
+        notifyObservers(new RubikCubeModelCubeRotated(rotation));
     }
 }
