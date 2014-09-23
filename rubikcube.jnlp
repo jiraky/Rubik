@@ -6,7 +6,7 @@
 	    <description>A Rubik Cube Solver implementing different resolution strategies.</description>
 	</information>
 	<resources>
-	    <j2se version="1.7+" href="http://java.sun.com/products/autodl/j2se" />
+	    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se" />
 	    <jar href="RubikCube.jar" main="true" />
 	</resources>
 	<applet-desc name="Rubik Cube Solver Applet" main-class="it.univr.rubikcube.gui.MainWindow" width="300" height="300">
