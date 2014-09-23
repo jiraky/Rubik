@@ -1,12 +1,10 @@
 package it.univr.rubikcube.gui;
 
-import it.univr.rubikcube.model.Move;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
 import javax.swing.JApplet;
 import javax.swing.JButton;
@@ -18,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JRootPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * Main window for the Rubik Cube Solver.
@@ -39,7 +36,7 @@ public class MainWindow extends JApplet implements ActionListener {
     /**
      * List of moves.
      */
-    private JList<Move> movesList;
+    private JList movesList;
 
     /**
      * Rubik cube control.
@@ -84,12 +81,10 @@ public class MainWindow extends JApplet implements ActionListener {
                         UIManager.setLookAndFeel(UIManager
                                 .getSystemLookAndFeelClassName());
                         SwingUtilities.updateComponentTreeUI(MainWindow.this);
-                        // FIXME - do we need to call pack() afterwards?
-                    } catch (ClassNotFoundException | InstantiationException
-                        | IllegalAccessException
-                        | UnsupportedLookAndFeelException e) {
+                    } catch (Exception e) {
                         // Nothing to do
                     }
+                    // FIXME - do we need to call pack() afterwards?
                     gbl.columnWidths = new int[] {200, 200};
                     gbl.rowHeights = new int[] {50, 50};
                     gbl.columnWeights = new double[]{1.0, 1.0};
@@ -130,7 +125,7 @@ public class MainWindow extends JApplet implements ActionListener {
                     gbc.gridy = 0;
                     pnlOptions.add(lblAlgorithm, gbc);
 
-                    JComboBox<Integer> cmbAlgorithm = new JComboBox<Integer>();
+                    JComboBox cmbAlgorithm = new JComboBox();
                     gbc = new GridBagConstraints();
                     gbc.insets = new Insets(0, 0, 5, 0);
                     gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -146,14 +141,14 @@ public class MainWindow extends JApplet implements ActionListener {
                     gbc.gridy = 1;
                     pnlOptions.add(lblFaces, gbc);
 
-                    JComboBox<?> cmbFaces = new JComboBox<Object>();
+                    JComboBox cmbFaces = new JComboBox();
                     gbc = new GridBagConstraints();
                     gbc.fill = GridBagConstraints.HORIZONTAL;
                     gbc.gridx = 1;
                     gbc.gridy = 1;
                     pnlOptions.add(cmbFaces, gbc);
 
-                    JList<?> lstMoves = new JList<Object>();
+                    JList lstMoves = new JList();
                     gbc = new GridBagConstraints();
                     gbc.insets = new Insets(0, 0, 0, 5);
                     gbc.fill = GridBagConstraints.BOTH;
@@ -181,7 +176,7 @@ public class MainWindow extends JApplet implements ActionListener {
                     pnlCommands.add(cmdQuit);
                 }
             });
-        } catch (InvocationTargetException | InterruptedException e) {
+        } catch (Exception e) {
             System.err.println("Unable to create the GUI");
             e.printStackTrace();
             System.exit(1);

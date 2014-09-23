@@ -140,41 +140,41 @@ public class RubikCubeModel extends Observable {
         tmpCol = new RubikCubeFaceColor[this.dimension];
         // Backup the front column and rotate the column in the specified
         // direction
-        for (int i = 0; i < dimension; ++i) {
+        for (int i = 0; i < this.dimension; ++i) {
             tmpCol[i] = this.configuration[RubikCubeSide.FRONT.getValue()][i]
                     [index];
         }
         if (rotation == ColumnRotation.BOTTOM) {
-            for (int i = 0; i < dimension; ++i) {
+            for (int i = 0; i < this.dimension; ++i) {
                 this.configuration[RubikCubeSide.FRONT.getValue()][i][index]
                         = this.configuration[RubikCubeSide.UP.getValue()][i][index];
             }
-            for (int i = 0; i < dimension; ++i) {
+            for (int i = 0; i < this.dimension; ++i) {
                 this.configuration[RubikCubeSide.UP.getValue()][i][index]
                         = this.configuration[RubikCubeSide.BACK.getValue()][i][index];
             }
-            for (int i = 0; i < dimension; ++i) {
+            for (int i = 0; i < this.dimension; ++i) {
                 this.configuration[RubikCubeSide.BACK.getValue()][i][index]
                         = this.configuration[RubikCubeSide.DOWN.getValue()][i][index];
             }
-            for (int i = 0; i < dimension; ++i) {
+            for (int i = 0; i < this.dimension; ++i) {
                 this.configuration[RubikCubeSide.DOWN.getValue()][i][index]
                         = tmpCol[i];
             }
         } else {
-            for (int i = 0; i < dimension; ++i) {
+            for (int i = 0; i < this.dimension; ++i) {
                 this.configuration[RubikCubeSide.FRONT.getValue()][i][index]
                         = this.configuration[RubikCubeSide.DOWN.getValue()][i][index];
             }
-            for (int i = 0; i < dimension; ++i) {
+            for (int i = 0; i < this.dimension; ++i) {
                 this.configuration[RubikCubeSide.DOWN.getValue()][i][index]
                         = this.configuration[RubikCubeSide.BACK.getValue()][i][index];
             }
-            for (int i = 0; i < dimension; ++i) {
+            for (int i = 0; i < this.dimension; ++i) {
                 this.configuration[RubikCubeSide.BACK.getValue()][i][index]
                         = this.configuration[RubikCubeSide.UP.getValue()][i][index];
             }
-            for (int i = 0; i < dimension; ++i) {
+            for (int i = 0; i < this.dimension; ++i) {
                 this.configuration[RubikCubeSide.UP.getValue()][i][index]
                         = tmpCol[i];
             }
