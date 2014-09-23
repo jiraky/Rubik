@@ -29,11 +29,6 @@ public class MainWindow extends JApplet implements ActionListener {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Specifies if this program was started as an applet or as an application.
-     */
-    private static boolean startedAsApplication = false;
-
-    /**
      * List of moves.
      */
     private JList movesList;
@@ -55,7 +50,6 @@ public class MainWindow extends JApplet implements ActionListener {
         mainWindow.setBounds(100, 100, 450, 300);
         mainWindow.setResizable(true);
         mainWindow.setTitle("Rubik Cube Solver");
-        startedAsApplication = true;
         JApplet applet = new MainWindow();
         applet.init();
         applet.start();
