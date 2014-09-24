@@ -53,7 +53,7 @@ public abstract class Move {
      * Returns a string representing the move.
      * @return String representing the move.
      */
-    public abstract String toText();
+    public abstract String getText();
     /**
      * Performs the move, taking into account the "reversed" status.
      */
