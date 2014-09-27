@@ -6,6 +6,32 @@
 graphics/cubeicon.ico -text
 graphics/logo.png -text
 graphics/logo.psd -text
+graphics/moves/B.png -text
+graphics/moves/B_inv.png -text
+graphics/moves/D.png -text
+graphics/moves/D_inv.png -text
+graphics/moves/E.png -text
+graphics/moves/E_inv.png -text
+graphics/moves/F.png -text
+graphics/moves/F_inv.png -text
+graphics/moves/L.png -text
+graphics/moves/L_inv.png -text
+graphics/moves/M.png -text
+graphics/moves/M_inv.png -text
+graphics/moves/R.png -text
+graphics/moves/R_inv.png -text
+graphics/moves/S.png -text
+graphics/moves/S_inv.png -text
+graphics/moves/U.png -text
+graphics/moves/U_inv.png -text
+graphics/moves/X.png -text
+graphics/moves/X_inv.png -text
+graphics/moves/Y.png -text
+graphics/moves/Y_inv.png -text
+graphics/moves/Z.png -text
+graphics/moves/Z_inv.png -text
+graphics/moves/shuffle.png -text
+graphics/moves/solved.png -text
 /launchRubik.sh -text
 /manifest.txt -text svneol=unset#text/plain
 /rubikcube.jnlp -text svneol=unset#application/x-java-jnlp-file

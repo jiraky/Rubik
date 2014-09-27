@@ -13,6 +13,7 @@ import java.awt.Toolkit;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.border.TitledBorder;
 
 /**
  *
@@ -33,9 +34,9 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     public void updateInterface() {    
-        this.cubedimension_value.setText(""+this.RubikCubeDimension);
-        this.algorithm_value.setText(""+this.actualStrategy.toString());
-        this.nummoves_value.setText(""+this.MovesCounter);
+        this.rp_cubedimension_value.setText(""+this.RubikCubeDimension);
+        this.rp_algorithm_value.setText(""+this.actualStrategy.toString());
+        this.rp_nummoves_value.setText(""+this.MovesCounter);
     }
 
     /**
@@ -47,16 +48,43 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lp_move_useinverse_btngroup = new javax.swing.ButtonGroup();
         MainLeftPanel = new javax.swing.JPanel();
+        lp_move = new javax.swing.JPanel();
+        lp_move_basic = new javax.swing.JPanel();
+        lp_move_L = new javax.swing.JButton();
+        lp_move_U = new javax.swing.JButton();
+        lp_move_R = new javax.swing.JButton();
+        lp_move_D = new javax.swing.JButton();
+        lp_move_F = new javax.swing.JButton();
+        lp_move_B = new javax.swing.JButton();
+        lp_move_advanced = new javax.swing.JPanel();
+        lp_move_M = new javax.swing.JButton();
+        lp_move_E = new javax.swing.JButton();
+        lp_move_S = new javax.swing.JButton();
+        lp_move_X = new javax.swing.JButton();
+        lp_move_Y = new javax.swing.JButton();
+        lp_move_Z = new javax.swing.JButton();
+        lp_move_details = new javax.swing.JPanel();
+        lp_move_inverse_title = new javax.swing.JLabel();
+        lp_move_inverse_yes = new javax.swing.JRadioButton();
+        lp_move_inverse_no = new javax.swing.JRadioButton();
+        lp_move_preview = new javax.swing.JPanel();
+        lp_move_preview_image = new javax.swing.JLabel();
         MainRightPanel = new javax.swing.JPanel();
-        cubedimension_title = new javax.swing.JLabel();
-        algorithm_title = new javax.swing.JLabel();
-        nummoves_title = new javax.swing.JLabel();
-        cubedimension_value = new javax.swing.JLabel();
-        algorithm_value = new javax.swing.JLabel();
-        nummoves_value = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
+        rp_cubedimension_title = new javax.swing.JLabel();
+        rp_algorithm_title = new javax.swing.JLabel();
+        rp_nummoves_title = new javax.swing.JLabel();
+        rp_cubedimension_value = new javax.swing.JLabel();
+        rp_algorithm_value = new javax.swing.JLabel();
+        rp_nummoves_value = new javax.swing.JLabel();
+        rp_sep1 = new javax.swing.JSeparator();
+        rp_previousmoves_title = new javax.swing.JLabel();
+        rp_previousmoves_container = new javax.swing.JScrollPane();
+        rp_previousmoves_value = new javax.swing.JTextArea();
+        rp_nextmoves_title = new javax.swing.JLabel();
+        rp_nextmoves_container = new javax.swing.JScrollPane();
+        rp_nextmoves_value = new javax.swing.JTextArea();
         Logo = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menu_file = new javax.swing.JMenu();
@@ -64,8 +92,7 @@ public class MainWindow extends javax.swing.JFrame {
         menu_edit = new javax.swing.JMenu();
         menu_edit_numfaces = new javax.swing.JMenuItem();
         menu_edit_algorithm = new javax.swing.JMenuItem();
-
-        jLabel1.setText("jLabel1");
+        menu_help = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Rubik Cube Solver");
@@ -74,76 +101,378 @@ public class MainWindow extends javax.swing.JFrame {
 
         MainLeftPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        lp_move.setBorder(javax.swing.BorderFactory.createTitledBorder("Perform move"));
+
+        lp_move_basic.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Basic", 0, 2));
+        lp_move_basic.setToolTipText("");
+
+        lp_move_L.setText("L");
+        lp_move_L.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lp_move_LMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lp_move_LMouseExited(evt);
+            }
+        });
+
+        lp_move_U.setText("U");
+        lp_move_U.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lp_move_UMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lp_move_UMouseExited(evt);
+            }
+        });
+
+        lp_move_R.setText("R");
+        lp_move_R.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lp_move_RMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lp_move_RMouseExited(evt);
+            }
+        });
+
+        lp_move_D.setText("D");
+        lp_move_D.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lp_move_DMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lp_move_DMouseExited(evt);
+            }
+        });
+
+        lp_move_F.setText("F");
+        lp_move_F.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lp_move_FMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lp_move_FMouseExited(evt);
+            }
+        });
+
+        lp_move_B.setText("B");
+        lp_move_B.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lp_move_BMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lp_move_BMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout lp_move_basicLayout = new javax.swing.GroupLayout(lp_move_basic);
+        lp_move_basic.setLayout(lp_move_basicLayout);
+        lp_move_basicLayout.setHorizontalGroup(
+            lp_move_basicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lp_move_basicLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(lp_move_basicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lp_move_L, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lp_move_U)
+                    .addComponent(lp_move_R)
+                    .addComponent(lp_move_D)
+                    .addComponent(lp_move_F)
+                    .addComponent(lp_move_B))
+                .addContainerGap())
+        );
+
+        lp_move_basicLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lp_move_B, lp_move_D, lp_move_F, lp_move_L, lp_move_R, lp_move_U});
+
+        lp_move_basicLayout.setVerticalGroup(
+            lp_move_basicLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lp_move_basicLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lp_move_L)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lp_move_R)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lp_move_U)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lp_move_D)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lp_move_F)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lp_move_B)
+                .addContainerGap())
+        );
+
+        lp_move_basicLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lp_move_B, lp_move_D, lp_move_F, lp_move_L, lp_move_R, lp_move_U});
+
+        lp_move_advanced.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Advanced", 0, 2));
+        lp_move_advanced.setToolTipText("");
+
+        lp_move_M.setText("M");
+
+        lp_move_E.setText("S");
+        lp_move_E.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lp_move_EActionPerformed(evt);
+            }
+        });
+
+        lp_move_S.setText("E");
+
+        lp_move_X.setText("X");
+
+        lp_move_Y.setText("Y");
+        lp_move_Y.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lp_move_YActionPerformed(evt);
+            }
+        });
+
+        lp_move_Z.setText("Z");
+
+        javax.swing.GroupLayout lp_move_advancedLayout = new javax.swing.GroupLayout(lp_move_advanced);
+        lp_move_advanced.setLayout(lp_move_advancedLayout);
+        lp_move_advancedLayout.setHorizontalGroup(
+            lp_move_advancedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lp_move_advancedLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(lp_move_advancedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lp_move_E)
+                    .addComponent(lp_move_S)
+                    .addComponent(lp_move_X)
+                    .addComponent(lp_move_Y)
+                    .addComponent(lp_move_Z)
+                    .addComponent(lp_move_M))
+                .addContainerGap())
+        );
+
+        lp_move_advancedLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lp_move_E, lp_move_M, lp_move_S, lp_move_X, lp_move_Y, lp_move_Z});
+
+        lp_move_advancedLayout.setVerticalGroup(
+            lp_move_advancedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lp_move_advancedLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lp_move_M)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lp_move_S)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lp_move_E)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lp_move_X)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lp_move_Y)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lp_move_Z)
+                .addContainerGap())
+        );
+
+        lp_move_advancedLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lp_move_E, lp_move_M, lp_move_S, lp_move_X, lp_move_Y, lp_move_Z});
+
+        lp_move_details.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Details", 0, 2));
+
+        lp_move_inverse_title.setText("Use inverse?");
+
+        lp_move_useinverse_btngroup.add(lp_move_inverse_yes);
+        lp_move_inverse_yes.setText("yes");
+
+        lp_move_useinverse_btngroup.add(lp_move_inverse_no);
+        lp_move_inverse_no.setSelected(true);
+        lp_move_inverse_no.setText("no");
+
+        javax.swing.GroupLayout lp_move_detailsLayout = new javax.swing.GroupLayout(lp_move_details);
+        lp_move_details.setLayout(lp_move_detailsLayout);
+        lp_move_detailsLayout.setHorizontalGroup(
+            lp_move_detailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lp_move_detailsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lp_move_inverse_title)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lp_move_inverse_yes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lp_move_inverse_no)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        lp_move_detailsLayout.setVerticalGroup(
+            lp_move_detailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lp_move_detailsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(lp_move_detailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lp_move_inverse_title)
+                    .addComponent(lp_move_inverse_yes)
+                    .addComponent(lp_move_inverse_no))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        lp_move_preview.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Preview", 0, 2));
+
+        lp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/shuffle.png"))); // NOI18N
+        lp_move_preview_image.setText(" ");
+        lp_move_preview_image.setToolTipText("");
+
+        javax.swing.GroupLayout lp_move_previewLayout = new javax.swing.GroupLayout(lp_move_preview);
+        lp_move_preview.setLayout(lp_move_previewLayout);
+        lp_move_previewLayout.setHorizontalGroup(
+            lp_move_previewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lp_move_previewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lp_move_preview_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        lp_move_previewLayout.setVerticalGroup(
+            lp_move_previewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lp_move_previewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lp_move_preview_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout lp_moveLayout = new javax.swing.GroupLayout(lp_move);
+        lp_move.setLayout(lp_moveLayout);
+        lp_moveLayout.setHorizontalGroup(
+            lp_moveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lp_moveLayout.createSequentialGroup()
+                .addComponent(lp_move_basic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lp_move_advanced, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(lp_moveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lp_move_details, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lp_move_preview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        lp_moveLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lp_move_advanced, lp_move_basic});
+
+        lp_moveLayout.setVerticalGroup(
+            lp_moveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lp_moveLayout.createSequentialGroup()
+                .addComponent(lp_move_details, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lp_move_preview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(lp_moveLayout.createSequentialGroup()
+                .addGroup(lp_moveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lp_move_basic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lp_move_advanced, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        lp_moveLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lp_move_advanced, lp_move_basic});
+
         javax.swing.GroupLayout MainLeftPanelLayout = new javax.swing.GroupLayout(MainLeftPanel);
         MainLeftPanel.setLayout(MainLeftPanelLayout);
         MainLeftPanelLayout.setHorizontalGroup(
             MainLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 408, Short.MAX_VALUE)
+            .addGroup(MainLeftPanelLayout.createSequentialGroup()
+                .addGap(2, 2, 2)
+                .addComponent(lp_move, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(2, 2, 2))
         );
         MainLeftPanelLayout.setVerticalGroup(
             MainLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainLeftPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lp_move, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2))
         );
 
         MainRightPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        cubedimension_title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        cubedimension_title.setText("Cube dimension:");
+        rp_cubedimension_title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        rp_cubedimension_title.setText("Cube dimension:");
 
-        algorithm_title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        algorithm_title.setText("Algorithm for ints:");
+        rp_algorithm_title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        rp_algorithm_title.setText("Algorithm for ints:");
 
-        nummoves_title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        nummoves_title.setText("Number of moves:");
+        rp_nummoves_title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        rp_nummoves_title.setText("Number of moves:");
 
-        cubedimension_value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        cubedimension_value.setText(" ");
+        rp_cubedimension_value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        rp_cubedimension_value.setText(" ");
 
-        algorithm_value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        algorithm_value.setText(" ");
+        rp_algorithm_value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        rp_algorithm_value.setText(" ");
 
-        nummoves_value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        nummoves_value.setText(" ");
+        rp_nummoves_value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        rp_nummoves_value.setText(" ");
+
+        rp_previousmoves_title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        rp_previousmoves_title.setText("Previous moves");
+
+        rp_previousmoves_value.setEditable(false);
+        rp_previousmoves_value.setColumns(20);
+        rp_previousmoves_value.setRows(5);
+        rp_previousmoves_value.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        rp_previousmoves_value.setEnabled(false);
+        rp_previousmoves_container.setViewportView(rp_previousmoves_value);
+
+        rp_nextmoves_title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        rp_nextmoves_title.setText("Next suggested moves");
+
+        rp_nextmoves_value.setEditable(false);
+        rp_nextmoves_value.setColumns(20);
+        rp_nextmoves_value.setRows(5);
+        rp_nextmoves_value.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        rp_nextmoves_value.setEnabled(false);
+        rp_nextmoves_container.setViewportView(rp_nextmoves_value);
 
         javax.swing.GroupLayout MainRightPanelLayout = new javax.swing.GroupLayout(MainRightPanel);
         MainRightPanel.setLayout(MainRightPanelLayout);
         MainRightPanelLayout.setHorizontalGroup(
             MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MainRightPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainRightPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
-                    .addGroup(MainRightPanelLayout.createSequentialGroup()
+                .addGroup(MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(rp_nextmoves_container, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rp_sep1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, MainRightPanelLayout.createSequentialGroup()
                         .addGroup(MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(algorithm_title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cubedimension_title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(nummoves_title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(rp_algorithm_title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rp_cubedimension_title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rp_nummoves_title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cubedimension_value, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(algorithm_value, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(nummoves_value, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(rp_cubedimension_value, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rp_algorithm_value, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rp_nummoves_value, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(rp_previousmoves_title, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rp_previousmoves_container, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rp_nextmoves_title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        MainRightPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rp_algorithm_title, rp_cubedimension_title, rp_nummoves_title});
+
+        MainRightPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rp_algorithm_value, rp_cubedimension_value, rp_nummoves_value});
+
+        MainRightPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rp_nextmoves_container, rp_previousmoves_container, rp_previousmoves_title});
+
         MainRightPanelLayout.setVerticalGroup(
             MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainRightPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cubedimension_title)
-                    .addComponent(cubedimension_value))
+                    .addComponent(rp_cubedimension_title)
+                    .addComponent(rp_cubedimension_value))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(algorithm_title)
-                    .addComponent(algorithm_value))
+                    .addComponent(rp_algorithm_title)
+                    .addComponent(rp_algorithm_value))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nummoves_title)
-                    .addComponent(nummoves_value))
+                    .addComponent(rp_nummoves_title)
+                    .addComponent(rp_nummoves_value))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addComponent(rp_sep1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rp_previousmoves_title)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rp_previousmoves_container, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rp_nextmoves_title)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rp_nextmoves_container, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                .addContainerGap())
         );
+
+        MainRightPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {rp_algorithm_title, rp_algorithm_value, rp_cubedimension_title, rp_cubedimension_value, rp_nextmoves_title, rp_nummoves_title, rp_nummoves_value, rp_previousmoves_title});
 
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.png"))); // NOI18N
         Logo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -182,6 +511,9 @@ public class MainWindow extends javax.swing.JFrame {
         menu_edit.add(menu_edit_algorithm);
 
         menuBar.add(menu_edit);
+
+        menu_help.setText("Help");
+        menuBar.add(menu_help);
 
         setJMenuBar(menuBar);
 
@@ -231,33 +563,76 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menu_edit_algorithmActionPerformed
 
+    private void lp_move_YActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_YActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lp_move_YActionPerformed
+
+    private void lp_move_EActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_EActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lp_move_EActionPerformed
+    
+    private void lp_move_preview_LoadImage(String move) {
+        if(lp_move_inverse_yes.isSelected())
+            lp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/"+move+"_inv.png")));
+        else
+            lp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/"+move+".png")));
+    }
+    private void lp_move_preview_UnloadImage() {
+        lp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/shuffle.png")));
+    }
+    
+    private void lp_move_LMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_LMouseEntered
+        lp_move_preview_LoadImage("L");
+    }//GEN-LAST:event_lp_move_LMouseEntered
+
+    private void lp_move_LMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_LMouseExited
+        lp_move_preview_UnloadImage();
+    }//GEN-LAST:event_lp_move_LMouseExited
+
+    private void lp_move_RMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_RMouseEntered
+        lp_move_preview_LoadImage("R");
+    }//GEN-LAST:event_lp_move_RMouseEntered
+
+    private void lp_move_RMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_RMouseExited
+        lp_move_preview_UnloadImage();
+    }//GEN-LAST:event_lp_move_RMouseExited
+
+    private void lp_move_UMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_UMouseEntered
+        lp_move_preview_LoadImage("U");
+    }//GEN-LAST:event_lp_move_UMouseEntered
+
+    private void lp_move_UMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_UMouseExited
+        lp_move_preview_UnloadImage();
+    }//GEN-LAST:event_lp_move_UMouseExited
+
+    private void lp_move_DMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_DMouseEntered
+        lp_move_preview_LoadImage("D");
+    }//GEN-LAST:event_lp_move_DMouseEntered
+
+    private void lp_move_DMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_DMouseExited
+        lp_move_preview_UnloadImage();
+    }//GEN-LAST:event_lp_move_DMouseExited
+
+    private void lp_move_FMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_FMouseEntered
+        lp_move_preview_LoadImage("F");
+    }//GEN-LAST:event_lp_move_FMouseEntered
+
+    private void lp_move_FMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_FMouseExited
+        lp_move_preview_UnloadImage();
+    }//GEN-LAST:event_lp_move_FMouseExited
+
+    private void lp_move_BMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_BMouseEntered
+        lp_move_preview_LoadImage("B");
+    }//GEN-LAST:event_lp_move_BMouseEntered
+
+    private void lp_move_BMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_BMouseExited
+        lp_move_preview_UnloadImage();
+    }//GEN-LAST:event_lp_move_BMouseExited
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -270,20 +645,48 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel Logo;
     private javax.swing.JPanel MainLeftPanel;
     private javax.swing.JPanel MainRightPanel;
-    private javax.swing.JLabel algorithm_title;
-    private javax.swing.JLabel algorithm_value;
-    private javax.swing.JLabel cubedimension_title;
-    private javax.swing.JLabel cubedimension_value;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel lp_move;
+    private javax.swing.JButton lp_move_B;
+    private javax.swing.JButton lp_move_D;
+    private javax.swing.JButton lp_move_E;
+    private javax.swing.JButton lp_move_F;
+    private javax.swing.JButton lp_move_L;
+    private javax.swing.JButton lp_move_M;
+    private javax.swing.JButton lp_move_R;
+    private javax.swing.JButton lp_move_S;
+    private javax.swing.JButton lp_move_U;
+    private javax.swing.JButton lp_move_X;
+    private javax.swing.JButton lp_move_Y;
+    private javax.swing.JButton lp_move_Z;
+    private javax.swing.JPanel lp_move_advanced;
+    private javax.swing.JPanel lp_move_basic;
+    private javax.swing.JPanel lp_move_details;
+    private javax.swing.JRadioButton lp_move_inverse_no;
+    private javax.swing.JLabel lp_move_inverse_title;
+    private javax.swing.JRadioButton lp_move_inverse_yes;
+    private javax.swing.JPanel lp_move_preview;
+    private javax.swing.JLabel lp_move_preview_image;
+    private javax.swing.ButtonGroup lp_move_useinverse_btngroup;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menu_edit;
     private javax.swing.JMenuItem menu_edit_algorithm;
     private javax.swing.JMenuItem menu_edit_numfaces;
     private javax.swing.JMenu menu_file;
     private javax.swing.JMenuItem menu_file_exit;
-    private javax.swing.JLabel nummoves_title;
-    private javax.swing.JLabel nummoves_value;
+    private javax.swing.JMenu menu_help;
+    private javax.swing.JLabel rp_algorithm_title;
+    private javax.swing.JLabel rp_algorithm_value;
+    private javax.swing.JLabel rp_cubedimension_title;
+    private javax.swing.JLabel rp_cubedimension_value;
+    private javax.swing.JScrollPane rp_nextmoves_container;
+    private javax.swing.JLabel rp_nextmoves_title;
+    private javax.swing.JTextArea rp_nextmoves_value;
+    private javax.swing.JLabel rp_nummoves_title;
+    private javax.swing.JLabel rp_nummoves_value;
+    private javax.swing.JScrollPane rp_previousmoves_container;
+    private javax.swing.JLabel rp_previousmoves_title;
+    private javax.swing.JTextArea rp_previousmoves_value;
+    private javax.swing.JSeparator rp_sep1;
     // End of variables declaration//GEN-END:variables
 
     private RubikCubeModel cube;
