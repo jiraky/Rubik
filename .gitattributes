@@ -7,7 +7,7 @@
 /manifest.txt -text svneol=unset#text/plain
 /rubikcube.jnlp -text svneol=unset#application/x-java-jnlp-file
 src/it/univr/rubikcube/gui/JRubikCube.java -text svneol=unset#text/x-java-source
-src/it/univr/rubikcube/gui/MainWindow.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/gui/MainWindow_oldversion.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/gui/package-info.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/model/ColumnRotation.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/model/CubeRotation.java -text svneol=unset#text/x-java-source

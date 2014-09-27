@@ -22,7 +22,7 @@ import javax.swing.UIManager;
  *
  * @author Alessandro Menti
  */
-public class MainWindow extends JApplet implements ActionListener {
+public class MainWindow_oldversion extends JApplet implements ActionListener {
     /**
      * UID used for serialization.
      */
@@ -50,7 +50,7 @@ public class MainWindow extends JApplet implements ActionListener {
         mainWindow.setBounds(100, 100, 450, 300);
         mainWindow.setResizable(true);
         mainWindow.setTitle("Rubik Cube Solver");
-        JApplet applet = new MainWindow();
+        JApplet applet = new MainWindow_oldversion();
         applet.init();
         applet.start();
         mainWindow.add(applet);
@@ -69,12 +69,12 @@ public class MainWindow extends JApplet implements ActionListener {
                 public void run() {
                     GridBagLayout gbl = new GridBagLayout();
                     GridBagConstraints gbc;
-                    JRootPane appRootPane = MainWindow.this.getRootPane();
+                    JRootPane appRootPane = MainWindow_oldversion.this.getRootPane();
                     // Set the native look and feel for the platform
                     try {
                         UIManager.setLookAndFeel(UIManager
                                 .getSystemLookAndFeelClassName());
-                        SwingUtilities.updateComponentTreeUI(MainWindow.this);
+                        SwingUtilities.updateComponentTreeUI(MainWindow_oldversion.this);
                     } catch (Exception e) {
                         // Nothing to do
                     }
@@ -160,13 +160,13 @@ public class MainWindow extends JApplet implements ActionListener {
                     JButton cmdExecute = new JButton("Execute");
                     cmdExecute.setMnemonic('e');
                     cmdExecute.setActionCommand("execute");
-                    cmdExecute.addActionListener(MainWindow.this);
+                    cmdExecute.addActionListener(MainWindow_oldversion.this);
                     pnlCommands.add(cmdExecute);
 
                     JButton cmdQuit = new JButton("Quit");
                     cmdQuit.setMnemonic('q');
                     cmdQuit.setActionCommand("quit");
-                    cmdQuit.addActionListener(MainWindow.this);
+                    cmdQuit.addActionListener(MainWindow_oldversion.this);
                     pnlCommands.add(cmdQuit);
                 }
             });
