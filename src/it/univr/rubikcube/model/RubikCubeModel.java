@@ -96,7 +96,6 @@ public class RubikCubeModel extends Observable {
      * @throws IllegalArgumentException Thrown if <tt>rotation</tt> has an
      * invalid value.
      */
-    // FIXME: check the orientation (refer to http://www.cems.uvm.edu/~rsnapp/teaching/cs32/lectures/rubik.pdf)!
     public final void rotateRow(final int index, final RowRotation rotation) {
         RubikCubeFaceColor[] tmpRow;
         if (index >= this.dimension || index < 0) {
@@ -106,7 +105,7 @@ public class RubikCubeModel extends Observable {
         tmpRow = new RubikCubeFaceColor[this.dimension];
         // Backup the front row and rotate the row in the specified direction
         tmpRow = this.configuration[RubikCubeSide.FRONT.getValue()][index];
-        if (rotation == RowRotation.ANTICLOCKWISE) {
+        if (rotation == RowRotation.ANTICLOCKWISE) { // seen from above
             this.configuration[RubikCubeSide.FRONT.getValue()][index] =
                     this.configuration[RubikCubeSide.LEFT.getValue()][index];
             this.configuration[RubikCubeSide.LEFT.getValue()][index] =
@@ -137,7 +136,6 @@ public class RubikCubeModel extends Observable {
      * @throws IllegalArgumentException Thrown if <tt>rotation</tt> has an
      * invalid value.
      */
-    // FIXME: check the orientation (refer to http://www.cems.uvm.edu/~rsnapp/teaching/cs32/lectures/rubik.pdf)!
     public final void rotateColumn(final int index,
                                    final ColumnRotation rotation) {
         RubikCubeFaceColor[] tmpCol;
@@ -193,12 +191,71 @@ public class RubikCubeModel extends Observable {
         notifyObservers(new RubikCubeModelColumnRotated(index, rotation));
     }
     /**
+     * Rotates a lateral column of the Rubik cube.
+     * @param index Column index (counted from front to back).
+     * @param rotation Direction of the rotation.
+     * @throws IndexOutOfBoundsException Thrown if <tt>index</tt> is greater or
+     * equal to the dimension of the cube or is less than zero.
+     * @throws IllegalArgumentException Thrown if <tt>rotation</tt> has an
+     * invalid value.
+     */
+    public final void rotateLateralColumn(final int index,
+                                          final LateralColumnRotation rotation) {
+        RubikCubeFaceColor[] tmpLatCol;
+        if (index >= this.dimension || index < 0) {
+            throw new IndexOutOfBoundsException("The lateral column index must"
+                    + " be between 0 and dimension - 1.");
+        }
+        tmpLatCol = new RubikCubeFaceColor[this.dimension];
+        // Backup the row on the upper face and rotate the lateral column in
+        // the specified direction
+        tmpLatCol = this.configuration[RubikCubeSide.UP.getValue()][index];
+        if (rotation == LateralColumnRotation.LEFT) {
+            for (int i = 0; i < this.dimension; ++i) {
+                this.configuration[RubikCubeSide.UP.getValue()][index][i] =
+                        this.configuration[RubikCubeSide.RIGHT.getValue()][i][index];
+            }
+            for (int i = 0; i < this.dimension; ++i) {
+                this.configuration[RubikCubeSide.RIGHT.getValue()][this.dimension - 1 - i][index] =
+                        this.configuration[RubikCubeSide.DOWN.getValue()][index][i];
+            }
+            for (int i = 0; i < this.dimension; ++i) {
+                this.configuration[RubikCubeSide.DOWN.getValue()][index][i] =
+                        this.configuration[RubikCubeSide.LEFT.getValue()][i][index];
+            }
+            for (int i = 0; i < this.dimension; ++i) {
+                this.configuration[RubikCubeSide.LEFT.getValue()][this.dimension - 1 - i][index] =
+                        tmpLatCol[i];
+            }
+        } else if (rotation == LateralColumnRotation.RIGHT) {
+            for (int i = 0; i < this.dimension; ++i) {
+                this.configuration[RubikCubeSide.UP.getValue()][index][i] =
+                        this.configuration[RubikCubeSide.LEFT.getValue()][this.dimension - 1 - i][index];
+            }
+            for (int i = 0; i < this.dimension; ++i) {
+                this.configuration[RubikCubeSide.LEFT.getValue()][i][index] =
+                        this.configuration[RubikCubeSide.DOWN.getValue()][index][i];
+            }
+            for (int i = 0; i < this.dimension; ++i) {
+                this.configuration[RubikCubeSide.DOWN.getValue()][index][this.dimension - 1 - i] =
+                        this.configuration[RubikCubeSide.RIGHT.getValue()][i][index];
+            }
+            for (int i = 0; i < this.dimension; ++i) {
+                this.configuration[RubikCubeSide.RIGHT.getValue()][i][index] =
+                        tmpLatCol[i];
+            }
+        } else {
+            throw new IllegalArgumentException();
+        }
+        // Notify the listeners that the lateral column has changed.
+        notifyObservers(new RubikCubeModelLateralColumnRotated(index, rotation));
+    }
+    /**
      * Rotates the entire cube in the specified direction.
      * @param rotation Direction of the rotation.
      * @throws IllegalArgumentException Thrown if <tt>rotation</tt> is an
      * invalid direction.
      */
-    // FIXME: check the orientation (refer to http://www.cems.uvm.edu/~rsnapp/teaching/cs32/lectures/rubik.pdf)!
     public final void rotateCube(final CubeRotation rotation) {
         // Save the front side in a temporary variable since this move is the
         // same for every rotation
@@ -247,5 +304,4 @@ public class RubikCubeModel extends Observable {
         // Notify the listeners that the cube was rotated.
         notifyObservers(new RubikCubeModelCubeRotated(rotation));
     }
-    // FIXME Rotate lateral column
 }

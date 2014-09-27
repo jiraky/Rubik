@@ -36,4 +36,9 @@ public abstract class ResolutionStrategy {
      * @return List of next moves.
      */
     public abstract List<Move> getNextMoves();
+    /**
+     * Returns the name of the resolution strategy.
+     * @return Name of the resolution strategy.
+     */
+    public abstract String toString();
 }

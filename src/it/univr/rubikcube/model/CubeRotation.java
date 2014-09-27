@@ -5,9 +5,9 @@ package it.univr.rubikcube.model;
  * @author Alessandro Menti
  */
 public enum CubeRotation {
-    /** Clockwise rotation. */
+    /** Clockwise rotation (as seen from above). */
     CLOCKWISE,
-    /** Anticlockwise rotation. */
+    /** Anticlockwise rotation (as seen from above). */
     ANTICLOCKWISE,
     /** Upwise rotation. */
     UPWISE,
