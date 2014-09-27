@@ -6,6 +6,7 @@
 graphics/cubeicon.ico -text
 graphics/logo.png -text
 graphics/logo.psd -text
+graphics/logo_univr.jpg -text
 graphics/moves/B.png -text
 graphics/moves/B_inv.png -text
 graphics/moves/D.png -text
@@ -35,6 +36,8 @@ graphics/moves/solved.png -text
 /launchRubik.sh -text
 /manifest.txt -text svneol=unset#text/plain
 /rubikcube.jnlp -text svneol=unset#application/x-java-jnlp-file
+src/it/univr/rubikcube/gui/Credits.form -text
+src/it/univr/rubikcube/gui/Credits.java -text
 src/it/univr/rubikcube/gui/JRubikCube.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/gui/MainWindow.form -text
 src/it/univr/rubikcube/gui/MainWindow.java -text
