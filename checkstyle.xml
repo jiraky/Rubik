@@ -91,7 +91,6 @@ A slightly pedantic Checkstyle configuration.
     <module name="PackageDeclaration"/>
     <module name="ParameterAssignment"/>
     <module name="RequireThis"/>
-    <module name="ReturnCount"/>
     <module name="SimplifyBooleanExpression"/>
     <module name="SimplifyBooleanReturn"/>
     <module name="StringLiteralEquality"/>

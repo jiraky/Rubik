@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.univr.rubikcube.gui;
 
-import it.univr.rubikcube.model.RubikCubeFaceColor;
 import it.univr.rubikcube.model.RubikCubeModel;
 import it.univr.rubikcube.model.RubikCubeSide;
 import it.univr.rubikcube.resolutionstrategies.Fridrich;
 import it.univr.rubikcube.resolutionstrategies.ResolutionStrategy;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.LinkedList;
@@ -23,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class MainWindow extends javax.swing.JFrame {
     /**
-     * Serial UID.
+     * UID used for serialization.
      */
     private static final long serialVersionUID = 1L;
     /**
@@ -31,7 +24,7 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         initComponents();
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2,
                          dim.height / 2 - this.getSize().height / 2);
         initCube();
@@ -45,68 +38,65 @@ public class MainWindow extends javax.swing.JFrame {
         this.rp_nummoves_value.setText("" + this.MovesCounter);
  
         
-        this.F11.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.FRONT, 0, 0)));
-        this.F12.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.FRONT, 0, 1)));
-        this.F13.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.FRONT, 0, 2)));
-        this.F21.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.FRONT, 1, 0)));
-        this.F22.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.FRONT, 1, 1)));
-        this.F23.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.FRONT, 1, 2)));
-        this.F31.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.FRONT, 2, 0)));
-        this.F32.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.FRONT, 2, 1)));
-        this.F33.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.FRONT, 2, 2)));
+        this.F11.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 0, 0).getColor());
+        this.F12.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 0, 1).getColor());
+        this.F13.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 0, 2).getColor());
+        this.F21.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 1, 0).getColor());
+        this.F22.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 1, 1).getColor());
+        this.F23.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 1, 2).getColor());
+        this.F31.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 2, 0).getColor());
+        this.F32.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 2, 1).getColor());
+        this.F33.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 2, 2).getColor());
         
-        this.B11.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.BACK, 0, 0)));
-        this.B12.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.BACK, 0, 1)));
-        this.B13.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.BACK, 0, 2)));
-        this.B21.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.BACK, 1, 0)));
-        this.B22.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.BACK, 1, 1)));
-        this.B23.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.BACK, 1, 2)));
-        this.B31.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.BACK, 2, 0)));
-        this.B32.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.BACK, 2, 1)));
-        this.B33.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.BACK, 2, 2)));
+        this.B11.setBackground(this.cube.getFace(RubikCubeSide.BACK, 0, 0).getColor());
+        this.B12.setBackground(this.cube.getFace(RubikCubeSide.BACK, 0, 1).getColor());
+        this.B13.setBackground(this.cube.getFace(RubikCubeSide.BACK, 0, 2).getColor());
+        this.B21.setBackground(this.cube.getFace(RubikCubeSide.BACK, 1, 0).getColor());
+        this.B22.setBackground(this.cube.getFace(RubikCubeSide.BACK, 1, 1).getColor());
+        this.B23.setBackground(this.cube.getFace(RubikCubeSide.BACK, 1, 2).getColor());
+        this.B31.setBackground(this.cube.getFace(RubikCubeSide.BACK, 2, 0).getColor());
+        this.B32.setBackground(this.cube.getFace(RubikCubeSide.BACK, 2, 1).getColor());
+        this.B33.setBackground(this.cube.getFace(RubikCubeSide.BACK, 2, 2).getColor());
         
-        this.R11.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.RIGHT, 0, 0)));
-        this.R12.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.RIGHT, 0, 1)));
-        this.R13.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.RIGHT, 0, 2)));
-        this.R21.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.RIGHT, 1, 0)));
-        this.R22.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.RIGHT, 1, 1)));
-        this.R23.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.RIGHT, 1, 2)));
-        this.R31.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.RIGHT, 2, 0)));
-        this.R32.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.RIGHT, 2, 1)));
-        this.R33.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.RIGHT, 2, 2)));
+        this.R11.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 0, 0).getColor());
+        this.R12.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 0, 1).getColor());
+        this.R13.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 0, 2).getColor());
+        this.R21.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 1, 0).getColor());
+        this.R22.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 1, 1).getColor());
+        this.R23.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 1, 2).getColor());
+        this.R31.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 2, 0).getColor());
+        this.R32.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 2, 1).getColor());
+        this.R33.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 2, 2).getColor());
         
-        this.L11.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.LEFT, 0, 0)));
-        this.L12.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.LEFT, 0, 1)));
-        this.L13.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.LEFT, 0, 2)));
-        this.L21.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.LEFT, 1, 0)));
-        this.L22.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.LEFT, 1, 1)));
-        this.L23.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.LEFT, 1, 2)));
-        this.L31.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.LEFT, 2, 0)));
-        this.L32.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.LEFT, 2, 1)));
-        this.L33.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.LEFT, 2, 2)));
+        this.L11.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 0, 0).getColor());
+        this.L12.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 0, 1).getColor());
+        this.L13.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 0, 2).getColor());
+        this.L21.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 1, 0).getColor());
+        this.L22.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 1, 1).getColor());
+        this.L23.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 1, 2).getColor());
+        this.L31.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 2, 0).getColor());
+        this.L32.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 2, 1).getColor());
+        this.L33.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 2, 2).getColor());
         
-        this.U11.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.UP, 0, 0)));
-        this.U12.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.UP, 0, 1)));
-        this.U13.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.UP, 0, 2)));
-        this.U21.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.UP, 1, 0)));
-        this.U22.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.UP, 1, 1)));
-        this.U23.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.UP, 1, 2)));
-        this.U31.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.UP, 2, 0)));
-        this.U32.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.UP, 2, 1)));
-        this.U33.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.UP, 2, 2)));
+        this.U11.setBackground(this.cube.getFace(RubikCubeSide.UP, 0, 0).getColor());
+        this.U12.setBackground(this.cube.getFace(RubikCubeSide.UP, 0, 1).getColor());
+        this.U13.setBackground(this.cube.getFace(RubikCubeSide.UP, 0, 2).getColor());
+        this.U21.setBackground(this.cube.getFace(RubikCubeSide.UP, 1, 0).getColor());
+        this.U22.setBackground(this.cube.getFace(RubikCubeSide.UP, 1, 1).getColor());
+        this.U23.setBackground(this.cube.getFace(RubikCubeSide.UP, 1, 2).getColor());
+        this.U31.setBackground(this.cube.getFace(RubikCubeSide.UP, 2, 0).getColor());
+        this.U32.setBackground(this.cube.getFace(RubikCubeSide.UP, 2, 1).getColor());
+        this.U33.setBackground(this.cube.getFace(RubikCubeSide.UP, 2, 2).getColor());
         
-        this.D11.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.DOWN, 0, 0)));
-        this.D12.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.DOWN, 0, 1)));
-        this.D13.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.DOWN, 0, 2)));
-        this.D21.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.DOWN, 1, 0)));
-        this.D22.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.DOWN, 1, 1)));
-        this.D23.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.DOWN, 1, 2)));
-        this.D31.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.DOWN, 2, 0)));
-        this.D32.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.DOWN, 2, 1)));
-        this.D33.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.DOWN, 2, 2)));
-        
-        
-        ;
+        this.D11.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 0, 0).getColor());
+        this.D12.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 0, 1).getColor());
+        this.D13.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 0, 2).getColor());
+        this.D21.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 1, 0).getColor());
+        this.D22.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 1, 1).getColor());
+        this.D23.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 1, 2).getColor());
+        this.D31.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 2, 0).getColor());
+        this.D32.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 2, 1).getColor());
+        this.D33.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 2, 2).getColor());
     }
     /* CHECKSTYLE:OFF Rationale: autogenerated code */
     /**
@@ -114,7 +104,6 @@ public class MainWindow extends javax.swing.JFrame {
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
      */
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -1894,17 +1883,34 @@ public class MainWindow extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     // CHECKSTYLE:ON
 
+    /**
+     * Rubik cube model.
+     */
     private RubikCubeModel cube;
-    
+    /**
+     * List of available resolution strategies.
+     */
     private List<ResolutionStrategy> availableStrategy;
+    /**
+     * Chosen resolution strategy.
+     */
     private ResolutionStrategy actualStrategy;
+    /**
+     * Rubik cube dimension.
+     */
     private int RubikCubeDimension = 3;
+    /**
+     * Number of performed moves.
+     */
     private int MovesCounter = 0;
 
-    private void initCube() {     
+    /**
+     * Initializes the Rubik cube.
+     */
+    private void initCube() {
         this.cube = new RubikCubeModel(this.getCubeDimension());
         
-        this.availableStrategy = new LinkedList<>();
+        this.availableStrategy = new LinkedList<ResolutionStrategy>();
         this.availableStrategy.add(new Fridrich(this.cube));
         this.actualStrategy = this.availableStrategy.get(0);
         

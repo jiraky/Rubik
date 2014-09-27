@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.univr.rubikcube.gui;
 
 import it.univr.rubikcube.resolutionstrategies.ResolutionStrategy;
@@ -18,57 +13,82 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
 /**
- *
- * @author Mattia
+ * Form used to change the resolution strategy.
+ * @author Mattia Zago
  */
 public class ChangeAlgorithm extends javax.swing.JDialog {
-
     /**
-     * A return status code - returned if Cancel button has been pressed
+     * A return status code - returned if Cancel button has been pressed.
      */
     public static final boolean RET_CANCEL = false;
     /**
-     * A return status code - returned if OK button has been pressed
+     * A return status code - returned if OK button has been pressed.
      */
     public static final boolean RET_OK = true;
-
-    public List<ResolutionStrategy> algorithms;
+    /**
+     * UID used for serialization.
+     */
+    private static final long serialVersionUID = 1L;
+    /**
+     * List of available resolution strategies.
+     */
+    private List<ResolutionStrategy> algorithms;
+    /**
+     * Default return status.
+     */
+    private boolean returnStatus = RET_CANCEL;
+    /**
+     * Number of faces for the Rubik cube.
+     */
+    private int selectedFaces = 3;
     
     /**
-     * Creates new form NumFaces
-     * @param parent
-     * @param modal
-     * @param algorithms
+     * Creates a new instance of the "Change resolution strategy" form.
+     * @param parent Parent form.
+     * @param modal Whether this dialog should be modal.
+     * @param algs List of resolution strategies.
      */
-    public ChangeAlgorithm(java.awt.Frame parent, boolean modal, List<ResolutionStrategy> algorithms) {
+    public ChangeAlgorithm(final java.awt.Frame parent, final boolean modal,
+                           final List<ResolutionStrategy> algs) {
         super(parent, modal);
-        this.algorithms = algorithms;
+        this.algorithms = algs;
         initComponents();
         
         setLocationRelativeTo(parent);
         // Close the dialog when Esc is pressed
-        String cancelName = "cancel";
-        InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        final String cancelName = "cancel";
+        final InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), cancelName);
-        ActionMap actionMap = getRootPane().getActionMap();
+        final ActionMap actionMap = getRootPane().getActionMap();
         actionMap.put(cancelName, new AbstractAction() {
+            private static final long serialVersionUID = 1L;
+
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 doClose(RET_CANCEL);
             }
         });
     }
 
     /**
-     * @return the return status of this dialog - one of RET_OK or RET_CANCEL
+     * Gets the return status of this dialog.
+     * @return The return status of this dialog - one of RET_OK or RET_CANCEL
      */
-    public boolean getReturnStatus() {
+    public final boolean getReturnStatus() {
         return returnStatus;
     }
-    public int getSelectedFaces() {
+    /**
+     * Gets the number of faces for the Rubik cube.
+     * @return Number of faces for the Rubik cube.
+     */
+    public final int getSelectedFaces() {
         return selectedFaces;
     }
-    public ComboBoxModel getAlgorithms() {
+    /**
+     * Gets a list of resolution strategies.
+     * @return List of resolution strategies.
+     */
+    public final ComboBoxModel getAlgorithms() {
         return new DefaultComboBoxModel(this.algorithms.toArray());        
     }
     
@@ -189,53 +209,10 @@ public class ChangeAlgorithm extends javax.swing.JDialog {
         this.algorithm_description.setText(selected_option.getDescription());
     }//GEN-LAST:event_algorithms_listActionPerformed
     
-    private void doClose(boolean retStatus) {
+    void doClose(boolean retStatus) {
         returnStatus = retStatus;
         setVisible(false);
         dispose();
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChangeAlgorithm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChangeAlgorithm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChangeAlgorithm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChangeAlgorithm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ChangeAlgorithm dialog = new ChangeAlgorithm(new javax.swing.JFrame(), true, null);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -247,7 +224,4 @@ public class ChangeAlgorithm extends javax.swing.JDialog {
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
     // CHECKSTYLE:ON
-
-    private boolean returnStatus = RET_CANCEL;
-    private int selectedFaces = 3;
 }

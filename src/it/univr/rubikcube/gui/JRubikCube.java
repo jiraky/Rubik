@@ -1,10 +1,10 @@
 package it.univr.rubikcube.gui;
 
-import java.awt.Component;
 import it.univr.rubikcube.model.RubikCubeModel;
+import java.awt.Component;
 
 /**
- * 3D Rubik Cube control.
+ * Rubik Cube control.
  * @author Alessandro Menti
  */
 public class JRubikCube extends Component {
@@ -20,8 +20,17 @@ public class JRubikCube extends Component {
     /**
      * Creates a new instance of the Rubik cube control.
      * @param faces Number of faces.
+     * @throws IllegalArgumentException Thrown if the number of faces is less
+     * than two.
      */
-    public JRubikCube(final int faces) {
+    public JRubikCube(final int faces) throws IllegalArgumentException {
         this.cubeModel = new RubikCubeModel(faces);
+    }
+    /**
+     * Gets the Rubik cube model associated with this control.
+     * @return Rubik cube model.
+     */
+    public final RubikCubeModel getModel() {
+        return this.cubeModel;
     }
 }
