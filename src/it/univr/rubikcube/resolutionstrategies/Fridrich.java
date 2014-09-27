@@ -44,4 +44,9 @@ public class Fridrich extends ResolutionStrategy {
     public final String toString() {
         return "Fridrich";
     }
+
+    @Override
+    public String getDescription() {
+        return "Fridrich algorithms";
+    }
 }

@@ -168,8 +168,6 @@ public class MainWindow extends javax.swing.JFrame {
         setName("MainFrame"); // NOI18N
         setResizable(false);
 
-        MainLeftPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
         lp_cube.setBorder(javax.swing.BorderFactory.createTitledBorder("Cube"));
         lp_cube.setLayout(new java.awt.GridLayout(3, 3, 1, 1));
 
@@ -1389,7 +1387,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_edit_numfacesActionPerformed
 
     private void menu_edit_algorithmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_edit_algorithmActionPerformed
-        // TODO add your handling code here:
+        new ChangeAlgorithm(this, true, this.availableStrategy).setVisible(true);
     }//GEN-LAST:event_menu_edit_algorithmActionPerformed
     
     private void lp_move_LMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_LMouseEntered

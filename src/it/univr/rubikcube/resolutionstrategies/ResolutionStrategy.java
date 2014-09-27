@@ -40,5 +40,8 @@ public abstract class ResolutionStrategy {
      * Returns the name of the resolution strategy.
      * @return Name of the resolution strategy.
      */
+    @Override
     public abstract String toString();
+    
+    public abstract String getDescription();
 }

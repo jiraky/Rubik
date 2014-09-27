@@ -36,6 +36,8 @@ graphics/moves/solved.png -text
 /launchRubik.sh -text
 /manifest.txt -text svneol=unset#text/plain
 /rubikcube.jnlp -text svneol=unset#application/x-java-jnlp-file
+src/it/univr/rubikcube/gui/ChangeAlgorithm.form -text
+src/it/univr/rubikcube/gui/ChangeAlgorithm.java -text
 src/it/univr/rubikcube/gui/Credits.form -text
 src/it/univr/rubikcube/gui/Credits.java -text
 src/it/univr/rubikcube/gui/JRubikCube.java -text svneol=unset#text/x-java-source
