@@ -108,6 +108,7 @@ public class NumFaces extends javax.swing.JDialog {
         slider.setPaintLabels(true);
         slider.setPaintTicks(true);
         slider.setValue(3);
+        slider.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         slider.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

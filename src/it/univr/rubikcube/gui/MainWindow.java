@@ -50,6 +50,70 @@ public class MainWindow extends javax.swing.JFrame {
 
         lp_move_useinverse_btngroup = new javax.swing.ButtonGroup();
         MainLeftPanel = new javax.swing.JPanel();
+        lp_cube = new javax.swing.JPanel();
+        Empty_NW = new javax.swing.JPanel();
+        U = new javax.swing.JPanel();
+        U11 = new javax.swing.JLabel();
+        U12 = new javax.swing.JLabel();
+        U13 = new javax.swing.JLabel();
+        U21 = new javax.swing.JLabel();
+        U22 = new javax.swing.JLabel();
+        U23 = new javax.swing.JLabel();
+        U31 = new javax.swing.JLabel();
+        U32 = new javax.swing.JLabel();
+        U33 = new javax.swing.JLabel();
+        B = new javax.swing.JPanel();
+        B11 = new javax.swing.JLabel();
+        B12 = new javax.swing.JLabel();
+        B13 = new javax.swing.JLabel();
+        B21 = new javax.swing.JLabel();
+        B22 = new javax.swing.JLabel();
+        B23 = new javax.swing.JLabel();
+        B31 = new javax.swing.JLabel();
+        B32 = new javax.swing.JLabel();
+        B33 = new javax.swing.JLabel();
+        L = new javax.swing.JPanel();
+        L11 = new javax.swing.JLabel();
+        L12 = new javax.swing.JLabel();
+        L13 = new javax.swing.JLabel();
+        L21 = new javax.swing.JLabel();
+        L22 = new javax.swing.JLabel();
+        L23 = new javax.swing.JLabel();
+        L31 = new javax.swing.JLabel();
+        L32 = new javax.swing.JLabel();
+        L33 = new javax.swing.JLabel();
+        F = new javax.swing.JPanel();
+        F11 = new javax.swing.JLabel();
+        F12 = new javax.swing.JLabel();
+        F13 = new javax.swing.JLabel();
+        F21 = new javax.swing.JLabel();
+        F22 = new javax.swing.JLabel();
+        F23 = new javax.swing.JLabel();
+        F31 = new javax.swing.JLabel();
+        F32 = new javax.swing.JLabel();
+        F33 = new javax.swing.JLabel();
+        R = new javax.swing.JPanel();
+        R11 = new javax.swing.JLabel();
+        R12 = new javax.swing.JLabel();
+        R13 = new javax.swing.JLabel();
+        R21 = new javax.swing.JLabel();
+        R22 = new javax.swing.JLabel();
+        R23 = new javax.swing.JLabel();
+        R31 = new javax.swing.JLabel();
+        R32 = new javax.swing.JLabel();
+        R33 = new javax.swing.JLabel();
+        Empty_SW = new javax.swing.JPanel();
+        D = new javax.swing.JPanel();
+        D11 = new javax.swing.JLabel();
+        D12 = new javax.swing.JLabel();
+        D13 = new javax.swing.JLabel();
+        D21 = new javax.swing.JLabel();
+        D22 = new javax.swing.JLabel();
+        D23 = new javax.swing.JLabel();
+        D31 = new javax.swing.JLabel();
+        D32 = new javax.swing.JLabel();
+        D33 = new javax.swing.JLabel();
+        Empty_SE = new javax.swing.JPanel();
         lp_move = new javax.swing.JPanel();
         lp_move_basic = new javax.swing.JPanel();
         lp_move_L = new javax.swing.JButton();
@@ -101,9 +165,627 @@ public class MainWindow extends javax.swing.JFrame {
 
         MainLeftPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        lp_cube.setBorder(javax.swing.BorderFactory.createTitledBorder("Cube"));
+        lp_cube.setLayout(new java.awt.GridLayout(3, 3, 1, 1));
+
+        Empty_NW.setMaximumSize(new java.awt.Dimension(100, 100));
+        Empty_NW.setMinimumSize(new java.awt.Dimension(100, 100));
+        Empty_NW.setName(""); // NOI18N
+        Empty_NW.setPreferredSize(new java.awt.Dimension(100, 100));
+        Empty_NW.setLayout(new java.awt.GridLayout(3, 3));
+        lp_cube.add(Empty_NW);
+
+        U.setMaximumSize(new java.awt.Dimension(100, 100));
+        U.setMinimumSize(new java.awt.Dimension(100, 100));
+        U.setName(""); // NOI18N
+        U.setPreferredSize(new java.awt.Dimension(100, 100));
+        U.setLayout(new java.awt.GridLayout(3, 3));
+
+        U11.setBackground(new java.awt.Color(255, 0, 0));
+        U11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        U11.setText(" ");
+        U11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        U11.setMaximumSize(new java.awt.Dimension(20, 20));
+        U11.setMinimumSize(new java.awt.Dimension(20, 20));
+        U11.setOpaque(true);
+        U11.setPreferredSize(new java.awt.Dimension(20, 20));
+        U.add(U11);
+
+        U12.setBackground(new java.awt.Color(255, 0, 0));
+        U12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        U12.setText(" ");
+        U12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        U12.setMaximumSize(new java.awt.Dimension(20, 20));
+        U12.setMinimumSize(new java.awt.Dimension(20, 20));
+        U12.setOpaque(true);
+        U12.setPreferredSize(new java.awt.Dimension(20, 20));
+        U.add(U12);
+
+        U13.setBackground(new java.awt.Color(255, 0, 0));
+        U13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        U13.setText(" ");
+        U13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        U13.setMaximumSize(new java.awt.Dimension(20, 20));
+        U13.setMinimumSize(new java.awt.Dimension(20, 20));
+        U13.setOpaque(true);
+        U13.setPreferredSize(new java.awt.Dimension(20, 20));
+        U.add(U13);
+
+        U21.setBackground(new java.awt.Color(255, 0, 0));
+        U21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        U21.setText(" ");
+        U21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        U21.setMaximumSize(new java.awt.Dimension(20, 20));
+        U21.setMinimumSize(new java.awt.Dimension(20, 20));
+        U21.setOpaque(true);
+        U21.setPreferredSize(new java.awt.Dimension(20, 20));
+        U.add(U21);
+
+        U22.setBackground(new java.awt.Color(255, 0, 0));
+        U22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        U22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        U22.setText("U");
+        U22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        U22.setMaximumSize(new java.awt.Dimension(20, 20));
+        U22.setMinimumSize(new java.awt.Dimension(20, 20));
+        U22.setOpaque(true);
+        U22.setPreferredSize(new java.awt.Dimension(20, 20));
+        U.add(U22);
+
+        U23.setBackground(new java.awt.Color(255, 0, 0));
+        U23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        U23.setText(" ");
+        U23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        U23.setMaximumSize(new java.awt.Dimension(20, 20));
+        U23.setMinimumSize(new java.awt.Dimension(20, 20));
+        U23.setOpaque(true);
+        U23.setPreferredSize(new java.awt.Dimension(20, 20));
+        U.add(U23);
+
+        U31.setBackground(new java.awt.Color(255, 0, 0));
+        U31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        U31.setText(" ");
+        U31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        U31.setMaximumSize(new java.awt.Dimension(20, 20));
+        U31.setMinimumSize(new java.awt.Dimension(20, 20));
+        U31.setOpaque(true);
+        U31.setPreferredSize(new java.awt.Dimension(20, 20));
+        U.add(U31);
+
+        U32.setBackground(new java.awt.Color(255, 0, 0));
+        U32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        U32.setText(" ");
+        U32.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        U32.setMaximumSize(new java.awt.Dimension(20, 20));
+        U32.setMinimumSize(new java.awt.Dimension(20, 20));
+        U32.setOpaque(true);
+        U32.setPreferredSize(new java.awt.Dimension(20, 20));
+        U.add(U32);
+
+        U33.setBackground(new java.awt.Color(255, 0, 0));
+        U33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        U33.setText(" ");
+        U33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        U33.setMaximumSize(new java.awt.Dimension(20, 20));
+        U33.setMinimumSize(new java.awt.Dimension(20, 20));
+        U33.setOpaque(true);
+        U33.setPreferredSize(new java.awt.Dimension(20, 20));
+        U.add(U33);
+
+        lp_cube.add(U);
+
+        B.setMaximumSize(new java.awt.Dimension(100, 100));
+        B.setMinimumSize(new java.awt.Dimension(100, 100));
+        B.setName(""); // NOI18N
+        B.setPreferredSize(new java.awt.Dimension(100, 100));
+        B.setLayout(new java.awt.GridLayout(3, 3));
+
+        B11.setBackground(new java.awt.Color(255, 255, 0));
+        B11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        B11.setText(" ");
+        B11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        B11.setMaximumSize(new java.awt.Dimension(20, 20));
+        B11.setMinimumSize(new java.awt.Dimension(20, 20));
+        B11.setOpaque(true);
+        B11.setPreferredSize(new java.awt.Dimension(20, 20));
+        B.add(B11);
+
+        B12.setBackground(new java.awt.Color(255, 255, 0));
+        B12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        B12.setText(" ");
+        B12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        B12.setMaximumSize(new java.awt.Dimension(20, 20));
+        B12.setMinimumSize(new java.awt.Dimension(20, 20));
+        B12.setOpaque(true);
+        B12.setPreferredSize(new java.awt.Dimension(20, 20));
+        B.add(B12);
+
+        B13.setBackground(new java.awt.Color(255, 255, 0));
+        B13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        B13.setText(" ");
+        B13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        B13.setMaximumSize(new java.awt.Dimension(20, 20));
+        B13.setMinimumSize(new java.awt.Dimension(20, 20));
+        B13.setOpaque(true);
+        B13.setPreferredSize(new java.awt.Dimension(20, 20));
+        B.add(B13);
+
+        B21.setBackground(new java.awt.Color(255, 255, 0));
+        B21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        B21.setText(" ");
+        B21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        B21.setMaximumSize(new java.awt.Dimension(20, 20));
+        B21.setMinimumSize(new java.awt.Dimension(20, 20));
+        B21.setOpaque(true);
+        B21.setPreferredSize(new java.awt.Dimension(20, 20));
+        B.add(B21);
+
+        B22.setBackground(new java.awt.Color(255, 255, 0));
+        B22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        B22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        B22.setText("B");
+        B22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        B22.setMaximumSize(new java.awt.Dimension(20, 20));
+        B22.setMinimumSize(new java.awt.Dimension(20, 20));
+        B22.setOpaque(true);
+        B22.setPreferredSize(new java.awt.Dimension(20, 20));
+        B.add(B22);
+
+        B23.setBackground(new java.awt.Color(255, 255, 0));
+        B23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        B23.setText(" ");
+        B23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        B23.setMaximumSize(new java.awt.Dimension(20, 20));
+        B23.setMinimumSize(new java.awt.Dimension(20, 20));
+        B23.setOpaque(true);
+        B23.setPreferredSize(new java.awt.Dimension(20, 20));
+        B.add(B23);
+
+        B31.setBackground(new java.awt.Color(255, 255, 0));
+        B31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        B31.setText(" ");
+        B31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        B31.setMaximumSize(new java.awt.Dimension(20, 20));
+        B31.setMinimumSize(new java.awt.Dimension(20, 20));
+        B31.setOpaque(true);
+        B31.setPreferredSize(new java.awt.Dimension(20, 20));
+        B.add(B31);
+
+        B32.setBackground(new java.awt.Color(255, 255, 0));
+        B32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        B32.setText(" ");
+        B32.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        B32.setMaximumSize(new java.awt.Dimension(20, 20));
+        B32.setMinimumSize(new java.awt.Dimension(20, 20));
+        B32.setOpaque(true);
+        B32.setPreferredSize(new java.awt.Dimension(20, 20));
+        B.add(B32);
+
+        B33.setBackground(new java.awt.Color(255, 255, 0));
+        B33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        B33.setText(" ");
+        B33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        B33.setMaximumSize(new java.awt.Dimension(20, 20));
+        B33.setMinimumSize(new java.awt.Dimension(20, 20));
+        B33.setOpaque(true);
+        B33.setPreferredSize(new java.awt.Dimension(20, 20));
+        B.add(B33);
+
+        lp_cube.add(B);
+
+        L.setMaximumSize(new java.awt.Dimension(100, 100));
+        L.setMinimumSize(new java.awt.Dimension(100, 100));
+        L.setName(""); // NOI18N
+        L.setPreferredSize(new java.awt.Dimension(100, 100));
+        L.setLayout(new java.awt.GridLayout(3, 3));
+
+        L11.setBackground(new java.awt.Color(0, 51, 255));
+        L11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        L11.setText(" ");
+        L11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        L11.setMaximumSize(new java.awt.Dimension(20, 20));
+        L11.setMinimumSize(new java.awt.Dimension(20, 20));
+        L11.setOpaque(true);
+        L11.setPreferredSize(new java.awt.Dimension(20, 20));
+        L.add(L11);
+
+        L12.setBackground(new java.awt.Color(0, 51, 255));
+        L12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        L12.setText(" ");
+        L12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        L12.setMaximumSize(new java.awt.Dimension(20, 20));
+        L12.setMinimumSize(new java.awt.Dimension(20, 20));
+        L12.setOpaque(true);
+        L12.setPreferredSize(new java.awt.Dimension(20, 20));
+        L.add(L12);
+
+        L13.setBackground(new java.awt.Color(0, 51, 255));
+        L13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        L13.setText(" ");
+        L13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        L13.setMaximumSize(new java.awt.Dimension(20, 20));
+        L13.setMinimumSize(new java.awt.Dimension(20, 20));
+        L13.setOpaque(true);
+        L13.setPreferredSize(new java.awt.Dimension(20, 20));
+        L.add(L13);
+
+        L21.setBackground(new java.awt.Color(0, 51, 255));
+        L21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        L21.setText(" ");
+        L21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        L21.setMaximumSize(new java.awt.Dimension(20, 20));
+        L21.setMinimumSize(new java.awt.Dimension(20, 20));
+        L21.setOpaque(true);
+        L21.setPreferredSize(new java.awt.Dimension(20, 20));
+        L.add(L21);
+
+        L22.setBackground(new java.awt.Color(0, 51, 255));
+        L22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        L22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        L22.setText("L");
+        L22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        L22.setMaximumSize(new java.awt.Dimension(20, 20));
+        L22.setMinimumSize(new java.awt.Dimension(20, 20));
+        L22.setOpaque(true);
+        L22.setPreferredSize(new java.awt.Dimension(20, 20));
+        L.add(L22);
+
+        L23.setBackground(new java.awt.Color(0, 51, 255));
+        L23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        L23.setText(" ");
+        L23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        L23.setMaximumSize(new java.awt.Dimension(20, 20));
+        L23.setMinimumSize(new java.awt.Dimension(20, 20));
+        L23.setOpaque(true);
+        L23.setPreferredSize(new java.awt.Dimension(20, 20));
+        L.add(L23);
+
+        L31.setBackground(new java.awt.Color(0, 51, 255));
+        L31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        L31.setText(" ");
+        L31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        L31.setMaximumSize(new java.awt.Dimension(20, 20));
+        L31.setMinimumSize(new java.awt.Dimension(20, 20));
+        L31.setOpaque(true);
+        L31.setPreferredSize(new java.awt.Dimension(20, 20));
+        L.add(L31);
+
+        L32.setBackground(new java.awt.Color(0, 51, 255));
+        L32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        L32.setText(" ");
+        L32.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        L32.setMaximumSize(new java.awt.Dimension(20, 20));
+        L32.setMinimumSize(new java.awt.Dimension(20, 20));
+        L32.setOpaque(true);
+        L32.setPreferredSize(new java.awt.Dimension(20, 20));
+        L.add(L32);
+
+        L33.setBackground(new java.awt.Color(0, 51, 255));
+        L33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        L33.setText(" ");
+        L33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        L33.setMaximumSize(new java.awt.Dimension(20, 20));
+        L33.setMinimumSize(new java.awt.Dimension(20, 20));
+        L33.setOpaque(true);
+        L33.setPreferredSize(new java.awt.Dimension(20, 20));
+        L.add(L33);
+
+        lp_cube.add(L);
+
+        F.setMaximumSize(new java.awt.Dimension(100, 100));
+        F.setMinimumSize(new java.awt.Dimension(100, 100));
+        F.setName(""); // NOI18N
+        F.setPreferredSize(new java.awt.Dimension(100, 100));
+        F.setLayout(new java.awt.GridLayout(3, 3));
+
+        F11.setBackground(new java.awt.Color(255, 255, 255));
+        F11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        F11.setText(" ");
+        F11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        F11.setMaximumSize(new java.awt.Dimension(20, 20));
+        F11.setMinimumSize(new java.awt.Dimension(20, 20));
+        F11.setOpaque(true);
+        F11.setPreferredSize(new java.awt.Dimension(20, 20));
+        F.add(F11);
+
+        F12.setBackground(new java.awt.Color(255, 255, 255));
+        F12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        F12.setText(" ");
+        F12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        F12.setMaximumSize(new java.awt.Dimension(20, 20));
+        F12.setMinimumSize(new java.awt.Dimension(20, 20));
+        F12.setOpaque(true);
+        F12.setPreferredSize(new java.awt.Dimension(20, 20));
+        F.add(F12);
+
+        F13.setBackground(new java.awt.Color(255, 255, 255));
+        F13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        F13.setText(" ");
+        F13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        F13.setMaximumSize(new java.awt.Dimension(20, 20));
+        F13.setMinimumSize(new java.awt.Dimension(20, 20));
+        F13.setOpaque(true);
+        F13.setPreferredSize(new java.awt.Dimension(20, 20));
+        F.add(F13);
+
+        F21.setBackground(new java.awt.Color(255, 255, 255));
+        F21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        F21.setText(" ");
+        F21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        F21.setMaximumSize(new java.awt.Dimension(20, 20));
+        F21.setMinimumSize(new java.awt.Dimension(20, 20));
+        F21.setOpaque(true);
+        F21.setPreferredSize(new java.awt.Dimension(20, 20));
+        F.add(F21);
+
+        F22.setBackground(new java.awt.Color(255, 255, 255));
+        F22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        F22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        F22.setText("F");
+        F22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        F22.setMaximumSize(new java.awt.Dimension(20, 20));
+        F22.setMinimumSize(new java.awt.Dimension(20, 20));
+        F22.setOpaque(true);
+        F22.setPreferredSize(new java.awt.Dimension(20, 20));
+        F.add(F22);
+
+        F23.setBackground(new java.awt.Color(255, 255, 255));
+        F23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        F23.setText(" ");
+        F23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        F23.setMaximumSize(new java.awt.Dimension(20, 20));
+        F23.setMinimumSize(new java.awt.Dimension(20, 20));
+        F23.setOpaque(true);
+        F23.setPreferredSize(new java.awt.Dimension(20, 20));
+        F.add(F23);
+
+        F31.setBackground(new java.awt.Color(255, 255, 255));
+        F31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        F31.setText(" ");
+        F31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        F31.setMaximumSize(new java.awt.Dimension(20, 20));
+        F31.setMinimumSize(new java.awt.Dimension(20, 20));
+        F31.setOpaque(true);
+        F31.setPreferredSize(new java.awt.Dimension(20, 20));
+        F.add(F31);
+
+        F32.setBackground(new java.awt.Color(255, 255, 255));
+        F32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        F32.setText(" ");
+        F32.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        F32.setMaximumSize(new java.awt.Dimension(20, 20));
+        F32.setMinimumSize(new java.awt.Dimension(20, 20));
+        F32.setOpaque(true);
+        F32.setPreferredSize(new java.awt.Dimension(20, 20));
+        F.add(F32);
+
+        F33.setBackground(new java.awt.Color(255, 255, 255));
+        F33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        F33.setText(" ");
+        F33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        F33.setMaximumSize(new java.awt.Dimension(20, 20));
+        F33.setMinimumSize(new java.awt.Dimension(20, 20));
+        F33.setOpaque(true);
+        F33.setPreferredSize(new java.awt.Dimension(20, 20));
+        F.add(F33);
+
+        lp_cube.add(F);
+
+        R.setMaximumSize(new java.awt.Dimension(100, 100));
+        R.setMinimumSize(new java.awt.Dimension(100, 100));
+        R.setName(""); // NOI18N
+        R.setPreferredSize(new java.awt.Dimension(100, 100));
+        R.setLayout(new java.awt.GridLayout(3, 3));
+
+        R11.setBackground(new java.awt.Color(0, 153, 0));
+        R11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R11.setText(" ");
+        R11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        R11.setMaximumSize(new java.awt.Dimension(20, 20));
+        R11.setMinimumSize(new java.awt.Dimension(20, 20));
+        R11.setOpaque(true);
+        R11.setPreferredSize(new java.awt.Dimension(20, 20));
+        R.add(R11);
+
+        R12.setBackground(new java.awt.Color(0, 153, 0));
+        R12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R12.setText(" ");
+        R12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        R12.setMaximumSize(new java.awt.Dimension(20, 20));
+        R12.setMinimumSize(new java.awt.Dimension(20, 20));
+        R12.setOpaque(true);
+        R12.setPreferredSize(new java.awt.Dimension(20, 20));
+        R.add(R12);
+
+        R13.setBackground(new java.awt.Color(0, 153, 0));
+        R13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R13.setText(" ");
+        R13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        R13.setMaximumSize(new java.awt.Dimension(20, 20));
+        R13.setMinimumSize(new java.awt.Dimension(20, 20));
+        R13.setOpaque(true);
+        R13.setPreferredSize(new java.awt.Dimension(20, 20));
+        R.add(R13);
+
+        R21.setBackground(new java.awt.Color(0, 153, 0));
+        R21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R21.setText(" ");
+        R21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        R21.setMaximumSize(new java.awt.Dimension(20, 20));
+        R21.setMinimumSize(new java.awt.Dimension(20, 20));
+        R21.setOpaque(true);
+        R21.setPreferredSize(new java.awt.Dimension(20, 20));
+        R.add(R21);
+
+        R22.setBackground(new java.awt.Color(0, 153, 0));
+        R22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        R22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R22.setText("R");
+        R22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        R22.setMaximumSize(new java.awt.Dimension(20, 20));
+        R22.setMinimumSize(new java.awt.Dimension(20, 20));
+        R22.setOpaque(true);
+        R22.setPreferredSize(new java.awt.Dimension(20, 20));
+        R.add(R22);
+
+        R23.setBackground(new java.awt.Color(0, 153, 0));
+        R23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R23.setText(" ");
+        R23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        R23.setMaximumSize(new java.awt.Dimension(20, 20));
+        R23.setMinimumSize(new java.awt.Dimension(20, 20));
+        R23.setOpaque(true);
+        R23.setPreferredSize(new java.awt.Dimension(20, 20));
+        R.add(R23);
+
+        R31.setBackground(new java.awt.Color(0, 153, 0));
+        R31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R31.setText(" ");
+        R31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        R31.setMaximumSize(new java.awt.Dimension(20, 20));
+        R31.setMinimumSize(new java.awt.Dimension(20, 20));
+        R31.setOpaque(true);
+        R31.setPreferredSize(new java.awt.Dimension(20, 20));
+        R.add(R31);
+
+        R32.setBackground(new java.awt.Color(0, 153, 0));
+        R32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R32.setText(" ");
+        R32.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        R32.setMaximumSize(new java.awt.Dimension(20, 20));
+        R32.setMinimumSize(new java.awt.Dimension(20, 20));
+        R32.setOpaque(true);
+        R32.setPreferredSize(new java.awt.Dimension(20, 20));
+        R.add(R32);
+
+        R33.setBackground(new java.awt.Color(0, 153, 0));
+        R33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        R33.setText(" ");
+        R33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        R33.setMaximumSize(new java.awt.Dimension(20, 20));
+        R33.setMinimumSize(new java.awt.Dimension(20, 20));
+        R33.setOpaque(true);
+        R33.setPreferredSize(new java.awt.Dimension(20, 20));
+        R.add(R33);
+
+        lp_cube.add(R);
+
+        Empty_SW.setMaximumSize(new java.awt.Dimension(100, 100));
+        Empty_SW.setMinimumSize(new java.awt.Dimension(100, 100));
+        Empty_SW.setName(""); // NOI18N
+        Empty_SW.setPreferredSize(new java.awt.Dimension(100, 100));
+        Empty_SW.setLayout(new java.awt.GridLayout(3, 3));
+        lp_cube.add(Empty_SW);
+
+        D.setMaximumSize(new java.awt.Dimension(100, 100));
+        D.setMinimumSize(new java.awt.Dimension(100, 100));
+        D.setName(""); // NOI18N
+        D.setPreferredSize(new java.awt.Dimension(100, 100));
+        D.setLayout(new java.awt.GridLayout(3, 3));
+
+        D11.setBackground(new java.awt.Color(255, 153, 0));
+        D11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D11.setText(" ");
+        D11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        D11.setMaximumSize(new java.awt.Dimension(20, 20));
+        D11.setMinimumSize(new java.awt.Dimension(20, 20));
+        D11.setOpaque(true);
+        D11.setPreferredSize(new java.awt.Dimension(20, 20));
+        D.add(D11);
+
+        D12.setBackground(new java.awt.Color(255, 153, 0));
+        D12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D12.setText(" ");
+        D12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        D12.setMaximumSize(new java.awt.Dimension(20, 20));
+        D12.setMinimumSize(new java.awt.Dimension(20, 20));
+        D12.setOpaque(true);
+        D12.setPreferredSize(new java.awt.Dimension(20, 20));
+        D.add(D12);
+
+        D13.setBackground(new java.awt.Color(255, 153, 0));
+        D13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D13.setText(" ");
+        D13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        D13.setMaximumSize(new java.awt.Dimension(20, 20));
+        D13.setMinimumSize(new java.awt.Dimension(20, 20));
+        D13.setOpaque(true);
+        D13.setPreferredSize(new java.awt.Dimension(20, 20));
+        D.add(D13);
+
+        D21.setBackground(new java.awt.Color(255, 153, 0));
+        D21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D21.setText(" ");
+        D21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        D21.setMaximumSize(new java.awt.Dimension(20, 20));
+        D21.setMinimumSize(new java.awt.Dimension(20, 20));
+        D21.setOpaque(true);
+        D21.setPreferredSize(new java.awt.Dimension(20, 20));
+        D.add(D21);
+
+        D22.setBackground(new java.awt.Color(255, 153, 0));
+        D22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        D22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D22.setText("D");
+        D22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        D22.setMaximumSize(new java.awt.Dimension(20, 20));
+        D22.setMinimumSize(new java.awt.Dimension(20, 20));
+        D22.setOpaque(true);
+        D22.setPreferredSize(new java.awt.Dimension(20, 20));
+        D.add(D22);
+
+        D23.setBackground(new java.awt.Color(255, 153, 0));
+        D23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D23.setText(" ");
+        D23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        D23.setMaximumSize(new java.awt.Dimension(20, 20));
+        D23.setMinimumSize(new java.awt.Dimension(20, 20));
+        D23.setOpaque(true);
+        D23.setPreferredSize(new java.awt.Dimension(20, 20));
+        D.add(D23);
+
+        D31.setBackground(new java.awt.Color(255, 153, 0));
+        D31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D31.setText(" ");
+        D31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        D31.setMaximumSize(new java.awt.Dimension(20, 20));
+        D31.setMinimumSize(new java.awt.Dimension(20, 20));
+        D31.setOpaque(true);
+        D31.setPreferredSize(new java.awt.Dimension(20, 20));
+        D.add(D31);
+
+        D32.setBackground(new java.awt.Color(255, 153, 0));
+        D32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D32.setText(" ");
+        D32.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        D32.setMaximumSize(new java.awt.Dimension(20, 20));
+        D32.setMinimumSize(new java.awt.Dimension(20, 20));
+        D32.setOpaque(true);
+        D32.setPreferredSize(new java.awt.Dimension(20, 20));
+        D.add(D32);
+
+        D33.setBackground(new java.awt.Color(255, 153, 0));
+        D33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        D33.setText(" ");
+        D33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        D33.setMaximumSize(new java.awt.Dimension(20, 20));
+        D33.setMinimumSize(new java.awt.Dimension(20, 20));
+        D33.setOpaque(true);
+        D33.setPreferredSize(new java.awt.Dimension(20, 20));
+        D.add(D33);
+
+        lp_cube.add(D);
+
+        Empty_SE.setMaximumSize(new java.awt.Dimension(100, 100));
+        Empty_SE.setMinimumSize(new java.awt.Dimension(100, 100));
+        Empty_SE.setName(""); // NOI18N
+        Empty_SE.setPreferredSize(new java.awt.Dimension(100, 100));
+        Empty_SE.setLayout(new java.awt.GridLayout(3, 3));
+        lp_cube.add(Empty_SE);
+
         lp_move.setBorder(javax.swing.BorderFactory.createTitledBorder("Perform move"));
 
-        lp_move_basic.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Basic", 0, 2));
+        lp_move_basic.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Basic", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
         lp_move_basic.setToolTipText("");
 
         lp_move_L.setText("L");
@@ -204,12 +886,28 @@ public class MainWindow extends javax.swing.JFrame {
 
         lp_move_basicLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lp_move_B, lp_move_D, lp_move_F, lp_move_L, lp_move_R, lp_move_U});
 
-        lp_move_advanced.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Advanced", 0, 2));
+        lp_move_advanced.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Advanced", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
         lp_move_advanced.setToolTipText("");
 
         lp_move_M.setText("M");
+        lp_move_M.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lp_move_MMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lp_move_MMouseExited(evt);
+            }
+        });
 
         lp_move_E.setText("S");
+        lp_move_E.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lp_move_EMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lp_move_EMouseExited(evt);
+            }
+        });
         lp_move_E.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lp_move_EActionPerformed(evt);
@@ -217,10 +915,34 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         lp_move_S.setText("E");
+        lp_move_S.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lp_move_SMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lp_move_SMouseExited(evt);
+            }
+        });
 
         lp_move_X.setText("X");
+        lp_move_X.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lp_move_XMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lp_move_XMouseExited(evt);
+            }
+        });
 
         lp_move_Y.setText("Y");
+        lp_move_Y.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lp_move_YMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lp_move_YMouseExited(evt);
+            }
+        });
         lp_move_Y.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lp_move_YActionPerformed(evt);
@@ -228,6 +950,14 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         lp_move_Z.setText("Z");
+        lp_move_Z.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lp_move_ZMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lp_move_ZMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout lp_move_advancedLayout = new javax.swing.GroupLayout(lp_move_advanced);
         lp_move_advanced.setLayout(lp_move_advancedLayout);
@@ -267,9 +997,9 @@ public class MainWindow extends javax.swing.JFrame {
 
         lp_move_advancedLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lp_move_E, lp_move_M, lp_move_S, lp_move_X, lp_move_Y, lp_move_Z});
 
-        lp_move_details.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Details", 0, 2));
+        lp_move_details.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
-        lp_move_inverse_title.setText("Use inverse?");
+        lp_move_inverse_title.setText("Inverse?");
 
         lp_move_useinverse_btngroup.add(lp_move_inverse_yes);
         lp_move_inverse_yes.setText("yes");
@@ -285,7 +1015,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(lp_move_detailsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lp_move_inverse_title)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lp_move_inverse_yes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lp_move_inverse_no)
@@ -302,7 +1032,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        lp_move_preview.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Preview", 0, 2));
+        lp_move_preview.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Preview", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
         lp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/shuffle.png"))); // NOI18N
         lp_move_preview_image.setText(" ");
@@ -312,7 +1042,7 @@ public class MainWindow extends javax.swing.JFrame {
         lp_move_preview.setLayout(lp_move_previewLayout);
         lp_move_previewLayout.setHorizontalGroup(
             lp_move_previewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lp_move_previewLayout.createSequentialGroup()
+            .addGroup(lp_move_previewLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lp_move_preview_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -322,7 +1052,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(lp_move_previewLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lp_move_preview_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(2, 2, 2))
         );
 
         javax.swing.GroupLayout lp_moveLayout = new javax.swing.GroupLayout(lp_move);
@@ -335,8 +1065,8 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(lp_move_advanced, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(lp_moveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lp_move_details, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lp_move_preview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lp_move_preview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lp_move_details, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         lp_moveLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lp_move_advanced, lp_move_basic});
@@ -347,11 +1077,8 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(lp_move_details, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lp_move_preview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(lp_moveLayout.createSequentialGroup()
-                .addGroup(lp_moveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lp_move_basic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lp_move_advanced, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(lp_move_basic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(lp_move_advanced, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         lp_moveLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lp_move_advanced, lp_move_basic});
@@ -360,15 +1087,14 @@ public class MainWindow extends javax.swing.JFrame {
         MainLeftPanel.setLayout(MainLeftPanelLayout);
         MainLeftPanelLayout.setHorizontalGroup(
             MainLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MainLeftPanelLayout.createSequentialGroup()
-                .addGap(2, 2, 2)
-                .addComponent(lp_move, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(2, 2, 2))
+            .addComponent(lp_cube, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lp_move, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         MainLeftPanelLayout.setVerticalGroup(
             MainLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainLeftPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lp_cube, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lp_move, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2))
         );
@@ -464,11 +1190,11 @@ public class MainWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rp_previousmoves_title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rp_previousmoves_container, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rp_previousmoves_container)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rp_nextmoves_title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rp_nextmoves_container, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                .addComponent(rp_nextmoves_container, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -523,7 +1249,7 @@ public class MainWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(MainLeftPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(MainLeftPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -629,6 +1355,54 @@ public class MainWindow extends javax.swing.JFrame {
         lp_move_preview_UnloadImage();
     }//GEN-LAST:event_lp_move_BMouseExited
 
+    private void lp_move_MMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_MMouseEntered
+        lp_move_preview_LoadImage("M");
+    }//GEN-LAST:event_lp_move_MMouseEntered
+
+    private void lp_move_MMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_MMouseExited
+        lp_move_preview_UnloadImage();
+    }//GEN-LAST:event_lp_move_MMouseExited
+
+    private void lp_move_SMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_SMouseEntered
+        lp_move_preview_LoadImage("S");
+    }//GEN-LAST:event_lp_move_SMouseEntered
+
+    private void lp_move_SMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_SMouseExited
+        lp_move_preview_UnloadImage();
+    }//GEN-LAST:event_lp_move_SMouseExited
+
+    private void lp_move_EMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_EMouseEntered
+        lp_move_preview_LoadImage("E");
+    }//GEN-LAST:event_lp_move_EMouseEntered
+
+    private void lp_move_EMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_EMouseExited
+        lp_move_preview_UnloadImage();
+    }//GEN-LAST:event_lp_move_EMouseExited
+
+    private void lp_move_XMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_XMouseEntered
+        lp_move_preview_LoadImage("X");
+    }//GEN-LAST:event_lp_move_XMouseEntered
+
+    private void lp_move_XMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_XMouseExited
+        lp_move_preview_UnloadImage();
+    }//GEN-LAST:event_lp_move_XMouseExited
+
+    private void lp_move_YMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_YMouseEntered
+        lp_move_preview_LoadImage("Y");
+    }//GEN-LAST:event_lp_move_YMouseEntered
+
+    private void lp_move_YMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_YMouseExited
+        lp_move_preview_UnloadImage();
+    }//GEN-LAST:event_lp_move_YMouseExited
+
+    private void lp_move_ZMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_ZMouseEntered
+        lp_move_preview_LoadImage("Z");
+    }//GEN-LAST:event_lp_move_ZMouseEntered
+
+    private void lp_move_ZMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_ZMouseExited
+        lp_move_preview_UnloadImage();
+    }//GEN-LAST:event_lp_move_ZMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -642,9 +1416,73 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel B;
+    private javax.swing.JLabel B11;
+    private javax.swing.JLabel B12;
+    private javax.swing.JLabel B13;
+    private javax.swing.JLabel B21;
+    private javax.swing.JLabel B22;
+    private javax.swing.JLabel B23;
+    private javax.swing.JLabel B31;
+    private javax.swing.JLabel B32;
+    private javax.swing.JLabel B33;
+    private javax.swing.JPanel D;
+    private javax.swing.JLabel D11;
+    private javax.swing.JLabel D12;
+    private javax.swing.JLabel D13;
+    private javax.swing.JLabel D21;
+    private javax.swing.JLabel D22;
+    private javax.swing.JLabel D23;
+    private javax.swing.JLabel D31;
+    private javax.swing.JLabel D32;
+    private javax.swing.JLabel D33;
+    private javax.swing.JPanel Empty_NW;
+    private javax.swing.JPanel Empty_SE;
+    private javax.swing.JPanel Empty_SW;
+    private javax.swing.JPanel F;
+    private javax.swing.JLabel F11;
+    private javax.swing.JLabel F12;
+    private javax.swing.JLabel F13;
+    private javax.swing.JLabel F21;
+    private javax.swing.JLabel F22;
+    private javax.swing.JLabel F23;
+    private javax.swing.JLabel F31;
+    private javax.swing.JLabel F32;
+    private javax.swing.JLabel F33;
+    private javax.swing.JPanel L;
+    private javax.swing.JLabel L11;
+    private javax.swing.JLabel L12;
+    private javax.swing.JLabel L13;
+    private javax.swing.JLabel L21;
+    private javax.swing.JLabel L22;
+    private javax.swing.JLabel L23;
+    private javax.swing.JLabel L31;
+    private javax.swing.JLabel L32;
+    private javax.swing.JLabel L33;
     private javax.swing.JLabel Logo;
     private javax.swing.JPanel MainLeftPanel;
     private javax.swing.JPanel MainRightPanel;
+    private javax.swing.JPanel R;
+    private javax.swing.JLabel R11;
+    private javax.swing.JLabel R12;
+    private javax.swing.JLabel R13;
+    private javax.swing.JLabel R21;
+    private javax.swing.JLabel R22;
+    private javax.swing.JLabel R23;
+    private javax.swing.JLabel R31;
+    private javax.swing.JLabel R32;
+    private javax.swing.JLabel R33;
+    private javax.swing.JPanel U;
+    private javax.swing.JLabel U11;
+    private javax.swing.JLabel U12;
+    private javax.swing.JLabel U13;
+    private javax.swing.JLabel U21;
+    private javax.swing.JLabel U22;
+    private javax.swing.JLabel U23;
+    private javax.swing.JLabel U31;
+    private javax.swing.JLabel U32;
+    private javax.swing.JLabel U33;
+    private javax.swing.JPanel lp_cube;
     private javax.swing.JPanel lp_move;
     private javax.swing.JButton lp_move_B;
     private javax.swing.JButton lp_move_D;
