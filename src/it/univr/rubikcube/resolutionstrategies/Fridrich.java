@@ -36,9 +36,12 @@ public class Fridrich extends ResolutionStrategy {
         // cube faces must be respectively yellow, red and green.
         return null;
     }
-    
+    /**
+     * Returns the name of the resolution strategy.
+     * @return <tt>Fridrich</tt>
+     */
     @Override
-    public String toString() {
+    public final String toString() {
         return "Fridrich";
     }
 }
