@@ -12,7 +12,6 @@ graphics/logo.psd -text
 src/it/univr/rubikcube/gui/JRubikCube.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/gui/MainWindow.form -text
 src/it/univr/rubikcube/gui/MainWindow.java -text
-src/it/univr/rubikcube/gui/MainWindow_oldversion.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/gui/NumFaces.form -text
 src/it/univr/rubikcube/gui/NumFaces.java -text
 src/it/univr/rubikcube/gui/package-info.java -text svneol=unset#text/x-java-source
