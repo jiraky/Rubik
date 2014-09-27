@@ -13,6 +13,20 @@ public class RubikCubeModel extends Observable {
     private int dimension;
     /**
      * Array storing the cube configuration.
+     * 
+     * The array is structured as follows.
+     * <ul>
+     * <li>The first index is the side index (use
+     * <tt>RubikCubeSide.getValue()</tt> to get the array index corresponding
+     * to a side).</li>
+     * <li>The second index is the row index (<tt>0</tt> to <tt>getDimension()
+     * - 1</tt>).</li>
+     * <li>The third index is the column index (<tt>0</tt> to
+     * <tt>getDimension() - 1</tt>).</li>
+     * </ul>
+     * 
+     * Rows are numbered progressively from top to bottom and columns are
+     * numbered from the left to the right.
      */
     private RubikCubeFaceColor[][][] configuration;
     /**
@@ -21,8 +35,9 @@ public class RubikCubeModel extends Observable {
      * @throws IllegalArgumentException Thrown if the cube has an unacceptable
      * dimension (less than two).
      */
-    public RubikCubeModel(final int dim) {
-        this.dimension = 0; // Force the data structures to be initialized
+    public RubikCubeModel(final int dim) throws IllegalArgumentException {
+        // Force the data structures to be initialized
+        this.dimension = 0;
         setDimension(dim);
     }
     /**
@@ -39,7 +54,8 @@ public class RubikCubeModel extends Observable {
      * @throws IllegalArgumentException Thrown if the cube has an unacceptable
      * dimension (less than two).
      */
-    public final void setDimension(final int dim) {
+    public final void setDimension(final int dim)
+            throws IllegalArgumentException {
         if (dim < 2) {
             throw new IllegalArgumentException("The dimension must be two or"
                                                + " greater.");
@@ -96,7 +112,8 @@ public class RubikCubeModel extends Observable {
      * @throws IllegalArgumentException Thrown if <tt>rotation</tt> has an
      * invalid value.
      */
-    public final void rotateRow(final int index, final RowRotation rotation) {
+    public final void rotateRow(final int index, final RowRotation rotation)
+            throws IndexOutOfBoundsException, IllegalArgumentException {
         RubikCubeFaceColor[] tmpRow;
         if (index >= this.dimension || index < 0) {
             throw new IndexOutOfBoundsException("The row index must be between"
@@ -105,7 +122,7 @@ public class RubikCubeModel extends Observable {
         tmpRow = new RubikCubeFaceColor[this.dimension];
         // Backup the front row and rotate the row in the specified direction
         tmpRow = this.configuration[RubikCubeSide.FRONT.getValue()][index];
-        if (rotation == RowRotation.ANTICLOCKWISE) { // seen from above
+        if (rotation == RowRotation.ANTICLOCKWISE) {
             this.configuration[RubikCubeSide.FRONT.getValue()][index] =
                     this.configuration[RubikCubeSide.LEFT.getValue()][index];
             this.configuration[RubikCubeSide.LEFT.getValue()][index] =
@@ -137,7 +154,8 @@ public class RubikCubeModel extends Observable {
      * invalid value.
      */
     public final void rotateColumn(final int index,
-                                   final ColumnRotation rotation) {
+                                   final ColumnRotation rotation)
+            throws IndexOutOfBoundsException, IllegalArgumentException {
         RubikCubeFaceColor[] tmpCol;
         if (index >= this.dimension || index < 0) {
             throw new IndexOutOfBoundsException("The column index must be"
@@ -200,7 +218,8 @@ public class RubikCubeModel extends Observable {
      * invalid value.
      */
     public final void rotateLateralColumn(final int index,
-                                          final LateralColumnRotation rotation) {
+                                          final LateralColumnRotation rotation)
+            throws IndexOutOfBoundsException, IllegalArgumentException {
         RubikCubeFaceColor[] tmpLatCol;
         if (index >= this.dimension || index < 0) {
             throw new IndexOutOfBoundsException("The lateral column index must"
@@ -256,10 +275,11 @@ public class RubikCubeModel extends Observable {
      * @throws IllegalArgumentException Thrown if <tt>rotation</tt> is an
      * invalid direction.
      */
-    public final void rotateCube(final CubeRotation rotation) {
+    public final void rotateCube(final CubeRotation rotation)
+            throws IllegalArgumentException {
         // Save the front side in a temporary variable since this move is the
         // same for every rotation
-        RubikCubeFaceColor[][] tmp = this.configuration[RubikCubeSide.FRONT
+        final RubikCubeFaceColor[][] tmp = this.configuration[RubikCubeSide.FRONT
                                                         .getValue()];
         switch (rotation) {
             case UPWISE:

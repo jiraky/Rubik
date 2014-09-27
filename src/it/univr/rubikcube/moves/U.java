@@ -16,7 +16,8 @@ public class U extends ThreeDimensionalMove {
      * @throws IllegalArgumentException Thrown if the dimension of the cube is
      * not equal to three.
      */
-    public U(final RubikCubeModel m) {
+    public U(final RubikCubeModel m)
+            throws NullPointerException, IllegalArgumentException {
         super(m);
     }
     /**
@@ -28,7 +29,8 @@ public class U extends ThreeDimensionalMove {
      * @throws IllegalArgumentException Thrown if the dimension of the cube is
      * not equal to three.
      */
-    public U(final RubikCubeModel m, final boolean reversed) {
+    public U(final RubikCubeModel m, final boolean reversed)
+            throws NullPointerException, IllegalArgumentException {
         super(m, reversed);
     }
     /**

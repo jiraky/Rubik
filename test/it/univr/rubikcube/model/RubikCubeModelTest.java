@@ -1,6 +1,8 @@
+// CHECKSTYLE:OFF Rationale: package-info.java already present in src/
 package it.univr.rubikcube.model;
+// CHECKSTYLE:ON
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -13,20 +15,26 @@ public class RubikCubeModelTest {
      */
     private final int standardCubeDimension = 3;
     /**
+     * Standard class constructor.
+     */
+    public RubikCubeModelTest() {
+        // Empty, nothing to do
+    }
+    /**
      * Checks that the cube is set up correctly with the specified dimension
      * and all the faces in the standard configuration.
      */
     @Test
     public final void setupTest() {
-        RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
-        assertEquals("Correct dimension returned", c.getDimension(),
-                     this.standardCubeDimension);
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        Assert.assertEquals("Correct dimension returned", c.getDimension(),
+                this.standardCubeDimension);
         for (RubikCubeSide s : RubikCubeSide.values()) {
             for (int i = 0; i < this.standardCubeDimension; ++i) {
                 for (int j = 0; j < this.standardCubeDimension; ++j) {
-                    assertEquals("Face [" + s.getValue() + "][" + i + "][" + j
-                                 + "] has the correct color", c.getFace(s, i,
-                                 j), s.getStandardColor());
+                    Assert.assertEquals("Face " + s.getValue() + "][" + i
+                            + "][" + j + "] has the correct color",
+                            c.getFace(s, i, j), s.getStandardColor());
                 }
             }
         }
@@ -38,12 +46,12 @@ public class RubikCubeModelTest {
      */
     @Test
     public final void dimensionChangeTest() {
-        RubikCubeModel c = new RubikCubeModel(2);
+        final RubikCubeModel c = new RubikCubeModel(2);
         c.setDimension(this.standardCubeDimension);
         // FIXME Test observer!
-        assertEquals("getDimension returns 3", c.getDimension(),
+        Assert.assertEquals("getDimension returns 3", c.getDimension(),
                      this.standardCubeDimension);
-        assertEquals("getFace on the cube boundary returns the standard"
+        Assert.assertEquals("getFace on the cube boundary returns the standard"
                      + " configuration facelet", c.getFace(RubikCubeSide.UP, 2,
                      2), RubikCubeFaceColor.WHITE);
     }
@@ -55,7 +63,7 @@ public class RubikCubeModelTest {
     @Test(expected = IllegalArgumentException.class)
     public final void invalidDimensionCreationTest() {
         @SuppressWarnings("unused")
-        RubikCubeModel c = new RubikCubeModel(0);
+        final RubikCubeModel c = new RubikCubeModel(0);
     }
     /**
      * Checks that an exception is thrown when an invalid dimension is passed
@@ -63,7 +71,7 @@ public class RubikCubeModelTest {
      */
     @Test(expected = IllegalArgumentException.class)
     public final void invalidDimensionChangeTest() {
-        RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
         c.setDimension(1);
     }
 //    ruota riga

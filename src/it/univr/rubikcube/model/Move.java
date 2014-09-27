@@ -18,7 +18,7 @@ public abstract class Move {
      * @param m Rubik cube model.
      * @throws NullPointerException Thrown if <tt>m</tt> is <tt>null</tt>.
      */
-    public Move(final RubikCubeModel m) {
+    public Move(final RubikCubeModel m) throws NullPointerException {
         this(m, false);
     }
     /**
@@ -28,7 +28,8 @@ public abstract class Move {
      * notation).
      * @throws NullPointerException Thrown if <tt>m</tt> is <tt>null</tt>.
      */
-    public Move(final RubikCubeModel m, final boolean reversed) {
+    public Move(final RubikCubeModel m, final boolean reversed)
+            throws NullPointerException {
         if (m == null) {
             throw new NullPointerException();
         }

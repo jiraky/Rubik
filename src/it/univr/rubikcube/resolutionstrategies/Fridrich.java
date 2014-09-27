@@ -1,8 +1,8 @@
 package it.univr.rubikcube.resolutionstrategies;
 
-import java.util.List;
 import it.univr.rubikcube.model.Move;
 import it.univr.rubikcube.model.RubikCubeModel;
+import java.util.List;
 
 /**
  * Fridrich method for 3x3 cubes.
@@ -15,7 +15,8 @@ public class Fridrich extends ResolutionStrategy {
      * @throws IllegalArgumentException Thrown if the dimension of the cube is
      * not equal to three.
      */
-    public Fridrich(final RubikCubeModel m) {
+    public Fridrich(final RubikCubeModel m)
+            throws IllegalArgumentException {
         super(m);
         if (m.getDimension() != 3) {
             throw new IllegalArgumentException("The dimension of the cube must"
@@ -29,7 +30,7 @@ public class Fridrich extends ResolutionStrategy {
      */
     @Override
     public final List<Move> getNextMoves() {
-        RubikCubeModel m = this.getModel();
+        final RubikCubeModel m = this.getModel();
         // Identify the phase the cube is in and generate a complete list of
         // next moves.
         // Phase 1 (pre-cross): the central faces on the top, front and right
@@ -44,9 +45,14 @@ public class Fridrich extends ResolutionStrategy {
     public final String toString() {
         return "Fridrich";
     }
-
+    /**
+     * Returns a textual description of the resolution strategy.
+     * @return <tt>The Fridrich method solves a 3x3 Rubik cube in European
+     * configuration.</tt>
+     */
     @Override
-    public String getDescription() {
-        return "Fridrich algorithms";
+    public final String getDescription() {
+        return "The Fridrich method solves a 3x3 Rubik cube in European"
+               + " configuration.";
     }
 }

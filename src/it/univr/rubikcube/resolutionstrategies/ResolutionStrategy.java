@@ -1,8 +1,8 @@
 package it.univr.rubikcube.resolutionstrategies;
 
-import java.util.List;
 import it.univr.rubikcube.model.Move;
 import it.univr.rubikcube.model.RubikCubeModel;
+import java.util.List;
 
 /**
  * Interface for Rubik cube resolution strategies.
@@ -18,7 +18,8 @@ public abstract class ResolutionStrategy {
      * @param m Model to be acted upon.
      * @throws NullPointerException Thrown if <tt>m</tt> is <tt>null</tt>.
      */
-    public ResolutionStrategy(final RubikCubeModel m) {
+    public ResolutionStrategy(final RubikCubeModel m)
+            throws NullPointerException {
         if (m == null) {
             throw new NullPointerException();
         }
@@ -42,6 +43,9 @@ public abstract class ResolutionStrategy {
      */
     @Override
     public abstract String toString();
-    
+    /**
+     * Returns a textual description of the resolution strategy.
+     * @return Description of the resolution strategy.
+     */
     public abstract String getDescription();
 }
