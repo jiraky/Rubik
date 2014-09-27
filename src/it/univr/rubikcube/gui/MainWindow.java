@@ -5,9 +5,12 @@
  */
 package it.univr.rubikcube.gui;
 
+import it.univr.rubikcube.model.RubikCubeFaceColor;
 import it.univr.rubikcube.model.RubikCubeModel;
+import it.univr.rubikcube.model.RubikCubeSide;
 import it.univr.rubikcube.resolutionstrategies.Fridrich;
 import it.univr.rubikcube.resolutionstrategies.ResolutionStrategy;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.LinkedList;
@@ -40,6 +43,70 @@ public class MainWindow extends javax.swing.JFrame {
         this.rp_cubedimension_value.setText("" + this.RubikCubeDimension);
         this.rp_algorithm_value.setText("" + this.actualStrategy.toString());
         this.rp_nummoves_value.setText("" + this.MovesCounter);
+ 
+        
+        this.F11.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.FRONT, 0, 0)));
+        this.F12.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.FRONT, 0, 1)));
+        this.F13.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.FRONT, 0, 2)));
+        this.F21.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.FRONT, 1, 0)));
+        this.F22.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.FRONT, 1, 1)));
+        this.F23.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.FRONT, 1, 2)));
+        this.F31.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.FRONT, 2, 0)));
+        this.F32.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.FRONT, 2, 1)));
+        this.F33.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.FRONT, 2, 2)));
+        
+        this.B11.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.BACK, 0, 0)));
+        this.B12.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.BACK, 0, 1)));
+        this.B13.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.BACK, 0, 2)));
+        this.B21.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.BACK, 1, 0)));
+        this.B22.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.BACK, 1, 1)));
+        this.B23.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.BACK, 1, 2)));
+        this.B31.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.BACK, 2, 0)));
+        this.B32.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.BACK, 2, 1)));
+        this.B33.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.BACK, 2, 2)));
+        
+        this.R11.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.RIGHT, 0, 0)));
+        this.R12.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.RIGHT, 0, 1)));
+        this.R13.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.RIGHT, 0, 2)));
+        this.R21.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.RIGHT, 1, 0)));
+        this.R22.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.RIGHT, 1, 1)));
+        this.R23.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.RIGHT, 1, 2)));
+        this.R31.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.RIGHT, 2, 0)));
+        this.R32.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.RIGHT, 2, 1)));
+        this.R33.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.RIGHT, 2, 2)));
+        
+        this.L11.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.LEFT, 0, 0)));
+        this.L12.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.LEFT, 0, 1)));
+        this.L13.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.LEFT, 0, 2)));
+        this.L21.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.LEFT, 1, 0)));
+        this.L22.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.LEFT, 1, 1)));
+        this.L23.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.LEFT, 1, 2)));
+        this.L31.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.LEFT, 2, 0)));
+        this.L32.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.LEFT, 2, 1)));
+        this.L33.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.LEFT, 2, 2)));
+        
+        this.U11.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.UP, 0, 0)));
+        this.U12.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.UP, 0, 1)));
+        this.U13.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.UP, 0, 2)));
+        this.U21.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.UP, 1, 0)));
+        this.U22.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.UP, 1, 1)));
+        this.U23.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.UP, 1, 2)));
+        this.U31.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.UP, 2, 0)));
+        this.U32.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.UP, 2, 1)));
+        this.U33.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.UP, 2, 2)));
+        
+        this.D11.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.DOWN, 0, 0)));
+        this.D12.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.DOWN, 0, 1)));
+        this.D13.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.DOWN, 0, 2)));
+        this.D21.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.DOWN, 1, 0)));
+        this.D22.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.DOWN, 1, 1)));
+        this.D23.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.DOWN, 1, 2)));
+        this.D31.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.DOWN, 2, 0)));
+        this.D32.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.DOWN, 2, 1)));
+        this.D33.setBackground(RubikCubeFaceColor.getColor(this.cube.getFace(RubikCubeSide.DOWN, 2, 2)));
+        
+        
+        ;
     }
     /* CHECKSTYLE:OFF Rationale: autogenerated code */
     /**
@@ -54,7 +121,10 @@ public class MainWindow extends javax.swing.JFrame {
         lp_move_useinverse_btngroup = new javax.swing.ButtonGroup();
         MainLeftPanel = new javax.swing.JPanel();
         lp_cube = new javax.swing.JPanel();
-        Empty_NW = new javax.swing.JPanel();
+        rotate_X = new javax.swing.JPanel();
+        rotate_X_title = new javax.swing.JLabel();
+        rotate_X_CW = new javax.swing.JButton();
+        rotate_X_CCW = new javax.swing.JButton();
         U = new javax.swing.JPanel();
         U11 = new javax.swing.JLabel();
         U12 = new javax.swing.JLabel();
@@ -105,7 +175,10 @@ public class MainWindow extends javax.swing.JFrame {
         R31 = new javax.swing.JLabel();
         R32 = new javax.swing.JLabel();
         R33 = new javax.swing.JLabel();
-        Empty_SW = new javax.swing.JPanel();
+        rotate_Y = new javax.swing.JPanel();
+        rotate_Y_title = new javax.swing.JLabel();
+        rotate_Y_CW = new javax.swing.JButton();
+        rotate_Y_CCW = new javax.swing.JButton();
         D = new javax.swing.JPanel();
         D11 = new javax.swing.JLabel();
         D12 = new javax.swing.JLabel();
@@ -116,7 +189,10 @@ public class MainWindow extends javax.swing.JFrame {
         D31 = new javax.swing.JLabel();
         D32 = new javax.swing.JLabel();
         D33 = new javax.swing.JLabel();
-        Empty_SE = new javax.swing.JPanel();
+        rotate_Z = new javax.swing.JPanel();
+        rotate_Z_title = new javax.swing.JLabel();
+        rotate_Z_CW = new javax.swing.JButton();
+        rotate_Z_CCW = new javax.swing.JButton();
         lp_move = new javax.swing.JPanel();
         lp_move_basic = new javax.swing.JPanel();
         lp_move_L = new javax.swing.JButton();
@@ -174,12 +250,39 @@ public class MainWindow extends javax.swing.JFrame {
         lp_cube.setBorder(javax.swing.BorderFactory.createTitledBorder("Cube"));
         lp_cube.setLayout(new java.awt.GridLayout(3, 3, 1, 1));
 
-        Empty_NW.setMaximumSize(new java.awt.Dimension(100, 100));
-        Empty_NW.setMinimumSize(new java.awt.Dimension(100, 100));
-        Empty_NW.setName(""); // NOI18N
-        Empty_NW.setPreferredSize(new java.awt.Dimension(100, 100));
-        Empty_NW.setLayout(new java.awt.GridLayout(3, 3));
-        lp_cube.add(Empty_NW);
+        rotate_X.setBackground(new java.awt.Color(255, 255, 255));
+        rotate_X.setMaximumSize(new java.awt.Dimension(100, 100));
+        rotate_X.setMinimumSize(new java.awt.Dimension(100, 100));
+        rotate_X.setName(""); // NOI18N
+        rotate_X.setPreferredSize(new java.awt.Dimension(100, 100));
+        rotate_X.setLayout(new java.awt.GridLayout(3, 1));
+
+        rotate_X_title.setBackground(new java.awt.Color(255, 255, 255));
+        rotate_X_title.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        rotate_X_title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        rotate_X_title.setText("Rotate on X");
+        rotate_X_title.setOpaque(true);
+        rotate_X.add(rotate_X_title);
+
+        rotate_X_CW.setBackground(new java.awt.Color(255, 255, 255));
+        rotate_X_CW.setText("CW");
+        rotate_X_CW.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rotate_X_CWActionPerformed(evt);
+            }
+        });
+        rotate_X.add(rotate_X_CW);
+
+        rotate_X_CCW.setBackground(new java.awt.Color(255, 255, 255));
+        rotate_X_CCW.setText("CCW");
+        rotate_X_CCW.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rotate_X_CCWActionPerformed(evt);
+            }
+        });
+        rotate_X.add(rotate_X_CCW);
+
+        lp_cube.add(rotate_X);
 
         U.setMaximumSize(new java.awt.Dimension(100, 100));
         U.setMinimumSize(new java.awt.Dimension(100, 100));
@@ -676,12 +779,39 @@ public class MainWindow extends javax.swing.JFrame {
 
         lp_cube.add(R);
 
-        Empty_SW.setMaximumSize(new java.awt.Dimension(100, 100));
-        Empty_SW.setMinimumSize(new java.awt.Dimension(100, 100));
-        Empty_SW.setName(""); // NOI18N
-        Empty_SW.setPreferredSize(new java.awt.Dimension(100, 100));
-        Empty_SW.setLayout(new java.awt.GridLayout(3, 3));
-        lp_cube.add(Empty_SW);
+        rotate_Y.setBackground(new java.awt.Color(255, 255, 255));
+        rotate_Y.setMaximumSize(new java.awt.Dimension(100, 100));
+        rotate_Y.setMinimumSize(new java.awt.Dimension(100, 100));
+        rotate_Y.setName(""); // NOI18N
+        rotate_Y.setPreferredSize(new java.awt.Dimension(100, 100));
+        rotate_Y.setLayout(new java.awt.GridLayout(3, 1));
+
+        rotate_Y_title.setBackground(new java.awt.Color(255, 255, 255));
+        rotate_Y_title.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        rotate_Y_title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        rotate_Y_title.setText("Rotate on Y");
+        rotate_Y_title.setOpaque(true);
+        rotate_Y.add(rotate_Y_title);
+
+        rotate_Y_CW.setBackground(new java.awt.Color(255, 255, 255));
+        rotate_Y_CW.setText("CW");
+        rotate_Y_CW.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rotate_Y_CWActionPerformed(evt);
+            }
+        });
+        rotate_Y.add(rotate_Y_CW);
+
+        rotate_Y_CCW.setBackground(new java.awt.Color(255, 255, 255));
+        rotate_Y_CCW.setText("CCW");
+        rotate_Y_CCW.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rotate_Y_CCWActionPerformed(evt);
+            }
+        });
+        rotate_Y.add(rotate_Y_CCW);
+
+        lp_cube.add(rotate_Y);
 
         D.setMaximumSize(new java.awt.Dimension(100, 100));
         D.setMinimumSize(new java.awt.Dimension(100, 100));
@@ -782,12 +912,39 @@ public class MainWindow extends javax.swing.JFrame {
 
         lp_cube.add(D);
 
-        Empty_SE.setMaximumSize(new java.awt.Dimension(100, 100));
-        Empty_SE.setMinimumSize(new java.awt.Dimension(100, 100));
-        Empty_SE.setName(""); // NOI18N
-        Empty_SE.setPreferredSize(new java.awt.Dimension(100, 100));
-        Empty_SE.setLayout(new java.awt.GridLayout(3, 3));
-        lp_cube.add(Empty_SE);
+        rotate_Z.setBackground(new java.awt.Color(255, 255, 255));
+        rotate_Z.setMaximumSize(new java.awt.Dimension(100, 100));
+        rotate_Z.setMinimumSize(new java.awt.Dimension(100, 100));
+        rotate_Z.setName(""); // NOI18N
+        rotate_Z.setPreferredSize(new java.awt.Dimension(100, 100));
+        rotate_Z.setLayout(new java.awt.GridLayout(3, 3));
+
+        rotate_Z_title.setBackground(new java.awt.Color(255, 255, 255));
+        rotate_Z_title.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        rotate_Z_title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        rotate_Z_title.setText("Rotate on Z");
+        rotate_Z_title.setOpaque(true);
+        rotate_Z.add(rotate_Z_title);
+
+        rotate_Z_CW.setBackground(new java.awt.Color(255, 255, 255));
+        rotate_Z_CW.setText("CW");
+        rotate_Z_CW.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rotate_Z_CWActionPerformed(evt);
+            }
+        });
+        rotate_Z.add(rotate_Z_CW);
+
+        rotate_Z_CCW.setBackground(new java.awt.Color(255, 255, 255));
+        rotate_Z_CCW.setText("CCW");
+        rotate_Z_CCW.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rotate_Z_CCWActionPerformed(evt);
+            }
+        });
+        rotate_Z.add(rotate_Z_CCW);
+
+        lp_cube.add(rotate_Z);
 
         lp_move.setBorder(javax.swing.BorderFactory.createTitledBorder("Perform move"));
 
@@ -1574,6 +1731,30 @@ public class MainWindow extends javax.swing.JFrame {
         new Credits(this, true).setVisible(true);
     }//GEN-LAST:event_menu_help_creditsActionPerformed
 
+    private void rotate_X_CWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotate_X_CWActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rotate_X_CWActionPerformed
+
+    private void rotate_X_CCWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotate_X_CCWActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rotate_X_CCWActionPerformed
+
+    private void rotate_Y_CWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotate_Y_CWActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rotate_Y_CWActionPerformed
+
+    private void rotate_Y_CCWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotate_Y_CCWActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rotate_Y_CCWActionPerformed
+
+    private void rotate_Z_CWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotate_Z_CWActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rotate_Z_CWActionPerformed
+
+    private void rotate_Z_CCWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotate_Z_CCWActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rotate_Z_CCWActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1607,9 +1788,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel D31;
     private javax.swing.JLabel D32;
     private javax.swing.JLabel D33;
-    private javax.swing.JPanel Empty_NW;
-    private javax.swing.JPanel Empty_SE;
-    private javax.swing.JPanel Empty_SW;
     private javax.swing.JPanel F;
     private javax.swing.JLabel F11;
     private javax.swing.JLabel F12;
@@ -1684,6 +1862,18 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem menu_file_exit;
     private javax.swing.JMenu menu_help;
     private javax.swing.JMenuItem menu_help_credits;
+    private javax.swing.JPanel rotate_X;
+    private javax.swing.JButton rotate_X_CCW;
+    private javax.swing.JButton rotate_X_CW;
+    private javax.swing.JLabel rotate_X_title;
+    private javax.swing.JPanel rotate_Y;
+    private javax.swing.JButton rotate_Y_CCW;
+    private javax.swing.JButton rotate_Y_CW;
+    private javax.swing.JLabel rotate_Y_title;
+    private javax.swing.JPanel rotate_Z;
+    private javax.swing.JButton rotate_Z_CCW;
+    private javax.swing.JButton rotate_Z_CW;
+    private javax.swing.JLabel rotate_Z_title;
     private javax.swing.JLabel rp_algorithm_title;
     private javax.swing.JLabel rp_algorithm_value;
     private javax.swing.JPanel rp_control;
@@ -1714,7 +1904,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void initCube() {     
         this.cube = new RubikCubeModel(this.getCubeDimension());
         
-        this.availableStrategy = new LinkedList<ResolutionStrategy>();
+        this.availableStrategy = new LinkedList<>();
         this.availableStrategy.add(new Fridrich(this.cube));
         this.actualStrategy = this.availableStrategy.get(0);
         

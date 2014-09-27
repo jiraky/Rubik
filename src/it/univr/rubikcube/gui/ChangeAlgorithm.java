@@ -16,7 +16,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
-import javax.swing.event.ListDataListener;
 
 /**
  *
@@ -37,6 +36,9 @@ public class ChangeAlgorithm extends javax.swing.JDialog {
     
     /**
      * Creates new form NumFaces
+     * @param parent
+     * @param modal
+     * @param algorithms
      */
     public ChangeAlgorithm(java.awt.Frame parent, boolean modal, List<ResolutionStrategy> algorithms) {
         super(parent, modal);
@@ -50,6 +52,7 @@ public class ChangeAlgorithm extends javax.swing.JDialog {
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), cancelName);
         ActionMap actionMap = getRootPane().getActionMap();
         actionMap.put(cancelName, new AbstractAction() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 doClose(RET_CANCEL);
             }
