@@ -3,11 +3,18 @@
 /.project -text
 .settings/org.eclipse.jdt.core.prefs -text
 /appletpage.htm -text svneol=unset#text/html
+graphics/cubeicon.ico -text
+graphics/logo.png -text
+graphics/logo.psd -text
 /launchRubik.sh -text
 /manifest.txt -text svneol=unset#text/plain
 /rubikcube.jnlp -text svneol=unset#application/x-java-jnlp-file
 src/it/univr/rubikcube/gui/JRubikCube.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/gui/MainWindow.form -text
+src/it/univr/rubikcube/gui/MainWindow.java -text
 src/it/univr/rubikcube/gui/MainWindow_oldversion.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/gui/NumFaces.form -text
+src/it/univr/rubikcube/gui/NumFaces.java -text
 src/it/univr/rubikcube/gui/package-info.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/model/ColumnRotation.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/model/CubeRotation.java -text svneol=unset#text/x-java-source

@@ -1,2 +1,5 @@
 /bin
-/rubikcube.jar
+/build
+/build.xml
+/manifest.mf
+/nbproject
