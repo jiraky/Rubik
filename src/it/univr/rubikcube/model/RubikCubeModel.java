@@ -210,7 +210,7 @@ public class RubikCubeModel extends Observable {
     }
     /**
      * Rotates a lateral column of the Rubik cube.
-     * @param index Column index (counted from front to back).
+     * @param index Column index (counted from front to back on the right side).
      * @param rotation Direction of the rotation.
      * @throws IndexOutOfBoundsException Thrown if <tt>index</tt> is greater or
      * equal to the dimension of the cube or is less than zero.
@@ -228,10 +228,13 @@ public class RubikCubeModel extends Observable {
         tmpLatCol = new RubikCubeFaceColor[this.dimension];
         // Backup the row on the upper face and rotate the lateral column in
         // the specified direction
-        tmpLatCol = this.configuration[RubikCubeSide.UP.getValue()][index];
+        for (int i = 0; i < this.dimension; ++i) {
+            tmpLatCol[i] = this.configuration[RubikCubeSide.UP.getValue()]
+                    [this.dimension - 1 - index][i];
+        }
         if (rotation == LateralColumnRotation.LEFT) {
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.UP.getValue()][index][i] =
+                this.configuration[RubikCubeSide.UP.getValue()][this.dimension - 1 - index][i] =
                         this.configuration[RubikCubeSide.RIGHT.getValue()][i][index];
             }
             for (int i = 0; i < this.dimension; ++i) {
@@ -240,19 +243,19 @@ public class RubikCubeModel extends Observable {
             }
             for (int i = 0; i < this.dimension; ++i) {
                 this.configuration[RubikCubeSide.DOWN.getValue()][index][i] =
-                        this.configuration[RubikCubeSide.LEFT.getValue()][i][index];
+                        this.configuration[RubikCubeSide.LEFT.getValue()][i][this.dimension - 1 - index];
             }
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.LEFT.getValue()][this.dimension - 1 - i][index] =
+                this.configuration[RubikCubeSide.LEFT.getValue()][this.dimension - 1 - i][this.dimension - 1 - index] =
                         tmpLatCol[i];
             }
         } else if (rotation == LateralColumnRotation.RIGHT) {
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.UP.getValue()][index][i] =
-                        this.configuration[RubikCubeSide.LEFT.getValue()][this.dimension - 1 - i][index];
+                this.configuration[RubikCubeSide.UP.getValue()][this.dimension - 1 - index][i] =
+                        this.configuration[RubikCubeSide.LEFT.getValue()][this.dimension - 1 - i][this.dimension - 1 - index];
             }
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.LEFT.getValue()][i][index] =
+                this.configuration[RubikCubeSide.LEFT.getValue()][i][this.dimension - 1 - index] =
                         this.configuration[RubikCubeSide.DOWN.getValue()][index][i];
             }
             for (int i = 0; i < this.dimension; ++i) {
@@ -323,5 +326,72 @@ public class RubikCubeModel extends Observable {
         }
         // Notify the listeners that the cube was rotated.
         notifyObservers(new RubikCubeModelCubeRotated(rotation));
+    }
+    /**
+     * Gets a textual representation of the cube, suitable for printing.
+     * @return Textual representation of the cube.
+     */
+    @Override
+    public final String toString() {
+        final StringBuilder sb = new StringBuilder("");
+        for (int i = this.dimension; i >= 0; --i) {
+            for (int j = 0; j < this.dimension; ++j) {
+                sb.append(" ");
+            }
+            sb.append(" | ");
+            for (int j = this.dimension; j >= 0; --j) {
+                sb.append(this.configuration[RubikCubeSide.BACK.getValue()][i][j]);
+            }
+            sb.append(" |\n");
+        }
+        for (int j = 0; j < 3; ++j) {
+            for (int k = 0; k < this.dimension; ++k) {
+                sb.append("-");
+            }
+            sb.append("---");
+        }
+        for (int j = 0; j < this.dimension; ++j) {
+            sb.append("-");
+        }
+        sb.append("\n");
+        for (int i = 0; i <= this.dimension; ++i) {
+            for (int j = this.dimension; j >= 0; --j) {
+                sb.append(this.configuration[RubikCubeSide.LEFT.getValue()][j][i]);
+            }
+            sb.append(" | ");
+            for (int j = 0; j <= this.dimension; ++j) {
+                System.out.print(this.configuration[RubikCubeSide.UP.getValue()][i][j]);
+            }
+            sb.append(" | ");
+            for (int j = 0; j <= this.dimension; ++j) {
+                sb.append(this.configuration[RubikCubeSide.RIGHT.getValue()][j][this.dimension - i]);
+            }
+            sb.append(" | ");
+            for (int j = this.dimension; j >= 0; --j) {
+                sb.append(this.configuration[RubikCubeSide.DOWN.getValue()][this.dimension - i][j]);
+            }
+            sb.append("\n");
+        }
+        for (int j = 0; j < 3; ++j) {
+            for (int k = 0; k < this.dimension; ++k) {
+                sb.append("-");
+            }
+            sb.append("---");
+        }
+        for (int j = 0; j < this.dimension; ++j) {
+            sb.append("-");
+        }
+        sb.append("\n");
+        for (int i = 0; i <= this.dimension; ++i) {
+            for (int j = 0; j < this.dimension; ++j) {
+                sb.append(" ");
+            }
+            sb.append(" | ");
+            for (int j = 0; j <= this.dimension; ++j) {
+                sb.append(this.configuration[RubikCubeSide.FRONT.getValue()][i][j]);
+            }
+            sb.append(" |\n");
+        }
+        return sb.toString();
     }
 }
