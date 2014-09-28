@@ -36,6 +36,165 @@ public class SingmasterMovesTest {
         this.cube = new RubikCubeModel(3);
     }
     /**
+     * Perform a B move.
+     */
+    @Test
+    public final void testB() {
+        final Move m = new B(this.cube);
+        m.perform();
+        for (RubikCubeSide s: RubikCubeSide.values()) {
+            for (int i = 0; i < CUBE_DIMENSION; ++i) {
+                for (int j = 0; j < CUBE_DIMENSION; ++j) {
+                    RubikCubeFaceColor c;
+                    if (s.equals(RubikCubeSide.UP) && i == 0) {
+                        c = RubikCubeFaceColor.BLUE;
+                    } else if (s.equals(RubikCubeSide.RIGHT) && j == 2) {
+                        c = RubikCubeFaceColor.YELLOW;
+                    } else if (s.equals(RubikCubeSide.DOWN) && i == 2) {
+                        c = RubikCubeFaceColor.GREEN;
+                    } else if (s.equals(RubikCubeSide.LEFT) && j == 0) {
+                        c = RubikCubeFaceColor.WHITE;
+                    } else {
+                        c = s.getStandardColor();
+                    }
+                    Assert.assertEquals("The (" + s.getDescription() + ","
+                            + i + "," + j + ") face is correct", c,
+                            this.cube.getFace(s, i, j));
+                }
+            }
+        }
+        Assert.assertTrue("Reversed B move brings cube back to default",
+                          checkReverseToStandard(m));
+    }
+    /**
+     * Perform a D move.
+     */
+    @Test
+    public final void testD() {
+        final Move m = new D(this.cube);
+        m.perform();
+        for (RubikCubeSide s: RubikCubeSide.values()) {
+            for (int i = 0; i < CUBE_DIMENSION; ++i) {
+                for (int j = 0; j < CUBE_DIMENSION; ++j) {
+                    RubikCubeFaceColor c;
+                    if (i == 2) {
+                        if (s.equals(RubikCubeSide.FRONT)) {
+                            c = RubikCubeFaceColor.GREEN;
+                        } else if (s.equals(RubikCubeSide.RIGHT)) {
+                            c = RubikCubeFaceColor.RED;
+                        } else if (s.equals(RubikCubeSide.BACK)) {
+                            c = RubikCubeFaceColor.BLUE;
+                        } else if (s.equals(RubikCubeSide.LEFT)) {
+                            c = RubikCubeFaceColor.ORANGE;
+                        } else {
+                            c = s.getStandardColor();
+                        }
+                    } else {
+                        c = s.getStandardColor();
+                    }
+                    Assert.assertEquals("The (" + s.getDescription() + ","
+                            + i + "," + j + ") face is correct", c,
+                            this.cube.getFace(s, i, j));
+                }
+            }
+        }
+        Assert.assertTrue("Reversed D move brings cube back to default",
+                          checkReverseToStandard(m));
+    }
+    /**
+     * Perform a F move.
+     */
+    @Test
+    public final void testF() {
+        final Move m = new F(this.cube);
+        m.perform();
+        for (RubikCubeSide s: RubikCubeSide.values()) {
+            for (int i = 0; i < CUBE_DIMENSION; ++i) {
+                for (int j = 0; j < CUBE_DIMENSION; ++j) {
+                    RubikCubeFaceColor c;
+                    if (s.equals(RubikCubeSide.UP) && i == 2) {
+                        c = RubikCubeFaceColor.GREEN;
+                    } else if (s.equals(RubikCubeSide.RIGHT) && j == 0) {
+                        c = RubikCubeFaceColor.WHITE;
+                    } else if (s.equals(RubikCubeSide.DOWN) && i == 0) {
+                        c = RubikCubeFaceColor.BLUE;
+                    } else if (s.equals(RubikCubeSide.LEFT) && j == 2) {
+                        c = RubikCubeFaceColor.YELLOW;
+                    } else {
+                        c = s.getStandardColor();
+                    }
+                    Assert.assertEquals("The (" + s.getDescription() + ","
+                            + i + "," + j + ") face is correct", c,
+                            this.cube.getFace(s, i, j));
+                }
+            }
+        }
+        Assert.assertTrue("Reversed F move brings cube back to default",
+                          checkReverseToStandard(m));
+    }
+    /**
+     * Perform a L move.
+     */
+    @Test
+    public final void testL() {
+        final Move m = new L(this.cube);
+        m.perform();
+        for (RubikCubeSide s: RubikCubeSide.values()) {
+            for (int i = 0; i < CUBE_DIMENSION; ++i) {
+                for (int j = 0; j < CUBE_DIMENSION; ++j) {
+                    RubikCubeFaceColor c;
+                    if (s.equals(RubikCubeSide.FRONT) && j == 0) {
+                        c = RubikCubeFaceColor.WHITE;
+                    } else if (s.equals(RubikCubeSide.DOWN) && j == 0) {
+                        c = RubikCubeFaceColor.RED;
+                    } else if (s.equals(RubikCubeSide.BACK) && j == 2) {
+                        c = RubikCubeFaceColor.YELLOW;
+                    } else if (s.equals(RubikCubeSide.UP) && j == 0) {
+                        c = RubikCubeFaceColor.ORANGE;
+                    } else {
+                        c = s.getStandardColor();
+                    }
+                    Assert.assertEquals("The (" + s.getDescription() + ","
+                            + i + "," + j + ") face is correct", c,
+                            this.cube.getFace(s, i, j));
+                }
+            }
+        }
+        Assert.assertTrue("Reversed L move brings cube back to default",
+                          checkReverseToStandard(m));
+    }
+    /**
+     * Perform a R move.
+     */
+    @Test
+    public final void testR() {
+        final Move m = new R(this.cube);
+        m.perform();
+        for (RubikCubeSide s: RubikCubeSide.values()) {
+            for (int i = 0; i < CUBE_DIMENSION; ++i) {
+                for (int j = 0; j < CUBE_DIMENSION; ++j) {
+                    RubikCubeFaceColor c;
+                    if (s.equals(RubikCubeSide.UP) && j == 2) {
+                        c = RubikCubeFaceColor.RED;
+                    } else if (s.equals(RubikCubeSide.BACK) && j == 0) {
+                        c = RubikCubeFaceColor.WHITE;
+                    } else if (s.equals(RubikCubeSide.DOWN) && j == 2) {
+                        c = RubikCubeFaceColor.ORANGE;
+                    } else if (s.equals(RubikCubeSide.FRONT) && j == 2) {
+                        c = RubikCubeFaceColor.YELLOW;
+                    } else {
+                        c = s.getStandardColor();
+                    }
+                    Assert.assertEquals("The (" + s.getDescription() + ","
+                            + i + "," + j + ") face is correct", c,
+                            this.cube.getFace(s, i, j));
+                }
+            }
+        }
+        Assert.assertTrue("Reversed R move brings cube back to default",
+                          checkReverseToStandard(m));
+    }
+    /**
      * Perform a U move.
      */
     @Test
@@ -68,39 +227,10 @@ public class SingmasterMovesTest {
             }
         }
         Assert.assertTrue("Reversed U move brings cube back to default",
-                            checkReverseToStandard(m));
+                          checkReverseToStandard(m));
     }
-    /**
-     * Perform a F move.
-     */
-    @Test
-    public final void testF() {
-        final Move m = new F(this.cube);
-        m.perform();
-        for (RubikCubeSide s: RubikCubeSide.values()) {
-            for (int i = 0; i < CUBE_DIMENSION; ++i) {
-                for (int j = 0; j < CUBE_DIMENSION; ++j) {
-                    RubikCubeFaceColor c;
-                    if (s.equals(RubikCubeSide.UP) && i == 2) {
-                        c = RubikCubeFaceColor.GREEN;
-                    } else if (s.equals(RubikCubeSide.RIGHT) && j == 0) {
-                        c = RubikCubeFaceColor.WHITE;
-                    } else if (s.equals(RubikCubeSide.DOWN) && i == 0) {
-                        c = RubikCubeFaceColor.BLUE;
-                    } else if (s.equals(RubikCubeSide.LEFT) && j == 2) {
-                        c = RubikCubeFaceColor.YELLOW;
-                    } else {
-                        c = s.getStandardColor();
-                    }
-                    Assert.assertEquals("The (" + s.getDescription() + ","
-                            + i + "," + j + ") face is correct", c,
-                            this.cube.getFace(s, i, j));
-                }
-            }
-        }
-        Assert.assertTrue("Reversed F move brings cube back to default",
-                            checkReverseToStandard(m));
-    }
+    /* X, Y and Z moves are cube rotations, they are tested in the Rubik cube
+     * test suite. */
     /**
      * Performs four moves in each direction and checks that the cube goes back
      * to the standard configuration.

@@ -49,13 +49,13 @@ public class D extends ThreeDimensionalMove {
      */
     @Override
     public final void performInternal() {
-        this.getModel().rotateRow(0, RowRotation.ANTICLOCKWISE);
+        this.getModel().rotateRow(2, RowRotation.ANTICLOCKWISE);
     }
     /**
      * Performs the reversed move.
      */
     @Override
     public final void reverseInternal() {
-        this.getModel().rotateRow(0, RowRotation.CLOCKWISE);
+        this.getModel().rotateRow(2, RowRotation.CLOCKWISE);
     }
 }
