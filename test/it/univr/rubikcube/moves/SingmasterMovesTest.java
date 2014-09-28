@@ -108,44 +108,56 @@ public class SingmasterMovesTest {
     @Test
     public final void checkFourMoves() {
         Move move = new L(this.cube);
-        for (int i = 0; i < 3; ++i) {
-            move.perform();
-        }
+        move.perform();
+        move.perform();
+        move.perform();
+        move.perform();
+        
         Assert.assertTrue("L performed four times is the identity",
                           RubikCubeModelTest.isInStandardConfiguration(this.cube));
         this.cube.resetToStandardConfiguration();
         move = new R(this.cube);
-        for (int i = 0; i < 3; ++i) {
-            move.perform();
-        }
+        move.perform();
+        move.perform();
+        move.perform();
+        move.perform();
+        
         Assert.assertTrue("R performed four times is the identity",
                           RubikCubeModelTest.isInStandardConfiguration(this.cube));
         this.cube.resetToStandardConfiguration();
         move = new U(this.cube);
-        for (int i = 0; i < 3; ++i) {
-            move.perform();
-        }
+        move.perform();
+        move.perform();
+        move.perform();
+        move.perform();
+        
         Assert.assertTrue("U performed four times is the identity",
                           RubikCubeModelTest.isInStandardConfiguration(this.cube));
         this.cube.resetToStandardConfiguration();
         move = new D(this.cube);
-        for (int i = 0; i < 3; ++i) {
-            move.perform();
-        }
+        move.perform();
+        move.perform();
+        move.perform();
+        move.perform();
+        
         Assert.assertTrue("D performed four times is the identity",
                           RubikCubeModelTest.isInStandardConfiguration(this.cube));
         this.cube.resetToStandardConfiguration();
         move = new B(this.cube);
-        for (int i = 0; i < 3; ++i) {
-            move.perform();
-        }
+        move.perform();
+        move.perform();
+        move.perform();
+        move.perform();
+        
         Assert.assertTrue("B performed four times is the identity",
                           RubikCubeModelTest.isInStandardConfiguration(this.cube));
         this.cube.resetToStandardConfiguration();
         move = new F(this.cube);
-        for (int i = 0; i < 3; ++i) {
-            move.perform();
-        }
+        move.perform();
+        move.perform();
+        move.perform();
+        move.perform();
+        
         Assert.assertTrue("F performed four times is the identity",
                           RubikCubeModelTest.isInStandardConfiguration(this.cube));
         this.cube.resetToStandardConfiguration();
