@@ -75,102 +75,175 @@ public class RubikCubeModelTest {
         final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
         c.setDimension(1);
     }
-//    ruota riga
-//    ruota colonna
-//    ruota colonna laterale
-    
+    /**
+     * Checks that rows are rotated correctly.
+     */
     @Test
-    public final void check4Moves() {
-        final RubikCubeModel original = new RubikCubeModel(standardCubeDimension);
-        RubikCubeModel c = new RubikCubeModel(standardCubeDimension);
-        
-        Move move = new L(c);
-        move.perform();
-        move.perform();
-        move.perform();
-        move.perform();
-        
-        for(RubikCubeSide face : RubikCubeSide.values()) {
-            for(int i=0; i<standardCubeDimension; i++) {
-                for(int j=0; j<standardCubeDimension; j++) {
-                    Assert.assertEquals(c.getFace(face, i, j),original.getFace(face, i, j));
+    public final void rotateRow() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        c.rotateRow(0, RowRotation.CLOCKWISE);
+        for (RubikCubeSide s: RubikCubeSide.values()) {
+            for (int i = 0; i < this.standardCubeDimension; ++i) {
+                for (int j = 0; j < this.standardCubeDimension; ++j) {
+                    RubikCubeFaceColor col;
+                    if (i == 0) {
+                        if (s.equals(RubikCubeSide.FRONT)) {
+                            col = RubikCubeFaceColor.GREEN;
+                        } else if (s.equals(RubikCubeSide.RIGHT)) {
+                            col = RubikCubeFaceColor.GREEN;
+                        } else if (s.equals(RubikCubeSide.BACK)) {
+                            col = RubikCubeFaceColor.BLUE;
+                        } else if (s.equals(RubikCubeSide.LEFT)) {
+                            col = RubikCubeFaceColor.ORANGE;
+                        } else {
+                            col = s.getStandardColor();
+                        }
+                    } else {
+                        col = s.getStandardColor();
+                    }
+                    Assert.assertEquals("The (" + s.getDescription() + "," + i
+                                        + "," + j + ") face is correct", col,
+                                        c.getFace(s, i, j));
                 }
             }
         }
-        
-        c.resetToStandardConfiguration();
-        move = new R(c);
-        move.perform();
-        move.perform();
-        move.perform();
-        move.perform();
-        
-        for(RubikCubeSide face : RubikCubeSide.values()) {
-            for(int i=0; i<standardCubeDimension; i++) {
-                for(int j=0; j<standardCubeDimension; j++) {
-                    Assert.assertEquals(c.getFace(face, i, j),original.getFace(face, i, j));
+        c.rotateRow(0, RowRotation.ANTICLOCKWISE);
+        Assert.assertTrue("Opposite row rotation brings back to standard",
+                          isInStandardConfiguration(c));
+    }
+    /**
+     * Checks that attempting to rotate a row with a negative index fails.
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public final void rotateRowIndexOutOfBoundsNegative() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        c.rotateRow(-1, RowRotation.CLOCKWISE);
+    }
+    /**
+     * Checks that attempting to rotate a row with a too high index fails.
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public final void rotateRowIndexOutOfBoundsPositive() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        c.rotateRow(this.standardCubeDimension + 1, RowRotation.CLOCKWISE);
+    }
+    /**
+     * Checks that columns are rotated correctly.
+     */
+    @Test
+    public final void rotateColumn() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        c.rotateColumn(0, ColumnRotation.TOP);
+        for (RubikCubeSide s: RubikCubeSide.values()) {
+            for (int i = 0; i < this.standardCubeDimension; ++i) {
+                for (int j = 0; j < this.standardCubeDimension; ++j) {
+                    RubikCubeFaceColor col;
+                    if (s.equals(RubikCubeSide.FRONT) && j == 0) {
+                        col = RubikCubeFaceColor.YELLOW;
+                    } else if (s.equals(RubikCubeSide.UP) && j == 0) {
+                        col = RubikCubeFaceColor.RED;
+                    } else if (s.equals(RubikCubeSide.BACK)
+                            && j == this.standardCubeDimension - 1) {
+                        col = RubikCubeFaceColor.WHITE;
+                    } else if (s.equals(RubikCubeSide.DOWN) && j == 0) {
+                        col = RubikCubeFaceColor.ORANGE;
+                    } else {
+                        col = s.getStandardColor();
+                    }
+                    Assert.assertEquals("The (" + s.getDescription() + "," + i
+                                        + "," + j + ") face is correct", col,
+                                        c.getFace(s, i, j));
                 }
             }
         }
-        
-        c.resetToStandardConfiguration();
-        move = new U(c);
-        move.perform();
-        move.perform();
-        move.perform();
-        move.perform();
-        
-        for(RubikCubeSide face : RubikCubeSide.values()) {
-            for(int i=0; i<standardCubeDimension; i++) {
-                for(int j=0; j<standardCubeDimension; j++) {
-                    Assert.assertEquals(c.getFace(face, i, j),original.getFace(face, i, j));
+        c.rotateColumn(0, ColumnRotation.BOTTOM);
+        Assert.assertTrue("Opposite column rotation brings back to standard",
+                          isInStandardConfiguration(c));
+    }
+    /**
+     * Checks that attempting to rotate a column with a negative index fails.
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public final void rotateColumnIndexOutOfBoundsNegative() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        c.rotateColumn(-1, ColumnRotation.TOP);
+    }
+    /**
+     * Checks that attempting to rotate a column with a too high index fails.
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public final void rotateColumnIndexOutOfBoundsPositive() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        c.rotateColumn(this.standardCubeDimension + 1, ColumnRotation.TOP);
+    }
+    /**
+     * Checks that lateral columns are rotated correctly.
+     */
+    @Test
+    public final void rotateLateralColumn() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        c.rotateLateralColumn(0, LateralColumnRotation.LEFT);
+        for (RubikCubeSide s: RubikCubeSide.values()) {
+            for (int i = 0; i < this.standardCubeDimension; ++i) {
+                for (int j = 0; j < this.standardCubeDimension; ++j) {
+                    RubikCubeFaceColor col;
+                    if (s.equals(RubikCubeSide.RIGHT) && j == 0) {
+                        col = RubikCubeFaceColor.YELLOW;
+                    } else if (s.equals(RubikCubeSide.UP)
+                            && i == this.standardCubeDimension - 1) {
+                        col = RubikCubeFaceColor.BLUE;
+                    } else if (s.equals(RubikCubeSide.LEFT)
+                            && j == this.standardCubeDimension - 1) {
+                        col = RubikCubeFaceColor.WHITE;
+                    } else if (s.equals(RubikCubeSide.DOWN) && i == 0) {
+                        col = RubikCubeFaceColor.GREEN;
+                    } else {
+                        col = s.getStandardColor();
+                    }
+                    Assert.assertEquals("The (" + s.getDescription() + "," + i
+                                        + "," + j + ") face is correct", col,
+                                        c.getFace(s, i, j));
                 }
             }
         }
-        
-        c.resetToStandardConfiguration();
-        move = new D(c);
-        move.perform();
-        move.perform();
-        move.perform();
-        move.perform();
-        
-        for(RubikCubeSide face : RubikCubeSide.values()) {
-            for(int i=0; i<standardCubeDimension; i++) {
-                for(int j=0; j<standardCubeDimension; j++) {
-                    Assert.assertEquals(c.getFace(face, i, j),original.getFace(face, i, j));
+        c.rotateLateralColumn(0, LateralColumnRotation.RIGHT);
+        Assert.assertTrue("Opposite lateral column rotation brings back to"
+                          + " standard", isInStandardConfiguration(c));
+    }
+    /**
+     * Checks that attempting to rotate a lateral column with a negative index
+     * fails.
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public final void rotateLateralColumnIndexOutOfBoundsNegative() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        c.rotateLateralColumn(-1, LateralColumnRotation.LEFT);
+    }
+    /**
+     * Checks that attempting to rotate a row with a too high index fails.
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public final void rotateLateralColumnIndexOutOfBoundsPositive() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        c.rotateLateralColumn(this.standardCubeDimension + 1,
+                              LateralColumnRotation.LEFT);
+    }
+    /**
+     * Checks whether a cube is in the standard configuration.
+     * @param m Move to be checked.
+     * @return <tt>true</tt> if and only if the cube is in the standard
+     * configuration.
+     */
+    public static boolean isInStandardConfiguration(final RubikCubeModel m) {
+        for (RubikCubeSide s: RubikCubeSide.values()) {
+            for (int i = 0; i < m.getDimension(); ++i) {
+                for (int j = 0; j < m.getDimension(); ++j) {
+                    if (s.getStandardColor() != m.getFace(s, i, j)) {
+                        return false;
+                    }
                 }
             }
         }
-        
-        c.resetToStandardConfiguration();
-        move = new B(c);
-        move.perform();
-        move.perform();
-        move.perform();
-        move.perform();
-        
-        for(RubikCubeSide face : RubikCubeSide.values()) {
-            for(int i=0; i<standardCubeDimension; i++) {
-                for(int j=0; j<standardCubeDimension; j++) {
-                    Assert.assertEquals(c.getFace(face, i, j),original.getFace(face, i, j));
-                }
-            }
-        }
-        
-        c.resetToStandardConfiguration();
-        move = new F(c);
-        move.perform();
-        move.perform();
-        move.perform();
-        move.perform();
-        
-        for(RubikCubeSide face : RubikCubeSide.values()) {
-            for(int i=0; i<standardCubeDimension; i++) {
-                for(int j=0; j<standardCubeDimension; j++) {
-                    Assert.assertEquals(c.getFace(face, i, j),original.getFace(face, i, j));
-                }
-            }
-        }
+        return true; 
     }
 }

@@ -75,3 +75,4 @@ src/it/univr/rubikcube/resolutionstrategies/Fridrich.java -text svneol=unset#tex
 src/it/univr/rubikcube/resolutionstrategies/ResolutionStrategy.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/resolutionstrategies/package-info.java -text svneol=unset#text/x-java-source
 test/it/univr/rubikcube/model/RubikCubeModelTest.java -text svneol=unset#text/x-java-source
+test/it/univr/rubikcube/moves/SingmasterMovesTest.java -text svneol=unset#text/x-java-source
