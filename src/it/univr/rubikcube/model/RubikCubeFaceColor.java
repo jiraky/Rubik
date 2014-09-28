@@ -8,28 +8,34 @@ import java.awt.Color;
  */
 public enum RubikCubeFaceColor {
     /** White face. */
-    WHITE(new Color(255, 255, 255)),
+    WHITE(new Color(255, 255, 255), 'W'),
     /** Red face. */
-    RED(new Color(255, 0, 0)),
+    RED(new Color(255, 0, 0), 'R'),
     /** Blue face. */
-    BLUE(new Color(0, 51, 255)),
+    BLUE(new Color(0, 51, 255), 'B'),
     /** Orange face. **/
-    ORANGE(new Color(255, 153, 0)),
+    ORANGE(new Color(255, 153, 0), 'O'),
     /** Green face. */
-    GREEN(new Color(0, 153, 0)),
+    GREEN(new Color(0, 153, 0), 'G'),
     /** Yellow face. */
-    YELLOW(new Color(255, 255, 0));
+    YELLOW(new Color(255, 255, 0), 'Y');
     /**
      * RGB color associated with the face.
      */
     private Color rgbColor;
     /**
+     * Color letter associated with this face.
+     */
+    private char colorLetter;
+    /**
      * Creates a new Rubik cube face color associated with the specified RGB
      * color.
      * @param c RGB color associated with the face.
+     * @param l Letter identifying the color.
      */
-    RubikCubeFaceColor(final Color c) {
+    RubikCubeFaceColor(final Color c, final char l) {
         this.rgbColor = c;
+        this.colorLetter = l;
     }
     /**
      * Gets the color associated with this face.
@@ -37,6 +43,14 @@ public enum RubikCubeFaceColor {
      */
     public final Color getColor() {
         return this.rgbColor;
+    }
+    /**
+     * Gets the letter identifying the color.
+     * @return Letter identifying the color.
+     */
+    @Override
+    public final String toString() {
+        return Character.toString(this.colorLetter);
     }
     /**
      * Gets the face of the Rubik cube corresponding to a given color.
