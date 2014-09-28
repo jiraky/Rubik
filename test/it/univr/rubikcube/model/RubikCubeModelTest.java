@@ -225,6 +225,8 @@ public class RubikCubeModelTest {
         c.rotateLateralColumn(this.standardCubeDimension + 1,
                               LateralColumnRotation.LEFT);
     }
+    // FIXME rotateCube
+    // FIXME rotateCubeIllegalArgument
     /**
      * Checks whether a cube is in the standard configuration.
      * @param m Move to be checked.

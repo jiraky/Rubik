@@ -1965,7 +1965,7 @@ public class MainWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Perform "+move+" move");
         }
         
-        if(move.equals("L")) new B(cube, lp_move_inverse_yes.isSelected()).perform();
+        if(move.equals("L")) new L(cube, lp_move_inverse_yes.isSelected()).perform();
         else if(move.equals("R")) new R(cube, lp_move_inverse_yes.isSelected()).perform();
         else if(move.equals("U")) new U(cube, lp_move_inverse_yes.isSelected()).perform();
         else if(move.equals("D")) new D(cube, lp_move_inverse_yes.isSelected()).perform();
@@ -1974,9 +1974,9 @@ public class MainWindow extends javax.swing.JFrame {
         //else if(move.equals("M")) new M(cube, lp_move_inverse_yes.isSelected()).perform();
         //else if(move.equals("S")) new S(cube, lp_move_inverse_yes.isSelected()).perform();
         //else if(move.equals("E")) new E(cube, lp_move_inverse_yes.isSelected()).perform();
-        else if(move.equals("X")) {this.cube.rotateCube(CubeRotation.UPWISE);}
-        else if(move.equals("Y")) {this.cube.rotateCube(CubeRotation.UPWISE);}
-        else if(move.equals("Z")) {this.cube.rotateCube(CubeRotation.UPWISE);};     
+        else if(move.equals("X")) new X(cube, lp_move_inverse_yes.isSelected()).perform();
+        else if(move.equals("Y")) new Y(cube, lp_move_inverse_yes.isSelected()).perform();
+        else if(move.equals("Z")) new Z(cube, lp_move_inverse_yes.isSelected()).perform();
 
         updateInterface();
     }

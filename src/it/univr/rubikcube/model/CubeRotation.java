@@ -12,5 +12,9 @@ public enum CubeRotation {
     /** Upwise rotation. */
     UPWISE,
     /** Downwise rotation. */
-    DOWNWISE
+    DOWNWISE,
+    /** Clockwise rotation (as seen from the front). */
+    CLOCKWISE_FROM_FRONT,
+    /** Anticlockwise rotation (as seen from the front). */
+    ANTICLOCKWISE_FROM_FRONT
 }

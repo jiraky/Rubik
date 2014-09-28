@@ -220,6 +220,23 @@ public class RubikCubeModel extends Observable {
     public final void rotateLateralColumn(final int index,
                                           final LateralColumnRotation rotation)
             throws IndexOutOfBoundsException, IllegalArgumentException {
+        rotateLateralColumnInternal(index, rotation, true);
+    }
+    /**
+     * Rotates a lateral column of the Rubik cube.
+     * @param index Column index (counted from front to back on the right side).
+     * @param rotation Direction of the rotation.
+     * @param fireEvents Whether the <tt>RubikCubeModelLateralColumnRotated</tt>
+     * event should be fired or not.
+     * @throws IndexOutOfBoundsException Thrown if <tt>index</tt> is greater or
+     * equal to the dimension of the cube or is less than zero.
+     * @throws IllegalArgumentException Thrown if <tt>rotation</tt> has an
+     * invalid value.
+     */
+    private void rotateLateralColumnInternal(final int index,
+                                             final LateralColumnRotation rotation,
+                                             final boolean fireEvents)
+            throws IndexOutOfBoundsException, IllegalArgumentException {
         RubikCubeFaceColor[] tmpLatCol;
         if (index >= this.dimension || index < 0) {
             throw new IndexOutOfBoundsException("The lateral column index must"
@@ -269,8 +286,11 @@ public class RubikCubeModel extends Observable {
         } else {
             throw new IllegalArgumentException();
         }
-        // Notify the listeners that the lateral column has changed.
-        notifyObservers(new RubikCubeModelLateralColumnRotated(index, rotation));
+        // Notify the listeners that the lateral column has changed, if needed.
+        if (fireEvents) {
+            notifyObservers(new RubikCubeModelLateralColumnRotated(index,
+                                                                   rotation));
+        }
     }
     /**
      * Rotates the entire cube in the specified direction.
@@ -282,44 +302,67 @@ public class RubikCubeModel extends Observable {
             throws IllegalArgumentException {
         // Save the front side in a temporary variable since this move is the
         // same for every rotation
-        final RubikCubeFaceColor[][] tmp = this.configuration[RubikCubeSide.FRONT
-                                                        .getValue()];
+        final RubikCubeFaceColor[][] tmp =
+                new RubikCubeFaceColor[this.dimension][this.dimension];
+        copyArray(this.configuration[RubikCubeSide.FRONT.getValue()], tmp);
         switch (rotation) {
             case UPWISE:
-                this.configuration[RubikCubeSide.FRONT.getValue()]
-                        = this.configuration[RubikCubeSide.DOWN.getValue()];
-                this.configuration[RubikCubeSide.DOWN.getValue()]
-                        = this.configuration[RubikCubeSide.BACK.getValue()];
-                this.configuration[RubikCubeSide.BACK.getValue()]
-                        = this.configuration[RubikCubeSide.UP.getValue()];
-                this.configuration[RubikCubeSide.UP.getValue()] = tmp;
+                copyArray(this.configuration[RubikCubeSide.DOWN.getValue()],
+                          this.configuration[RubikCubeSide.FRONT.getValue()]);
+                copyArray(this.configuration[RubikCubeSide.BACK.getValue()],
+                          this.configuration[RubikCubeSide.DOWN.getValue()],
+                          true);
+                copyArray(this.configuration[RubikCubeSide.UP.getValue()],
+                          this.configuration[RubikCubeSide.BACK.getValue()],
+                          true);
+                copyArray(tmp,
+                          this.configuration[RubikCubeSide.UP.getValue()]);
                 break;
             case DOWNWISE:
-                this.configuration[RubikCubeSide.FRONT.getValue()]
-                        = this.configuration[RubikCubeSide.UP.getValue()];
-                this.configuration[RubikCubeSide.UP.getValue()]
-                        = this.configuration[RubikCubeSide.BACK.getValue()];
-                this.configuration[RubikCubeSide.BACK.getValue()]
-                        = this.configuration[RubikCubeSide.DOWN.getValue()];
-                this.configuration[RubikCubeSide.DOWN.getValue()] = tmp;
+                copyArray(this.configuration[RubikCubeSide.UP.getValue()],
+                          this.configuration[RubikCubeSide.FRONT.getValue()]);
+                copyArray(this.configuration[RubikCubeSide.BACK.getValue()],
+                          this.configuration[RubikCubeSide.UP.getValue()],
+                          true);
+                copyArray(this.configuration[RubikCubeSide.DOWN.getValue()],
+                          this.configuration[RubikCubeSide.BACK.getValue()],
+                          true);
+                copyArray(tmp,
+                          this.configuration[RubikCubeSide.DOWN.getValue()]);
                 break;
             case CLOCKWISE:
-                this.configuration[RubikCubeSide.FRONT.getValue()]
-                        = this.configuration[RubikCubeSide.LEFT.getValue()];
-                this.configuration[RubikCubeSide.LEFT.getValue()]
-                        = this.configuration[RubikCubeSide.BACK.getValue()];
-                this.configuration[RubikCubeSide.BACK.getValue()]
-                        = this.configuration[RubikCubeSide.RIGHT.getValue()];
-                this.configuration[RubikCubeSide.RIGHT.getValue()] = tmp;
+                copyArray(this.configuration[RubikCubeSide.RIGHT.getValue()],
+                          this.configuration[RubikCubeSide.FRONT.getValue()]);
+                copyArray(this.configuration[RubikCubeSide.BACK.getValue()],
+                          this.configuration[RubikCubeSide.RIGHT.getValue()]);
+                copyArray(this.configuration[RubikCubeSide.LEFT.getValue()],
+                          this.configuration[RubikCubeSide.BACK.getValue()]);
+                copyArray(tmp,
+                          this.configuration[RubikCubeSide.LEFT.getValue()]);
                 break;
             case ANTICLOCKWISE:
-                this.configuration[RubikCubeSide.FRONT.getValue()]
-                        = this.configuration[RubikCubeSide.RIGHT.getValue()];
-                this.configuration[RubikCubeSide.RIGHT.getValue()]
-                        = this.configuration[RubikCubeSide.BACK.getValue()];
-                this.configuration[RubikCubeSide.BACK.getValue()]
-                        = this.configuration[RubikCubeSide.LEFT.getValue()];
-                this.configuration[RubikCubeSide.LEFT.getValue()] = tmp;
+                copyArray(this.configuration[RubikCubeSide.LEFT.getValue()],
+                          this.configuration[RubikCubeSide.FRONT.getValue()]);
+                copyArray(this.configuration[RubikCubeSide.BACK.getValue()],
+                          this.configuration[RubikCubeSide.LEFT.getValue()]);
+                copyArray(this.configuration[RubikCubeSide.RIGHT.getValue()],
+                          this.configuration[RubikCubeSide.BACK.getValue()]);
+                copyArray(tmp,
+                          this.configuration[RubikCubeSide.RIGHT.getValue()]);
+                break;
+            case CLOCKWISE_FROM_FRONT:
+                for (int i = 0; i < this.dimension; ++i) {
+                    this.rotateLateralColumnInternal(i,
+                                                     LateralColumnRotation.RIGHT,
+                                                     false);
+                }
+                break;
+            case ANTICLOCKWISE_FROM_FRONT:
+                for (int i = 0; i < this.dimension; ++i) {
+                    this.rotateLateralColumnInternal(i,
+                                                     LateralColumnRotation.LEFT,
+                                                     false);
+                }
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -393,5 +436,34 @@ public class RubikCubeModel extends Observable {
             sb.append(" |\n");
         }
         return sb.toString();
+    }
+    /**
+     * Deep copies a face of the Rubik cube to another face.
+     * @param src Source face.
+     * @param dst Destination face.
+     */
+    private void copyArray(final RubikCubeFaceColor[][] src,
+                           final RubikCubeFaceColor[][] dst) {
+        this.copyArray(src, dst, false);
+    }
+    /**
+     * Deep copies a face of the Rubik cube to another face.
+     * @param src Source face.
+     * @param dst Destination face.
+     * @param sw Whether to switch the face (perform the back rotation).
+     */
+    private void copyArray(final RubikCubeFaceColor[][] src,
+                           final RubikCubeFaceColor[][] dst,
+                           final boolean sw) {
+        for (int i = 0; i < this.dimension; ++i) {
+            for (int j = 0; j < this.dimension; ++j) {
+                if (sw) {
+                    dst[this.dimension - 1 - i][this.dimension - 1 - j]
+                            = src[i][j];
+                } else {
+                    dst[i][j] = src[i][j];
+                }
+            }
+        }
     }
 }
