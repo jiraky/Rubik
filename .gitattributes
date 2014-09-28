@@ -42,7 +42,6 @@ src/it/univr/rubikcube/gui/ChangeAlgorithm.form -text
 src/it/univr/rubikcube/gui/ChangeAlgorithm.java -text
 src/it/univr/rubikcube/gui/Credits.form -text
 src/it/univr/rubikcube/gui/Credits.java -text
-src/it/univr/rubikcube/gui/JRubikCube.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/gui/MainWindow.form -text
 src/it/univr/rubikcube/gui/MainWindow.java -text
 src/it/univr/rubikcube/gui/NumFaces.form -text

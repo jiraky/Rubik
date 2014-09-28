@@ -1,9 +1,8 @@
 package it.univr.rubikcube.gui;
 
-import it.univr.rubikcube.model.RubikCubeModel;
-import it.univr.rubikcube.model.RubikCubeSide;
-import it.univr.rubikcube.resolutionstrategies.Fridrich;
-import it.univr.rubikcube.resolutionstrategies.ResolutionStrategy;
+import it.univr.rubikcube.model.*;
+import it.univr.rubikcube.moves.*;
+import it.univr.rubikcube.resolutionstrategies.*;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.LinkedList;
@@ -48,15 +47,15 @@ public class MainWindow extends javax.swing.JFrame {
         this.F32.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 2, 1).getColor());
         this.F33.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 2, 2).getColor());
         
-        this.B11.setBackground(this.cube.getFace(RubikCubeSide.BACK, 0, 0).getColor());
+        this.B11.setBackground(this.cube.getFace(RubikCubeSide.BACK, 0, 2).getColor());
         this.B12.setBackground(this.cube.getFace(RubikCubeSide.BACK, 0, 1).getColor());
-        this.B13.setBackground(this.cube.getFace(RubikCubeSide.BACK, 0, 2).getColor());
-        this.B21.setBackground(this.cube.getFace(RubikCubeSide.BACK, 1, 0).getColor());
+        this.B13.setBackground(this.cube.getFace(RubikCubeSide.BACK, 0, 0).getColor());
+        this.B21.setBackground(this.cube.getFace(RubikCubeSide.BACK, 1, 2).getColor());
         this.B22.setBackground(this.cube.getFace(RubikCubeSide.BACK, 1, 1).getColor());
-        this.B23.setBackground(this.cube.getFace(RubikCubeSide.BACK, 1, 2).getColor());
-        this.B31.setBackground(this.cube.getFace(RubikCubeSide.BACK, 2, 0).getColor());
+        this.B23.setBackground(this.cube.getFace(RubikCubeSide.BACK, 1, 0).getColor());
+        this.B31.setBackground(this.cube.getFace(RubikCubeSide.BACK, 2, 2).getColor());
         this.B32.setBackground(this.cube.getFace(RubikCubeSide.BACK, 2, 1).getColor());
-        this.B33.setBackground(this.cube.getFace(RubikCubeSide.BACK, 2, 2).getColor());
+        this.B33.setBackground(this.cube.getFace(RubikCubeSide.BACK, 2, 0).getColor());
         
         this.R11.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 0, 0).getColor());
         this.R12.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 0, 1).getColor());
@@ -1669,51 +1668,51 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_rp_control_autosolveActionPerformed
 
     private void lp_move_LActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_LActionPerformed
-        lp_move_do("L");
+        performMove("L");
     }//GEN-LAST:event_lp_move_LActionPerformed
 
     private void lp_move_RActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_RActionPerformed
-        lp_move_do("R");
+        performMove("R");
     }//GEN-LAST:event_lp_move_RActionPerformed
 
     private void lp_move_UActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_UActionPerformed
-        lp_move_do("U");
+        performMove("U");
     }//GEN-LAST:event_lp_move_UActionPerformed
 
     private void lp_move_DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_DActionPerformed
-        lp_move_do("D");
+        performMove("D");
     }//GEN-LAST:event_lp_move_DActionPerformed
 
     private void lp_move_FActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_FActionPerformed
-        lp_move_do("F");
+        performMove("F");
     }//GEN-LAST:event_lp_move_FActionPerformed
 
     private void lp_move_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_BActionPerformed
-        lp_move_do("B");
+        performMove("B");
     }//GEN-LAST:event_lp_move_BActionPerformed
 
     private void lp_move_MActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_MActionPerformed
-        lp_move_do("M");
+        performMove("M");
     }//GEN-LAST:event_lp_move_MActionPerformed
 
     private void lp_move_SActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_SActionPerformed
-        lp_move_do("S");
+        performMove("S");
     }//GEN-LAST:event_lp_move_SActionPerformed
 
     private void lp_move_EActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_EActionPerformed
-        lp_move_do("E");
+        performMove("E");
     }//GEN-LAST:event_lp_move_EActionPerformed
 
     private void lp_move_XActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_XActionPerformed
-        lp_move_do("X");
+        performMove("X");
     }//GEN-LAST:event_lp_move_XActionPerformed
 
     private void lp_move_YActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_YActionPerformed
-        lp_move_do("Y");
+        performMove("Y");
     }//GEN-LAST:event_lp_move_YActionPerformed
 
     private void lp_move_ZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_ZActionPerformed
-        lp_move_do("Z");
+        performMove("Z");
     }//GEN-LAST:event_lp_move_ZActionPerformed
 
     private void menu_help_creditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_help_creditsActionPerformed
@@ -1721,27 +1720,33 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_help_creditsActionPerformed
 
     private void rotate_X_CWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotate_X_CWActionPerformed
-        // TODO add your handling code here:
+        performMove("X");
     }//GEN-LAST:event_rotate_X_CWActionPerformed
 
     private void rotate_X_CCWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotate_X_CCWActionPerformed
-        // TODO add your handling code here:
+        this.lp_move_inverse_yes.setSelected(true);
+        performMove("X");
+        this.lp_move_inverse_no.setSelected(true);
     }//GEN-LAST:event_rotate_X_CCWActionPerformed
 
     private void rotate_Y_CWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotate_Y_CWActionPerformed
-        // TODO add your handling code here:
+        performMove("Y");
     }//GEN-LAST:event_rotate_Y_CWActionPerformed
 
     private void rotate_Y_CCWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotate_Y_CCWActionPerformed
-        // TODO add your handling code here:
+        this.lp_move_inverse_yes.setSelected(true);
+        performMove("Y");
+        this.lp_move_inverse_no.setSelected(true);
     }//GEN-LAST:event_rotate_Y_CCWActionPerformed
 
     private void rotate_Z_CWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotate_Z_CWActionPerformed
-        // TODO add your handling code here:
+        performMove("Z");
     }//GEN-LAST:event_rotate_Z_CWActionPerformed
 
     private void rotate_Z_CCWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rotate_Z_CCWActionPerformed
-        // TODO add your handling code here:
+        this.lp_move_inverse_yes.setSelected(true);
+        performMove("Z");
+        this.lp_move_inverse_no.setSelected(true);
     }//GEN-LAST:event_rotate_Z_CCWActionPerformed
 
     /**
@@ -1914,7 +1919,7 @@ public class MainWindow extends javax.swing.JFrame {
         this.availableStrategy.add(new Fridrich(this.cube));
         this.actualStrategy = this.availableStrategy.get(0);
         
-        
+        this.MovesCounter = 0;
         
         updateInterface();
     }
@@ -1952,9 +1957,27 @@ public class MainWindow extends javax.swing.JFrame {
         lp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/shuffle.png")));
     }
     
-    private void lp_move_do(String move) {
+    private void performMove(String move) {
         this.MovesCounter++;
-        JOptionPane.showMessageDialog(rootPane, "Perform "+move+" move");
+        if(lp_move_inverse_yes.isSelected()) {
+            JOptionPane.showMessageDialog(rootPane, "Perform "+move+" inverse move");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Perform "+move+" move");
+        }
+        
+        if(move.equals("L")) new B(cube, lp_move_inverse_yes.isSelected()).perform();
+        else if(move.equals("R")) new R(cube, lp_move_inverse_yes.isSelected()).perform();
+        else if(move.equals("U")) new U(cube, lp_move_inverse_yes.isSelected()).perform();
+        else if(move.equals("D")) new D(cube, lp_move_inverse_yes.isSelected()).perform();
+        else if(move.equals("F")) new F(cube, lp_move_inverse_yes.isSelected()).perform();
+        else if(move.equals("B")) new B(cube, lp_move_inverse_yes.isSelected()).perform();
+        //else if(move.equals("M")) new M(cube, lp_move_inverse_yes.isSelected()).perform();
+        //else if(move.equals("S")) new S(cube, lp_move_inverse_yes.isSelected()).perform();
+        //else if(move.equals("E")) new E(cube, lp_move_inverse_yes.isSelected()).perform();
+        else if(move.equals("X")) {this.cube.rotateCube(CubeRotation.UPWISE);}
+        else if(move.equals("Y")) {this.cube.rotateCube(CubeRotation.UPWISE);}
+        else if(move.equals("Z")) {this.cube.rotateCube(CubeRotation.UPWISE);};     
+
         updateInterface();
     }
 }
