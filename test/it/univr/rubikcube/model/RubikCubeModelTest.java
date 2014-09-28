@@ -2,6 +2,7 @@
 package it.univr.rubikcube.model;
 // CHECKSTYLE:ON
 
+import it.univr.rubikcube.moves.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -77,4 +78,99 @@ public class RubikCubeModelTest {
 //    ruota riga
 //    ruota colonna
 //    ruota colonna laterale
+    
+    @Test
+    public final void check4Moves() {
+        final RubikCubeModel original = new RubikCubeModel(standardCubeDimension);
+        RubikCubeModel c = new RubikCubeModel(standardCubeDimension);
+        
+        Move move = new L(c);
+        move.perform();
+        move.perform();
+        move.perform();
+        move.perform();
+        
+        for(RubikCubeSide face : RubikCubeSide.values()) {
+            for(int i=0; i<standardCubeDimension; i++) {
+                for(int j=0; j<standardCubeDimension; j++) {
+                    Assert.assertEquals(c.getFace(face, i, j),original.getFace(face, i, j));
+                }
+            }
+        }
+        
+        c.resetToStandardConfiguration();
+        move = new R(c);
+        move.perform();
+        move.perform();
+        move.perform();
+        move.perform();
+        
+        for(RubikCubeSide face : RubikCubeSide.values()) {
+            for(int i=0; i<standardCubeDimension; i++) {
+                for(int j=0; j<standardCubeDimension; j++) {
+                    Assert.assertEquals(c.getFace(face, i, j),original.getFace(face, i, j));
+                }
+            }
+        }
+        
+        c.resetToStandardConfiguration();
+        move = new U(c);
+        move.perform();
+        move.perform();
+        move.perform();
+        move.perform();
+        
+        for(RubikCubeSide face : RubikCubeSide.values()) {
+            for(int i=0; i<standardCubeDimension; i++) {
+                for(int j=0; j<standardCubeDimension; j++) {
+                    Assert.assertEquals(c.getFace(face, i, j),original.getFace(face, i, j));
+                }
+            }
+        }
+        
+        c.resetToStandardConfiguration();
+        move = new D(c);
+        move.perform();
+        move.perform();
+        move.perform();
+        move.perform();
+        
+        for(RubikCubeSide face : RubikCubeSide.values()) {
+            for(int i=0; i<standardCubeDimension; i++) {
+                for(int j=0; j<standardCubeDimension; j++) {
+                    Assert.assertEquals(c.getFace(face, i, j),original.getFace(face, i, j));
+                }
+            }
+        }
+        
+        c.resetToStandardConfiguration();
+        move = new B(c);
+        move.perform();
+        move.perform();
+        move.perform();
+        move.perform();
+        
+        for(RubikCubeSide face : RubikCubeSide.values()) {
+            for(int i=0; i<standardCubeDimension; i++) {
+                for(int j=0; j<standardCubeDimension; j++) {
+                    Assert.assertEquals(c.getFace(face, i, j),original.getFace(face, i, j));
+                }
+            }
+        }
+        
+        c.resetToStandardConfiguration();
+        move = new F(c);
+        move.perform();
+        move.perform();
+        move.perform();
+        move.perform();
+        
+        for(RubikCubeSide face : RubikCubeSide.values()) {
+            for(int i=0; i<standardCubeDimension; i++) {
+                for(int j=0; j<standardCubeDimension; j++) {
+                    Assert.assertEquals(c.getFace(face, i, j),original.getFace(face, i, j));
+                }
+            }
+        }
+    }
 }
