@@ -175,10 +175,10 @@ public class RubikCubeModel extends Observable {
             }
             for (int i = 0; i < this.dimension; ++i) {
                 this.configuration[RubikCubeSide.UP.getValue()][i][index]
-                        = this.configuration[RubikCubeSide.BACK.getValue()][i][index];
+                        = this.configuration[RubikCubeSide.BACK.getValue()][this.dimension - 1 - i][this.dimension - 1 - index];
             }
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.BACK.getValue()][i][index]
+                this.configuration[RubikCubeSide.BACK.getValue()][this.dimension - 1 - i][this.dimension - 1 - index]
                         = this.configuration[RubikCubeSide.DOWN.getValue()][i][index];
             }
             for (int i = 0; i < this.dimension; ++i) {
@@ -192,10 +192,10 @@ public class RubikCubeModel extends Observable {
             }
             for (int i = 0; i < this.dimension; ++i) {
                 this.configuration[RubikCubeSide.DOWN.getValue()][i][index]
-                        = this.configuration[RubikCubeSide.BACK.getValue()][i][index];
+                        = this.configuration[RubikCubeSide.BACK.getValue()][this.dimension - 1 - i][this.dimension - 1 - index];
             }
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.BACK.getValue()][i][index]
+                this.configuration[RubikCubeSide.BACK.getValue()][this.dimension - 1 - i][this.dimension - 1 - index]
                         = this.configuration[RubikCubeSide.UP.getValue()][i][index];
             }
             for (int i = 0; i < this.dimension; ++i) {
