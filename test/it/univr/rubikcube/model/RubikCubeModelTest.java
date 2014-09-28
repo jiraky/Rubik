@@ -1,8 +1,5 @@
-// CHECKSTYLE:OFF Rationale: package-info.java already present in src/
 package it.univr.rubikcube.model;
-// CHECKSTYLE:ON
 
-import it.univr.rubikcube.moves.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -81,7 +78,7 @@ public class RubikCubeModelTest {
     @Test
     public final void rotateRow() {
         final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
-        c.rotateRow(0, RowRotation.CLOCKWISE);
+        c.rotateRow(0, RowRotation.ANTICLOCKWISE);
         for (RubikCubeSide s: RubikCubeSide.values()) {
             for (int i = 0; i < this.standardCubeDimension; ++i) {
                 for (int j = 0; j < this.standardCubeDimension; ++j) {
@@ -90,7 +87,7 @@ public class RubikCubeModelTest {
                         if (s.equals(RubikCubeSide.FRONT)) {
                             col = RubikCubeFaceColor.GREEN;
                         } else if (s.equals(RubikCubeSide.RIGHT)) {
-                            col = RubikCubeFaceColor.GREEN;
+                            col = RubikCubeFaceColor.RED;
                         } else if (s.equals(RubikCubeSide.BACK)) {
                             col = RubikCubeFaceColor.BLUE;
                         } else if (s.equals(RubikCubeSide.LEFT)) {
@@ -107,7 +104,7 @@ public class RubikCubeModelTest {
                 }
             }
         }
-        c.rotateRow(0, RowRotation.ANTICLOCKWISE);
+        c.rotateRow(0, RowRotation.CLOCKWISE);
         Assert.assertTrue("Opposite row rotation brings back to standard",
                           isInStandardConfiguration(c));
     }
