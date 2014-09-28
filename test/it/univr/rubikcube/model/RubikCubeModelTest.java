@@ -225,8 +225,88 @@ public class RubikCubeModelTest {
         c.rotateLateralColumn(this.standardCubeDimension + 1,
                               LateralColumnRotation.LEFT);
     }
-    // FIXME rotateCube
-    // FIXME rotateCubeIllegalArgument
+    /**
+     * Checks that cube rotation works properly.
+     */
+    @Test
+    public final void rotateCube() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        c.rotateCube(CubeRotation.CLOCKWISE_FROM_FRONT);
+        for (RubikCubeSide s: RubikCubeSide.values()) {
+            for (int i = 0; i < this.standardCubeDimension; ++i) {
+                for (int j = 0; j < this.standardCubeDimension; ++j) {
+                    RubikCubeFaceColor col;
+                    if (s.equals(RubikCubeSide.UP)) {
+                        col = RubikCubeFaceColor.GREEN;
+                    } else if (s.equals(RubikCubeSide.RIGHT)) {
+                        col = RubikCubeFaceColor.WHITE;
+                    } else if (s.equals(RubikCubeSide.DOWN)) {
+                        col = RubikCubeFaceColor.BLUE;
+                    } else if (s.equals(RubikCubeSide.LEFT)) {
+                        col = RubikCubeFaceColor.YELLOW;
+                    } else {
+                        col = s.getStandardColor();
+                    }
+                    Assert.assertEquals("The (" + s.getDescription() + "," + i
+                                        + "," + j + ") face is correct", col,
+                                        c.getFace(s, i, j));
+                }
+            }
+        }
+        c.rotateCube(CubeRotation.ANTICLOCKWISE_FROM_FRONT);
+        Assert.assertTrue("Anticlockwise from front cube rotation brings back"
+                + " to standard", isInStandardConfiguration(c));
+        c.rotateCube(CubeRotation.UPWISE);
+        for (RubikCubeSide s: RubikCubeSide.values()) {
+            for (int i = 0; i < this.standardCubeDimension; ++i) {
+                for (int j = 0; j < this.standardCubeDimension; ++j) {
+                    RubikCubeFaceColor col;
+                    if (s.equals(RubikCubeSide.UP)) {
+                        col = RubikCubeFaceColor.RED;
+                    } else if (s.equals(RubikCubeSide.BACK)) {
+                        col = RubikCubeFaceColor.WHITE;
+                    } else if (s.equals(RubikCubeSide.DOWN)) {
+                        col = RubikCubeFaceColor.ORANGE;
+                    } else if (s.equals(RubikCubeSide.FRONT)) {
+                        col = RubikCubeFaceColor.YELLOW;
+                    } else {
+                        col = s.getStandardColor();
+                    }
+                    Assert.assertEquals("The (" + s.getDescription() + "," + i
+                                        + "," + j + ") face is correct", col,
+                                        c.getFace(s, i, j));
+                }
+            }
+        }
+        c.rotateCube(CubeRotation.DOWNWISE);
+        Assert.assertTrue("Downwise cube rotation brings back to"
+                + " standard", isInStandardConfiguration(c));
+        c.rotateCube(CubeRotation.CLOCKWISE);
+        for (RubikCubeSide s: RubikCubeSide.values()) {
+            for (int i = 0; i < this.standardCubeDimension; ++i) {
+                for (int j = 0; j < this.standardCubeDimension; ++j) {
+                    RubikCubeFaceColor col;
+                    if (s.equals(RubikCubeSide.BACK)) {
+                        col = RubikCubeFaceColor.GREEN;
+                    } else if (s.equals(RubikCubeSide.RIGHT)) {
+                        col = RubikCubeFaceColor.ORANGE;
+                    } else if (s.equals(RubikCubeSide.FRONT)) {
+                        col = RubikCubeFaceColor.BLUE;
+                    } else if (s.equals(RubikCubeSide.LEFT)) {
+                        col = RubikCubeFaceColor.RED;
+                    } else {
+                        col = s.getStandardColor();
+                    }
+                    Assert.assertEquals("The (" + s.getDescription() + "," + i
+                                        + "," + j + ") face is correct", col,
+                                        c.getFace(s, i, j));
+                }
+            }
+        }
+        c.rotateCube(CubeRotation.ANTICLOCKWISE);
+        Assert.assertTrue("Anticlockwise cube rotation brings back to"
+                + " standard", isInStandardConfiguration(c));
+    }
     /**
      * Checks whether a cube is in the standard configuration.
      * @param m Move to be checked.
