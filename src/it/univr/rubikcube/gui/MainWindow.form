@@ -2119,7 +2119,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lp_move_preview_image" pref="135" max="32767" attributes="0"/>
+                          <Component id="lp_move_preview_image" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -2377,6 +2377,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Do it!"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rp_nextmoves_doitActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JProgressBar" name="rp_nextmoves_progressbar">
         </Component>

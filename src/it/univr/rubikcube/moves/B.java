@@ -38,7 +38,7 @@ public class B extends ThreeDimensionalMove {
      * @return <tt>B'</tt> if this move is reversed, <tt>B</tt> otherwise.
      */
     @Override
-    public final String getText() {
+    public final String toString() {
         if (this.isReversed()) {
             return "B'";
         }

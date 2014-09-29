@@ -2,6 +2,7 @@ package it.univr.rubikcube.resolutionstrategies;
 
 import it.univr.rubikcube.model.Move;
 import it.univr.rubikcube.model.RubikCubeModel;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -35,7 +36,13 @@ public class Fridrich extends ResolutionStrategy {
         // next moves.
         // Phase 1 (pre-cross): the central faces on the top, front and right
         // cube faces must be respectively yellow, red and green.
-        return null;
+        List<Move> result = new LinkedList<>();
+        result.add(new it.univr.rubikcube.moves.F(m));
+        result.add(new it.univr.rubikcube.moves.F(m));
+        result.add(new it.univr.rubikcube.moves.F(m));
+        result.add(new it.univr.rubikcube.moves.F(m));
+        
+        return result;
     }
     /**
      * Returns the name of the resolution strategy.
