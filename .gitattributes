@@ -3,7 +3,6 @@
 /.classpath -text
 /.project -text
 .settings/org.eclipse.jdt.core.prefs -text
-/appletpage.htm -text svneol=unset#text/html
 /checkstyle.xml -text svneol=unset#application/xml
 graphics/cubeicon.ico -text
 graphics/logo.png -text
