@@ -65,9 +65,12 @@ src/it/univr/rubikcube/model/ThreeDimensionalMove.java -text svneol=unset#text/x
 src/it/univr/rubikcube/model/package-info.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/moves/B.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/moves/D.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/moves/E.java -text
 src/it/univr/rubikcube/moves/F.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/moves/L.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/moves/M.java -text
 src/it/univr/rubikcube/moves/R.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/moves/S.java -text
 src/it/univr/rubikcube/moves/U.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/moves/X.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/moves/Y.java -text svneol=unset#text/x-java-source
