@@ -2119,7 +2119,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lp_move_preview_image" max="32767" attributes="0"/>
+                          <Component id="lp_move_preview_image" pref="135" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -2159,30 +2159,28 @@
                       <Component id="rp_previousmoves_title" max="32767" attributes="0"/>
                       <Component id="rp_nextmoves_title" alignment="1" max="32767" attributes="0"/>
                       <Component id="rp_nextmoves_value" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="rp_control" max="32767" attributes="0"/>
-                              <Component id="rp_sep1" alignment="1" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="rp_algorithm_title" linkSize="2" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="rp_cubedimension_title" linkSize="2" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="rp_nummoves_title" linkSize="2" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="rp_cubedimension_value" linkSize="3" min="-2" pref="152" max="-2" attributes="0"/>
-                                      <Component id="rp_algorithm_value" linkSize="3" min="-2" pref="152" max="-2" attributes="0"/>
-                                      <Component id="rp_nummoves_value" linkSize="3" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="rp_previousmoves_container" alignment="1" max="32767" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="rp_control" max="32767" attributes="0"/>
+                          <Component id="rp_sep1" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="rp_nextmoves_doit" min="-2" pref="100" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="rp_nextmoves_progressbar" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="rp_algorithm_title" linkSize="2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="rp_cubedimension_title" linkSize="2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="rp_nummoves_title" linkSize="2" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="rp_cubedimension_value" linkSize="3" min="-2" pref="152" max="-2" attributes="0"/>
+                                  <Component id="rp_algorithm_value" linkSize="3" min="-2" pref="152" max="-2" attributes="0"/>
+                                  <Component id="rp_nummoves_value" linkSize="3" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
+                          <Component id="rp_previousmoves_container" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="rp_nextmoves_doit" min="-2" pref="100" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="rp_nextmoves_progressbar" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -2372,7 +2370,7 @@
         </Container>
         <Component class="javax.swing.JTextField" name="rp_nextmoves_value">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField1"/>
+            <Property name="text" type="java.lang.String" value=" "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="rp_nextmoves_doit">
