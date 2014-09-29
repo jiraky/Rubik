@@ -29,88 +29,7 @@ public class MainWindow extends javax.swing.JFrame {
                          dim.height / 2 - this.getSize().height / 2);
         initCube();
     }
-    /**
-     * Updates the interface.
-     */
-    public final void updateInterface() {
-        this.rp_cubedimension_value.setText("" + this.RubikCubeDimension);
-        this.rp_algorithm_value.setText("" + this.actualStrategy.toString());
-        this.rp_nummoves_value.setText("" + this.MovesCounter);
- 
-        
-        this.F11.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 0, 0).getColor());
-        this.F12.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 0, 1).getColor());
-        this.F13.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 0, 2).getColor());
-        this.F21.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 1, 0).getColor());
-        this.F22.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 1, 1).getColor());
-        this.F23.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 1, 2).getColor());
-        this.F31.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 2, 0).getColor());
-        this.F32.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 2, 1).getColor());
-        this.F33.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 2, 2).getColor());
-        
-        this.B11.setBackground(this.cube.getFace(RubikCubeSide.BACK, 0, 2).getColor());
-        this.B12.setBackground(this.cube.getFace(RubikCubeSide.BACK, 0, 1).getColor());
-        this.B13.setBackground(this.cube.getFace(RubikCubeSide.BACK, 0, 0).getColor());
-        this.B21.setBackground(this.cube.getFace(RubikCubeSide.BACK, 1, 2).getColor());
-        this.B22.setBackground(this.cube.getFace(RubikCubeSide.BACK, 1, 1).getColor());
-        this.B23.setBackground(this.cube.getFace(RubikCubeSide.BACK, 1, 0).getColor());
-        this.B31.setBackground(this.cube.getFace(RubikCubeSide.BACK, 2, 2).getColor());
-        this.B32.setBackground(this.cube.getFace(RubikCubeSide.BACK, 2, 1).getColor());
-        this.B33.setBackground(this.cube.getFace(RubikCubeSide.BACK, 2, 0).getColor());
-        
-        this.R11.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 0, 0).getColor());
-        this.R12.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 0, 1).getColor());
-        this.R13.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 0, 2).getColor());
-        this.R21.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 1, 0).getColor());
-        this.R22.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 1, 1).getColor());
-        this.R23.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 1, 2).getColor());
-        this.R31.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 2, 0).getColor());
-        this.R32.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 2, 1).getColor());
-        this.R33.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 2, 2).getColor());
-        
-        this.L11.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 0, 0).getColor());
-        this.L12.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 0, 1).getColor());
-        this.L13.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 0, 2).getColor());
-        this.L21.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 1, 0).getColor());
-        this.L22.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 1, 1).getColor());
-        this.L23.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 1, 2).getColor());
-        this.L31.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 2, 0).getColor());
-        this.L32.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 2, 1).getColor());
-        this.L33.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 2, 2).getColor());
-        
-        this.U11.setBackground(this.cube.getFace(RubikCubeSide.UP, 0, 0).getColor());
-        this.U12.setBackground(this.cube.getFace(RubikCubeSide.UP, 0, 1).getColor());
-        this.U13.setBackground(this.cube.getFace(RubikCubeSide.UP, 0, 2).getColor());
-        this.U21.setBackground(this.cube.getFace(RubikCubeSide.UP, 1, 0).getColor());
-        this.U22.setBackground(this.cube.getFace(RubikCubeSide.UP, 1, 1).getColor());
-        this.U23.setBackground(this.cube.getFace(RubikCubeSide.UP, 1, 2).getColor());
-        this.U31.setBackground(this.cube.getFace(RubikCubeSide.UP, 2, 0).getColor());
-        this.U32.setBackground(this.cube.getFace(RubikCubeSide.UP, 2, 1).getColor());
-        this.U33.setBackground(this.cube.getFace(RubikCubeSide.UP, 2, 2).getColor());
-        
-        this.D11.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 0, 0).getColor());
-        this.D12.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 0, 1).getColor());
-        this.D13.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 0, 2).getColor());
-        this.D21.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 1, 0).getColor());
-        this.D22.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 1, 1).getColor());
-        this.D23.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 1, 2).getColor());
-        this.D31.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 2, 0).getColor());
-        this.D32.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 2, 1).getColor());
-        this.D33.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 2, 2).getColor());
-        
-        if(this.needUpdateNextMoves) {
-            this.rp_nextmoves_value.setText("");
-            this.next_moves = this.actualStrategy.getNextMoves();
-            for (Move next_move : next_moves) {
-                this.rp_nextmoves_value.setText(this.rp_nextmoves_value.getText()+next_move.toString()+"");
-            }
-            this.rp_nextmoves_progressbar.setMinimum(0);
-            this.rp_nextmoves_progressbar.setMaximum(next_moves.size());
-        } else {
-            //FIXME
-        }
-        
-    }
+    
     /* CHECKSTYLE:OFF Rationale: autogenerated code */
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1247,6 +1166,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         lp_move_preview.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Preview", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
+        lp_move_preview_image.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/shuffle.png"))); // NOI18N
         lp_move_preview_image.setText(" ");
         lp_move_preview_image.setToolTipText("");
@@ -1264,7 +1184,7 @@ public class MainWindow extends javax.swing.JFrame {
             lp_move_previewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(lp_move_previewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lp_move_preview_image, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                .addComponent(lp_move_preview_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(2, 2, 2))
         );
 
@@ -1951,8 +1871,9 @@ public class MainWindow extends javax.swing.JFrame {
      */
     private int MovesCounter = 0;
     
-    private boolean needUpdateNextMoves;
+    private boolean next_moves_update;
     private List<Move> next_moves;
+    private int next_moves_pointer;
 
     /**
      * Initializes the Rubik cube.
@@ -1965,7 +1886,9 @@ public class MainWindow extends javax.swing.JFrame {
         this.actualStrategy = this.availableStrategy.get(0);
         
         this.MovesCounter = 0;
-        this.needUpdateNextMoves = true;
+        this.next_moves = this.actualStrategy.getNextMoves();
+        this.next_moves_update = true;
+        this.next_moves_pointer = 0;
         
         updateInterface();
     }
@@ -2004,7 +1927,6 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void performMove(String move) {
-        this.rp_nextmoves_progressbar.setIndeterminate(true);
         this.MovesCounter++;
         this.rp_previousmoves_value.setText(this.rp_previousmoves_value.getText()+move+"\n");
         if(lp_move_inverse_yes.isSelected()) {
@@ -2052,7 +1974,125 @@ public class MainWindow extends javax.swing.JFrame {
                 break;
         }
         
+        if(this.next_moves.get(this.next_moves_pointer).toString().equals(move))
+           this.next_moves_pointer++;
+        else {
+            this.next_moves_update = true;
+            this.next_moves_pointer = 0;
+        }
+        
+        if (this.next_moves_pointer >= this.next_moves.size()) {
+            this.next_moves_update = true;
+            this.next_moves_pointer = 0;
+        }
+        
         updateInterface();
-        this.rp_nextmoves_progressbar.setIndeterminate(false);
+    }
+    
+    /**
+     * Updates the interface.
+     */
+    public final void updateInterface() {
+        this.rp_cubedimension_value.setText("" + this.RubikCubeDimension);
+        this.rp_algorithm_value.setText("" + this.actualStrategy.toString());
+        this.rp_nummoves_value.setText("" + this.MovesCounter);
+ 
+        
+        this.F11.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 0, 0).getColor());
+        this.F12.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 0, 1).getColor());
+        this.F13.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 0, 2).getColor());
+        this.F21.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 1, 0).getColor());
+        this.F22.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 1, 1).getColor());
+        this.F23.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 1, 2).getColor());
+        this.F31.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 2, 0).getColor());
+        this.F32.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 2, 1).getColor());
+        this.F33.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 2, 2).getColor());
+        
+        this.B11.setBackground(this.cube.getFace(RubikCubeSide.BACK, 0, 2).getColor());
+        this.B12.setBackground(this.cube.getFace(RubikCubeSide.BACK, 0, 1).getColor());
+        this.B13.setBackground(this.cube.getFace(RubikCubeSide.BACK, 0, 0).getColor());
+        this.B21.setBackground(this.cube.getFace(RubikCubeSide.BACK, 1, 2).getColor());
+        this.B22.setBackground(this.cube.getFace(RubikCubeSide.BACK, 1, 1).getColor());
+        this.B23.setBackground(this.cube.getFace(RubikCubeSide.BACK, 1, 0).getColor());
+        this.B31.setBackground(this.cube.getFace(RubikCubeSide.BACK, 2, 2).getColor());
+        this.B32.setBackground(this.cube.getFace(RubikCubeSide.BACK, 2, 1).getColor());
+        this.B33.setBackground(this.cube.getFace(RubikCubeSide.BACK, 2, 0).getColor());
+        
+        this.R11.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 0, 0).getColor());
+        this.R12.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 0, 1).getColor());
+        this.R13.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 0, 2).getColor());
+        this.R21.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 1, 0).getColor());
+        this.R22.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 1, 1).getColor());
+        this.R23.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 1, 2).getColor());
+        this.R31.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 2, 0).getColor());
+        this.R32.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 2, 1).getColor());
+        this.R33.setBackground(this.cube.getFace(RubikCubeSide.RIGHT, 2, 2).getColor());
+        
+        this.L11.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 0, 0).getColor());
+        this.L12.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 0, 1).getColor());
+        this.L13.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 0, 2).getColor());
+        this.L21.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 1, 0).getColor());
+        this.L22.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 1, 1).getColor());
+        this.L23.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 1, 2).getColor());
+        this.L31.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 2, 0).getColor());
+        this.L32.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 2, 1).getColor());
+        this.L33.setBackground(this.cube.getFace(RubikCubeSide.LEFT, 2, 2).getColor());
+        
+        this.U11.setBackground(this.cube.getFace(RubikCubeSide.UP, 0, 0).getColor());
+        this.U12.setBackground(this.cube.getFace(RubikCubeSide.UP, 0, 1).getColor());
+        this.U13.setBackground(this.cube.getFace(RubikCubeSide.UP, 0, 2).getColor());
+        this.U21.setBackground(this.cube.getFace(RubikCubeSide.UP, 1, 0).getColor());
+        this.U22.setBackground(this.cube.getFace(RubikCubeSide.UP, 1, 1).getColor());
+        this.U23.setBackground(this.cube.getFace(RubikCubeSide.UP, 1, 2).getColor());
+        this.U31.setBackground(this.cube.getFace(RubikCubeSide.UP, 2, 0).getColor());
+        this.U32.setBackground(this.cube.getFace(RubikCubeSide.UP, 2, 1).getColor());
+        this.U33.setBackground(this.cube.getFace(RubikCubeSide.UP, 2, 2).getColor());
+        
+        this.D11.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 0, 0).getColor());
+        this.D12.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 0, 1).getColor());
+        this.D13.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 0, 2).getColor());
+        this.D21.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 1, 0).getColor());
+        this.D22.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 1, 1).getColor());
+        this.D23.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 1, 2).getColor());
+        this.D31.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 2, 0).getColor());
+        this.D32.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 2, 1).getColor());
+        this.D33.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 2, 2).getColor());
+        
+        if(this.next_moves_update) {
+            resetNextMoves();
+        } else {
+            updateNextMoves();
+            if(this.next_moves_pointer == this.next_moves.size()) {
+                this.next_moves_update = false;
+                this.rp_nextmoves_value.setText("");
+                this.next_moves = this.actualStrategy.getNextMoves();
+                for (Move next_move : next_moves) {
+                    this.rp_nextmoves_value.setText(this.rp_nextmoves_value.getText()+next_move.toString()+"");
+                }
+            }
+        }
+    }
+    
+    private void updateNextMoves() {
+        this.rp_nextmoves_value.setText("");
+        this.next_moves = this.actualStrategy.getNextMoves();
+        for (int i = this.next_moves_pointer; i<this.next_moves.size(); i++) {
+            this.rp_nextmoves_value.setText(this.rp_nextmoves_value.getText()+next_moves.get(i).toString()+"");
+        }
+        this.rp_nextmoves_progressbar.setMinimum(0);
+        this.rp_nextmoves_progressbar.setValue(this.next_moves_pointer);
+        this.rp_nextmoves_progressbar.setMaximum(next_moves.size());
+    }
+    
+    private void resetNextMoves() {
+        this.next_moves_update = false;
+        this.rp_nextmoves_value.setText("");
+        this.next_moves = this.actualStrategy.getNextMoves();
+        for (Move next_move : next_moves) {
+            this.rp_nextmoves_value.setText(this.rp_nextmoves_value.getText()+next_move.toString()+"");
+        }
+        this.rp_nextmoves_progressbar.setMinimum(0);
+        this.rp_nextmoves_progressbar.setValue(0);
+        this.rp_nextmoves_progressbar.setMaximum(next_moves.size());
     }
 }
