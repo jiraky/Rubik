@@ -317,6 +317,12 @@ public class RubikCubeModel extends Observable {
                                true);
                 this.copyArray(tmp,
                                this.configuration[RubikCubeSide.UP.getValue()]);
+                this.rotateFace(this.configuration[RubikCubeSide.LEFT.getValue()],
+                                tmp, true);
+                this.copyArray(tmp, this.configuration[RubikCubeSide.LEFT.getValue()]);
+                this.rotateFace(this.configuration[RubikCubeSide.RIGHT.getValue()],
+                        tmp, false);
+                this.copyArray(tmp, this.configuration[RubikCubeSide.RIGHT.getValue()]);
                 break;
             case DOWNWISE:
                 this.copyArray(this.configuration[RubikCubeSide.UP.getValue()],
@@ -329,6 +335,12 @@ public class RubikCubeModel extends Observable {
                                true);
                 this.copyArray(tmp,
                                this.configuration[RubikCubeSide.DOWN.getValue()]);
+                this.rotateFace(this.configuration[RubikCubeSide.LEFT.getValue()],
+                        tmp, false);
+                this.copyArray(tmp, this.configuration[RubikCubeSide.LEFT.getValue()]);
+                this.rotateFace(this.configuration[RubikCubeSide.RIGHT.getValue()],
+                        tmp, true);
+                this.copyArray(tmp, this.configuration[RubikCubeSide.RIGHT.getValue()]);
                 break;
             case CLOCKWISE:
                 this.copyArray(this.configuration[RubikCubeSide.RIGHT.getValue()],
@@ -339,6 +351,12 @@ public class RubikCubeModel extends Observable {
                                this.configuration[RubikCubeSide.BACK.getValue()]);
                 this.copyArray(tmp,
                                this.configuration[RubikCubeSide.LEFT.getValue()]);
+                this.rotateFace(this.configuration[RubikCubeSide.UP.getValue()],
+                        tmp, true);
+                this.copyArray(tmp, this.configuration[RubikCubeSide.UP.getValue()]);
+                this.rotateFace(this.configuration[RubikCubeSide.DOWN.getValue()],
+                        tmp, false);
+                this.copyArray(tmp, this.configuration[RubikCubeSide.DOWN.getValue()]);
                 break;
             case ANTICLOCKWISE:
                 this.copyArray(this.configuration[RubikCubeSide.LEFT.getValue()],
@@ -349,6 +367,12 @@ public class RubikCubeModel extends Observable {
                                this.configuration[RubikCubeSide.BACK.getValue()]);
                 this.copyArray(tmp,
                                this.configuration[RubikCubeSide.RIGHT.getValue()]);
+                this.rotateFace(this.configuration[RubikCubeSide.UP.getValue()],
+                        tmp, false);
+                this.copyArray(tmp, this.configuration[RubikCubeSide.UP.getValue()]);
+                this.rotateFace(this.configuration[RubikCubeSide.DOWN.getValue()],
+                        tmp, true);
+                this.copyArray(tmp, this.configuration[RubikCubeSide.DOWN.getValue()]);
                 break;
             case CLOCKWISE_FROM_FRONT:
                 for (int i = 0; i < this.dimension; ++i) {
@@ -356,6 +380,12 @@ public class RubikCubeModel extends Observable {
                                                      LateralColumnRotation.RIGHT,
                                                      false);
                 }
+                this.rotateFace(this.configuration[RubikCubeSide.FRONT.getValue()],
+                        tmp, false);
+                this.copyArray(tmp, this.configuration[RubikCubeSide.FRONT.getValue()]);
+                this.rotateFace(this.configuration[RubikCubeSide.BACK.getValue()],
+                        tmp, true);
+                this.copyArray(tmp, this.configuration[RubikCubeSide.BACK.getValue()]);
                 break;
             case ANTICLOCKWISE_FROM_FRONT:
                 for (int i = 0; i < this.dimension; ++i) {
@@ -363,6 +393,12 @@ public class RubikCubeModel extends Observable {
                                                      LateralColumnRotation.LEFT,
                                                      false);
                 }
+                this.rotateFace(this.configuration[RubikCubeSide.FRONT.getValue()],
+                        tmp, true);
+                this.copyArray(tmp, this.configuration[RubikCubeSide.FRONT.getValue()]);
+                this.rotateFace(this.configuration[RubikCubeSide.BACK.getValue()],
+                        tmp, false);
+                this.copyArray(tmp, this.configuration[RubikCubeSide.BACK.getValue()]);
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -455,6 +491,7 @@ public class RubikCubeModel extends Observable {
     private void copyArray(final RubikCubeFaceColor[][] src,
                            final RubikCubeFaceColor[][] dst,
                            final boolean sw) {
+        
         for (int i = 0; i < this.dimension; ++i) {
             for (int j = 0; j < this.dimension; ++j) {
                 if (sw) {
@@ -462,6 +499,36 @@ public class RubikCubeModel extends Observable {
                             = src[i][j];
                 } else {
                     dst[i][j] = src[i][j];
+                }
+            }
+        }
+    }
+    /**
+     * Rotates a face of the Rubik cube. <strong><tt>src</tt> and <tt>dst</tt>
+     * must not be the same array</strong> as the routine is not designed for
+     * a copy in place!
+     * @param src Source face.
+     * @param dst Destination face.
+     * @param anticlockwise Specifies if the rotation should be anticlockwise
+     * (it will be clockwise otherwise).
+     * @throws IllegalArgumentException Thrown if <tt>src</tt> and <tt>dst</tt>
+     * are the same array.
+     */
+    private void rotateFace(final RubikCubeFaceColor[][] src,
+                            final RubikCubeFaceColor[][] dst,
+                            final boolean anticlockwise)
+        throws IllegalArgumentException {
+        // The following == is intended as we're comparing references.
+        if (src == dst) {
+            throw new IllegalArgumentException("src and dst must be different"
+                                               + " references");
+        }
+        for (int i = 0; i < this.dimension; ++i) {
+            for (int j = 0; j < this.dimension; ++j) {
+                if (anticlockwise) {
+                    dst[this.dimension - 1 - j][i] = src[i][j];
+                } else {
+                    dst[j][this.dimension - 1 - i] = src[i][j];
                 }
             }
         }

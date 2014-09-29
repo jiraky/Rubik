@@ -64,7 +64,7 @@ public class SingmasterMovesTest {
             }
         }
         Assert.assertTrue("Reversed B move brings cube back to default",
-                          checkReverseToStandard(m));
+                          this.checkReverseToStandard(m));
     }
     /**
      * Perform a D move.
@@ -99,7 +99,42 @@ public class SingmasterMovesTest {
             }
         }
         Assert.assertTrue("Reversed D move brings cube back to default",
-                          checkReverseToStandard(m));
+                          this.checkReverseToStandard(m));
+    }
+    /**
+     * Perform a E move.
+     */
+    @Test
+    public final void testE() {
+        final Move m = new E(this.cube);
+        m.perform();
+        for (RubikCubeSide s: RubikCubeSide.values()) {
+            for (int i = 0; i < CUBE_DIMENSION; ++i) {
+                for (int j = 0; j < CUBE_DIMENSION; ++j) {
+                    RubikCubeFaceColor c;
+                    if (i == 1) {
+                        if (s.equals(RubikCubeSide.FRONT)) {
+                            c = RubikCubeFaceColor.GREEN;
+                        } else if (s.equals(RubikCubeSide.RIGHT)) {
+                            c = RubikCubeFaceColor.RED;
+                        } else if (s.equals(RubikCubeSide.BACK)) {
+                            c = RubikCubeFaceColor.BLUE;
+                        } else if (s.equals(RubikCubeSide.LEFT)) {
+                            c = RubikCubeFaceColor.ORANGE;
+                        } else {
+                            c = s.getStandardColor();
+                        }
+                    } else {
+                        c = s.getStandardColor();
+                    }
+                    Assert.assertEquals("The (" + s.getDescription() + ","
+                            + i + "," + j + ") face is correct", c,
+                            this.cube.getFace(s, i, j));
+                }
+            }
+        }
+        Assert.assertTrue("Reversed E move brings cube back to default",
+                          this.checkReverseToStandard(m));
     }
     /**
      * Perform a F move.
@@ -130,7 +165,7 @@ public class SingmasterMovesTest {
             }
         }
         Assert.assertTrue("Reversed F move brings cube back to default",
-                          checkReverseToStandard(m));
+                          this.checkReverseToStandard(m));
     }
     /**
      * Perform a L move.
@@ -161,7 +196,38 @@ public class SingmasterMovesTest {
             }
         }
         Assert.assertTrue("Reversed L move brings cube back to default",
-                          checkReverseToStandard(m));
+                          this.checkReverseToStandard(m));
+    }
+    /**
+     * Perform a M move.
+     */
+    @Test
+    public final void testM() {
+        final Move m = new M(this.cube);
+        m.perform();
+        for (RubikCubeSide s: RubikCubeSide.values()) {
+            for (int i = 0; i < CUBE_DIMENSION; ++i) {
+                for (int j = 0; j < CUBE_DIMENSION; ++j) {
+                    RubikCubeFaceColor c;
+                    if (s.equals(RubikCubeSide.FRONT) && j == 1) {
+                        c = RubikCubeFaceColor.WHITE;
+                    } else if (s.equals(RubikCubeSide.DOWN) && j == 1) {
+                        c = RubikCubeFaceColor.RED;
+                    } else if (s.equals(RubikCubeSide.BACK) && j == 1) {
+                        c = RubikCubeFaceColor.YELLOW;
+                    } else if (s.equals(RubikCubeSide.UP) && j == 1) {
+                        c = RubikCubeFaceColor.ORANGE;
+                    } else {
+                        c = s.getStandardColor();
+                    }
+                    Assert.assertEquals("The (" + s.getDescription() + ","
+                            + i + "," + j + ") face is correct", c,
+                            this.cube.getFace(s, i, j));
+                }
+            }
+        }
+        Assert.assertTrue("Reversed M move brings cube back to default",
+                          this.checkReverseToStandard(m));
     }
     /**
      * Perform a R move.
@@ -192,7 +258,38 @@ public class SingmasterMovesTest {
             }
         }
         Assert.assertTrue("Reversed R move brings cube back to default",
-                          checkReverseToStandard(m));
+                          this.checkReverseToStandard(m));
+    }
+    /**
+     * Perform a S move.
+     */
+    @Test
+    public final void testS() {
+        final Move m = new S(this.cube);
+        m.perform();
+        for (RubikCubeSide s: RubikCubeSide.values()) {
+            for (int i = 0; i < CUBE_DIMENSION; ++i) {
+                for (int j = 0; j < CUBE_DIMENSION; ++j) {
+                    RubikCubeFaceColor c;
+                    if (s.equals(RubikCubeSide.UP) && i == 1) {
+                        c = RubikCubeFaceColor.GREEN;
+                    } else if (s.equals(RubikCubeSide.RIGHT) && j == 1) {
+                        c = RubikCubeFaceColor.WHITE;
+                    } else if (s.equals(RubikCubeSide.DOWN) && i == 1) {
+                        c = RubikCubeFaceColor.BLUE;
+                    } else if (s.equals(RubikCubeSide.LEFT) && j == 1) {
+                        c = RubikCubeFaceColor.YELLOW;
+                    } else {
+                        c = s.getStandardColor();
+                    }
+                    Assert.assertEquals("The (" + s.getDescription() + ","
+                            + i + "," + j + ") face is correct", c,
+                            this.cube.getFace(s, i, j));
+                }
+            }
+        }
+        Assert.assertTrue("Reversed S move brings cube back to default",
+                          this.checkReverseToStandard(m));
     }
     /**
      * Perform a U move.
@@ -227,7 +324,7 @@ public class SingmasterMovesTest {
             }
         }
         Assert.assertTrue("Reversed U move brings cube back to default",
-                          checkReverseToStandard(m));
+                          this.checkReverseToStandard(m));
     }
     /* X, Y and Z moves are cube rotations, they are tested in the Rubik cube
      * test suite. */
