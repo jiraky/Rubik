@@ -35,6 +35,7 @@ graphics/moves/Z_inv.png -text
 graphics/moves/shuffle.png -text
 graphics/moves/solved.png -text
 /launchRubik.sh -text
+lib/beansbinding-1.2.1.jar -text
 /manifest.txt -text svneol=unset#text/plain
 /rubikcube.jnlp -text svneol=unset#application/x-java-jnlp-file
 src/it/univr/rubikcube/gui/ChangeAlgorithm.form -text

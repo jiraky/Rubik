@@ -33,7 +33,8 @@ public abstract class ResolutionStrategy {
         return this.cubeModel;
     }
     /**
-     * Gets a list of next moves to be performed.
+     * Gets a list of next moves to be performed to get to the next phase of
+     * the algorithm.
      * @return List of next moves.
      */
     public abstract List<Move> getNextMoves();

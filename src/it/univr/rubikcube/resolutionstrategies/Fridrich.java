@@ -26,7 +26,8 @@ public class Fridrich extends ResolutionStrategy {
         // FIXME Check European configuration (central faces)
     }
     /**
-     * Gets a list of next moves to be performed.
+     * Gets a list of next moves to be performed to get to the next phase of
+     * the algorithm.
      * @return List of next moves.
      */
     @Override
