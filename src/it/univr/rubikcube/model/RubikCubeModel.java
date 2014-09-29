@@ -141,6 +141,20 @@ public class RubikCubeModel extends Observable {
         } else {
             throw new IllegalArgumentException();
         }
+        // Rotate the lateral face if needed.
+        if (index == 0) {
+            final RubikCubeFaceColor[][] tmp = new RubikCubeFaceColor
+                    [this.dimension][this.dimension];
+            this.rotateFace(this.configuration[RubikCubeSide.UP.getValue()],
+                    tmp, rotation == RowRotation.CLOCKWISE);
+            this.copyArray(tmp, this.configuration[RubikCubeSide.UP.getValue()]);
+        } else if (index == this.dimension - 1) {
+            final RubikCubeFaceColor[][] tmp = new RubikCubeFaceColor
+                    [this.dimension][this.dimension];
+            this.rotateFace(this.configuration[RubikCubeSide.DOWN.getValue()],
+                    tmp, rotation == RowRotation.ANTICLOCKWISE);
+            this.copyArray(tmp, this.configuration[RubikCubeSide.DOWN.getValue()]);
+        }
         // Notify the listeners that the row has changed
         notifyObservers(new RubikCubeModelRowRotated(index, rotation));
     }
@@ -204,6 +218,20 @@ public class RubikCubeModel extends Observable {
             }
         } else {
             throw new IllegalArgumentException();
+        }
+        // Rotate the lateral faces if needed.
+        if (index == 0) {
+            final RubikCubeFaceColor[][] tmp = new RubikCubeFaceColor
+                    [this.dimension][this.dimension];
+            this.rotateFace(this.configuration[RubikCubeSide.LEFT.getValue()],
+                    tmp, rotation == ColumnRotation.TOP);
+            this.copyArray(tmp, this.configuration[RubikCubeSide.LEFT.getValue()]);
+        } else if (index == this.dimension - 1) {
+            final RubikCubeFaceColor[][] tmp = new RubikCubeFaceColor
+                    [this.dimension][this.dimension];
+            this.rotateFace(this.configuration[RubikCubeSide.RIGHT.getValue()],
+                    tmp, rotation == ColumnRotation.BOTTOM);
+            this.copyArray(tmp, this.configuration[RubikCubeSide.RIGHT.getValue()]);
         }
         // Notify the listeners that the column has changed.
         notifyObservers(new RubikCubeModelColumnRotated(index, rotation));
@@ -285,6 +313,20 @@ public class RubikCubeModel extends Observable {
             }
         } else {
             throw new IllegalArgumentException();
+        }
+        // Rotate the lateral faces if needed.
+        if (index == 0) {
+            final RubikCubeFaceColor[][] tmp = new RubikCubeFaceColor
+                    [this.dimension][this.dimension];
+            this.rotateFace(this.configuration[RubikCubeSide.FRONT.getValue()],
+                    tmp, rotation == LateralColumnRotation.LEFT);
+            this.copyArray(tmp, this.configuration[RubikCubeSide.FRONT.getValue()]);
+        } else if (index == this.dimension - 1) {
+            final RubikCubeFaceColor[][] tmp = new RubikCubeFaceColor
+                    [this.dimension][this.dimension];
+            this.rotateFace(this.configuration[RubikCubeSide.BACK.getValue()],
+                    tmp, rotation == LateralColumnRotation.RIGHT);
+            this.copyArray(tmp, this.configuration[RubikCubeSide.BACK.getValue()]);
         }
         // Notify the listeners that the lateral column has changed, if needed.
         if (fireEvents) {
