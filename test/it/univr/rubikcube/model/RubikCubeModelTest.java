@@ -25,8 +25,8 @@ public class RubikCubeModelTest {
     @Test
     public final void setupTest() {
         final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
-        Assert.assertEquals("Correct dimension returned", c.getDimension(),
-                this.standardCubeDimension);
+        Assert.assertEquals("Correct dimension returned",
+                this.standardCubeDimension, c.getDimension());
         for (RubikCubeSide s : RubikCubeSide.values()) {
             for (int i = 0; i < this.standardCubeDimension; ++i) {
                 for (int j = 0; j < this.standardCubeDimension; ++j) {
@@ -47,8 +47,8 @@ public class RubikCubeModelTest {
         final RubikCubeModel c = new RubikCubeModel(2);
         c.setDimension(this.standardCubeDimension);
         // FIXME Test observer!
-        Assert.assertEquals("getDimension returns 3", c.getDimension(),
-                     this.standardCubeDimension);
+        Assert.assertEquals("getDimension returns 3",
+                     this.standardCubeDimension, c.getDimension());
         Assert.assertEquals("getFace on the cube boundary returns the standard"
                      + " configuration facelet", c.getFace(RubikCubeSide.UP, 2,
                      2), RubikCubeFaceColor.WHITE);

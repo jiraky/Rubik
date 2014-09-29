@@ -214,12 +214,13 @@ public class MainWindow extends javax.swing.JFrame {
         rp_previousmoves_container = new javax.swing.JScrollPane();
         rp_previousmoves_value = new javax.swing.JTextArea();
         rp_nextmoves_title = new javax.swing.JLabel();
-        rp_nextmoves_container = new javax.swing.JScrollPane();
-        rp_nextmoves_value = new javax.swing.JTextArea();
         rp_control = new javax.swing.JPanel();
         rp_control_reset = new javax.swing.JButton();
         rp_control_shuffle = new javax.swing.JButton();
         rp_control_autosolve = new javax.swing.JButton();
+        rp_nextmoves_value = new javax.swing.JTextField();
+        rp_nextmoves_doit = new javax.swing.JButton();
+        rp_nextmoves_progressbar = new javax.swing.JProgressBar();
         Logo = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menu_file = new javax.swing.JMenu();
@@ -936,7 +937,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         lp_move.setBorder(javax.swing.BorderFactory.createTitledBorder("Perform move"));
 
-        lp_move_basic.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Basic", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+        lp_move_basic.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Basic", 0, 2));
         lp_move_basic.setToolTipText("");
 
         lp_move_L.setText("L");
@@ -1067,7 +1068,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         lp_move_basicLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lp_move_B, lp_move_D, lp_move_F, lp_move_L, lp_move_R, lp_move_U});
 
-        lp_move_advanced.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Advanced", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+        lp_move_advanced.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Advanced", 0, 2));
         lp_move_advanced.setToolTipText("");
 
         lp_move_M.setText("M");
@@ -1167,17 +1168,14 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(lp_move_advancedLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(lp_move_advancedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lp_move_E)
-                    .addComponent(lp_move_S)
-                    .addComponent(lp_move_X)
-                    .addComponent(lp_move_Y)
-                    .addComponent(lp_move_Z)
-                    .addComponent(lp_move_M))
+                    .addComponent(lp_move_M, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addComponent(lp_move_S, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lp_move_E, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lp_move_X, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lp_move_Y, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lp_move_Z, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-
-        lp_move_advancedLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lp_move_E, lp_move_M, lp_move_S, lp_move_X, lp_move_Y, lp_move_Z});
-
         lp_move_advancedLayout.setVerticalGroup(
             lp_move_advancedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(lp_move_advancedLayout.createSequentialGroup()
@@ -1198,7 +1196,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         lp_move_advancedLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lp_move_E, lp_move_M, lp_move_S, lp_move_X, lp_move_Y, lp_move_Z});
 
-        lp_move_details.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+        lp_move_details.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Details", 0, 2));
 
         lp_move_inverse_title.setText("Inverse?");
 
@@ -1233,7 +1231,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        lp_move_preview.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Preview", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+        lp_move_preview.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Preview", 0, 2));
 
         lp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/shuffle.png"))); // NOI18N
         lp_move_preview_image.setText(" ");
@@ -1333,13 +1331,6 @@ public class MainWindow extends javax.swing.JFrame {
         rp_nextmoves_title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         rp_nextmoves_title.setText("Next suggested moves");
 
-        rp_nextmoves_value.setEditable(false);
-        rp_nextmoves_value.setColumns(20);
-        rp_nextmoves_value.setRows(5);
-        rp_nextmoves_value.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        rp_nextmoves_value.setEnabled(false);
-        rp_nextmoves_container.setViewportView(rp_nextmoves_value);
-
         rp_control_reset.setText("Reset");
         rp_control_reset.setMaximumSize(new java.awt.Dimension(85, 30));
         rp_control_reset.setMinimumSize(new java.awt.Dimension(85, 30));
@@ -1373,6 +1364,10 @@ public class MainWindow extends javax.swing.JFrame {
         });
         rp_control.add(rp_control_autosolve);
 
+        rp_nextmoves_value.setText("jTextField1");
+
+        rp_nextmoves_doit.setText("Do it!");
+
         javax.swing.GroupLayout MainRightPanelLayout = new javax.swing.GroupLayout(MainRightPanel);
         MainRightPanel.setLayout(MainRightPanelLayout);
         MainRightPanelLayout.setHorizontalGroup(
@@ -1380,8 +1375,10 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(MainRightPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rp_previousmoves_title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(rp_nextmoves_title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(MainRightPanelLayout.createSequentialGroup()
+                    .addComponent(rp_nextmoves_value)
+                    .addGroup(MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(rp_control, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(rp_sep1)
@@ -1395,18 +1392,17 @@ public class MainWindow extends javax.swing.JFrame {
                                     .addComponent(rp_cubedimension_value, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(rp_algorithm_value, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(rp_nummoves_value, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(rp_previousmoves_title, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                            .addComponent(rp_previousmoves_container, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                            .addComponent(rp_nextmoves_container, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(rp_previousmoves_container))
+                        .addGroup(MainRightPanelLayout.createSequentialGroup()
+                            .addComponent(rp_nextmoves_doit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(rp_nextmoves_progressbar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
 
         MainRightPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rp_algorithm_title, rp_cubedimension_title, rp_nummoves_title});
 
         MainRightPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rp_algorithm_value, rp_cubedimension_value, rp_nummoves_value});
-
-        MainRightPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rp_nextmoves_container, rp_previousmoves_container, rp_previousmoves_title});
 
         MainRightPanelLayout.setVerticalGroup(
             MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1428,11 +1424,15 @@ public class MainWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rp_previousmoves_title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rp_previousmoves_container, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rp_previousmoves_container)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rp_nextmoves_title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rp_nextmoves_container, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(rp_nextmoves_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rp_nextmoves_doit, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(rp_nextmoves_progressbar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rp_control, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1755,6 +1755,7 @@ public class MainWindow extends javax.swing.JFrame {
     public static void main(String args[]) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new MainWindow().setVisible(true);
             }
@@ -1876,9 +1877,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton rp_control_shuffle;
     private javax.swing.JLabel rp_cubedimension_title;
     private javax.swing.JLabel rp_cubedimension_value;
-    private javax.swing.JScrollPane rp_nextmoves_container;
+    private javax.swing.JButton rp_nextmoves_doit;
+    private javax.swing.JProgressBar rp_nextmoves_progressbar;
     private javax.swing.JLabel rp_nextmoves_title;
-    private javax.swing.JTextArea rp_nextmoves_value;
+    private javax.swing.JTextField rp_nextmoves_value;
     private javax.swing.JLabel rp_nummoves_title;
     private javax.swing.JLabel rp_nummoves_value;
     private javax.swing.JScrollPane rp_previousmoves_container;
@@ -1915,7 +1917,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void initCube() {
         this.cube = new RubikCubeModel(this.getCubeDimension());
         
-        this.availableStrategy = new LinkedList<ResolutionStrategy>();
+        this.availableStrategy = new LinkedList<>();
         this.availableStrategy.add(new Fridrich(this.cube));
         this.actualStrategy = this.availableStrategy.get(0);
         
@@ -1959,24 +1961,42 @@ public class MainWindow extends javax.swing.JFrame {
     
     private void performMove(String move) {
         this.MovesCounter++;
+        this.rp_previousmoves_value.setText(this.rp_previousmoves_value.getText()+move+"\n");
         if(lp_move_inverse_yes.isSelected()) {
             JOptionPane.showMessageDialog(rootPane, "Perform "+move+" inverse move");
         } else {
             JOptionPane.showMessageDialog(rootPane, "Perform "+move+" move");
         }
         
-        if(move.equals("L")) new L(cube, lp_move_inverse_yes.isSelected()).perform();
-        else if(move.equals("R")) new R(cube, lp_move_inverse_yes.isSelected()).perform();
-        else if(move.equals("U")) new U(cube, lp_move_inverse_yes.isSelected()).perform();
-        else if(move.equals("D")) new D(cube, lp_move_inverse_yes.isSelected()).perform();
-        else if(move.equals("F")) new F(cube, lp_move_inverse_yes.isSelected()).perform();
-        else if(move.equals("B")) new B(cube, lp_move_inverse_yes.isSelected()).perform();
-        //else if(move.equals("M")) new M(cube, lp_move_inverse_yes.isSelected()).perform();
-        //else if(move.equals("S")) new S(cube, lp_move_inverse_yes.isSelected()).perform();
-        //else if(move.equals("E")) new E(cube, lp_move_inverse_yes.isSelected()).perform();
-        else if(move.equals("X")) new X(cube, lp_move_inverse_yes.isSelected()).perform();
-        else if(move.equals("Y")) new Y(cube, lp_move_inverse_yes.isSelected()).perform();
-        else if(move.equals("Z")) new Z(cube, lp_move_inverse_yes.isSelected()).perform();
+        switch (move) {
+            case "L":
+                new L(cube, lp_move_inverse_yes.isSelected()).perform();
+                break;
+            case "R":
+                new R(cube, lp_move_inverse_yes.isSelected()).perform();
+                break;
+            case "U":
+                new U(cube, lp_move_inverse_yes.isSelected()).perform();
+                break;
+            case "D":
+                new D(cube, lp_move_inverse_yes.isSelected()).perform();
+                break;
+            case "F":
+                new F(cube, lp_move_inverse_yes.isSelected()).perform();
+                break;
+            case "B":
+                new B(cube, lp_move_inverse_yes.isSelected()).perform();
+                break;
+            case "X":
+                new X(cube, lp_move_inverse_yes.isSelected()).perform();
+                break;
+            case "Y":
+                new Y(cube, lp_move_inverse_yes.isSelected()).perform();
+                break;
+            case "Z":
+                new Z(cube, lp_move_inverse_yes.isSelected()).perform();
+                break;
+        }
 
         updateInterface();
     }
