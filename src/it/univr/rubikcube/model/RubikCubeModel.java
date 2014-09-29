@@ -38,7 +38,7 @@ public class RubikCubeModel extends Observable {
     public RubikCubeModel(final int dim) throws IllegalArgumentException {
         // Force the data structures to be initialized
         this.dimension = 0;
-        setDimension(dim);
+        this.setDimension(dim);
     }
     /**
      * Gets the dimension of this cube.
@@ -66,7 +66,7 @@ public class RubikCubeModel extends Observable {
             notifyObservers(new RubikCubeModelDimensionChanged(dim));
             this.configuration = new RubikCubeFaceColor[RubikCubeSide.values()
                                                         .length][dim][dim];
-            resetToStandardConfiguration();
+            this.resetToStandardConfiguration();
         }
     }
     /**
@@ -220,7 +220,7 @@ public class RubikCubeModel extends Observable {
     public final void rotateLateralColumn(final int index,
                                           final LateralColumnRotation rotation)
             throws IndexOutOfBoundsException, IllegalArgumentException {
-        rotateLateralColumnInternal(index, rotation, true);
+        this.rotateLateralColumnInternal(index, rotation, true);
     }
     /**
      * Rotates a lateral column of the Rubik cube.
@@ -304,51 +304,51 @@ public class RubikCubeModel extends Observable {
         // same for every rotation
         final RubikCubeFaceColor[][] tmp =
                 new RubikCubeFaceColor[this.dimension][this.dimension];
-        copyArray(this.configuration[RubikCubeSide.FRONT.getValue()], tmp);
+        this.copyArray(this.configuration[RubikCubeSide.FRONT.getValue()], tmp);
         switch (rotation) {
             case UPWISE:
-                copyArray(this.configuration[RubikCubeSide.DOWN.getValue()],
-                          this.configuration[RubikCubeSide.FRONT.getValue()]);
-                copyArray(this.configuration[RubikCubeSide.BACK.getValue()],
-                          this.configuration[RubikCubeSide.DOWN.getValue()],
-                          true);
-                copyArray(this.configuration[RubikCubeSide.UP.getValue()],
-                          this.configuration[RubikCubeSide.BACK.getValue()],
-                          true);
-                copyArray(tmp,
-                          this.configuration[RubikCubeSide.UP.getValue()]);
+                this.copyArray(this.configuration[RubikCubeSide.DOWN.getValue()],
+                               this.configuration[RubikCubeSide.FRONT.getValue()]);
+                this.copyArray(this.configuration[RubikCubeSide.BACK.getValue()],
+                               this.configuration[RubikCubeSide.DOWN.getValue()],
+                               true);
+                this.copyArray(this.configuration[RubikCubeSide.UP.getValue()],
+                               this.configuration[RubikCubeSide.BACK.getValue()],
+                               true);
+                this.copyArray(tmp,
+                               this.configuration[RubikCubeSide.UP.getValue()]);
                 break;
             case DOWNWISE:
-                copyArray(this.configuration[RubikCubeSide.UP.getValue()],
-                          this.configuration[RubikCubeSide.FRONT.getValue()]);
-                copyArray(this.configuration[RubikCubeSide.BACK.getValue()],
-                          this.configuration[RubikCubeSide.UP.getValue()],
-                          true);
-                copyArray(this.configuration[RubikCubeSide.DOWN.getValue()],
-                          this.configuration[RubikCubeSide.BACK.getValue()],
-                          true);
-                copyArray(tmp,
-                          this.configuration[RubikCubeSide.DOWN.getValue()]);
+                this.copyArray(this.configuration[RubikCubeSide.UP.getValue()],
+                               this.configuration[RubikCubeSide.FRONT.getValue()]);
+                this.copyArray(this.configuration[RubikCubeSide.BACK.getValue()],
+                               this.configuration[RubikCubeSide.UP.getValue()],
+                               true);
+                this.copyArray(this.configuration[RubikCubeSide.DOWN.getValue()],
+                               this.configuration[RubikCubeSide.BACK.getValue()],
+                               true);
+                this.copyArray(tmp,
+                               this.configuration[RubikCubeSide.DOWN.getValue()]);
                 break;
             case CLOCKWISE:
-                copyArray(this.configuration[RubikCubeSide.RIGHT.getValue()],
-                          this.configuration[RubikCubeSide.FRONT.getValue()]);
-                copyArray(this.configuration[RubikCubeSide.BACK.getValue()],
-                          this.configuration[RubikCubeSide.RIGHT.getValue()]);
-                copyArray(this.configuration[RubikCubeSide.LEFT.getValue()],
-                          this.configuration[RubikCubeSide.BACK.getValue()]);
-                copyArray(tmp,
-                          this.configuration[RubikCubeSide.LEFT.getValue()]);
+                this.copyArray(this.configuration[RubikCubeSide.RIGHT.getValue()],
+                               this.configuration[RubikCubeSide.FRONT.getValue()]);
+                this.copyArray(this.configuration[RubikCubeSide.BACK.getValue()],
+                               this.configuration[RubikCubeSide.RIGHT.getValue()]);
+                this.copyArray(this.configuration[RubikCubeSide.LEFT.getValue()],
+                               this.configuration[RubikCubeSide.BACK.getValue()]);
+                this.copyArray(tmp,
+                               this.configuration[RubikCubeSide.LEFT.getValue()]);
                 break;
             case ANTICLOCKWISE:
-                copyArray(this.configuration[RubikCubeSide.LEFT.getValue()],
-                          this.configuration[RubikCubeSide.FRONT.getValue()]);
-                copyArray(this.configuration[RubikCubeSide.BACK.getValue()],
-                          this.configuration[RubikCubeSide.LEFT.getValue()]);
-                copyArray(this.configuration[RubikCubeSide.RIGHT.getValue()],
-                          this.configuration[RubikCubeSide.BACK.getValue()]);
-                copyArray(tmp,
-                          this.configuration[RubikCubeSide.RIGHT.getValue()]);
+                this.copyArray(this.configuration[RubikCubeSide.LEFT.getValue()],
+                               this.configuration[RubikCubeSide.FRONT.getValue()]);
+                this.copyArray(this.configuration[RubikCubeSide.BACK.getValue()],
+                               this.configuration[RubikCubeSide.LEFT.getValue()]);
+                this.copyArray(this.configuration[RubikCubeSide.RIGHT.getValue()],
+                               this.configuration[RubikCubeSide.BACK.getValue()]);
+                this.copyArray(tmp,
+                               this.configuration[RubikCubeSide.RIGHT.getValue()]);
                 break;
             case CLOCKWISE_FROM_FRONT:
                 for (int i = 0; i < this.dimension; ++i) {
