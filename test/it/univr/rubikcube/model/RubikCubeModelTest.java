@@ -106,7 +106,7 @@ public class RubikCubeModelTest {
         }
         c.rotateRow(0, RowRotation.CLOCKWISE);
         Assert.assertTrue("Opposite row rotation brings back to standard",
-                          isInStandardConfiguration(c));
+                          RubikCubeModel.isInStandardConfiguration(c));
     }
     /**
      * Checks that attempting to rotate a row with a negative index fails.
@@ -155,7 +155,7 @@ public class RubikCubeModelTest {
         }
         c.rotateColumn(0, ColumnRotation.BOTTOM);
         Assert.assertTrue("Opposite column rotation brings back to standard",
-                          isInStandardConfiguration(c));
+                          RubikCubeModel.isInStandardConfiguration(c));
     }
     /**
      * Checks that attempting to rotate a column with a negative index fails.
@@ -205,7 +205,7 @@ public class RubikCubeModelTest {
         }
         c.rotateLateralColumn(0, LateralColumnRotation.RIGHT);
         Assert.assertTrue("Opposite lateral column rotation brings back to"
-                          + " standard", isInStandardConfiguration(c));
+                          + " standard", RubikCubeModel.isInStandardConfiguration(c));
     }
     /**
      * Checks that attempting to rotate a lateral column with a negative index
@@ -255,7 +255,7 @@ public class RubikCubeModelTest {
         }
         c.rotateCube(CubeRotation.ANTICLOCKWISE_FROM_FRONT);
         Assert.assertTrue("Anticlockwise from front cube rotation brings back"
-                + " to standard", isInStandardConfiguration(c));
+                + " to standard", RubikCubeModel.isInStandardConfiguration(c));
         c.rotateCube(CubeRotation.UPWISE);
         for (RubikCubeSide s: RubikCubeSide.values()) {
             for (int i = 0; i < this.standardCubeDimension; ++i) {
@@ -280,7 +280,7 @@ public class RubikCubeModelTest {
         }
         c.rotateCube(CubeRotation.DOWNWISE);
         Assert.assertTrue("Downwise cube rotation brings back to"
-                + " standard", isInStandardConfiguration(c));
+                + " standard", RubikCubeModel.isInStandardConfiguration(c));
         c.rotateCube(CubeRotation.CLOCKWISE);
         for (RubikCubeSide s: RubikCubeSide.values()) {
             for (int i = 0; i < this.standardCubeDimension; ++i) {
@@ -305,24 +305,7 @@ public class RubikCubeModelTest {
         }
         c.rotateCube(CubeRotation.ANTICLOCKWISE);
         Assert.assertTrue("Anticlockwise cube rotation brings back to"
-                + " standard", isInStandardConfiguration(c));
+                + " standard", RubikCubeModel.isInStandardConfiguration(c));
     }
-    /**
-     * Checks whether a cube is in the standard configuration.
-     * @param m Move to be checked.
-     * @return <tt>true</tt> if and only if the cube is in the standard
-     * configuration.
-     */
-    public static boolean isInStandardConfiguration(final RubikCubeModel m) {
-        for (RubikCubeSide s: RubikCubeSide.values()) {
-            for (int i = 0; i < m.getDimension(); ++i) {
-                for (int j = 0; j < m.getDimension(); ++j) {
-                    if (s.getStandardColor() != m.getFace(s, i, j)) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true; 
-    }
+
 }

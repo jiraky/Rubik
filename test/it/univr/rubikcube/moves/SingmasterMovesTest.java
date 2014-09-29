@@ -3,7 +3,6 @@ package it.univr.rubikcube.moves;
 import it.univr.rubikcube.model.Move;
 import it.univr.rubikcube.model.RubikCubeFaceColor;
 import it.univr.rubikcube.model.RubikCubeModel;
-import it.univr.rubikcube.model.RubikCubeModelTest;
 import it.univr.rubikcube.model.RubikCubeSide;
 import org.junit.Assert;
 import org.junit.Before;
@@ -341,7 +340,7 @@ public class SingmasterMovesTest {
         move.perform();
         
         Assert.assertTrue("L performed four times is the identity",
-                          RubikCubeModelTest.isInStandardConfiguration(this.cube));
+                          RubikCubeModel.isInStandardConfiguration(this.cube));
         this.cube.resetToStandardConfiguration();
         move = new R(this.cube);
         move.perform();
@@ -350,7 +349,7 @@ public class SingmasterMovesTest {
         move.perform();
         
         Assert.assertTrue("R performed four times is the identity",
-                          RubikCubeModelTest.isInStandardConfiguration(this.cube));
+                          RubikCubeModel.isInStandardConfiguration(this.cube));
         this.cube.resetToStandardConfiguration();
         move = new U(this.cube);
         move.perform();
@@ -359,7 +358,7 @@ public class SingmasterMovesTest {
         move.perform();
         
         Assert.assertTrue("U performed four times is the identity",
-                          RubikCubeModelTest.isInStandardConfiguration(this.cube));
+                          RubikCubeModel.isInStandardConfiguration(this.cube));
         this.cube.resetToStandardConfiguration();
         move = new D(this.cube);
         move.perform();
@@ -368,7 +367,7 @@ public class SingmasterMovesTest {
         move.perform();
         
         Assert.assertTrue("D performed four times is the identity",
-                          RubikCubeModelTest.isInStandardConfiguration(this.cube));
+                          RubikCubeModel.isInStandardConfiguration(this.cube));
         this.cube.resetToStandardConfiguration();
         move = new B(this.cube);
         move.perform();
@@ -377,7 +376,7 @@ public class SingmasterMovesTest {
         move.perform();
         
         Assert.assertTrue("B performed four times is the identity",
-                          RubikCubeModelTest.isInStandardConfiguration(this.cube));
+                          RubikCubeModel.isInStandardConfiguration(this.cube));
         this.cube.resetToStandardConfiguration();
         move = new F(this.cube);
         move.perform();
@@ -386,7 +385,7 @@ public class SingmasterMovesTest {
         move.perform();
         
         Assert.assertTrue("F performed four times is the identity",
-                          RubikCubeModelTest.isInStandardConfiguration(this.cube));
+                          RubikCubeModel.isInStandardConfiguration(this.cube));
         this.cube.resetToStandardConfiguration();
     }
     /**
@@ -398,6 +397,6 @@ public class SingmasterMovesTest {
      */
     private boolean checkReverseToStandard(final Move m) {
         m.reverse();
-        return RubikCubeModelTest.isInStandardConfiguration(this.cube);
+        return RubikCubeModel.isInStandardConfiguration(this.cube);
     }
 }

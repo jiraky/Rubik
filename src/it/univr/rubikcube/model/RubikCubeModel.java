@@ -516,6 +516,24 @@ public class RubikCubeModel extends Observable {
         return sb.toString();
     }
     /**
+     * Checks whether a cube is in the standard configuration.
+     * @param m Move to be checked.
+     * @return <tt>true</tt> if and only if the cube is in the standard
+     * configuration.
+     */
+    public static boolean isInStandardConfiguration(final RubikCubeModel m) {
+        for (RubikCubeSide s: RubikCubeSide.values()) {
+            for (int i = 0; i < m.getDimension(); ++i) {
+                for (int j = 0; j < m.getDimension(); ++j) {
+                    if (s.getStandardColor() != m.getFace(s, i, j)) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true; 
+    }
+    /**
      * Deep copies a face of the Rubik cube to another face.
      * @param src Source face.
      * @param dst Destination face.
