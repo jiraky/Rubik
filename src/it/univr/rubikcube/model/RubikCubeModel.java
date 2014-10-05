@@ -516,12 +516,18 @@ public class RubikCubeModel extends Observable {
         return sb.toString();
     }
     /**
-     * Checks whether a cube is in the standard configuration.
-     * @param m Move to be checked.
+     * Checks whether a cube is in the standard configuration (each face has
+     * all subfaces of the same, standard face color).
+     * @param m Model to be checked.
      * @return <tt>true</tt> if and only if the cube is in the standard
      * configuration.
+     * @throws NullPointerException Thrown if <tt>m</tt> is <tt>null</tt>.
      */
-    public static boolean isInStandardConfiguration(final RubikCubeModel m) {
+    public static boolean isInStandardConfiguration(final RubikCubeModel m)
+        throws NullPointerException {
+        if (m == null) {
+            throw new NullPointerException("m must not be null");
+        }
         for (RubikCubeSide s: RubikCubeSide.values()) {
             for (int i = 0; i < m.getDimension(); ++i) {
                 for (int j = 0; j < m.getDimension(); ++j) {
@@ -532,6 +538,44 @@ public class RubikCubeModel extends Observable {
             }
         }
         return true; 
+    }
+    /**
+     * Checks whether a cube has sane colors (nine faces per color and one
+     * facelet &ndash; central face &ndash; for each color).
+     * @param m Model to be checked.
+     * @return <tt>true</tt> if and only if the cube has sane colors.
+     * @throws NullPointerException Thrown if <tt>m</tt> is <tt>null</tt>.
+     */
+    public static boolean isWithSaneColors(final RubikCubeModel m)
+        throws NullPointerException {
+        if (m == null) {
+            throw new NullPointerException("m must not be null");
+        }
+        final int[][] colorAndFaceletCount = new int[6][2];
+        for (int i = 0; i < 6; ++i) {
+            for (int j = 0; j < 2; ++j) {
+                colorAndFaceletCount[i][j] = 0;
+            }
+        }
+        for (RubikCubeSide s : RubikCubeSide.values()) {
+            for (int i = 0; i < 3; ++i) {
+                for (int j = 0; j < 3; ++j) {
+                    ++colorAndFaceletCount[m.getFace(s, i, j).getValue()][0];
+                    if (i == 1 && j == 1) {
+                        ++colorAndFaceletCount[m.getFace(s, i, j).getValue()][1];
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < 6; ++i) {
+            if (colorAndFaceletCount[i][0] != 9) {
+                return false;
+            }
+            if (colorAndFaceletCount[i][1] != 1) {
+                return false;
+            }
+        }
+        return true;
     }
     /**
      * Deep copies a face of the Rubik cube to another face.
