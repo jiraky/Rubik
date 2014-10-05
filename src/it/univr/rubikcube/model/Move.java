@@ -54,6 +54,7 @@ public abstract class Move {
      * Returns a string representing the move.
      * @return String representing the move.
      */
+    @Override
     public abstract String toString();
     /**
      * Performs the move, taking into account the "reversed" status.
