@@ -83,4 +83,22 @@ public enum RubikCubeFaceColor {
         throw new IllegalArgumentException("The color does not correspond to"
                                            + " any face");
     }
+    /**
+     * Gets the face of the Rubik cube corresponding to a given integer array
+     * value.
+     * @param i Integer array value to be matched.
+     * @return Face corresponding to the given array value.
+     * @throws IllegalArgumentException Thrown if the value does not correspond
+     * to any face.
+     */
+    public static final RubikCubeFaceColor getFace(final int i)
+            throws IllegalArgumentException {
+        for (RubikCubeFaceColor fc : RubikCubeFaceColor.values()) {
+            if (fc.getValue() == i) {
+                return fc;
+            }
+        }
+        throw new IllegalArgumentException("The value does not correspond to"
+                                           + " any face");
+    }
 }
