@@ -17,7 +17,7 @@ public class RubikCubeModel extends Observable {
      * The array is structured as follows.
      * <ul>
      * <li>The first index is the side index (use
-     * <tt>RubikCubeSide.getValue()</tt> to get the array index corresponding
+     * <tt>RubikCubeSide.ordinal()</tt> to get the array index corresponding
      * to a side).</li>
      * <li>The second index is the row index (<tt>0</tt> to <tt>getDimension()
      * - 1</tt>).</li>
@@ -78,7 +78,7 @@ public class RubikCubeModel extends Observable {
      */
     public final RubikCubeFaceColor getFace(final RubikCubeSide s, final int x,
                                             final int y) {
-        return this.configuration[s.getValue()][x][y];
+        return this.configuration[s.ordinal()][x][y];
     }
     /**
      * <p>Resets the cube to the <em>standard configuration</em>:</p>
@@ -96,7 +96,7 @@ public class RubikCubeModel extends Observable {
         for (RubikCubeSide s : RubikCubeSide.values()) {
             for (int i = 0; i < this.dimension; ++i) {
                 for (int j = 0; j < this.dimension; ++j) {
-                    this.configuration[s.getValue()][i][j] = s
+                    this.configuration[s.ordinal()][i][j] = s
                             .getStandardColor();
                     notifyObservers(new RubikCubeModelFaceChanged(i, j, s));
                 }
@@ -121,23 +121,23 @@ public class RubikCubeModel extends Observable {
         }
         tmpRow = new RubikCubeFaceColor[this.dimension];
         // Backup the front row and rotate the row in the specified direction
-        tmpRow = this.configuration[RubikCubeSide.FRONT.getValue()][index];
+        tmpRow = this.configuration[RubikCubeSide.FRONT.ordinal()][index];
         if (rotation == RowRotation.ANTICLOCKWISE) {
-            this.configuration[RubikCubeSide.FRONT.getValue()][index] =
-                    this.configuration[RubikCubeSide.LEFT.getValue()][index];
-            this.configuration[RubikCubeSide.LEFT.getValue()][index] =
-                    this.configuration[RubikCubeSide.BACK.getValue()][index];
-            this.configuration[RubikCubeSide.BACK.getValue()][index] =
-                    this.configuration[RubikCubeSide.RIGHT.getValue()][index];
-            this.configuration[RubikCubeSide.RIGHT.getValue()][index] = tmpRow;
+            this.configuration[RubikCubeSide.FRONT.ordinal()][index] =
+                    this.configuration[RubikCubeSide.LEFT.ordinal()][index];
+            this.configuration[RubikCubeSide.LEFT.ordinal()][index] =
+                    this.configuration[RubikCubeSide.BACK.ordinal()][index];
+            this.configuration[RubikCubeSide.BACK.ordinal()][index] =
+                    this.configuration[RubikCubeSide.RIGHT.ordinal()][index];
+            this.configuration[RubikCubeSide.RIGHT.ordinal()][index] = tmpRow;
         } else if (rotation == RowRotation.CLOCKWISE) {
-            this.configuration[RubikCubeSide.FRONT.getValue()][index] =
-                    this.configuration[RubikCubeSide.RIGHT.getValue()][index];
-            this.configuration[RubikCubeSide.RIGHT.getValue()][index] =
-                    this.configuration[RubikCubeSide.BACK.getValue()][index];
-            this.configuration[RubikCubeSide.BACK.getValue()][index] =
-                    this.configuration[RubikCubeSide.LEFT.getValue()][index];
-            this.configuration[RubikCubeSide.LEFT.getValue()][index] = tmpRow;
+            this.configuration[RubikCubeSide.FRONT.ordinal()][index] =
+                    this.configuration[RubikCubeSide.RIGHT.ordinal()][index];
+            this.configuration[RubikCubeSide.RIGHT.ordinal()][index] =
+                    this.configuration[RubikCubeSide.BACK.ordinal()][index];
+            this.configuration[RubikCubeSide.BACK.ordinal()][index] =
+                    this.configuration[RubikCubeSide.LEFT.ordinal()][index];
+            this.configuration[RubikCubeSide.LEFT.ordinal()][index] = tmpRow;
         } else {
             throw new IllegalArgumentException();
         }
@@ -145,15 +145,15 @@ public class RubikCubeModel extends Observable {
         if (index == 0) {
             final RubikCubeFaceColor[][] tmp = new RubikCubeFaceColor
                     [this.dimension][this.dimension];
-            this.rotateFace(this.configuration[RubikCubeSide.UP.getValue()],
+            this.rotateFace(this.configuration[RubikCubeSide.UP.ordinal()],
                     tmp, rotation == RowRotation.CLOCKWISE);
-            this.copyArray(tmp, this.configuration[RubikCubeSide.UP.getValue()]);
+            this.copyArray(tmp, this.configuration[RubikCubeSide.UP.ordinal()]);
         } else if (index == this.dimension - 1) {
             final RubikCubeFaceColor[][] tmp = new RubikCubeFaceColor
                     [this.dimension][this.dimension];
-            this.rotateFace(this.configuration[RubikCubeSide.DOWN.getValue()],
+            this.rotateFace(this.configuration[RubikCubeSide.DOWN.ordinal()],
                     tmp, rotation == RowRotation.ANTICLOCKWISE);
-            this.copyArray(tmp, this.configuration[RubikCubeSide.DOWN.getValue()]);
+            this.copyArray(tmp, this.configuration[RubikCubeSide.DOWN.ordinal()]);
         }
         // Notify the listeners that the row has changed
         notifyObservers(new RubikCubeModelRowRotated(index, rotation));
@@ -179,41 +179,41 @@ public class RubikCubeModel extends Observable {
         // Backup the front column and rotate the column in the specified
         // direction
         for (int i = 0; i < this.dimension; ++i) {
-            tmpCol[i] = this.configuration[RubikCubeSide.FRONT.getValue()][i]
+            tmpCol[i] = this.configuration[RubikCubeSide.FRONT.ordinal()][i]
                     [index];
         }
         if (rotation == ColumnRotation.BOTTOM) {
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.FRONT.getValue()][i][index]
-                        = this.configuration[RubikCubeSide.UP.getValue()][i][index];
+                this.configuration[RubikCubeSide.FRONT.ordinal()][i][index]
+                        = this.configuration[RubikCubeSide.UP.ordinal()][i][index];
             }
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.UP.getValue()][i][index]
-                        = this.configuration[RubikCubeSide.BACK.getValue()][this.dimension - 1 - i][this.dimension - 1 - index];
+                this.configuration[RubikCubeSide.UP.ordinal()][i][index]
+                        = this.configuration[RubikCubeSide.BACK.ordinal()][this.dimension - 1 - i][this.dimension - 1 - index];
             }
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.BACK.getValue()][this.dimension - 1 - i][this.dimension - 1 - index]
-                        = this.configuration[RubikCubeSide.DOWN.getValue()][i][index];
+                this.configuration[RubikCubeSide.BACK.ordinal()][this.dimension - 1 - i][this.dimension - 1 - index]
+                        = this.configuration[RubikCubeSide.DOWN.ordinal()][i][index];
             }
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.DOWN.getValue()][i][index]
+                this.configuration[RubikCubeSide.DOWN.ordinal()][i][index]
                         = tmpCol[i];
             }
         } else if (rotation == ColumnRotation.TOP) {
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.FRONT.getValue()][i][index]
-                        = this.configuration[RubikCubeSide.DOWN.getValue()][i][index];
+                this.configuration[RubikCubeSide.FRONT.ordinal()][i][index]
+                        = this.configuration[RubikCubeSide.DOWN.ordinal()][i][index];
             }
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.DOWN.getValue()][i][index]
-                        = this.configuration[RubikCubeSide.BACK.getValue()][this.dimension - 1 - i][this.dimension - 1 - index];
+                this.configuration[RubikCubeSide.DOWN.ordinal()][i][index]
+                        = this.configuration[RubikCubeSide.BACK.ordinal()][this.dimension - 1 - i][this.dimension - 1 - index];
             }
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.BACK.getValue()][this.dimension - 1 - i][this.dimension - 1 - index]
-                        = this.configuration[RubikCubeSide.UP.getValue()][i][index];
+                this.configuration[RubikCubeSide.BACK.ordinal()][this.dimension - 1 - i][this.dimension - 1 - index]
+                        = this.configuration[RubikCubeSide.UP.ordinal()][i][index];
             }
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.UP.getValue()][i][index]
+                this.configuration[RubikCubeSide.UP.ordinal()][i][index]
                         = tmpCol[i];
             }
         } else {
@@ -223,15 +223,15 @@ public class RubikCubeModel extends Observable {
         if (index == 0) {
             final RubikCubeFaceColor[][] tmp = new RubikCubeFaceColor
                     [this.dimension][this.dimension];
-            this.rotateFace(this.configuration[RubikCubeSide.LEFT.getValue()],
+            this.rotateFace(this.configuration[RubikCubeSide.LEFT.ordinal()],
                     tmp, rotation == ColumnRotation.TOP);
-            this.copyArray(tmp, this.configuration[RubikCubeSide.LEFT.getValue()]);
+            this.copyArray(tmp, this.configuration[RubikCubeSide.LEFT.ordinal()]);
         } else if (index == this.dimension - 1) {
             final RubikCubeFaceColor[][] tmp = new RubikCubeFaceColor
                     [this.dimension][this.dimension];
-            this.rotateFace(this.configuration[RubikCubeSide.RIGHT.getValue()],
+            this.rotateFace(this.configuration[RubikCubeSide.RIGHT.ordinal()],
                     tmp, rotation == ColumnRotation.BOTTOM);
-            this.copyArray(tmp, this.configuration[RubikCubeSide.RIGHT.getValue()]);
+            this.copyArray(tmp, this.configuration[RubikCubeSide.RIGHT.ordinal()]);
         }
         // Notify the listeners that the column has changed.
         notifyObservers(new RubikCubeModelColumnRotated(index, rotation));
@@ -274,41 +274,41 @@ public class RubikCubeModel extends Observable {
         // Backup the row on the upper face and rotate the lateral column in
         // the specified direction
         for (int i = 0; i < this.dimension; ++i) {
-            tmpLatCol[i] = this.configuration[RubikCubeSide.UP.getValue()]
+            tmpLatCol[i] = this.configuration[RubikCubeSide.UP.ordinal()]
                     [this.dimension - 1 - index][i];
         }
         if (rotation == LateralColumnRotation.LEFT) {
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.UP.getValue()][this.dimension - 1 - index][i] =
-                        this.configuration[RubikCubeSide.RIGHT.getValue()][i][index];
+                this.configuration[RubikCubeSide.UP.ordinal()][this.dimension - 1 - index][i] =
+                        this.configuration[RubikCubeSide.RIGHT.ordinal()][i][index];
             }
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.RIGHT.getValue()][this.dimension - 1 - i][index] =
-                        this.configuration[RubikCubeSide.DOWN.getValue()][index][i];
+                this.configuration[RubikCubeSide.RIGHT.ordinal()][this.dimension - 1 - i][index] =
+                        this.configuration[RubikCubeSide.DOWN.ordinal()][index][i];
             }
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.DOWN.getValue()][index][i] =
-                        this.configuration[RubikCubeSide.LEFT.getValue()][i][this.dimension - 1 - index];
+                this.configuration[RubikCubeSide.DOWN.ordinal()][index][i] =
+                        this.configuration[RubikCubeSide.LEFT.ordinal()][i][this.dimension - 1 - index];
             }
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.LEFT.getValue()][this.dimension - 1 - i][this.dimension - 1 - index] =
+                this.configuration[RubikCubeSide.LEFT.ordinal()][this.dimension - 1 - i][this.dimension - 1 - index] =
                         tmpLatCol[i];
             }
         } else if (rotation == LateralColumnRotation.RIGHT) {
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.UP.getValue()][this.dimension - 1 - index][i] =
-                        this.configuration[RubikCubeSide.LEFT.getValue()][this.dimension - 1 - i][this.dimension - 1 - index];
+                this.configuration[RubikCubeSide.UP.ordinal()][this.dimension - 1 - index][i] =
+                        this.configuration[RubikCubeSide.LEFT.ordinal()][this.dimension - 1 - i][this.dimension - 1 - index];
             }
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.LEFT.getValue()][i][this.dimension - 1 - index] =
-                        this.configuration[RubikCubeSide.DOWN.getValue()][index][i];
+                this.configuration[RubikCubeSide.LEFT.ordinal()][i][this.dimension - 1 - index] =
+                        this.configuration[RubikCubeSide.DOWN.ordinal()][index][i];
             }
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.DOWN.getValue()][index][this.dimension - 1 - i] =
-                        this.configuration[RubikCubeSide.RIGHT.getValue()][i][index];
+                this.configuration[RubikCubeSide.DOWN.ordinal()][index][this.dimension - 1 - i] =
+                        this.configuration[RubikCubeSide.RIGHT.ordinal()][i][index];
             }
             for (int i = 0; i < this.dimension; ++i) {
-                this.configuration[RubikCubeSide.RIGHT.getValue()][i][index] =
+                this.configuration[RubikCubeSide.RIGHT.ordinal()][i][index] =
                         tmpLatCol[i];
             }
         } else {
@@ -318,15 +318,15 @@ public class RubikCubeModel extends Observable {
         if (index == 0) {
             final RubikCubeFaceColor[][] tmp = new RubikCubeFaceColor
                     [this.dimension][this.dimension];
-            this.rotateFace(this.configuration[RubikCubeSide.FRONT.getValue()],
+            this.rotateFace(this.configuration[RubikCubeSide.FRONT.ordinal()],
                     tmp, rotation == LateralColumnRotation.LEFT);
-            this.copyArray(tmp, this.configuration[RubikCubeSide.FRONT.getValue()]);
+            this.copyArray(tmp, this.configuration[RubikCubeSide.FRONT.ordinal()]);
         } else if (index == this.dimension - 1) {
             final RubikCubeFaceColor[][] tmp = new RubikCubeFaceColor
                     [this.dimension][this.dimension];
-            this.rotateFace(this.configuration[RubikCubeSide.BACK.getValue()],
+            this.rotateFace(this.configuration[RubikCubeSide.BACK.ordinal()],
                     tmp, rotation == LateralColumnRotation.RIGHT);
-            this.copyArray(tmp, this.configuration[RubikCubeSide.BACK.getValue()]);
+            this.copyArray(tmp, this.configuration[RubikCubeSide.BACK.ordinal()]);
         }
         // Notify the listeners that the lateral column has changed, if needed.
         if (fireEvents) {
@@ -346,75 +346,75 @@ public class RubikCubeModel extends Observable {
         // same for every rotation
         final RubikCubeFaceColor[][] tmp =
                 new RubikCubeFaceColor[this.dimension][this.dimension];
-        this.copyArray(this.configuration[RubikCubeSide.FRONT.getValue()], tmp);
+        this.copyArray(this.configuration[RubikCubeSide.FRONT.ordinal()], tmp);
         switch (rotation) {
             case UPWISE:
-                this.copyArray(this.configuration[RubikCubeSide.DOWN.getValue()],
-                               this.configuration[RubikCubeSide.FRONT.getValue()]);
-                this.copyArray(this.configuration[RubikCubeSide.BACK.getValue()],
-                               this.configuration[RubikCubeSide.DOWN.getValue()],
+                this.copyArray(this.configuration[RubikCubeSide.DOWN.ordinal()],
+                               this.configuration[RubikCubeSide.FRONT.ordinal()]);
+                this.copyArray(this.configuration[RubikCubeSide.BACK.ordinal()],
+                               this.configuration[RubikCubeSide.DOWN.ordinal()],
                                true);
-                this.copyArray(this.configuration[RubikCubeSide.UP.getValue()],
-                               this.configuration[RubikCubeSide.BACK.getValue()],
+                this.copyArray(this.configuration[RubikCubeSide.UP.ordinal()],
+                               this.configuration[RubikCubeSide.BACK.ordinal()],
                                true);
                 this.copyArray(tmp,
-                               this.configuration[RubikCubeSide.UP.getValue()]);
-                this.rotateFace(this.configuration[RubikCubeSide.LEFT.getValue()],
+                               this.configuration[RubikCubeSide.UP.ordinal()]);
+                this.rotateFace(this.configuration[RubikCubeSide.LEFT.ordinal()],
                                 tmp, true);
-                this.copyArray(tmp, this.configuration[RubikCubeSide.LEFT.getValue()]);
-                this.rotateFace(this.configuration[RubikCubeSide.RIGHT.getValue()],
+                this.copyArray(tmp, this.configuration[RubikCubeSide.LEFT.ordinal()]);
+                this.rotateFace(this.configuration[RubikCubeSide.RIGHT.ordinal()],
                         tmp, false);
-                this.copyArray(tmp, this.configuration[RubikCubeSide.RIGHT.getValue()]);
+                this.copyArray(tmp, this.configuration[RubikCubeSide.RIGHT.ordinal()]);
                 break;
             case DOWNWISE:
-                this.copyArray(this.configuration[RubikCubeSide.UP.getValue()],
-                               this.configuration[RubikCubeSide.FRONT.getValue()]);
-                this.copyArray(this.configuration[RubikCubeSide.BACK.getValue()],
-                               this.configuration[RubikCubeSide.UP.getValue()],
+                this.copyArray(this.configuration[RubikCubeSide.UP.ordinal()],
+                               this.configuration[RubikCubeSide.FRONT.ordinal()]);
+                this.copyArray(this.configuration[RubikCubeSide.BACK.ordinal()],
+                               this.configuration[RubikCubeSide.UP.ordinal()],
                                true);
-                this.copyArray(this.configuration[RubikCubeSide.DOWN.getValue()],
-                               this.configuration[RubikCubeSide.BACK.getValue()],
+                this.copyArray(this.configuration[RubikCubeSide.DOWN.ordinal()],
+                               this.configuration[RubikCubeSide.BACK.ordinal()],
                                true);
                 this.copyArray(tmp,
-                               this.configuration[RubikCubeSide.DOWN.getValue()]);
-                this.rotateFace(this.configuration[RubikCubeSide.LEFT.getValue()],
+                               this.configuration[RubikCubeSide.DOWN.ordinal()]);
+                this.rotateFace(this.configuration[RubikCubeSide.LEFT.ordinal()],
                         tmp, false);
-                this.copyArray(tmp, this.configuration[RubikCubeSide.LEFT.getValue()]);
-                this.rotateFace(this.configuration[RubikCubeSide.RIGHT.getValue()],
+                this.copyArray(tmp, this.configuration[RubikCubeSide.LEFT.ordinal()]);
+                this.rotateFace(this.configuration[RubikCubeSide.RIGHT.ordinal()],
                         tmp, true);
-                this.copyArray(tmp, this.configuration[RubikCubeSide.RIGHT.getValue()]);
+                this.copyArray(tmp, this.configuration[RubikCubeSide.RIGHT.ordinal()]);
                 break;
             case CLOCKWISE:
-                this.copyArray(this.configuration[RubikCubeSide.RIGHT.getValue()],
-                               this.configuration[RubikCubeSide.FRONT.getValue()]);
-                this.copyArray(this.configuration[RubikCubeSide.BACK.getValue()],
-                               this.configuration[RubikCubeSide.RIGHT.getValue()]);
-                this.copyArray(this.configuration[RubikCubeSide.LEFT.getValue()],
-                               this.configuration[RubikCubeSide.BACK.getValue()]);
+                this.copyArray(this.configuration[RubikCubeSide.RIGHT.ordinal()],
+                               this.configuration[RubikCubeSide.FRONT.ordinal()]);
+                this.copyArray(this.configuration[RubikCubeSide.BACK.ordinal()],
+                               this.configuration[RubikCubeSide.RIGHT.ordinal()]);
+                this.copyArray(this.configuration[RubikCubeSide.LEFT.ordinal()],
+                               this.configuration[RubikCubeSide.BACK.ordinal()]);
                 this.copyArray(tmp,
-                               this.configuration[RubikCubeSide.LEFT.getValue()]);
-                this.rotateFace(this.configuration[RubikCubeSide.UP.getValue()],
+                               this.configuration[RubikCubeSide.LEFT.ordinal()]);
+                this.rotateFace(this.configuration[RubikCubeSide.UP.ordinal()],
                         tmp, true);
-                this.copyArray(tmp, this.configuration[RubikCubeSide.UP.getValue()]);
-                this.rotateFace(this.configuration[RubikCubeSide.DOWN.getValue()],
+                this.copyArray(tmp, this.configuration[RubikCubeSide.UP.ordinal()]);
+                this.rotateFace(this.configuration[RubikCubeSide.DOWN.ordinal()],
                         tmp, false);
-                this.copyArray(tmp, this.configuration[RubikCubeSide.DOWN.getValue()]);
+                this.copyArray(tmp, this.configuration[RubikCubeSide.DOWN.ordinal()]);
                 break;
             case ANTICLOCKWISE:
-                this.copyArray(this.configuration[RubikCubeSide.LEFT.getValue()],
-                               this.configuration[RubikCubeSide.FRONT.getValue()]);
-                this.copyArray(this.configuration[RubikCubeSide.BACK.getValue()],
-                               this.configuration[RubikCubeSide.LEFT.getValue()]);
-                this.copyArray(this.configuration[RubikCubeSide.RIGHT.getValue()],
-                               this.configuration[RubikCubeSide.BACK.getValue()]);
+                this.copyArray(this.configuration[RubikCubeSide.LEFT.ordinal()],
+                               this.configuration[RubikCubeSide.FRONT.ordinal()]);
+                this.copyArray(this.configuration[RubikCubeSide.BACK.ordinal()],
+                               this.configuration[RubikCubeSide.LEFT.ordinal()]);
+                this.copyArray(this.configuration[RubikCubeSide.RIGHT.ordinal()],
+                               this.configuration[RubikCubeSide.BACK.ordinal()]);
                 this.copyArray(tmp,
-                               this.configuration[RubikCubeSide.RIGHT.getValue()]);
-                this.rotateFace(this.configuration[RubikCubeSide.UP.getValue()],
+                               this.configuration[RubikCubeSide.RIGHT.ordinal()]);
+                this.rotateFace(this.configuration[RubikCubeSide.UP.ordinal()],
                         tmp, false);
-                this.copyArray(tmp, this.configuration[RubikCubeSide.UP.getValue()]);
-                this.rotateFace(this.configuration[RubikCubeSide.DOWN.getValue()],
+                this.copyArray(tmp, this.configuration[RubikCubeSide.UP.ordinal()]);
+                this.rotateFace(this.configuration[RubikCubeSide.DOWN.ordinal()],
                         tmp, true);
-                this.copyArray(tmp, this.configuration[RubikCubeSide.DOWN.getValue()]);
+                this.copyArray(tmp, this.configuration[RubikCubeSide.DOWN.ordinal()]);
                 break;
             case CLOCKWISE_FROM_FRONT:
                 for (int i = 0; i < this.dimension; ++i) {
@@ -422,12 +422,12 @@ public class RubikCubeModel extends Observable {
                                                      LateralColumnRotation.RIGHT,
                                                      false);
                 }
-                this.rotateFace(this.configuration[RubikCubeSide.FRONT.getValue()],
+                this.rotateFace(this.configuration[RubikCubeSide.FRONT.ordinal()],
                         tmp, false);
-                this.copyArray(tmp, this.configuration[RubikCubeSide.FRONT.getValue()]);
-                this.rotateFace(this.configuration[RubikCubeSide.BACK.getValue()],
+                this.copyArray(tmp, this.configuration[RubikCubeSide.FRONT.ordinal()]);
+                this.rotateFace(this.configuration[RubikCubeSide.BACK.ordinal()],
                         tmp, true);
-                this.copyArray(tmp, this.configuration[RubikCubeSide.BACK.getValue()]);
+                this.copyArray(tmp, this.configuration[RubikCubeSide.BACK.ordinal()]);
                 break;
             case ANTICLOCKWISE_FROM_FRONT:
                 for (int i = 0; i < this.dimension; ++i) {
@@ -435,12 +435,12 @@ public class RubikCubeModel extends Observable {
                                                      LateralColumnRotation.LEFT,
                                                      false);
                 }
-                this.rotateFace(this.configuration[RubikCubeSide.FRONT.getValue()],
+                this.rotateFace(this.configuration[RubikCubeSide.FRONT.ordinal()],
                         tmp, true);
-                this.copyArray(tmp, this.configuration[RubikCubeSide.FRONT.getValue()]);
-                this.rotateFace(this.configuration[RubikCubeSide.BACK.getValue()],
+                this.copyArray(tmp, this.configuration[RubikCubeSide.FRONT.ordinal()]);
+                this.rotateFace(this.configuration[RubikCubeSide.BACK.ordinal()],
                         tmp, false);
-                this.copyArray(tmp, this.configuration[RubikCubeSide.BACK.getValue()]);
+                this.copyArray(tmp, this.configuration[RubikCubeSide.BACK.ordinal()]);
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -461,7 +461,7 @@ public class RubikCubeModel extends Observable {
             }
             sb.append(" | ");
             for (int j = this.dimension; j >= 0; --j) {
-                sb.append(this.configuration[RubikCubeSide.BACK.getValue()][i][j]);
+                sb.append(this.configuration[RubikCubeSide.BACK.ordinal()][i][j]);
             }
             sb.append(" |\n");
         }
@@ -477,19 +477,19 @@ public class RubikCubeModel extends Observable {
         sb.append("\n");
         for (int i = 0; i <= this.dimension; ++i) {
             for (int j = this.dimension; j >= 0; --j) {
-                sb.append(this.configuration[RubikCubeSide.LEFT.getValue()][j][i]);
+                sb.append(this.configuration[RubikCubeSide.LEFT.ordinal()][j][i]);
             }
             sb.append(" | ");
             for (int j = 0; j <= this.dimension; ++j) {
-                System.out.print(this.configuration[RubikCubeSide.UP.getValue()][i][j]);
+                System.out.print(this.configuration[RubikCubeSide.UP.ordinal()][i][j]);
             }
             sb.append(" | ");
             for (int j = 0; j <= this.dimension; ++j) {
-                sb.append(this.configuration[RubikCubeSide.RIGHT.getValue()][j][this.dimension - i]);
+                sb.append(this.configuration[RubikCubeSide.RIGHT.ordinal()][j][this.dimension - i]);
             }
             sb.append(" | ");
             for (int j = this.dimension; j >= 0; --j) {
-                sb.append(this.configuration[RubikCubeSide.DOWN.getValue()][this.dimension - i][j]);
+                sb.append(this.configuration[RubikCubeSide.DOWN.ordinal()][this.dimension - i][j]);
             }
             sb.append("\n");
         }
@@ -509,7 +509,7 @@ public class RubikCubeModel extends Observable {
             }
             sb.append(" | ");
             for (int j = 0; j <= this.dimension; ++j) {
-                sb.append(this.configuration[RubikCubeSide.FRONT.getValue()][i][j]);
+                sb.append(this.configuration[RubikCubeSide.FRONT.ordinal()][i][j]);
             }
             sb.append(" |\n");
         }
@@ -560,9 +560,9 @@ public class RubikCubeModel extends Observable {
         for (RubikCubeSide s : RubikCubeSide.values()) {
             for (int i = 0; i < 3; ++i) {
                 for (int j = 0; j < 3; ++j) {
-                    ++colorAndFaceletCount[m.getFace(s, i, j).getValue()][0];
+                    ++colorAndFaceletCount[m.getFace(s, i, j).ordinal()][0];
                     if (i == 1 && j == 1) {
-                        ++colorAndFaceletCount[m.getFace(s, i, j).getValue()][1];
+                        ++colorAndFaceletCount[m.getFace(s, i, j).ordinal()][1];
                     }
                 }
             }

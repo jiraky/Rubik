@@ -30,7 +30,7 @@ public class RubikCubeModelTest {
         for (RubikCubeSide s : RubikCubeSide.values()) {
             for (int i = 0; i < this.standardCubeDimension; ++i) {
                 for (int j = 0; j < this.standardCubeDimension; ++j) {
-                    Assert.assertEquals("Face " + s.getValue() + "][" + i
+                    Assert.assertEquals("Face " + s.ordinal() + "][" + i
                             + "][" + j + "] has the correct color",
                             c.getFace(s, i, j), s.getStandardColor());
                 }

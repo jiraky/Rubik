@@ -8,24 +8,20 @@ package it.univr.rubikcube.model;
  * @author Alessandro Menti
  */
 public enum RubikCubeSide {
+    // DO NOT ALTER THE ORDER as the array storing the sides depends on it!
+    // Add new sides to the bottom.
     /** The side facing the solver. */
-    FRONT(0, "front", RubikCubeFaceColor.RED),
+    FRONT("front", RubikCubeFaceColor.RED),
     /** The side opposite the front. */
-    BACK(1, "back", RubikCubeFaceColor.ORANGE),
+    BACK("back", RubikCubeFaceColor.ORANGE),
     /** The side on top of the front side. */
-    UP(2, "upper", RubikCubeFaceColor.WHITE),
+    UP("upper", RubikCubeFaceColor.WHITE),
     /** The side opposite the top. */
-    DOWN(3, "down", RubikCubeFaceColor.YELLOW),
+    DOWN("down", RubikCubeFaceColor.YELLOW),
     /** The side directly to the left of the front. */
-    LEFT(4, "left", RubikCubeFaceColor.GREEN),
+    LEFT("left", RubikCubeFaceColor.GREEN),
     /** The side directly to the right of the front. */
-    RIGHT(5, "right", RubikCubeFaceColor.BLUE);
-
-    /**
-     * Numeric value of the constant identifying the side in the configuration
-     * array.
-     */
-    private int value;
+    RIGHT("right", RubikCubeFaceColor.BLUE);
     /**
      * Textual description of the side.
      */
@@ -45,21 +41,12 @@ public enum RubikCubeSide {
     private RubikCubeFaceColor standardColor;
     /**
      * Creates a new RubikCubeSide constant.
-     * @param v Numeric value associated with the face.
      * @param d Textual description of the side.
      * @param c Color of the side in the standard configuration.
      */
-    RubikCubeSide(final int v, final String d, final RubikCubeFaceColor c) {
-        this.value = v;
+    RubikCubeSide(final String d, final RubikCubeFaceColor c) {
         this.description = d;
         this.standardColor = c;
-    }
-    /**
-     * Gets the numeric value of the constant.
-     * @return Numeric value associated with the face.
-     */
-    public int getValue() {
-        return this.value;
     }
     /**
      * Gets the textual description of the side.
