@@ -1,5 +1,10 @@
 package it.univr.rubikcube.gui;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import javax.swing.JOptionPane;
+
 /**
  * Credits form.
  * @author Mattia Zago
@@ -23,11 +28,13 @@ public class Credits extends javax.swing.JDialog {
      * Opens a Web page.
      * @param url Address to be opened.
      */
-    public final void openWebPage(final String url) {
+    public static final void openWebPage(final String url) {
         try {         
-            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
-        } catch (java.io.IOException e) {
-            // FIXME MessageBox
+            Desktop.getDesktop().browse(URI.create(url));
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Unable to show the Web page"
+                    + " as the default browser could not be launched.",
+                    "Rubik Cube Solver", JOptionPane.ERROR_MESSAGE);
         }
      }
 
