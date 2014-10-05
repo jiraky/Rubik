@@ -75,14 +75,14 @@ public class ChangeAlgorithm extends javax.swing.JDialog {
      * @return The return status of this dialog - one of RET_OK or RET_CANCEL
      */
     public final boolean getReturnStatus() {
-        return returnStatus;
+        return this.returnStatus;
     }
     /**
      * Gets the number of faces for the Rubik cube.
      * @return Number of faces for the Rubik cube.
      */
     public final int getSelectedFaces() {
-        return selectedFaces;
+        return this.selectedFaces;
     }
     /**
      * Gets a list of resolution strategies.

@@ -178,7 +178,7 @@ public class NumFaces extends javax.swing.JDialog {
      * Closes the window.
      * @param retStatus Return status.
      */
-    final void doClose(boolean retStatus) {
+    final void doClose(final boolean retStatus) {
         this.returnStatus = retStatus;
         setVisible(false);
         dispose();

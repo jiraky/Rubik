@@ -1,8 +1,22 @@
 package it.univr.rubikcube.gui;
 
-import it.univr.rubikcube.model.*;
-import it.univr.rubikcube.moves.*;
-import it.univr.rubikcube.resolutionstrategies.*;
+import it.univr.rubikcube.model.Move;
+import it.univr.rubikcube.model.RubikCubeModel;
+import it.univr.rubikcube.model.RubikCubeSide;
+import it.univr.rubikcube.moves.B;
+import it.univr.rubikcube.moves.D;
+import it.univr.rubikcube.moves.E;
+import it.univr.rubikcube.moves.F;
+import it.univr.rubikcube.moves.L;
+import it.univr.rubikcube.moves.M;
+import it.univr.rubikcube.moves.R;
+import it.univr.rubikcube.moves.S;
+import it.univr.rubikcube.moves.U;
+import it.univr.rubikcube.moves.X;
+import it.univr.rubikcube.moves.Y;
+import it.univr.rubikcube.moves.Z;
+import it.univr.rubikcube.resolutionstrategies.Fridrich;
+import it.univr.rubikcube.resolutionstrategies.ResolutionStrategy;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.security.SecureRandom;
@@ -1725,14 +1739,14 @@ public class MainWindow extends javax.swing.JFrame {
         return this.RubikCubeDimension;
     }
     public void setCubeDimension(int n) {
-        if(JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(
+        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(
                 rootPane, 
                 "This action will reset the cube. Are you sure?", 
                 "Confirm reset", 
                 JOptionPane.YES_NO_OPTION, 
                 JOptionPane.WARNING_MESSAGE)) {
             this.RubikCubeDimension = n;
-            initCube();
+            this.initCube();
         }
         updateInterface();
     }
@@ -1745,18 +1759,19 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void lp_move_preview_LoadImage(String move) {
-        if(lp_move_inverse_yes.isSelected())
-            rp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/"+move+"_inv.png")));
-        else
-            rp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/"+move+".png")));
+        if (this.lp_move_inverse_yes.isSelected()) {
+            this.rp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/"+move+"_inv.png")));
+        } else {
+            this.rp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/"+move+".png")));
+        }
     }
     private void lp_move_preview_UnloadImage() {
-        rp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/shuffle.png")));
+        this.rp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/shuffle.png")));
     }
     
     private void performMove(String move) {
-        this.MovesCounter++;
-        this.rp_previousmoves_value.setText(this.rp_previousmoves_value.getText()+move+"\n");
+        ++this.MovesCounter;
+        this.rp_previousmoves_value.setText(this.rp_previousmoves_value.getText() + move + "\n");
         /*
         if(lp_move_inverse_yes.isSelected()) {
             JOptionPane.showMessageDialog(rootPane, "Perform "+move+" inverse move");
@@ -1767,46 +1782,46 @@ public class MainWindow extends javax.swing.JFrame {
         
         switch (move) {
             case "L":
-                new L(cube, lp_move_inverse_yes.isSelected()).perform();
+                new L(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
                 break;
             case "R":
-                new R(cube, lp_move_inverse_yes.isSelected()).perform();
+                new R(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
                 break;
             case "U":
-                new U(cube, lp_move_inverse_yes.isSelected()).perform();
+                new U(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
                 break;
             case "D":
-                new D(cube, lp_move_inverse_yes.isSelected()).perform();
+                new D(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
                 break;
             case "F":
-                new F(cube, lp_move_inverse_yes.isSelected()).perform();
+                new F(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
                 break;
             case "B":
-                new B(cube, lp_move_inverse_yes.isSelected()).perform();
+                new B(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
                 break;
             case "M":
-                new M(cube, lp_move_inverse_yes.isSelected()).perform();
+                new M(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
                 break;
             case "S":
-                new S(cube, lp_move_inverse_yes.isSelected()).perform();
+                new S(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
                 break;
             case "E":
-                new E(cube, lp_move_inverse_yes.isSelected()).perform();
+                new E(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
                 break;
             case "X":
-                new X(cube, lp_move_inverse_yes.isSelected()).perform();
+                new X(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
                 break;
             case "Y":
-                new Y(cube, lp_move_inverse_yes.isSelected()).perform();
+                new Y(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
                 break;
             case "Z":
-                new Z(cube, lp_move_inverse_yes.isSelected()).perform();
+                new Z(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
                 break;
         }
         
-        if(this.next_moves.get(this.next_moves_pointer).toString().equals(move))
-           this.next_moves_pointer++;
-        else {
+        if (this.next_moves.get(this.next_moves_pointer).toString().equals(move)) {
+           ++this.next_moves_pointer;
+        } else {
             this.next_moves_update = true;
             this.next_moves_pointer = 0;
         }
@@ -1888,41 +1903,45 @@ public class MainWindow extends javax.swing.JFrame {
         this.D32.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 2, 1).getColor());
         this.D33.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 2, 2).getColor());
         
-        if(this.next_moves_update) {
+        if (this.next_moves_update) {
             resetNextMoves();
         } else {
             updateNextMoves();
-            if(this.next_moves_pointer == this.next_moves.size()) {
+            if (this.next_moves_pointer == this.next_moves.size()) {
                 this.next_moves_update = false;
                 this.rp_nextmoves_value.setText("");
                 this.next_moves = this.actualStrategy.getNextMoves();
-                for (Move next_move : next_moves) {
-                    this.rp_nextmoves_value.setText(this.rp_nextmoves_value.getText()+next_move.toString()+"");
+                for (Move nextMove: this.next_moves) {
+                    this.rp_nextmoves_value.setText(this.rp_nextmoves_value.getText() + nextMove.toString() + "");
                 }
             }
         }
     }
-    
+    /**
+     * Updates the list of next moves.
+     */
     private void updateNextMoves() {
         this.rp_nextmoves_value.setText("");
         this.next_moves = this.actualStrategy.getNextMoves();
-        for (int i = this.next_moves_pointer; i<this.next_moves.size(); i++) {
-            this.rp_nextmoves_value.setText(this.rp_nextmoves_value.getText()+next_moves.get(i).toString()+"");
+        for (int i = this.next_moves_pointer; i < this.next_moves.size(); ++i) {
+            this.rp_nextmoves_value.setText(this.rp_nextmoves_value.getText() + this.next_moves.get(i).toString() + "");
         }
         this.rp_nextmoves_progressbar.setMinimum(0);
         this.rp_nextmoves_progressbar.setValue(this.next_moves_pointer);
-        this.rp_nextmoves_progressbar.setMaximum(next_moves.size());
+        this.rp_nextmoves_progressbar.setMaximum(this.next_moves.size());
     }
-    
+    /**
+     * Resets the list of next moves.
+     */
     private void resetNextMoves() {
         this.next_moves_update = false;
         this.rp_nextmoves_value.setText("");
         this.next_moves = this.actualStrategy.getNextMoves();
-        for (Move next_move : next_moves) {
-            this.rp_nextmoves_value.setText(this.rp_nextmoves_value.getText()+next_move.toString()+"");
+        for (Move nextMove: this.next_moves) {
+            this.rp_nextmoves_value.setText(this.rp_nextmoves_value.getText() + nextMove.toString() + "");
         }
         this.rp_nextmoves_progressbar.setMinimum(0);
         this.rp_nextmoves_progressbar.setValue(0);
-        this.rp_nextmoves_progressbar.setMaximum(next_moves.size());
+        this.rp_nextmoves_progressbar.setMaximum(this.next_moves.size());
     }
 }
