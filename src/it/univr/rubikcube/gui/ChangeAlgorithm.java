@@ -147,6 +147,7 @@ public class ChangeAlgorithm extends javax.swing.JDialog {
 
         algorithm_description.setEditable(false);
         algorithm_description.setColumns(20);
+        algorithm_description.setLineWrap(true);
         algorithm_description.setRows(5);
         algorithm_description.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         algorithm_container.setViewportView(algorithm_description);
