@@ -41,6 +41,11 @@ public class ChangeAlgorithm extends javax.swing.JDialog {
      * Number of faces for the Rubik cube.
      */
     private int selectedFaces = 3;
+    private ResolutionStrategy selected_option;
+
+    public ResolutionStrategy getSelected_option() {
+        return selected_option;
+    }
     
     /**
      * Creates a new instance of the "Change resolution strategy" form.
@@ -206,7 +211,7 @@ public class ChangeAlgorithm extends javax.swing.JDialog {
     }//GEN-LAST:event_closeDialog
 
     private void algorithms_listActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_algorithms_listActionPerformed
-        ResolutionStrategy selected_option = (ResolutionStrategy)this.algorithms_list.getSelectedItem();
+        this.selected_option = (ResolutionStrategy)this.algorithms_list.getSelectedItem();
         this.algorithm_description.setText(selected_option.getDescription());
     }//GEN-LAST:event_algorithms_listActionPerformed
     

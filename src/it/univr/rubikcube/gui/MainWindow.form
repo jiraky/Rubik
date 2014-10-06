@@ -98,10 +98,8 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="Logo" alignment="0" max="32767" attributes="0"/>
                   <Component id="MainRightPanel" alignment="0" pref="0" max="32767" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
-                      <Component id="rp_move_preview" alignment="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="rp_move_preview" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -2097,7 +2095,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="rp_move_preview_image" pref="267" max="32767" attributes="0"/>
+                  <Component id="rp_move_preview_image" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>

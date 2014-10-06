@@ -16,6 +16,7 @@ import it.univr.rubikcube.moves.X;
 import it.univr.rubikcube.moves.Y;
 import it.univr.rubikcube.moves.Z;
 import it.univr.rubikcube.resolutionstrategies.Fridrich;
+import it.univr.rubikcube.resolutionstrategies.Kociemba;
 import it.univr.rubikcube.resolutionstrategies.ResolutionStrategy;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -1342,7 +1343,13 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_edit_numfacesActionPerformed
 
     private void menu_edit_algorithmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_edit_algorithmActionPerformed
-        new ChangeAlgorithm(this, true, this.availableStrategy).setVisible(true);
+        ChangeAlgorithm c = new ChangeAlgorithm(this, true, this.availableStrategy);
+        c.setVisible(true);
+        if(c.getReturnStatus()) {
+            this.actualStrategy = c.getSelected_option();
+            this.rp_algorithm_value.setText(this.actualStrategy.toString());
+            resetNextMoves();
+        }
     }//GEN-LAST:event_menu_edit_algorithmActionPerformed
     
     private void lp_move_LMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_LMouseEntered
@@ -1725,6 +1732,7 @@ public class MainWindow extends javax.swing.JFrame {
         
         this.availableStrategy = new LinkedList<>();
         this.availableStrategy.add(new Fridrich(this.cube));
+        this.availableStrategy.add(new Kociemba(this.cube));
         this.actualStrategy = this.availableStrategy.get(0);
         
         this.MovesCounter = 0;
