@@ -3,6 +3,7 @@ package it.univr.rubikcube.resolutionstrategies;
 import it.univr.rubikcube.model.Move;
 import it.univr.rubikcube.model.RubikCubeModel;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Interface for Rubik cube resolution strategies.
@@ -36,8 +37,13 @@ public abstract class ResolutionStrategy {
      * Gets a list of next moves to be performed to get to the next phase of
      * the algorithm.
      * @return List of next moves.
+     * @throws NoSolutionException Thrown in case the resolution strategy fails
+     * to find a solution.
+     * @throws TimeoutException Thrown in case the resolution strategy fails to
+     * find a solution before the specified timeout (if any).
      */
-    public abstract List<Move> getNextMoves();
+    public abstract List<Move> getNextMoves() throws NoSolutionException,
+        TimeoutException;
     /**
      * Returns the name of the resolution strategy.
      * @return Name of the resolution strategy.
