@@ -17,12 +17,16 @@ import it.univr.rubikcube.moves.Y;
 import it.univr.rubikcube.moves.Z;
 import it.univr.rubikcube.resolutionstrategies.Fridrich;
 import it.univr.rubikcube.resolutionstrategies.Kociemba;
+import it.univr.rubikcube.resolutionstrategies.NoSolutionException;
 import it.univr.rubikcube.resolutionstrategies.ResolutionStrategy;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -1339,7 +1343,7 @@ public class MainWindow extends javax.swing.JFrame {
         if(n.getReturnStatus()) {
             this.setCubeDimension(n.getSelectedFaces());
         }
-        
+        updateInterface();
     }//GEN-LAST:event_menu_edit_numfacesActionPerformed
 
     private void menu_edit_algorithmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_edit_algorithmActionPerformed
@@ -1350,6 +1354,7 @@ public class MainWindow extends javax.swing.JFrame {
             this.rp_algorithm_value.setText(this.actualStrategy.toString());
             resetNextMoves();
         }
+        updateInterface();
     }//GEN-LAST:event_menu_edit_algorithmActionPerformed
     
     private void lp_move_LMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_LMouseEntered
@@ -1736,7 +1741,12 @@ public class MainWindow extends javax.swing.JFrame {
         this.actualStrategy = this.availableStrategy.get(0);
         
         this.MovesCounter = 0;
-        this.next_moves = this.actualStrategy.getNextMoves();
+        try {
+            this.next_moves = this.actualStrategy.getNextMoves();
+        } catch (NoSolutionException | TimeoutException ex) {
+            JOptionPane.showMessageDialog(this, this.actualStrategy.toString()+" cannot found a solution.\nError: "+ex.getMessage(), "Error while looking for the next moves", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.next_moves_update = true;
         this.next_moves_pointer = 0;
         
@@ -1918,7 +1928,12 @@ public class MainWindow extends javax.swing.JFrame {
             if (this.next_moves_pointer == this.next_moves.size()) {
                 this.next_moves_update = false;
                 this.rp_nextmoves_value.setText("");
-                this.next_moves = this.actualStrategy.getNextMoves();
+                try {
+                    this.next_moves = this.actualStrategy.getNextMoves();
+                } catch (NoSolutionException | TimeoutException ex) {
+                    JOptionPane.showMessageDialog(this, this.actualStrategy.toString()+" cannot found a solution.\nError: "+ex.getMessage(), "Error while looking for the next moves", JOptionPane.ERROR_MESSAGE);
+                    Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 for (Move nextMove: this.next_moves) {
                     this.rp_nextmoves_value.setText(this.rp_nextmoves_value.getText() + nextMove.toString() + "");
                 }
@@ -1930,7 +1945,12 @@ public class MainWindow extends javax.swing.JFrame {
      */
     private void updateNextMoves() {
         this.rp_nextmoves_value.setText("");
-        this.next_moves = this.actualStrategy.getNextMoves();
+        try {
+            this.next_moves = this.actualStrategy.getNextMoves();
+        } catch (NoSolutionException | TimeoutException ex) {
+            JOptionPane.showMessageDialog(this, this.actualStrategy.toString()+" cannot found a solution.\nError: "+ex.getMessage(), "Error while looking for the next moves", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
         for (int i = this.next_moves_pointer; i < this.next_moves.size(); ++i) {
             this.rp_nextmoves_value.setText(this.rp_nextmoves_value.getText() + this.next_moves.get(i).toString() + "");
         }
@@ -1944,7 +1964,12 @@ public class MainWindow extends javax.swing.JFrame {
     private void resetNextMoves() {
         this.next_moves_update = false;
         this.rp_nextmoves_value.setText("");
-        this.next_moves = this.actualStrategy.getNextMoves();
+        try {
+            this.next_moves = this.actualStrategy.getNextMoves();
+        } catch (NoSolutionException | TimeoutException ex) {
+            JOptionPane.showMessageDialog(this, this.actualStrategy.toString()+" cannot found a solution.\nError: "+ex.getMessage(), "Error while looking for the next moves", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
         for (Move nextMove: this.next_moves) {
             this.rp_nextmoves_value.setText(this.rp_nextmoves_value.getText() + nextMove.toString() + "");
         }
