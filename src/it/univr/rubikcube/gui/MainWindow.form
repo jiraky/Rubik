@@ -1853,6 +1853,9 @@
               <SubComponents>
                 <Component class="javax.swing.JToggleButton" name="lp_move_inverse_yes">
                   <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="lp_move_useinverse_btngroup"/>
+                    </Property>
                     <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="Forward Move"/>
                   </Properties>
@@ -1862,6 +1865,9 @@
                 </Component>
                 <Component class="javax.swing.JToggleButton" name="lp_move_inverse_no">
                   <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="lp_move_useinverse_btngroup"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Inverse Move"/>
                   </Properties>
                   <Events>

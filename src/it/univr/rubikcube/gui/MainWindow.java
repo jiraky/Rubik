@@ -959,6 +959,7 @@ public class MainWindow extends javax.swing.JFrame {
         lp_move_details.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Use inverse", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
         lp_move_details.setLayout(new java.awt.GridLayout(1, 0));
 
+        lp_move_useinverse_btngroup.add(lp_move_inverse_yes);
         lp_move_inverse_yes.setSelected(true);
         lp_move_inverse_yes.setText("Forward Move");
         lp_move_inverse_yes.addActionListener(new java.awt.event.ActionListener() {
@@ -968,6 +969,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
         lp_move_details.add(lp_move_inverse_yes);
 
+        lp_move_useinverse_btngroup.add(lp_move_inverse_no);
         lp_move_inverse_no.setText("Inverse Move");
         lp_move_inverse_no.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1175,7 +1177,7 @@ public class MainWindow extends javax.swing.JFrame {
             rp_move_previewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rp_move_previewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rp_move_preview_image, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                .addComponent(rp_move_preview_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         rp_move_previewLayout.setVerticalGroup(
@@ -1310,9 +1312,8 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(MainRightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(rp_move_preview, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rp_move_preview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -1578,11 +1579,11 @@ public class MainWindow extends javax.swing.JFrame {
             prevMoves = words[S.nextInt(words.length)];
             performMove(prevMoves);
             
-            moves += (i%40==0?"\n":", ")+prevMoves+(inverted?"'":"");
+            moves += (i%20==0?"\n":", ")+prevMoves+(inverted?"'":"");
         }
         this.rp_previousmoves_value.setText("");
         this.MovesCounter = 0;
-        JOptionPane.showMessageDialog(this, "Shuffle completed! Follow the list of the moves:\n"+moves,"Shuffle result",JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Shuffle completed!\n"+moves,"Shuffle result",JOptionPane.PLAIN_MESSAGE);
         updateInterface();
     }//GEN-LAST:event_rp_control_shuffleActionPerformed
 
