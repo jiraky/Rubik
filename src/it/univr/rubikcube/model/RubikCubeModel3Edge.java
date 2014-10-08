@@ -4,7 +4,7 @@ package it.univr.rubikcube.model;
  * Edge of the Rubik cube. The edge is named after the faces it comprises.
  * @author Alessandro Menti
  */
-public enum RubikCubeModelEdge {
+public enum RubikCubeModel3Edge {
     // DO NOT ALTER the order here as some arrays rely on it.
     // Add new members to the bottom.
     /**

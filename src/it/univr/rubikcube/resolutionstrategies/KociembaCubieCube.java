@@ -3,7 +3,7 @@ package it.univr.rubikcube.resolutionstrategies;
 import it.univr.rubikcube.model.RubikCubeFaceColor;
 import it.univr.rubikcube.model.RubikCubeModel;
 import it.univr.rubikcube.model.RubikCubeModelCorner;
-import it.univr.rubikcube.model.RubikCubeModelEdge;
+import it.univr.rubikcube.model.RubikCubeModel3Edge;
 import it.univr.rubikcube.model.RubikCubeModelFacelet;
 import it.univr.rubikcube.model.RubikCubeSide;
 
@@ -37,19 +37,19 @@ public class KociembaCubieCube {
     /**
      * Edge permutation on the upper face.
      */
-    private static RubikCubeModelEdge[] epU = {
-        RubikCubeModelEdge.UB,
-        RubikCubeModelEdge.UR,
-        RubikCubeModelEdge.UF,
-        RubikCubeModelEdge.UL,
-        RubikCubeModelEdge.DR,
-        RubikCubeModelEdge.DF,
-        RubikCubeModelEdge.DL,
-        RubikCubeModelEdge.DB,
-        RubikCubeModelEdge.FR,
-        RubikCubeModelEdge.FL,
-        RubikCubeModelEdge.BL,
-        RubikCubeModelEdge.BR,
+    private static RubikCubeModel3Edge[] epU = {
+        RubikCubeModel3Edge.UB,
+        RubikCubeModel3Edge.UR,
+        RubikCubeModel3Edge.UF,
+        RubikCubeModel3Edge.UL,
+        RubikCubeModel3Edge.DR,
+        RubikCubeModel3Edge.DF,
+        RubikCubeModel3Edge.DL,
+        RubikCubeModel3Edge.DB,
+        RubikCubeModel3Edge.FR,
+        RubikCubeModel3Edge.FL,
+        RubikCubeModel3Edge.BL,
+        RubikCubeModel3Edge.BR,
     };
     /**
      * Edge orientation on the upper face.
@@ -75,19 +75,19 @@ public class KociembaCubieCube {
     /**
      * Edge permutation on the right face.
      */
-    private static RubikCubeModelEdge[] epR = {
-        RubikCubeModelEdge.FR,
-        RubikCubeModelEdge.UF,
-        RubikCubeModelEdge.UL,
-        RubikCubeModelEdge.UB,
-        RubikCubeModelEdge.BR,
-        RubikCubeModelEdge.DF,
-        RubikCubeModelEdge.DL,
-        RubikCubeModelEdge.DB,
-        RubikCubeModelEdge.DR,
-        RubikCubeModelEdge.FL,
-        RubikCubeModelEdge.BL,
-        RubikCubeModelEdge.UR,
+    private static RubikCubeModel3Edge[] epR = {
+        RubikCubeModel3Edge.FR,
+        RubikCubeModel3Edge.UF,
+        RubikCubeModel3Edge.UL,
+        RubikCubeModel3Edge.UB,
+        RubikCubeModel3Edge.BR,
+        RubikCubeModel3Edge.DF,
+        RubikCubeModel3Edge.DL,
+        RubikCubeModel3Edge.DB,
+        RubikCubeModel3Edge.DR,
+        RubikCubeModel3Edge.FL,
+        RubikCubeModel3Edge.BL,
+        RubikCubeModel3Edge.UR,
     };
     /**
      * Edge orientation on the right face.
@@ -113,19 +113,19 @@ public class KociembaCubieCube {
     /**
      * Edge permutation on the front face.
      */
-    private static RubikCubeModelEdge[] epF = {
-        RubikCubeModelEdge.UR,
-        RubikCubeModelEdge.FL,
-        RubikCubeModelEdge.UL,
-        RubikCubeModelEdge.UB,
-        RubikCubeModelEdge.DR,
-        RubikCubeModelEdge.FR,
-        RubikCubeModelEdge.DL,
-        RubikCubeModelEdge.DB,
-        RubikCubeModelEdge.UF,
-        RubikCubeModelEdge.DF,
-        RubikCubeModelEdge.BL,
-        RubikCubeModelEdge.BR,
+    private static RubikCubeModel3Edge[] epF = {
+        RubikCubeModel3Edge.UR,
+        RubikCubeModel3Edge.FL,
+        RubikCubeModel3Edge.UL,
+        RubikCubeModel3Edge.UB,
+        RubikCubeModel3Edge.DR,
+        RubikCubeModel3Edge.FR,
+        RubikCubeModel3Edge.DL,
+        RubikCubeModel3Edge.DB,
+        RubikCubeModel3Edge.UF,
+        RubikCubeModel3Edge.DF,
+        RubikCubeModel3Edge.BL,
+        RubikCubeModel3Edge.BR,
     };
     /**
      * Edge orientation on the front face.
@@ -151,19 +151,19 @@ public class KociembaCubieCube {
     /**
      * Edge permutation on the down face.
      */
-    private static RubikCubeModelEdge[] epD = {
-        RubikCubeModelEdge.UR,
-        RubikCubeModelEdge.UF,
-        RubikCubeModelEdge.UL,
-        RubikCubeModelEdge.UB,
-        RubikCubeModelEdge.DF,
-        RubikCubeModelEdge.DL,
-        RubikCubeModelEdge.DB,
-        RubikCubeModelEdge.DR,
-        RubikCubeModelEdge.FR,
-        RubikCubeModelEdge.FL,
-        RubikCubeModelEdge.BL,
-        RubikCubeModelEdge.BR,
+    private static RubikCubeModel3Edge[] epD = {
+        RubikCubeModel3Edge.UR,
+        RubikCubeModel3Edge.UF,
+        RubikCubeModel3Edge.UL,
+        RubikCubeModel3Edge.UB,
+        RubikCubeModel3Edge.DF,
+        RubikCubeModel3Edge.DL,
+        RubikCubeModel3Edge.DB,
+        RubikCubeModel3Edge.DR,
+        RubikCubeModel3Edge.FR,
+        RubikCubeModel3Edge.FL,
+        RubikCubeModel3Edge.BL,
+        RubikCubeModel3Edge.BR,
     };
     /**
      * Edge orientation on the down face.
@@ -189,19 +189,19 @@ public class KociembaCubieCube {
     /**
      * Edge permutation on the left face.
      */
-    private static RubikCubeModelEdge[] epL = {
-        RubikCubeModelEdge.UR,
-        RubikCubeModelEdge.UF,
-        RubikCubeModelEdge.BL,
-        RubikCubeModelEdge.UB,
-        RubikCubeModelEdge.DR,
-        RubikCubeModelEdge.DF,
-        RubikCubeModelEdge.FL,
-        RubikCubeModelEdge.DB,
-        RubikCubeModelEdge.FR,
-        RubikCubeModelEdge.UL,
-        RubikCubeModelEdge.DL,
-        RubikCubeModelEdge.BR,
+    private static RubikCubeModel3Edge[] epL = {
+        RubikCubeModel3Edge.UR,
+        RubikCubeModel3Edge.UF,
+        RubikCubeModel3Edge.BL,
+        RubikCubeModel3Edge.UB,
+        RubikCubeModel3Edge.DR,
+        RubikCubeModel3Edge.DF,
+        RubikCubeModel3Edge.FL,
+        RubikCubeModel3Edge.DB,
+        RubikCubeModel3Edge.FR,
+        RubikCubeModel3Edge.UL,
+        RubikCubeModel3Edge.DL,
+        RubikCubeModel3Edge.BR,
     };
     /**
      * Edge orientation on the left face.
@@ -227,19 +227,19 @@ public class KociembaCubieCube {
     /**
      * Edge permutation on the bottom face.
      */
-    private static RubikCubeModelEdge[] epB = {
-        RubikCubeModelEdge.UR,
-        RubikCubeModelEdge.UF,
-        RubikCubeModelEdge.UL,
-        RubikCubeModelEdge.BR,
-        RubikCubeModelEdge.DR,
-        RubikCubeModelEdge.DF,
-        RubikCubeModelEdge.DL,
-        RubikCubeModelEdge.BL,
-        RubikCubeModelEdge.FR,
-        RubikCubeModelEdge.FL,
-        RubikCubeModelEdge.UB,
-        RubikCubeModelEdge.DB,
+    private static RubikCubeModel3Edge[] epB = {
+        RubikCubeModel3Edge.UR,
+        RubikCubeModel3Edge.UF,
+        RubikCubeModel3Edge.UL,
+        RubikCubeModel3Edge.BR,
+        RubikCubeModel3Edge.DR,
+        RubikCubeModel3Edge.DF,
+        RubikCubeModel3Edge.DL,
+        RubikCubeModel3Edge.BL,
+        RubikCubeModel3Edge.FR,
+        RubikCubeModel3Edge.FL,
+        RubikCubeModel3Edge.UB,
+        RubikCubeModel3Edge.DB,
     };
     /**
      * Edge orientation on the bottom face.
@@ -265,19 +265,19 @@ public class KociembaCubieCube {
     /**
      * Edge permutation.
      */
-    private RubikCubeModelEdge[] ep = {
-        RubikCubeModelEdge.UR,
-        RubikCubeModelEdge.UF,
-        RubikCubeModelEdge.UL,
-        RubikCubeModelEdge.UB,
-        RubikCubeModelEdge.DR,
-        RubikCubeModelEdge.DF,
-        RubikCubeModelEdge.DL,
-        RubikCubeModelEdge.DB,
-        RubikCubeModelEdge.FR,
-        RubikCubeModelEdge.FL,
-        RubikCubeModelEdge.BL,
-        RubikCubeModelEdge.BR,
+    private RubikCubeModel3Edge[] ep = {
+        RubikCubeModel3Edge.UR,
+        RubikCubeModel3Edge.UF,
+        RubikCubeModel3Edge.UL,
+        RubikCubeModel3Edge.UB,
+        RubikCubeModel3Edge.DR,
+        RubikCubeModel3Edge.DF,
+        RubikCubeModel3Edge.DL,
+        RubikCubeModel3Edge.DB,
+        RubikCubeModel3Edge.FR,
+        RubikCubeModel3Edge.FL,
+        RubikCubeModel3Edge.BL,
+        RubikCubeModel3Edge.BR,
     };
     /**
      * Edge orientation.
@@ -338,7 +338,7 @@ public class KociembaCubieCube {
      * @param eor Edge orientation.
      */
     public KociembaCubieCube(final RubikCubeModelCorner[] cperm, final byte[] cor,
-                             final RubikCubeModelEdge[] eperm, final byte[] eor) {
+                             final RubikCubeModel3Edge[] eperm, final byte[] eor) {
         this();
         for (int i = 0; i < 8; ++i) {
             this.cp[i] = cperm[i];
@@ -409,10 +409,10 @@ public class KociembaCubieCube {
      * @param r Right index.
      */
     // CHECKSTYLE:OFF arr is NOT final by design
-    private static void rotateLeft(RubikCubeModelEdge[] arr, final int l,
+    private static void rotateLeft(RubikCubeModel3Edge[] arr, final int l,
                                    final int r) {
     // CHECKSTYLE:ON
-        final RubikCubeModelEdge temp = arr[l];
+        final RubikCubeModel3Edge temp = arr[l];
         for (int i = l; i < r; ++i) {
             arr[i] = arr[i + 1];
         }
@@ -425,10 +425,10 @@ public class KociembaCubieCube {
      * @param r Right index.
      */
     // CHECKSTYLE:OFF arr is NOT final by design
-    private static void rotateRight(RubikCubeModelEdge[] arr, final int l,
+    private static void rotateRight(RubikCubeModel3Edge[] arr, final int l,
                                     final int r) {
     // CHECKSTYLE:ON
-        final RubikCubeModelEdge temp = arr[r];
+        final RubikCubeModel3Edge temp = arr[r];
         for (int i = r; i > l; --i) {
             arr[i] = arr[i - 1];
         }
@@ -488,13 +488,13 @@ public class KociembaCubieCube {
      * @param b Cube to multiply this cube with.
      */
     final void edgeMultiply(final KociembaCubieCube b) {
-        final RubikCubeModelEdge[] ePerm = new RubikCubeModelEdge[12];
+        final RubikCubeModel3Edge[] ePerm = new RubikCubeModel3Edge[12];
         final byte[] eOri = new byte[12];
-        for (RubikCubeModelEdge edge : RubikCubeModelEdge.values()) {
+        for (RubikCubeModel3Edge edge : RubikCubeModel3Edge.values()) {
             ePerm[edge.ordinal()] = this.ep[b.ep[edge.ordinal()].ordinal()];
             eOri[edge.ordinal()] = (byte) ((b.eo[edge.ordinal()] + this.eo[b.ep[edge.ordinal()].ordinal()]) % 2);
         }
-        for (RubikCubeModelEdge e : RubikCubeModelEdge.values()) {
+        for (RubikCubeModel3Edge e : RubikCubeModel3Edge.values()) {
             this.ep[e.ordinal()] = ePerm[e.ordinal()];
             this.eo[e.ordinal()] = eOri[e.ordinal()];
         }
@@ -533,8 +533,8 @@ public class KociembaCubieCube {
      */
     final short getFlip() {
         short ret = 0;
-        for (int i = RubikCubeModelEdge.UR.ordinal();
-                i < RubikCubeModelEdge.BR.ordinal(); ++i) {
+        for (int i = RubikCubeModel3Edge.UR.ordinal();
+                i < RubikCubeModel3Edge.BR.ordinal(); ++i) {
             ret = (short) (2 * ret + this.eo[i]);
         }
         return ret;
@@ -546,13 +546,13 @@ public class KociembaCubieCube {
     final void setFlip(final short flip) {
         short flipTmp = flip;
         int flipParity = 0;
-        for (int i = RubikCubeModelEdge.BR.ordinal() - 1;
-                i >= RubikCubeModelEdge.UR.ordinal(); --i) {
+        for (int i = RubikCubeModel3Edge.BR.ordinal() - 1;
+                i >= RubikCubeModel3Edge.UR.ordinal(); --i) {
             this.eo[i] = (byte) (flipTmp % 2);
             flipParity += this.eo[i];
             flipTmp /= 2;
         }
-        this.eo[RubikCubeModelEdge.BR.ordinal()]
+        this.eo[RubikCubeModel3Edge.BR.ordinal()]
                 = (byte) ((2 - flipParity % 2) % 2);
     }
     /**
@@ -578,11 +578,11 @@ public class KociembaCubieCube {
     final short getFRtoBR() {
         int a = 0;
         int x = 0;
-        final RubikCubeModelEdge[] edge4 = new RubikCubeModelEdge[4];
-        for (int j = RubikCubeModelEdge.BR.ordinal();
-                j >= RubikCubeModelEdge.UR.ordinal(); --j) {
-            if (RubikCubeModelEdge.FR.ordinal() <= this.ep[j].ordinal()
-                    && this.ep[j].ordinal() <= RubikCubeModelEdge.BR.ordinal()) {
+        final RubikCubeModel3Edge[] edge4 = new RubikCubeModel3Edge[4];
+        for (int j = RubikCubeModel3Edge.BR.ordinal();
+                j >= RubikCubeModel3Edge.UR.ordinal(); --j) {
+            if (RubikCubeModel3Edge.FR.ordinal() <= this.ep[j].ordinal()
+                    && this.ep[j].ordinal() <= RubikCubeModel3Edge.BR.ordinal()) {
                 a += chooseNK(11 - j, x + 1);
                 edge4[3 - x++] = this.ep[j];
             }
@@ -604,29 +604,29 @@ public class KociembaCubieCube {
      */
     final void setFRtoBR(final short idx) {
         int x;
-        final RubikCubeModelEdge[] sliceEdge = {
-            RubikCubeModelEdge.FR,
-            RubikCubeModelEdge.FL,
-            RubikCubeModelEdge.BL,
-            RubikCubeModelEdge.BR,
+        final RubikCubeModel3Edge[] sliceEdge = {
+            RubikCubeModel3Edge.FR,
+            RubikCubeModel3Edge.FL,
+            RubikCubeModel3Edge.BL,
+            RubikCubeModel3Edge.BR,
         };
-        final RubikCubeModelEdge[] otherEdge = {
-            RubikCubeModelEdge.UR,
-            RubikCubeModelEdge.UF,
-            RubikCubeModelEdge.UL,
-            RubikCubeModelEdge.UB,
-            RubikCubeModelEdge.DR,
-            RubikCubeModelEdge.DF,
-            RubikCubeModelEdge.DL,
-            RubikCubeModelEdge.DB,
+        final RubikCubeModel3Edge[] otherEdge = {
+            RubikCubeModel3Edge.UR,
+            RubikCubeModel3Edge.UF,
+            RubikCubeModel3Edge.UL,
+            RubikCubeModel3Edge.UB,
+            RubikCubeModel3Edge.DR,
+            RubikCubeModel3Edge.DF,
+            RubikCubeModel3Edge.DL,
+            RubikCubeModel3Edge.DB,
         };
         // Permutation index
         int b = idx % 24;
         // Combination index
         int a = idx / 24;
         // Invalidate all edges
-        for (RubikCubeModelEdge e : RubikCubeModelEdge.values()) {
-            this.ep[e.ordinal()] = RubikCubeModelEdge.DB;
+        for (RubikCubeModel3Edge e : RubikCubeModel3Edge.values()) {
+            this.ep[e.ordinal()] = RubikCubeModel3Edge.DB;
         }
         int k;
         for (int j = 1; j < 4; ++j) {
@@ -638,8 +638,8 @@ public class KociembaCubieCube {
         }
         // Generate combinations and set slice edges
         x = 3;
-        for (int j = RubikCubeModelEdge.UR.ordinal();
-                j <= RubikCubeModelEdge.BR.ordinal(); ++j) {
+        for (int j = RubikCubeModel3Edge.UR.ordinal();
+                j <= RubikCubeModel3Edge.BR.ordinal(); ++j) {
             if (a - chooseNK(11 - j, x + 1) >= 0) {
                 this.ep[j] = sliceEdge[3 - x];
                 a -= chooseNK(11 - j, x-- + 1);
@@ -647,9 +647,9 @@ public class KociembaCubieCube {
         }
         // Set the remaining edges UR..DB
         x = 0;
-        for (int j = RubikCubeModelEdge.UR.ordinal();
-                j <= RubikCubeModelEdge.BR.ordinal(); ++j) {
-            if (this.ep[j] == RubikCubeModelEdge.DB) {
+        for (int j = RubikCubeModel3Edge.UR.ordinal();
+                j <= RubikCubeModel3Edge.BR.ordinal(); ++j) {
+            if (this.ep[j] == RubikCubeModel3Edge.DB) {
                 this.ep[j] = otherEdge[x++];
             }
         }
@@ -740,11 +740,11 @@ public class KociembaCubieCube {
     final int getURtoDF() {
         int a = 0;
         int x = 0;
-        final RubikCubeModelEdge[] edge6 = new RubikCubeModelEdge[6];
+        final RubikCubeModel3Edge[] edge6 = new RubikCubeModel3Edge[6];
         // Compute the index a < (12 choose 6) and the edge permutation.
-        for (int j = RubikCubeModelEdge.UR.ordinal();
-                j <= RubikCubeModelEdge.BR.ordinal(); ++j) {
-            if (this.ep[j].ordinal() <= RubikCubeModelEdge.DF.ordinal()) {
+        for (int j = RubikCubeModel3Edge.UR.ordinal();
+                j <= RubikCubeModel3Edge.BR.ordinal(); ++j) {
+            if (this.ep[j].ordinal() <= RubikCubeModel3Edge.DF.ordinal()) {
                 a += chooseNK(j, x + 1);
                 edge6[x++] = this.ep[j];
             }
@@ -767,26 +767,26 @@ public class KociembaCubieCube {
      */
     final void setURtoDF(final int idx) {
         int x;
-        final RubikCubeModelEdge[] edge6 = {
-            RubikCubeModelEdge.UR,
-            RubikCubeModelEdge.UF,
-            RubikCubeModelEdge.UL,
-            RubikCubeModelEdge.UB,
-            RubikCubeModelEdge.DR,
-            RubikCubeModelEdge.DF,
+        final RubikCubeModel3Edge[] edge6 = {
+            RubikCubeModel3Edge.UR,
+            RubikCubeModel3Edge.UF,
+            RubikCubeModel3Edge.UL,
+            RubikCubeModel3Edge.UB,
+            RubikCubeModel3Edge.DR,
+            RubikCubeModel3Edge.DF,
         };
-        final RubikCubeModelEdge[] otherEdge = {
-            RubikCubeModelEdge.DL,
-            RubikCubeModelEdge.DB,
-            RubikCubeModelEdge.FR,
-            RubikCubeModelEdge.FL,
-            RubikCubeModelEdge.BL,
-            RubikCubeModelEdge.BR
+        final RubikCubeModel3Edge[] otherEdge = {
+            RubikCubeModel3Edge.DL,
+            RubikCubeModel3Edge.DB,
+            RubikCubeModel3Edge.FR,
+            RubikCubeModel3Edge.FL,
+            RubikCubeModel3Edge.BL,
+            RubikCubeModel3Edge.BR
         };
         int b = idx % 720; // Permutation
         int a = idx / 720; // Combination
-        for (RubikCubeModelEdge e : RubikCubeModelEdge.values())
-            this.ep[e.ordinal()] = RubikCubeModelEdge.BR;// Use BR to invalidate all edges
+        for (RubikCubeModel3Edge e : RubikCubeModel3Edge.values())
+            this.ep[e.ordinal()] = RubikCubeModel3Edge.BR;// Use BR to invalidate all edges
 
         for (int j = 1, k; j < 6; j++)// generate permutation from index b
         {
@@ -796,14 +796,14 @@ public class KociembaCubieCube {
                 rotateRight(edge6, 0, j);
         }
         x = 5;// generate combination and set edges
-        for (int j = RubikCubeModelEdge.BR.ordinal(); j >= 0; j--)
+        for (int j = RubikCubeModel3Edge.BR.ordinal(); j >= 0; j--)
             if (a - chooseNK(j, x + 1) >= 0) {
                 this.ep[j] = edge6[x];
                 a -= chooseNK(j, x-- + 1);
             }
         x = 0; // set the remaining edges DL..BR
-        for (int j = RubikCubeModelEdge.UR.ordinal(); j <= RubikCubeModelEdge.BR.ordinal(); j++)
-            if (this.ep[j] == RubikCubeModelEdge.BR)
+        for (int j = RubikCubeModel3Edge.UR.ordinal(); j <= RubikCubeModel3Edge.BR.ordinal(); j++)
+            if (this.ep[j] == RubikCubeModel3Edge.BR)
                 this.ep[j] = otherEdge[x++];
     }
 
@@ -815,8 +815,8 @@ public class KociembaCubieCube {
         a.setURtoUL(idx1);
         b.setUBtoDF(idx2);
         for (int i = 0; i < 8; i++) {
-            if (a.ep[i] != RubikCubeModelEdge.BR)
-                if (b.ep[i] != RubikCubeModelEdge.BR)// collision
+            if (a.ep[i] != RubikCubeModel3Edge.BR)
+                if (b.ep[i] != RubikCubeModel3Edge.BR)// collision
                     return -1;
                 else
                     b.ep[i] = a.ep[i];
@@ -828,10 +828,10 @@ public class KociembaCubieCube {
     // Permutation of the three edges UR,UF,UL
     short getURtoUL() {
         int a = 0, x = 0;
-        RubikCubeModelEdge[] edge3 = new RubikCubeModelEdge[3];
+        RubikCubeModel3Edge[] edge3 = new RubikCubeModel3Edge[3];
         // compute the index a < (12 choose 3) and the edge permutation.
-        for (int j = RubikCubeModelEdge.UR.ordinal(); j <= RubikCubeModelEdge.BR.ordinal(); j++)
-            if (this.ep[j].ordinal() <= RubikCubeModelEdge.UL.ordinal()) {
+        for (int j = RubikCubeModel3Edge.UR.ordinal(); j <= RubikCubeModel3Edge.BR.ordinal(); j++)
+            if (this.ep[j].ordinal() <= RubikCubeModel3Edge.UL.ordinal()) {
                 a += chooseNK(j, x + 1);
                 edge3[x++] = this.ep[j];
             }
@@ -853,11 +853,11 @@ public class KociembaCubieCube {
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     void setURtoUL(short idx) {
         int x;
-        RubikCubeModelEdge[] edge3 = {RubikCubeModelEdge.UR, RubikCubeModelEdge.UF, RubikCubeModelEdge.UL};
+        RubikCubeModel3Edge[] edge3 = {RubikCubeModel3Edge.UR, RubikCubeModel3Edge.UF, RubikCubeModel3Edge.UL};
         int b = idx % 6; // Permutation
         int a = idx / 6; // Combination
-        for (RubikCubeModelEdge e : RubikCubeModelEdge.values())
-            this.ep[e.ordinal()] = RubikCubeModelEdge.BR;// Use BR to invalidate all edges
+        for (RubikCubeModel3Edge e : RubikCubeModel3Edge.values())
+            this.ep[e.ordinal()] = RubikCubeModel3Edge.BR;// Use BR to invalidate all edges
 
         for (int j = 1, k; j < 3; j++)// generate permutation from index b
         {
@@ -867,7 +867,7 @@ public class KociembaCubieCube {
                 rotateRight(edge3, 0, j);
         }
         x = 2;// generate combination and set edges
-        for (int j = RubikCubeModelEdge.BR.ordinal(); j >= 0; j--)
+        for (int j = RubikCubeModel3Edge.BR.ordinal(); j >= 0; j--)
             if (a - chooseNK(j, x + 1) >= 0) {
                 this.ep[j] = edge3[x];
                 a -= chooseNK(j, x-- + 1);
@@ -878,10 +878,10 @@ public class KociembaCubieCube {
     // Permutation of the three edges UB,DR,DF
     short getUBtoDF() {
         int a = 0, x = 0;
-        RubikCubeModelEdge[] edge3 = new RubikCubeModelEdge[3];
+        RubikCubeModel3Edge[] edge3 = new RubikCubeModel3Edge[3];
         // compute the index a < (12 choose 3) and the edge permutation.
-        for (int j = RubikCubeModelEdge.UR.ordinal(); j <= RubikCubeModelEdge.BR.ordinal(); j++)
-            if (RubikCubeModelEdge.UB.ordinal() <= this.ep[j].ordinal() && this.ep[j].ordinal() <= RubikCubeModelEdge.DF.ordinal()) {
+        for (int j = RubikCubeModel3Edge.UR.ordinal(); j <= RubikCubeModel3Edge.BR.ordinal(); j++)
+            if (RubikCubeModel3Edge.UB.ordinal() <= this.ep[j].ordinal() && this.ep[j].ordinal() <= RubikCubeModel3Edge.DF.ordinal()) {
                 a += chooseNK(j, x + 1);
                 edge3[x++] = this.ep[j];
             }
@@ -891,7 +891,7 @@ public class KociembaCubieCube {
         // permutation in edge3
         {
             int k = 0;
-            while (edge3[j].ordinal() != RubikCubeModelEdge.UB.ordinal() + j) {
+            while (edge3[j].ordinal() != RubikCubeModel3Edge.UB.ordinal() + j) {
                 rotateLeft(edge3, 0, j);
                 k++;
             }
@@ -903,11 +903,11 @@ public class KociembaCubieCube {
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     void setUBtoDF(short idx) {
         int x;
-        RubikCubeModelEdge[] edge3 = {RubikCubeModelEdge.UB, RubikCubeModelEdge.DR, RubikCubeModelEdge.DF};
+        RubikCubeModel3Edge[] edge3 = {RubikCubeModel3Edge.UB, RubikCubeModel3Edge.DR, RubikCubeModel3Edge.DF};
         int b = idx % 6; // Permutation
         int a = idx / 6; // Combination
-        for (RubikCubeModelEdge e : RubikCubeModelEdge.values())
-            this.ep[e.ordinal()] = RubikCubeModelEdge.BR;// Use BR to invalidate all edges
+        for (RubikCubeModel3Edge e : RubikCubeModel3Edge.values())
+            this.ep[e.ordinal()] = RubikCubeModel3Edge.BR;// Use BR to invalidate all edges
 
         for (int j = 1, k; j < 3; j++)// generate permutation from index b
         {
@@ -917,7 +917,7 @@ public class KociembaCubieCube {
                 rotateRight(edge3, 0, j);
         }
         x = 2;// generate combination and set edges
-        for (int j = RubikCubeModelEdge.BR.ordinal(); j >= 0; j--)
+        for (int j = RubikCubeModel3Edge.BR.ordinal(); j >= 0; j--)
             if (a - chooseNK(j, x + 1) >= 0) {
                 this.ep[j] = edge3[x];
                 a -= chooseNK(j, x-- + 1);
@@ -981,7 +981,7 @@ public class KociembaCubieCube {
             ccRet.cp[i] = RubikCubeModelCorner.URF;
         }
         for (int i = 0; i < 12; ++i) {
-            ccRet.ep[i] = RubikCubeModelEdge.UR;
+            ccRet.ep[i] = RubikCubeModel3Edge.UR;
         }
         for (RubikCubeModelCorner i : RubikCubeModelCorner.values()) {
             for (ori = 0; ori < 3; ori++) {
@@ -1002,8 +1002,8 @@ public class KociembaCubieCube {
                 }
             }
         }
-        for (RubikCubeModelEdge i : RubikCubeModelEdge.values()) {
-            for (RubikCubeModelEdge j : RubikCubeModelEdge.values()) {
+        for (RubikCubeModel3Edge i : RubikCubeModel3Edge.values()) {
+            for (RubikCubeModel3Edge j : RubikCubeModel3Edge.values()) {
                 if (mapModelToKociemba(m, edgeFacelet[i.ordinal()][0].ordinal()) == edgeColor[j.ordinal()][0]
                         && mapModelToKociemba(m, edgeFacelet[i.ordinal()][1].ordinal()) == edgeColor[j.ordinal()][1]) {
                     ccRet.ep[i.ordinal()] = j;

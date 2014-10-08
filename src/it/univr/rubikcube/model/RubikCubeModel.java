@@ -41,6 +41,31 @@ public class RubikCubeModel extends Observable {
         this.setDimension(dim);
     }
     /**
+     * Creates a new instance of a Rubik cube model using an existing model
+     * (copy constructor).
+     * @param m The existing model.
+     * @throws IllegalArgumentException Thrown if the cube has an unacceptable
+     * dimension (less than two).
+     * @throws NullPointerException Thrown if <tt>m</tt> is <tt>null</tt>.
+     */
+    public RubikCubeModel(final RubikCubeModel m)
+            throws IllegalArgumentException, NullPointerException {
+        if (m == null) {
+            throw new NullPointerException("The model can not be null");
+        }
+        // Force the data structures to be initialized
+        this.dimension = 0;
+        this.setDimension(m.getDimension());
+        // Copy the configuration.
+        for (RubikCubeSide s: RubikCubeSide.values()) {
+            for (int i = 0; i < m.getDimension(); ++i) {
+                for (int j = 0; j < m.getDimension(); ++j) {
+                    this.configuration[s.ordinal()][i][j] = m.getFace(s, i, j);
+                }
+            }
+        }
+    }
+    /**
      * Gets the dimension of this cube.
      * @return Dimension of the cube.
      */
@@ -79,6 +104,68 @@ public class RubikCubeModel extends Observable {
     public final RubikCubeFaceColor getFace(final RubikCubeSide s, final int x,
                                             final int y) {
         return this.configuration[s.ordinal()][x][y];
+    }
+    /**
+     * Gets the color of two edge facelets.
+     * @param e Edge to be considered.
+     * @return The color of the two facelets making the edge.
+     * @throws IllegalArgumentException Thrown in case the edge is not in the
+     * enum.
+     */
+    public final RubikCubeEdgeColor get3DEdge(final RubikCubeModel3Edge e)
+            throws IllegalArgumentException {
+        switch (e) {
+            case UR:
+                return new RubikCubeEdgeColor(
+                    this.configuration[RubikCubeSide.UP.ordinal()][1][2],
+                    this.configuration[RubikCubeSide.RIGHT.ordinal()][0][1]);
+            case UF:
+                return new RubikCubeEdgeColor(
+                    this.configuration[RubikCubeSide.UP.ordinal()][2][1],
+                    this.configuration[RubikCubeSide.FRONT.ordinal()][0][1]);
+            case UL:
+                return new RubikCubeEdgeColor(
+                    this.configuration[RubikCubeSide.UP.ordinal()][1][0],
+                    this.configuration[RubikCubeSide.LEFT.ordinal()][0][1]);
+            case UB:
+                return new RubikCubeEdgeColor(
+                    this.configuration[RubikCubeSide.UP.ordinal()][0][1],
+                    this.configuration[RubikCubeSide.BACK.ordinal()][0][1]);
+            case DR:
+                return new RubikCubeEdgeColor(
+                    this.configuration[RubikCubeSide.DOWN.ordinal()][1][2],
+                    this.configuration[RubikCubeSide.RIGHT.ordinal()][2][1]);
+            case DF:
+                return new RubikCubeEdgeColor(
+                    this.configuration[RubikCubeSide.DOWN.ordinal()][0][1],
+                    this.configuration[RubikCubeSide.FRONT.ordinal()][2][1]);
+            case DL:
+                return new RubikCubeEdgeColor(
+                    this.configuration[RubikCubeSide.DOWN.ordinal()][1][0],
+                    this.configuration[RubikCubeSide.LEFT.ordinal()][2][1]);
+            case DB:
+                return new RubikCubeEdgeColor(
+                    this.configuration[RubikCubeSide.DOWN.ordinal()][2][1],
+                    this.configuration[RubikCubeSide.BACK.ordinal()][2][1]);
+            case FR:
+                return new RubikCubeEdgeColor(
+                    this.configuration[RubikCubeSide.FRONT.ordinal()][1][2],
+                    this.configuration[RubikCubeSide.RIGHT.ordinal()][1][0]);
+            case FL:
+                return new RubikCubeEdgeColor(
+                    this.configuration[RubikCubeSide.FRONT.ordinal()][1][0],
+                    this.configuration[RubikCubeSide.LEFT.ordinal()][1][2]);
+            case BL:
+                return new RubikCubeEdgeColor(
+                    this.configuration[RubikCubeSide.BACK.ordinal()][1][0],
+                    this.configuration[RubikCubeSide.LEFT.ordinal()][1][2]);
+            case BR:
+                return new RubikCubeEdgeColor(
+                    this.configuration[RubikCubeSide.BACK.ordinal()][1][2],
+                    this.configuration[RubikCubeSide.RIGHT.ordinal()][1][0]);
+            default:
+                throw new IllegalArgumentException("Edge not in enum");
+        }
     }
     /**
      * <p>Resets the cube to the <em>standard configuration</em>:</p>
