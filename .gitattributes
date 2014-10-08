@@ -91,6 +91,7 @@ src/it/univr/rubikcube/resolutionstrategies/KociembaCoordinateCube.java -text sv
 src/it/univr/rubikcube/resolutionstrategies/KociembaCubieCube.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/resolutionstrategies/NoSolutionException.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/resolutionstrategies/ResolutionStrategy.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/resolutionstrategies/Singmaster.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/resolutionstrategies/package-info.java -text svneol=unset#text/x-java-source
 test/it/univr/rubikcube/model/RubikCubeModelTest.java -text svneol=unset#text/x-java-source
 test/it/univr/rubikcube/moves/SingmasterMovesTest.java -text svneol=unset#text/x-java-source

@@ -719,6 +719,41 @@ public class RubikCubeModel extends Observable {
         return true;
     }
     /**
+     * Checks whether a cube is solved.
+     * @param m Model to be checked.
+     * @return <tt>true</tt> if and only if the cube is solved and has sane
+     * colors.
+     * @throws NullPointerException Thrown if <tt>m</tt> is <tt>null</tt>.
+     */
+    public static boolean isSolved(final RubikCubeModel m)
+        throws NullPointerException {
+        if (m == null) {
+            throw new NullPointerException("m must not be null");
+        }
+        final boolean[] colorEncountered = new boolean[6];
+        for (RubikCubeFaceColor c : RubikCubeFaceColor.values()) {
+            colorEncountered[c.ordinal()] = false;
+        }
+        for (RubikCubeSide s : RubikCubeSide.values()) {
+            final RubikCubeFaceColor sc = m.getFace(s, m.getDimension() / 2,
+                                                    m.getDimension() / 2);
+            if (colorEncountered[sc.ordinal()]) {
+                // Duplicate color
+                return false;
+            }
+            colorEncountered[sc.ordinal()] = true;
+            for (int i = 0; i < m.getDimension(); ++i) {
+                for (int j = 0; j < m.getDimension(); ++j) {
+                    if (m.getFace(s, i, j) != sc) {
+                        // Color different - cube not solved
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    /**
      * Deep copies a face of the Rubik cube to another face.
      * @param src Source face.
      * @param dst Destination face.

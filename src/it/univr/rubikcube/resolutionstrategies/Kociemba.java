@@ -2,6 +2,7 @@ package it.univr.rubikcube.resolutionstrategies;
 
 import it.univr.rubikcube.model.Move;
 import it.univr.rubikcube.model.RubikCubeModel;
+import it.univr.rubikcube.model.RubikCubeSide;
 import it.univr.rubikcube.moves.B;
 import it.univr.rubikcube.moves.D;
 import it.univr.rubikcube.moves.F;
@@ -152,6 +153,11 @@ public class Kociemba extends ResolutionStrategy {
         int depthPhase1 = 1;
         int s;
         final long tStart = System.currentTimeMillis();
+        // If the cube is solved, the algorithm will not find a solution.
+        // Check for that before starting.
+        if (RubikCubeModel.isSolved(this.getModel())) {
+            return new ArrayList<>();
+        }
         do {
             do {
                 if ((depthPhase1 - n > this.minDistPhase1[n + 1]) && !busy) {
