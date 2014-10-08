@@ -1772,6 +1772,7 @@ public class MainWindow extends javax.swing.JFrame {
         try {
             this.next_moves = this.actualStrategy.getNextMoves();
         } catch (NoSolutionException | TimeoutException ex) {
+            this.rp_nextmoves_value.setText("");
             JOptionPane.showMessageDialog(this, this.actualStrategy.toString()+" cannot found a solution.\nError: "+ex.getMessage(), "Error while looking for the next moves", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1864,7 +1865,7 @@ public class MainWindow extends javax.swing.JFrame {
                 new Z(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
                 break;
         }
-        
+        try {
         if (this.next_moves.get(this.next_moves_pointer).toString().equals(move)) {
            ++this.next_moves_pointer;
         } else {
@@ -1875,6 +1876,9 @@ public class MainWindow extends javax.swing.JFrame {
         if (this.next_moves_pointer >= this.next_moves.size()) {
             this.next_moves_update = true;
             this.next_moves_pointer = 0;
+        }
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(this, e.toString()+"\n"+e.getMessage()+"\n"+e.getClass().getCanonicalName(),"WFT?!?!?!?",JOptionPane.ERROR_MESSAGE);
         }
         
         updateInterface();
@@ -1959,6 +1963,7 @@ public class MainWindow extends javax.swing.JFrame {
                 try {
                     this.next_moves = this.actualStrategy.getNextMoves();
                 } catch (NoSolutionException | TimeoutException ex) {
+                    this.rp_nextmoves_value.setText("");
                     JOptionPane.showMessageDialog(this, this.actualStrategy.toString()+" cannot found a solution.\nError: "+ex.getMessage(), "Error while looking for the next moves", JOptionPane.ERROR_MESSAGE);
                     Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -1976,6 +1981,7 @@ public class MainWindow extends javax.swing.JFrame {
         try {
             this.next_moves = this.actualStrategy.getNextMoves();
         } catch (NoSolutionException | TimeoutException ex) {
+            this.rp_nextmoves_value.setText("");
             JOptionPane.showMessageDialog(this, this.actualStrategy.toString()+" cannot found a solution.\nError: "+ex.getMessage(), "Error while looking for the next moves", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1995,6 +2001,7 @@ public class MainWindow extends javax.swing.JFrame {
         try {
             this.next_moves = this.actualStrategy.getNextMoves();
         } catch (NoSolutionException | TimeoutException ex) {
+            this.rp_nextmoves_value.setText("");
             JOptionPane.showMessageDialog(this, this.actualStrategy.toString()+" cannot found a solution.\nError: "+ex.getMessage(), "Error while looking for the next moves", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
