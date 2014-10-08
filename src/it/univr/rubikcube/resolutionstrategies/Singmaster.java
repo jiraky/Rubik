@@ -20,7 +20,6 @@ import it.univr.rubikcube.moves.Z;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
-import com.sun.org.apache.xml.internal.resolver.helpers.Debug;
 
 /**
  * Singmaster resolution strategy.
