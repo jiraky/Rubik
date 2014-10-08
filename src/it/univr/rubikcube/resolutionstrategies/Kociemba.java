@@ -131,12 +131,26 @@ public class Kociemba extends ResolutionStrategy {
         this.URtoDF = new int[arraySearchDepth];
         this.minDistPhase1 = new int[arraySearchDepth];
         this.minDistPhase2 = new int[arraySearchDepth];
+        final KociembaCubieCube cc = KociembaCubieCube.modelToCubieCube(
+                this.getModel());
+        final KociembaCoordinateCube c = new KociembaCoordinateCube(cc);
+        this.po[0] = 0;
+        this.ax[0] = 0;
+        this.flip[0] = c.flip;
+        this.twist[0] = c.twist;
+        this.parity[0] = c.parity;
+        this.slice[0] = c.FRtoBR / 24;
+        this.URFtoDLF[0] = c.URFtoDLF;
+        this.FRtoBR[0] = c.FRtoBR;
+        this.URtoUL[0] = c.URtoUL;
+        this.UBtoDF[0] = c.UBtoDF;
+        // Prevent the algorithm from failing if depth = 1 and n = 0.
         this.minDistPhase1[1] = 1;
         int mv = 0;
         int n = 0;
-        int s;
         boolean busy = false;
         int depthPhase1 = 1;
+        int s;
         final long tStart = System.currentTimeMillis();
         do {
             do {

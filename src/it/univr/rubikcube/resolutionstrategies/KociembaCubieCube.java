@@ -1,7 +1,11 @@
 package it.univr.rubikcube.resolutionstrategies;
 
+import it.univr.rubikcube.model.RubikCubeFaceColor;
+import it.univr.rubikcube.model.RubikCubeModel;
 import it.univr.rubikcube.model.RubikCubeModelCorner;
 import it.univr.rubikcube.model.RubikCubeModelEdge;
+import it.univr.rubikcube.model.RubikCubeModelFacelet;
+import it.univr.rubikcube.model.RubikCubeSide;
 
 /**
  * Cube seen at the "cubie" level in the Kociemba resolution strategy.
@@ -9,6 +13,10 @@ import it.univr.rubikcube.model.RubikCubeModelEdge;
  * @author Alessandro Menti
  */
 public class KociembaCubieCube {
+    /**
+     * Basic cube moves.
+     */
+    static KociembaCubieCube[] moveCube = new KociembaCubieCube[6];
     /**
      * Corner permutation on the upper face.
      */
@@ -237,50 +245,6 @@ public class KociembaCubieCube {
      * Edge orientation on the bottom face.
      */
     private static byte[] eoB = {0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1};
-
-    /**
-     * Basic cube moves.
-     */
-    static KociembaCubieCube[] moveCube = new KociembaCubieCube[6];
-
-    static {
-        moveCube[0] = new KociembaCubieCube();
-        moveCube[0].cp = cpU;
-        moveCube[0].co = coU;
-        moveCube[0].ep = epU;
-        moveCube[0].eo = eoU;
-
-        moveCube[1] = new KociembaCubieCube();
-        moveCube[1].cp = cpR;
-        moveCube[1].co = coR;
-        moveCube[1].ep = epR;
-        moveCube[1].eo = eoR;
-
-        moveCube[2] = new KociembaCubieCube();
-        moveCube[2].cp = cpF;
-        moveCube[2].co = coF;
-        moveCube[2].ep = epF;
-        moveCube[2].eo = eoF;
-
-        moveCube[3] = new KociembaCubieCube();
-        moveCube[3].cp = cpD;
-        moveCube[3].co = coD;
-        moveCube[3].ep = epD;
-        moveCube[3].eo = eoD;
-
-        moveCube[4] = new KociembaCubieCube();
-        moveCube[4].cp = cpL;
-        moveCube[4].co = coL;
-        moveCube[4].ep = epL;
-        moveCube[4].eo = eoL;
-
-        moveCube[5] = new KociembaCubieCube();
-        moveCube[5].cp = cpB;
-        moveCube[5].co = coB;
-        moveCube[5].ep = epB;
-        moveCube[5].eo = eoB;
-
-    }
     /**
      * Corner permutations.
      */
@@ -320,6 +284,46 @@ public class KociembaCubieCube {
      */
     private byte[] eo = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, };
     /**
+     * Static initializer for the basic moves.
+     */
+    static {
+        moveCube[0] = new KociembaCubieCube();
+        moveCube[0].cp = cpU;
+        moveCube[0].co = coU;
+        moveCube[0].ep = epU;
+        moveCube[0].eo = eoU;
+
+        moveCube[1] = new KociembaCubieCube();
+        moveCube[1].cp = cpR;
+        moveCube[1].co = coR;
+        moveCube[1].ep = epR;
+        moveCube[1].eo = eoR;
+
+        moveCube[2] = new KociembaCubieCube();
+        moveCube[2].cp = cpF;
+        moveCube[2].co = coF;
+        moveCube[2].ep = epF;
+        moveCube[2].eo = eoF;
+
+        moveCube[3] = new KociembaCubieCube();
+        moveCube[3].cp = cpD;
+        moveCube[3].co = coD;
+        moveCube[3].ep = epD;
+        moveCube[3].eo = eoD;
+
+        moveCube[4] = new KociembaCubieCube();
+        moveCube[4].cp = cpL;
+        moveCube[4].co = coL;
+        moveCube[4].ep = epL;
+        moveCube[4].eo = eoL;
+
+        moveCube[5] = new KociembaCubieCube();
+        moveCube[5].cp = cpB;
+        moveCube[5].co = coB;
+        moveCube[5].ep = epB;
+        moveCube[5].eo = eoB;
+    }
+    /**
      * Initializes a new default cube.
      */
     public KociembaCubieCube() {
@@ -351,7 +355,7 @@ public class KociembaCubieCube {
      * @param k Value of <tt>k</tt>.
      * @return <tt>n</tt> choose <tt>k</tt>
      */
-    private static int Cnk(final int n, final int k) {
+    private static int chooseNK(final int n, final int k) {
         int i;
         int j;
         int s;
@@ -436,7 +440,7 @@ public class KociembaCubieCube {
      * corners.
      * @param b Cube to multiply this cube with.
      */
-    void cornerMultiply(final KociembaCubieCube b) {
+    final void cornerMultiply(final KociembaCubieCube b) {
         final RubikCubeModelCorner[] cPerm = new RubikCubeModelCorner[8];
         final byte[] cOri = new byte[8];
         for (RubikCubeModelCorner corn : RubikCubeModelCorner.values()) {
@@ -483,7 +487,7 @@ public class KociembaCubieCube {
      * edges.
      * @param b Cube to multiply this cube with.
      */
-    void edgeMultiply(final KociembaCubieCube b) {
+    final void edgeMultiply(final KociembaCubieCube b) {
         final RubikCubeModelEdge[] ePerm = new RubikCubeModelEdge[12];
         final byte[] eOri = new byte[12];
         for (RubikCubeModelEdge edge : RubikCubeModelEdge.values()) {
@@ -496,44 +500,10 @@ public class KociembaCubieCube {
         }
     }
     /**
-     * Multiply this CubieCube with another CubieCube b.
-     * @param b Cube to multiply this cube with.
-     */
-    private void multiply(final KociembaCubieCube b) {
-        this.cornerMultiply(b);
-    }
-    /**
-     * Compute the inverse cube.
-     * @param c Cube.
-     */
-    private void invCubieCube(final KociembaCubieCube c) {
-        for (RubikCubeModelEdge edge : RubikCubeModelEdge.values()) {
-            c.ep[this.ep[edge.ordinal()].ordinal()] = edge;
-        }
-        for (RubikCubeModelEdge edge : RubikCubeModelEdge.values()) {
-            c.eo[edge.ordinal()] = this.eo[c.ep[edge.ordinal()].ordinal()];
-        }
-        for (RubikCubeModelCorner corn : RubikCubeModelCorner.values()) {
-            c.cp[this.cp[corn.ordinal()].ordinal()] = corn;
-        }
-        for (RubikCubeModelCorner corn : RubikCubeModelCorner.values()) {
-            final byte ori = this.co[c.cp[corn.ordinal()].ordinal()];
-            if (ori >= 3) {
-                // Just for completeness. We do not invert mirrored cubes here.
-                c.co[corn.ordinal()] = ori;
-            } else {
-                c.co[corn.ordinal()] = (byte) -ori;
-                if (c.co[corn.ordinal()] < 0) {
-                    c.co[corn.ordinal()] += 3;
-                }
-            }
-        }
-    }
-    /**
      * Get the twist of the eight corners.
      * @return The twist of the corners (0 <= twist < 3^7).
      */
-    short getTwist() {
+    final short getTwist() {
         short ret = 0;
         for (int i = RubikCubeModelCorner.URF.ordinal();
                 i < RubikCubeModelCorner.DRB.ordinal(); ++i) {
@@ -545,7 +515,7 @@ public class KociembaCubieCube {
      * Sets the twist of the eight corners.
      * @param twist The twist of the corners.
      */
-    void setTwist(final short twist) {
+    final void setTwist(final short twist) {
         short twistTmp = twist;
         int twistParity = 0;
         for (int i = RubikCubeModelCorner.DRB.ordinal() - 1;
@@ -561,7 +531,7 @@ public class KociembaCubieCube {
      * Gets the flip of the twelve edges.
      * @return The flip of the edges (0<= flip < 2^11).
      */
-    short getFlip() {
+    final short getFlip() {
         short ret = 0;
         for (int i = RubikCubeModelEdge.UR.ordinal();
                 i < RubikCubeModelEdge.BR.ordinal(); ++i) {
@@ -573,7 +543,7 @@ public class KociembaCubieCube {
      * Sets the flip of the twelve edges.
      * @param flip The flip of the edges.
      */
-    void setFlip(final short flip) {
+    final void setFlip(final short flip) {
         short flipTmp = flip;
         int flipParity = 0;
         for (int i = RubikCubeModelEdge.BR.ordinal() - 1;
@@ -585,13 +555,11 @@ public class KociembaCubieCube {
         this.eo[RubikCubeModelEdge.BR.ordinal()]
                 = (byte) ((2 - flipParity % 2) % 2);
     }
-    // Parity calculation. The parity of corners and edges are the same if the
-    // cube is solvable.
     /**
-     * Gets the parity of the corner permutation.
-     * @return The parity of the corner permutation.
+     * Gets the corner parity for this cube.
+     * @return Corner parity for this cube.
      */
-    private short cornerParity() {
+    final short cornerParity() {
         int s = 0;
         for (int i = RubikCubeModelCorner.DRB.ordinal();
                 i >= RubikCubeModelCorner.URF.ordinal() + 1; --i) {
@@ -604,26 +572,10 @@ public class KociembaCubieCube {
         return (short) (s % 2);
     }
     /**
-     * Gets the parity of the edge permutation.
-     * @return The parity of the edge permutation.
-     */
-    private short edgeParity() {
-        int s = 0;
-        for (int i = RubikCubeModelEdge.BR.ordinal();
-                i >= RubikCubeModelEdge.UR.ordinal() + 1; --i) {
-            for (int j = i - 1; j >= RubikCubeModelEdge.UR.ordinal(); --j) {
-                if (this.ep[j].ordinal() > this.ep[i].ordinal()) {
-                    ++s;
-                }
-            }
-        }
-        return (short) (s % 2);
-    }
-    /**
-     * Permute the UD-slice edges FR, FL, BL and BR.
+     * Gets the permutation of the UD-slice edges FR, FL, BL and BR.
      * @return The requested permutation.
      */
-    short getFRtoBR() {
+    final short getFRtoBR() {
         int a = 0;
         int x = 0;
         final RubikCubeModelEdge[] edge4 = new RubikCubeModelEdge[4];
@@ -631,7 +583,7 @@ public class KociembaCubieCube {
                 j >= RubikCubeModelEdge.UR.ordinal(); --j) {
             if (RubikCubeModelEdge.FR.ordinal() <= this.ep[j].ordinal()
                     && this.ep[j].ordinal() <= RubikCubeModelEdge.BR.ordinal()) {
-                a += Cnk(11 - j, x + 1);
+                a += chooseNK(11 - j, x + 1);
                 edge4[3 - x++] = this.ep[j];
             }
         }
@@ -646,109 +598,160 @@ public class KociembaCubieCube {
         }
         return (short) (24 * a + b);
     }
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    void setFRtoBR(short idx) {
+    /**
+     * Permutes the UD-slice edges FR, FL, BL and BR.
+     * @param idx The index identifying the permutation.
+     */
+    final void setFRtoBR(final short idx) {
         int x;
-        RubikCubeModelEdge[] sliceEdge = {RubikCubeModelEdge.FR, RubikCubeModelEdge.FL, RubikCubeModelEdge.BL, RubikCubeModelEdge.BR};
-        RubikCubeModelEdge[] otherEdge = {RubikCubeModelEdge.UR, RubikCubeModelEdge.UF, RubikCubeModelEdge.UL, RubikCubeModelEdge.UB, RubikCubeModelEdge.DR, RubikCubeModelEdge.DF, RubikCubeModelEdge.DL, RubikCubeModelEdge.DB};
-        int b = idx % 24; // Permutation
-        int a = idx / 24; // Combination
-        for (RubikCubeModelEdge e : RubikCubeModelEdge.values())
-            ep[e.ordinal()] = RubikCubeModelEdge.DB;// Use UR to invalidate all edges
-
-        for (int j = 1, k; j < 4; j++)// generate permutation from index b
-        {
+        final RubikCubeModelEdge[] sliceEdge = {
+            RubikCubeModelEdge.FR,
+            RubikCubeModelEdge.FL,
+            RubikCubeModelEdge.BL,
+            RubikCubeModelEdge.BR,
+        };
+        final RubikCubeModelEdge[] otherEdge = {
+            RubikCubeModelEdge.UR,
+            RubikCubeModelEdge.UF,
+            RubikCubeModelEdge.UL,
+            RubikCubeModelEdge.UB,
+            RubikCubeModelEdge.DR,
+            RubikCubeModelEdge.DF,
+            RubikCubeModelEdge.DL,
+            RubikCubeModelEdge.DB,
+        };
+        // Permutation index
+        int b = idx % 24;
+        // Combination index
+        int a = idx / 24;
+        // Invalidate all edges
+        for (RubikCubeModelEdge e : RubikCubeModelEdge.values()) {
+            this.ep[e.ordinal()] = RubikCubeModelEdge.DB;
+        }
+        int k;
+        for (int j = 1; j < 4; ++j) {
             k = b % (j + 1);
             b /= j + 1;
-            while (k-- > 0)
+            while (k-- > 0) {
                 rotateRight(sliceEdge, 0, j);
+            }
         }
-
-        x = 3;// generate combination and set slice edges
-        for (int j = RubikCubeModelEdge.UR.ordinal(); j <= RubikCubeModelEdge.BR.ordinal(); j++)
-            if (a - Cnk(11 - j, x + 1) >= 0) {
-                ep[j] = sliceEdge[3 - x];
-                a -= Cnk(11 - j, x-- + 1);
+        // Generate combinations and set slice edges
+        x = 3;
+        for (int j = RubikCubeModelEdge.UR.ordinal();
+                j <= RubikCubeModelEdge.BR.ordinal(); ++j) {
+            if (a - chooseNK(11 - j, x + 1) >= 0) {
+                this.ep[j] = sliceEdge[3 - x];
+                a -= chooseNK(11 - j, x-- + 1);
             }
-        x = 0; // set the remaining edges UR..DB
-        for (int j = RubikCubeModelEdge.UR.ordinal(); j <= RubikCubeModelEdge.BR.ordinal(); j++)
-            if (ep[j] == RubikCubeModelEdge.DB)
-                ep[j] = otherEdge[x++];
-
+        }
+        // Set the remaining edges UR..DB
+        x = 0;
+        for (int j = RubikCubeModelEdge.UR.ordinal();
+                j <= RubikCubeModelEdge.BR.ordinal(); ++j) {
+            if (this.ep[j] == RubikCubeModelEdge.DB) {
+                this.ep[j] = otherEdge[x++];
+            }
+        }
     }
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // Permutation of all corners except DBL and DRB
-    short getURFtoDLF() {
-        int a = 0, x = 0;
-        RubikCubeModelCorner[] corner6 = new RubikCubeModelCorner[6];
-        // compute the index a < (8 choose 6) and the corner permutation.
-        for (int j = RubikCubeModelCorner.URF.ordinal(); j <= RubikCubeModelCorner.DRB.ordinal(); j++)
-            if (cp[j].ordinal() <= RubikCubeModelCorner.DLF.ordinal()) {
-                a += Cnk(j, x + 1);
-                corner6[x++] = cp[j];
+    /**
+     * Gets the permutation of all corners except DBL and DRB.
+     * @return The requested permutation.
+     */
+    final short getURFtoDLF() {
+        int a = 0;
+        int x = 0;
+        final RubikCubeModelCorner[] corner6 = new RubikCubeModelCorner[6];
+        // Compute the index a < (8 choose 6) and the corner permutation.
+        for (int j = RubikCubeModelCorner.URF.ordinal();
+                j <= RubikCubeModelCorner.DRB.ordinal(); ++j) {
+            if (this.cp[j].ordinal() <= RubikCubeModelCorner.DLF.ordinal()) {
+                a += chooseNK(j, x + 1);
+                corner6[x++] = this.cp[j];
             }
-
+        }
         int b = 0;
-        for (int j = 5; j > 0; j--)// compute the index b < 6! for the
-        // permutation in corner6
-        {
+        // compute the index b < 6! for the permutation in corner6
+        for (int j = 5; j > 0; --j) {
             int k = 0;
             while (corner6[j].ordinal() != j) {
                 rotateLeft(corner6, 0, j);
-                k++;
+                ++k;
             }
             b = (j + 1) * b + k;
         }
         return (short) (720 * a + b);
     }
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    void setURFtoDLF(short idx) {
+    /**
+     * Permutes all corners except DBL and DRB.
+     * @param idx The requested index.
+     */
+    final void setURFtoDLF(final short idx) {
         int x;
-        RubikCubeModelCorner[] corner6 = {RubikCubeModelCorner.URF, RubikCubeModelCorner.UFL, RubikCubeModelCorner.ULB, RubikCubeModelCorner.UBR, RubikCubeModelCorner.DFR, RubikCubeModelCorner.DLF};
-        RubikCubeModelCorner[] otherCorner = {RubikCubeModelCorner.DBL, RubikCubeModelCorner.DRB};
-        int b = idx % 720; // Permutation
-        int a = idx / 720; // Combination
-        for (RubikCubeModelCorner c : RubikCubeModelCorner.values())
-            cp[c.ordinal()] = RubikCubeModelCorner.DRB;// Use DRB to invalidate all corners
-
-        for (int j = 1, k; j < 6; j++)// generate permutation from index b
-        {
+        final RubikCubeModelCorner[] corner6 = {
+            RubikCubeModelCorner.URF,
+            RubikCubeModelCorner.UFL,
+            RubikCubeModelCorner.ULB,
+            RubikCubeModelCorner.UBR,
+            RubikCubeModelCorner.DFR,
+            RubikCubeModelCorner.DLF,
+        };
+        final RubikCubeModelCorner[] otherCorner = {
+            RubikCubeModelCorner.DBL,
+            RubikCubeModelCorner.DRB,
+        };
+        // Permutation
+        int b = idx % 720;
+        // Combination
+        int a = idx / 720;
+        // Use DRB to invalidate all corners
+        for (RubikCubeModelCorner c : RubikCubeModelCorner.values()) {
+            this.cp[c.ordinal()] = RubikCubeModelCorner.DRB;
+        }
+        // generate permutation from index b
+        int k;
+        for (int j = 1; j < 6; ++j) {
             k = b % (j + 1);
             b /= j + 1;
-            while (k-- > 0)
+            while (k-- > 0) {
                 rotateRight(corner6, 0, j);
+            }
         }
-        x = 5;// generate combination and set corners
-        for (int j = RubikCubeModelCorner.DRB.ordinal(); j >= 0; j--)
-            if (a - Cnk(j, x + 1) >= 0) {
-                cp[j] = corner6[x];
-                a -= Cnk(j, x-- + 1);
+        // Generate combination and set corners
+        x = 5;
+        for (int j = RubikCubeModelCorner.DRB.ordinal(); j >= 0; --j) {
+            if (a - chooseNK(j, x + 1) >= 0) {
+                this.cp[j] = corner6[x];
+                a -= chooseNK(j, x-- + 1);
             }
+        }
         x = 0;
-        for (int j = RubikCubeModelCorner.URF.ordinal(); j <= RubikCubeModelCorner.DRB.ordinal(); j++)
-            if (cp[j] == RubikCubeModelCorner.DRB)
-                cp[j] = otherCorner[x++];
-    }
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // Permutation of the six edges UR,UF,UL,UB,DR,DF.
-    int getURtoDF() {
-        int a = 0, x = 0;
-        RubikCubeModelEdge[] edge6 = new RubikCubeModelEdge[6];
-        // compute the index a < (12 choose 6) and the edge permutation.
-        for (int j = RubikCubeModelEdge.UR.ordinal(); j <= RubikCubeModelEdge.BR.ordinal(); j++)
-            if (ep[j].ordinal() <= RubikCubeModelEdge.DF.ordinal()) {
-                a += Cnk(j, x + 1);
-                edge6[x++] = ep[j];
+        for (int j = RubikCubeModelCorner.URF.ordinal();
+                j <= RubikCubeModelCorner.DRB.ordinal(); ++j) {
+            if (this.cp[j] == RubikCubeModelCorner.DRB) {
+                this.cp[j] = otherCorner[x++];
             }
-
+        }
+    }
+    /**
+     * Gets the permutation of the six edges UR, UF, UL, UB, DR, DF.
+     * @return The requested permutation.
+     */
+    final int getURtoDF() {
+        int a = 0;
+        int x = 0;
+        final RubikCubeModelEdge[] edge6 = new RubikCubeModelEdge[6];
+        // Compute the index a < (12 choose 6) and the edge permutation.
+        for (int j = RubikCubeModelEdge.UR.ordinal();
+                j <= RubikCubeModelEdge.BR.ordinal(); ++j) {
+            if (this.ep[j].ordinal() <= RubikCubeModelEdge.DF.ordinal()) {
+                a += chooseNK(j, x + 1);
+                edge6[x++] = this.ep[j];
+            }
+        }
         int b = 0;
-        for (int j = 5; j > 0; j--)// compute the index b < 6! for the
-        // permutation in edge6
-        {
+        // Compute the index b < 6! for the permutation in edge6
+        for (int j = 5; j > 0; --j) {
             int k = 0;
             while (edge6[j].ordinal() != j) {
                 rotateLeft(edge6, 0, j);
@@ -758,16 +761,32 @@ public class KociembaCubieCube {
         }
         return 720 * a + b;
     }
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    void setURtoDF(int idx) {
+    /**
+     * Permutes the six edges UR, UF, UL, UB, DR, DF.
+     * @param idx The requested index.
+     */
+    final void setURtoDF(final int idx) {
         int x;
-        RubikCubeModelEdge[] edge6 = {RubikCubeModelEdge.UR, RubikCubeModelEdge.UF, RubikCubeModelEdge.UL, RubikCubeModelEdge.UB, RubikCubeModelEdge.DR, RubikCubeModelEdge.DF};
-        RubikCubeModelEdge[] otherEdge = {RubikCubeModelEdge.DL, RubikCubeModelEdge.DB, RubikCubeModelEdge.FR, RubikCubeModelEdge.FL, RubikCubeModelEdge.BL, RubikCubeModelEdge.BR};
+        final RubikCubeModelEdge[] edge6 = {
+            RubikCubeModelEdge.UR,
+            RubikCubeModelEdge.UF,
+            RubikCubeModelEdge.UL,
+            RubikCubeModelEdge.UB,
+            RubikCubeModelEdge.DR,
+            RubikCubeModelEdge.DF,
+        };
+        final RubikCubeModelEdge[] otherEdge = {
+            RubikCubeModelEdge.DL,
+            RubikCubeModelEdge.DB,
+            RubikCubeModelEdge.FR,
+            RubikCubeModelEdge.FL,
+            RubikCubeModelEdge.BL,
+            RubikCubeModelEdge.BR
+        };
         int b = idx % 720; // Permutation
         int a = idx / 720; // Combination
         for (RubikCubeModelEdge e : RubikCubeModelEdge.values())
-            ep[e.ordinal()] = RubikCubeModelEdge.BR;// Use BR to invalidate all edges
+            this.ep[e.ordinal()] = RubikCubeModelEdge.BR;// Use BR to invalidate all edges
 
         for (int j = 1, k; j < 6; j++)// generate permutation from index b
         {
@@ -778,14 +797,14 @@ public class KociembaCubieCube {
         }
         x = 5;// generate combination and set edges
         for (int j = RubikCubeModelEdge.BR.ordinal(); j >= 0; j--)
-            if (a - Cnk(j, x + 1) >= 0) {
-                ep[j] = edge6[x];
-                a -= Cnk(j, x-- + 1);
+            if (a - chooseNK(j, x + 1) >= 0) {
+                this.ep[j] = edge6[x];
+                a -= chooseNK(j, x-- + 1);
             }
         x = 0; // set the remaining edges DL..BR
         for (int j = RubikCubeModelEdge.UR.ordinal(); j <= RubikCubeModelEdge.BR.ordinal(); j++)
-            if (ep[j] == RubikCubeModelEdge.BR)
-                ep[j] = otherEdge[x++];
+            if (this.ep[j] == RubikCubeModelEdge.BR)
+                this.ep[j] = otherEdge[x++];
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -812,9 +831,9 @@ public class KociembaCubieCube {
         RubikCubeModelEdge[] edge3 = new RubikCubeModelEdge[3];
         // compute the index a < (12 choose 3) and the edge permutation.
         for (int j = RubikCubeModelEdge.UR.ordinal(); j <= RubikCubeModelEdge.BR.ordinal(); j++)
-            if (ep[j].ordinal() <= RubikCubeModelEdge.UL.ordinal()) {
-                a += Cnk(j, x + 1);
-                edge3[x++] = ep[j];
+            if (this.ep[j].ordinal() <= RubikCubeModelEdge.UL.ordinal()) {
+                a += chooseNK(j, x + 1);
+                edge3[x++] = this.ep[j];
             }
 
         int b = 0;
@@ -838,7 +857,7 @@ public class KociembaCubieCube {
         int b = idx % 6; // Permutation
         int a = idx / 6; // Combination
         for (RubikCubeModelEdge e : RubikCubeModelEdge.values())
-            ep[e.ordinal()] = RubikCubeModelEdge.BR;// Use BR to invalidate all edges
+            this.ep[e.ordinal()] = RubikCubeModelEdge.BR;// Use BR to invalidate all edges
 
         for (int j = 1, k; j < 3; j++)// generate permutation from index b
         {
@@ -849,9 +868,9 @@ public class KociembaCubieCube {
         }
         x = 2;// generate combination and set edges
         for (int j = RubikCubeModelEdge.BR.ordinal(); j >= 0; j--)
-            if (a - Cnk(j, x + 1) >= 0) {
-                ep[j] = edge3[x];
-                a -= Cnk(j, x-- + 1);
+            if (a - chooseNK(j, x + 1) >= 0) {
+                this.ep[j] = edge3[x];
+                a -= chooseNK(j, x-- + 1);
             }
     }
 
@@ -862,9 +881,9 @@ public class KociembaCubieCube {
         RubikCubeModelEdge[] edge3 = new RubikCubeModelEdge[3];
         // compute the index a < (12 choose 3) and the edge permutation.
         for (int j = RubikCubeModelEdge.UR.ordinal(); j <= RubikCubeModelEdge.BR.ordinal(); j++)
-            if (RubikCubeModelEdge.UB.ordinal() <= ep[j].ordinal() && ep[j].ordinal() <= RubikCubeModelEdge.DF.ordinal()) {
-                a += Cnk(j, x + 1);
-                edge3[x++] = ep[j];
+            if (RubikCubeModelEdge.UB.ordinal() <= this.ep[j].ordinal() && this.ep[j].ordinal() <= RubikCubeModelEdge.DF.ordinal()) {
+                a += chooseNK(j, x + 1);
+                edge3[x++] = this.ep[j];
             }
 
         int b = 0;
@@ -888,7 +907,7 @@ public class KociembaCubieCube {
         int b = idx % 6; // Permutation
         int a = idx / 6; // Combination
         for (RubikCubeModelEdge e : RubikCubeModelEdge.values())
-            ep[e.ordinal()] = RubikCubeModelEdge.BR;// Use BR to invalidate all edges
+            this.ep[e.ordinal()] = RubikCubeModelEdge.BR;// Use BR to invalidate all edges
 
         for (int j = 1, k; j < 3; j++)// generate permutation from index b
         {
@@ -899,117 +918,146 @@ public class KociembaCubieCube {
         }
         x = 2;// generate combination and set edges
         for (int j = RubikCubeModelEdge.BR.ordinal(); j >= 0; j--)
-            if (a - Cnk(j, x + 1) >= 0) {
-                ep[j] = edge3[x];
-                a -= Cnk(j, x-- + 1);
+            if (a - chooseNK(j, x + 1) >= 0) {
+                this.ep[j] = edge3[x];
+                a -= chooseNK(j, x-- + 1);
             }
     }
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    private int getURFtoDLB() {
-        RubikCubeModelCorner[] perm = new RubikCubeModelCorner[8];
-        int b = 0;
-        for (int i = 0; i < 8; i++)
-            perm[i] = cp[i];
-        for (int j = 7; j > 0; j--)// compute the index b < 8! for the permutation in perm
-        {
-            int k = 0;
-            while (perm[j].ordinal() != j) {
-                rotateLeft(perm, 0, j);
-                k++;
+    public static final KociembaCubieCube modelToCubieCube(final RubikCubeModel m) {
+        final RubikCubeModelFacelet[][] cornerFacelet = {
+            {RubikCubeModelFacelet.U9, RubikCubeModelFacelet.R1, RubikCubeModelFacelet.F3, },
+            {RubikCubeModelFacelet.U7, RubikCubeModelFacelet.F1, RubikCubeModelFacelet.L3, },
+            {RubikCubeModelFacelet.U1, RubikCubeModelFacelet.L1, RubikCubeModelFacelet.B3, },
+            {RubikCubeModelFacelet.U3, RubikCubeModelFacelet.B1, RubikCubeModelFacelet.R3, },
+            {RubikCubeModelFacelet.D3, RubikCubeModelFacelet.F9, RubikCubeModelFacelet.R7, },
+            {RubikCubeModelFacelet.D1, RubikCubeModelFacelet.L9, RubikCubeModelFacelet.F7, },
+            {RubikCubeModelFacelet.D7, RubikCubeModelFacelet.B9, RubikCubeModelFacelet.L7, },
+            {RubikCubeModelFacelet.D9, RubikCubeModelFacelet.R9, RubikCubeModelFacelet.B7 },
+        };
+        final RubikCubeModelFacelet[][] edgeFacelet = {
+            {RubikCubeModelFacelet.U6, RubikCubeModelFacelet.R2, },
+            {RubikCubeModelFacelet.U8, RubikCubeModelFacelet.F2, },
+            {RubikCubeModelFacelet.U4, RubikCubeModelFacelet.L2, },
+            {RubikCubeModelFacelet.U2, RubikCubeModelFacelet.B2, },
+            {RubikCubeModelFacelet.D6, RubikCubeModelFacelet.R8, },
+            {RubikCubeModelFacelet.D2, RubikCubeModelFacelet.F8, },
+            {RubikCubeModelFacelet.D4, RubikCubeModelFacelet.L8, },
+            {RubikCubeModelFacelet.D8, RubikCubeModelFacelet.B8, },
+            {RubikCubeModelFacelet.F6, RubikCubeModelFacelet.R4, },
+            {RubikCubeModelFacelet.F4, RubikCubeModelFacelet.L6, },
+            {RubikCubeModelFacelet.B6, RubikCubeModelFacelet.L4, },
+            {RubikCubeModelFacelet.B4, RubikCubeModelFacelet.R6, },
+        };
+        final RubikCubeFaceColor[][] cornerColor = {
+            {RubikCubeSide.UP.getStandardColor(), RubikCubeSide.RIGHT.getStandardColor(), RubikCubeSide.FRONT.getStandardColor(), },
+            {RubikCubeSide.UP.getStandardColor(), RubikCubeSide.FRONT.getStandardColor(), RubikCubeSide.LEFT.getStandardColor(), },
+            {RubikCubeSide.UP.getStandardColor(), RubikCubeSide.LEFT.getStandardColor(), RubikCubeSide.BACK.getStandardColor(), },
+            {RubikCubeSide.UP.getStandardColor(), RubikCubeSide.BACK.getStandardColor(), RubikCubeSide.RIGHT.getStandardColor(), },
+            {RubikCubeSide.DOWN.getStandardColor(), RubikCubeSide.FRONT.getStandardColor(), RubikCubeSide.RIGHT.getStandardColor(), },
+            {RubikCubeSide.DOWN.getStandardColor(), RubikCubeSide.LEFT.getStandardColor(), RubikCubeSide.FRONT.getStandardColor(), },
+            {RubikCubeSide.DOWN.getStandardColor(), RubikCubeSide.BACK.getStandardColor(), RubikCubeSide.LEFT.getStandardColor(), },
+            {RubikCubeSide.DOWN.getStandardColor(), RubikCubeSide.RIGHT.getStandardColor(), RubikCubeSide.BACK.getStandardColor(), },
+        };
+        final RubikCubeFaceColor[][] edgeColor = {
+            {RubikCubeSide.UP.getStandardColor(), RubikCubeSide.RIGHT.getStandardColor(), },
+            {RubikCubeSide.UP.getStandardColor(), RubikCubeSide.FRONT.getStandardColor(), },
+            {RubikCubeSide.UP.getStandardColor(), RubikCubeSide.LEFT.getStandardColor(), },
+            {RubikCubeSide.UP.getStandardColor(), RubikCubeSide.BACK.getStandardColor(), },
+            {RubikCubeSide.DOWN.getStandardColor(), RubikCubeSide.RIGHT.getStandardColor(), },
+            {RubikCubeSide.DOWN.getStandardColor(), RubikCubeSide.FRONT.getStandardColor(), },
+            {RubikCubeSide.DOWN.getStandardColor(), RubikCubeSide.LEFT.getStandardColor(), },
+            {RubikCubeSide.DOWN.getStandardColor(), RubikCubeSide.BACK.getStandardColor(), },
+            {RubikCubeSide.FRONT.getStandardColor(), RubikCubeSide.RIGHT.getStandardColor(), },
+            {RubikCubeSide.FRONT.getStandardColor(), RubikCubeSide.LEFT.getStandardColor(), },
+            {RubikCubeSide.BACK.getStandardColor(), RubikCubeSide.LEFT.getStandardColor(), },
+            {RubikCubeSide.BACK.getStandardColor(), RubikCubeSide.RIGHT.getStandardColor(), },
+        };
+        final KociembaCubieCube ccRet = new KociembaCubieCube();
+        byte ori;
+        RubikCubeFaceColor col1;
+        RubikCubeFaceColor col2;
+        // Invalidate corners and edges
+        for (int i = 0; i < 8; ++i) {
+            ccRet.cp[i] = RubikCubeModelCorner.URF;
+        }
+        for (int i = 0; i < 12; ++i) {
+            ccRet.ep[i] = RubikCubeModelEdge.UR;
+        }
+        for (RubikCubeModelCorner i : RubikCubeModelCorner.values()) {
+            for (ori = 0; ori < 3; ori++) {
+                if (mapModelToKociemba(m, cornerFacelet[i.ordinal()][ori].ordinal()) == RubikCubeSide.UP.getStandardColor()
+                        || mapModelToKociemba(m, cornerFacelet[i.ordinal()][ori].ordinal()) == RubikCubeSide.DOWN.getStandardColor()) {
+                    break;
+                }
             }
-            b = (j + 1) * b + k;
-        }
-        return b;
-    }
+            
+            col1 = mapModelToKociemba(m, cornerFacelet[i.ordinal()][(ori + 1) % 3].ordinal());
+            col2 = mapModelToKociemba(m, cornerFacelet[i.ordinal()][(ori + 2) % 3].ordinal());
 
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    private void setURFtoDLB(int idx) {
-        RubikCubeModelCorner[] perm = {RubikCubeModelCorner.URF, RubikCubeModelCorner.UFL, RubikCubeModelCorner.ULB, RubikCubeModelCorner.UBR, RubikCubeModelCorner.DFR, RubikCubeModelCorner.DLF, RubikCubeModelCorner.DBL, RubikCubeModelCorner.DRB};
-        int k;
-        for (int j = 1; j < 8; j++) {
-            k = idx % (j + 1);
-            idx /= j + 1;
-            while (k-- > 0)
-                rotateRight(perm, 0, j);
-        }
-        int x = 7;// set corners
-        for (int j = 7; j >= 0; j--)
-            cp[j] = perm[x--];
-    }
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    private int getURtoBR() {
-        RubikCubeModelEdge[] perm = new RubikCubeModelEdge[12];
-        int b = 0;
-        for (int i = 0; i < 12; i++)
-            perm[i] = ep[i];
-        for (int j = 11; j > 0; j--)// compute the index b < 12! for the permutation in perm
-        {
-            int k = 0;
-            while (perm[j].ordinal() != j) {
-                rotateLeft(perm, 0, j);
-                k++;
+            for (RubikCubeModelCorner j : RubikCubeModelCorner.values()) {
+                if (col1 == cornerColor[j.ordinal()][1] && col2 == cornerColor[j.ordinal()][2]) {
+                    ccRet.cp[i.ordinal()] = j;
+                    ccRet.co[i.ordinal()] = (byte) (ori % 3);
+                    break;
+                }
             }
-            b = (j + 1) * b + k;
         }
-        return b;
-    }
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    private void setURtoBR(int idx) {
-        RubikCubeModelEdge[] perm = {RubikCubeModelEdge.UR, RubikCubeModelEdge.UF, RubikCubeModelEdge.UL, RubikCubeModelEdge.UB, RubikCubeModelEdge.DR, RubikCubeModelEdge.DF, RubikCubeModelEdge.DL, RubikCubeModelEdge.DB, RubikCubeModelEdge.FR, RubikCubeModelEdge.FL, RubikCubeModelEdge.BL, RubikCubeModelEdge.BR};
-        int k;
-        for (int j = 1; j < 12; j++) {
-            k = idx % (j + 1);
-            idx /= j + 1;
-            while (k-- > 0)
-                rotateRight(perm, 0, j);
+        for (RubikCubeModelEdge i : RubikCubeModelEdge.values()) {
+            for (RubikCubeModelEdge j : RubikCubeModelEdge.values()) {
+                if (mapModelToKociemba(m, edgeFacelet[i.ordinal()][0].ordinal()) == edgeColor[j.ordinal()][0]
+                        && mapModelToKociemba(m, edgeFacelet[i.ordinal()][1].ordinal()) == edgeColor[j.ordinal()][1]) {
+                    ccRet.ep[i.ordinal()] = j;
+                    ccRet.eo[i.ordinal()] = 0;
+                    break;
+                }
+                if (mapModelToKociemba(m, edgeFacelet[i.ordinal()][0].ordinal()) == edgeColor[j.ordinal()][1]
+                        && mapModelToKociemba(m, edgeFacelet[i.ordinal()][1].ordinal()) == edgeColor[j.ordinal()][0]) {
+                    ccRet.ep[i.ordinal()] = j;
+                    ccRet.eo[i.ordinal()] = 1;
+                    break;
+                }
+            }
         }
-        int x = 11;// set edges
-        for (int j = 11; j >= 0; j--)
-            ep[j] = perm[x--];
+        return ccRet;
     }
-
-    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // Check a cubiecube for solvability. Return the error code.
-    // 0: Cube is solvable
-    // -2: Not all 12 edges exist exactly once
-    // -3: Flip error: One edge has to be flipped
-    // -4: Not all corners exist exactly once
-    // -5: Twist error: One corner has to be twisted
-    // -6: Parity error: Two corners ore two edges have to be exchanged
-    private int verify() {
-        int sum = 0;
-        int[] edgeCount = new int[12];
-        for (RubikCubeModelEdge e : RubikCubeModelEdge.values())
-            edgeCount[ep[e.ordinal()].ordinal()]++;
-        for (int i = 0; i < 12; i++)
-            if (edgeCount[i] != 1)
-                return -2;
-
-        for (int i = 0; i < 12; i++)
-            sum += eo[i];
-        if (sum % 2 != 0)
-            return -3;
-
-        int[] cornerCount = new int[8];
-        for (RubikCubeModelCorner c : RubikCubeModelCorner.values())
-            cornerCount[cp[c.ordinal()].ordinal()]++;
-        for (int i = 0; i < 8; i++)
-            if (cornerCount[i] != 1)
-                return -4;// missing corners
-
-        sum = 0;
-        for (int i = 0; i < 8; i++)
-            sum += co[i];
-        if (sum % 3 != 0)
-            return -5;// twisted corner
-
-        if ((edgeParity() ^ cornerParity()) != 0)
-            return -6;// parity error
-
-        return 0;// cube ok
+    /**
+     * Maps a facelet of the Rubik cube model to the corresponding one in the
+     * Kociemba model.
+     * @param m Rubik cube model.
+     * @param ordinal Kociemba ordinal of the face to be retrieved.
+     * @return Color of the desired facelet.
+     */
+    private static RubikCubeFaceColor mapModelToKociemba(
+           final RubikCubeModel m, final int ordinal) {
+        // The facelets in the Kociemba model are stored in the
+        // following format:
+        // UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB
+        // See RubikCubeModelFacelet for the face orientation
+        // (it's the same we use in our model).
+        RubikCubeSide s;
+        switch (ordinal / 9) {
+            case 0:
+                s = RubikCubeSide.UP;
+                break;
+            case 1:
+                s = RubikCubeSide.RIGHT;
+                break;
+            case 2:
+                s = RubikCubeSide.FRONT;
+                break;
+            case 3:
+                s = RubikCubeSide.DOWN;
+                break;
+            case 4:
+                s = RubikCubeSide.LEFT;
+                break;
+            case 5:
+                s = RubikCubeSide.BACK;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+        return m.getFace(s, (ordinal % 9) / 3, (ordinal % 9) % 3);
     }
 }
 

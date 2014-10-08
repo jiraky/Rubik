@@ -7,14 +7,6 @@ package it.univr.rubikcube.resolutionstrategies;
  */
 public class KociembaCoordinateCube {
     /**
-     * Number of possible corner orientations (3^7).
-     */
-    private static final short N_TWIST = 2187;
-    /**
-     * Number of possible edge flips (2^11).
-     */
-    private static final short N_FLIP = 2048;
-    /**
      * Number of possible permutations of the FR, FL, BL, BR edges (12 choose
      * 4).
      */
@@ -66,36 +58,75 @@ public class KociembaCoordinateCube {
      * rotations).
      */
     static final short N_MOVE = 18;
-
     /**
-     * Twist coordinate for a single move.
+     * Number of possible corner orientations (3^7).
+     */
+    private static final short N_TWIST = 2187;
+    /**
+     * Number of possible edge flips (2^11).
+     */
+    private static final short N_FLIP = 2048;
+    /**
+     * Twist for a single move.
      */
     short twist;
+    /**
+     * Flip for a single move.
+     */
     short flip;
+    /**
+     * Parity for a single move.
+     */
     short parity;
+    /**
+     * Front to back parameter for a single move.
+     */
     short FRtoBR;
+    /**
+     * URF to DLF parameter for a single move.
+     */
     short URFtoDLF;
+    /**
+     * UR to UL parameter for a single move.
+     */
     short URtoUL;
+    /**
+     * UB to DF parameter for a single move.
+     */
     short UBtoDF;
+    /**
+     * UR to DF parameter for a single move.
+     */
     int URtoDF;
 
     public KociembaCoordinateCube() {
         // Empty, nothing to do
     }
 
+    public KociembaCoordinateCube(KociembaCubieCube c) {
+        this.twist = c.getTwist();
+        this.flip = c.getFlip();
+        this.parity = c.cornerParity();
+        this.FRtoBR = c.getFRtoBR();
+        this.URFtoDLF = c.getURFtoDLF();
+        this.URtoUL = c.getURtoUL();
+        this.UBtoDF = c.getUBtoDF();
+        this.URtoDF = c.getURtoDF();
+    }
+
     // A move on the coordinate level
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     void move(int m) {
-        twist = twistMove[twist][m];
-        flip = flipMove[flip][m];
-        parity = parityMove[parity][m];
-        FRtoBR = FRtoBR_Move[FRtoBR][m];
-        URFtoDLF = URFtoDLF_Move[URFtoDLF][m];
-        URtoUL = URtoUL_Move[URtoUL][m];
-        UBtoDF = UBtoDF_Move[UBtoDF][m];
-        if (URtoUL < 336 && UBtoDF < 336)// updated only if UR,UF,UL,UB,DR,DF
+        this.twist = twistMove[this.twist][m];
+        this.flip = flipMove[this.flip][m];
+        this.parity = parityMove[this.parity][m];
+        this.FRtoBR = FRtoBR_Move[this.FRtoBR][m];
+        this.URFtoDLF = URFtoDLF_Move[this.URFtoDLF][m];
+        this.URtoUL = URtoUL_Move[this.URtoUL][m];
+        this.UBtoDF = UBtoDF_Move[this.UBtoDF][m];
+        if (this.URtoUL < 336 && this.UBtoDF < 336)// updated only if UR,UF,UL,UB,DR,DF
             // are not in UD-slice
-            URtoDF = MergeURtoULandUBtoDF[URtoUL][UBtoDF];
+            this.URtoDF = MergeURtoULandUBtoDF[this.URtoUL][this.UBtoDF];
     }
 
     // ******************************************Phase 1 move
@@ -460,8 +491,7 @@ public class KociembaCoordinateCube {
     static byte getPruning(final byte[] table, final int index) {
         if ((index & 1) == 0) {
             return (byte) (table[index / 2] & 0x0f);
-        } else {
-            return (byte) ((table[index / 2] & 0xf0) >>> 4);
         }
+        return (byte) ((table[index / 2] & 0xf0) >>> 4);
     }
 }

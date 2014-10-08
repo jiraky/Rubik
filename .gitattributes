@@ -63,6 +63,7 @@ src/it/univr/rubikcube/model/RubikCubeModelDimensionChanged.java -text svneol=un
 src/it/univr/rubikcube/model/RubikCubeModelEdge.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/model/RubikCubeModelEvent.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/model/RubikCubeModelFaceChanged.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/model/RubikCubeModelFacelet.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/model/RubikCubeModelLateralColumnRotated.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/model/RubikCubeModelRowRotated.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/model/RubikCubeSide.java -text svneol=unset#text/x-java-source
