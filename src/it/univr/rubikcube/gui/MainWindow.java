@@ -1578,11 +1578,12 @@ public class MainWindow extends javax.swing.JFrame {
             prevMoves = words[S.nextInt(words.length)];
             performMove(prevMoves);
             
-            moves += ", "+prevMoves+(inverted?"'":"");
+            moves += (i%40==0?"\n":", ")+prevMoves+(inverted?"'":"");
         }
         this.rp_previousmoves_value.setText("");
         this.MovesCounter = 0;
         JOptionPane.showMessageDialog(this, "Shuffle completed! Follow the list of the moves:\n"+moves,"Shuffle result",JOptionPane.PLAIN_MESSAGE);
+        updateInterface();
     }//GEN-LAST:event_rp_control_shuffleActionPerformed
 
     private void rp_control_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_control_resetActionPerformed
