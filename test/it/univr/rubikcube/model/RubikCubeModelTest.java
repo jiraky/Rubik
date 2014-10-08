@@ -307,5 +307,28 @@ public class RubikCubeModelTest {
         Assert.assertTrue("Anticlockwise cube rotation brings back to"
                 + " standard", RubikCubeModel.isInStandardConfiguration(c));
     }
-
+    /**
+     * Check that a cube in the standard configuration is sane.
+     */
+    @Test
+    public final void standardConfigurationIsSane() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        Assert.assertTrue("A cube in standard configuration is sane",
+                          RubikCubeModel.isWithSaneColors(c));
+        c.rotateColumn(0, ColumnRotation.BOTTOM);
+        Assert.assertTrue("A simple rotation keeps the cube sane",
+                          RubikCubeModel.isWithSaneColors(c));
+    }
+    /**
+     * Check that a cube in the standard configuration is solved and vice versa.
+     */
+    @Test
+    public final void standardConfigurationIsSolved() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        Assert.assertTrue("A cube in standard configuration is solved",
+                          RubikCubeModel.isSolved(c));
+        c.rotateColumn(0, ColumnRotation.BOTTOM);
+        Assert.assertFalse("A simple rotation marks the cube as unsolved",
+                           RubikCubeModel.isSolved(c));
+    }
 }
