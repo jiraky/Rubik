@@ -168,6 +168,60 @@ public class RubikCubeModel extends Observable {
         }
     }
     /**
+     * Gets the color of the facelets in a corner.
+     * @param c Corner to be considered.
+     * @return The color of the three facelets making the corner.
+     * @throws IllegalArgumentException Thrown in case the corner is not in the
+     * enum.
+     */
+    public final RubikCubeCornerColor getCorner(final RubikCubeCorner c)
+        throws IllegalArgumentException {
+        switch (c) {
+            case URF:
+                return new RubikCubeCornerColor(
+                    this.configuration[RubikCubeSide.UP.ordinal()][2][2],
+                    this.configuration[RubikCubeSide.RIGHT.ordinal()][0][0],
+                    this.configuration[RubikCubeSide.FRONT.ordinal()][0][2]);
+            case UFL:
+                return new RubikCubeCornerColor(
+                    this.configuration[RubikCubeSide.UP.ordinal()][2][0],
+                    this.configuration[RubikCubeSide.FRONT.ordinal()][0][0],
+                    this.configuration[RubikCubeSide.LEFT.ordinal()][0][2]);
+            case ULB:
+                return new RubikCubeCornerColor(
+                    this.configuration[RubikCubeSide.UP.ordinal()][0][0],
+                    this.configuration[RubikCubeSide.LEFT.ordinal()][0][0],
+                    this.configuration[RubikCubeSide.BACK.ordinal()][0][2]);
+            case UBR:
+                return new RubikCubeCornerColor(
+                    this.configuration[RubikCubeSide.UP.ordinal()][0][2],
+                    this.configuration[RubikCubeSide.BACK.ordinal()][0][0],
+                    this.configuration[RubikCubeSide.RIGHT.ordinal()][0][2]);
+            case DFR:
+                return new RubikCubeCornerColor(
+                    this.configuration[RubikCubeSide.DOWN.ordinal()][0][2],
+                    this.configuration[RubikCubeSide.FRONT.ordinal()][2][2],
+                    this.configuration[RubikCubeSide.RIGHT.ordinal()][2][0]);
+            case DLF:
+                return new RubikCubeCornerColor(
+                    this.configuration[RubikCubeSide.DOWN.ordinal()][0][0],
+                    this.configuration[RubikCubeSide.LEFT.ordinal()][2][2],
+                    this.configuration[RubikCubeSide.FRONT.ordinal()][2][0]);
+            case DBL:
+                return new RubikCubeCornerColor(
+                    this.configuration[RubikCubeSide.DOWN.ordinal()][2][0],
+                    this.configuration[RubikCubeSide.BACK.ordinal()][2][2],
+                    this.configuration[RubikCubeSide.LEFT.ordinal()][2][0]);
+            case DRB:
+                return new RubikCubeCornerColor(
+                    this.configuration[RubikCubeSide.DOWN.ordinal()][2][2],
+                    this.configuration[RubikCubeSide.RIGHT.ordinal()][2][2],
+                    this.configuration[RubikCubeSide.BACK.ordinal()][2][0]);
+            default:
+                throw new IllegalArgumentException("Corner not in enum");
+        }
+    }
+    /**
      * <p>Resets the cube to the <em>standard configuration</em>:</p>
      * <ul>
      * <li>all faces on each side have the same color;</li>
