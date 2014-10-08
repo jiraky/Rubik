@@ -22,8 +22,10 @@ import it.univr.rubikcube.resolutionstrategies.ResolutionStrategy;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.security.SecureRandom;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -1543,20 +1545,44 @@ public class MainWindow extends javax.swing.JFrame {
             JOptionPane.YES_NO_OPTION,
             JOptionPane.WARNING_MESSAGE)) return;
 
-    String[] words = {  "L","R","U","D","F","B",
-        "M","S","E","X","Y","Z"};
+        String moves = "";
+        Map<String,String[]> successors = new HashMap<>();
+
+        successors.put("L", new String[]{"F", "B", "U", "D", "S", "E"});
+        successors.put("R", new String[]{"F", "B", "U", "D", "S", "E"});
+        successors.put("M", new String[]{"F", "B", "U", "D", "S", "E"});
+        successors.put("U", new String[]{"F", "B", "L", "R", "M", "S"});
+        successors.put("D", new String[]{"F", "B", "L", "R", "M", "S"});
+        successors.put("E", new String[]{"F", "B", "L", "R", "M", "S"});
+        successors.put("F", new String[]{"L", "R", "U", "D", "M", "E"});
+        successors.put("B", new String[]{"L", "R", "U", "D", "M", "E"});
+        successors.put("S", new String[]{"L", "R", "U", "D", "M", "E"});
+   
+        String[] words = {"L","R","M","U","D","E","F","B","S"};
         NumRandMoves diag = new NumRandMoves(this, true);
         diag.setVisible(true);
 
         int num_rand_moves = diag.getSelectedNumRandMoves();
         SecureRandom S = new SecureRandom();
 
-        for(int i=0; i<num_rand_moves; i++) {
-            if(S.nextBoolean()) this.lp_move_inverse_yes.setSelected(true);
-            else this.lp_move_inverse_no.setSelected(true);
-            performMove(words[S.nextInt(words.length)]);
+        String prevMoves = words[S.nextInt(words.length)];
+        performMove(prevMoves);
+        moves = prevMoves;
+        
+        for(int i=1; i<num_rand_moves; i++) {
+            boolean inverted = S.nextBoolean();
+            this.lp_move_inverse_yes.setSelected(inverted);
+            this.lp_move_inverse_no.setSelected(!inverted);
+            
+            words = successors.get(prevMoves);
+            prevMoves = words[S.nextInt(words.length)];
+            performMove(prevMoves);
+            
+            moves += ", "+prevMoves+(inverted?"'":"");
         }
         this.rp_previousmoves_value.setText("");
+        this.MovesCounter = 0;
+        JOptionPane.showMessageDialog(this, "Shuffle completed! Follow the list of the moves:\n"+moves,"Shuffle result",JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_rp_control_shuffleActionPerformed
 
     private void rp_control_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_control_resetActionPerformed
