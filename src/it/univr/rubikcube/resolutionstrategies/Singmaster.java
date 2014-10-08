@@ -2,6 +2,8 @@ package it.univr.rubikcube.resolutionstrategies;
 
 import it.univr.rubikcube.model.CubeRotation;
 import it.univr.rubikcube.model.Move;
+import it.univr.rubikcube.model.RubikCubeCorner;
+import it.univr.rubikcube.model.RubikCubeCornerColor;
 import it.univr.rubikcube.model.RubikCubeEdgeColor;
 import it.univr.rubikcube.model.RubikCubeFaceColor;
 import it.univr.rubikcube.model.RubikCubeModel;
@@ -13,6 +15,8 @@ import it.univr.rubikcube.moves.F;
 import it.univr.rubikcube.moves.L;
 import it.univr.rubikcube.moves.R;
 import it.univr.rubikcube.moves.U;
+import it.univr.rubikcube.moves.X;
+import it.univr.rubikcube.moves.Z;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
@@ -375,33 +379,96 @@ public class Singmaster extends ResolutionStrategy {
         // model and check the corners.
         boolean greenCornersSolved = true;
         final RubikCubeModel mClone = new RubikCubeModel(m);
+        RubikCubeCornerColor upperCorner;
         switch (greenSide) {
             case UP:
                 // Nothing to do
                 break;
             case FRONT:
+                mClone.rotateCube(CubeRotation.UPWISE);
                 break;
             case LEFT:
+                mClone.rotateCube(CubeRotation.CLOCKWISE_FROM_FRONT);
                 break;
             case RIGHT:
+                mClone.rotateCube(CubeRotation.ANTICLOCKWISE_FROM_FRONT);
                 break;
             case DOWN:
+                mClone.rotateCube(CubeRotation.UPWISE);
+                mClone.rotateCube(CubeRotation.UPWISE);
                 break;
             case BACK:
+                mClone.rotateCube(CubeRotation.DOWNWISE);
                 break;
             default:
                 throw new NoSolutionException("Green side on unknown face");
         }
-        // FIXME
-        // greenSide
-        // Fix the green side corners:
-        // * find a green corner and get it directly under where it should go
-        //   (match the other two colors on the corner piece to the other two
-        //   side colors)
-        // * with the piece you are working on in the bottom right corner, do
-        //   R' D' R D from 1-6 times (keeping the same face forward at all
-        //   times)
-        // * repeat for the other three corners
+        upperCorner = mClone.getCorner(RubikCubeCorner.UFL);
+        greenCornersSolved = greenCornersSolved
+                && upperCorner.getFirstColor() == RubikCubeFaceColor.GREEN
+                && upperCorner.getSecondColor() == mClone.getFace(RubikCubeSide.FRONT, 1, 1)
+                && upperCorner.getThirdColor() == mClone.getFace(RubikCubeSide.LEFT, 1, 1);
+        upperCorner = mClone.getCorner(RubikCubeCorner.URF);
+        greenCornersSolved = greenCornersSolved
+                && upperCorner.getFirstColor() == RubikCubeFaceColor.GREEN
+                && upperCorner.getSecondColor() == mClone.getFace(RubikCubeSide.RIGHT, 1, 1)
+                && upperCorner.getThirdColor() == mClone.getFace(RubikCubeSide.FRONT, 1, 1);
+        upperCorner = mClone.getCorner(RubikCubeCorner.UBR);
+        greenCornersSolved = greenCornersSolved
+                && upperCorner.getFirstColor() == RubikCubeFaceColor.GREEN
+                && upperCorner.getSecondColor() == mClone.getFace(RubikCubeSide.BACK, 1, 1)
+                && upperCorner.getThirdColor() == mClone.getFace(RubikCubeSide.RIGHT, 1, 1);
+        upperCorner = mClone.getCorner(RubikCubeCorner.ULB);
+        greenCornersSolved = greenCornersSolved
+                && upperCorner.getFirstColor() == RubikCubeFaceColor.GREEN
+                && upperCorner.getSecondColor() == mClone.getFace(RubikCubeSide.LEFT, 1, 1)
+                && upperCorner.getThirdColor() == mClone.getFace(RubikCubeSide.BACK, 1, 1);
+        if (!greenCornersSolved) {
+            // Rotate the cube to get the green side up, if necessary.
+            switch (greenSide) {
+                case UP:
+                    // Nothing to do
+                    break;
+                case FRONT:
+                    currentMove = new X(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    break;
+                case LEFT:
+                    currentMove = new Z(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    break;
+                case RIGHT:
+                    currentMove = new Z(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    break;
+                case DOWN:
+                    currentMove = new X(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new X(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    break;
+                case BACK:
+                    currentMove = new X(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    break;
+                default:
+                    throw new NoSolutionException("Green side on unknown face");
+            }
+            // Fix the green side corners:
+            // * find a green corner and get it directly under where it should go
+            //   (match the other two colors on the corner piece to the other two
+            //   side colors)
+            // * with the piece you are working on in the bottom right corner, do
+            //   R' D' R D from 1-6 times (keeping the same face forward at all
+            //   times)
+            // * repeat for the other three corners
+        }
         // Check if the second layer is solved
         /*
          * 2. Solve the second layer...
