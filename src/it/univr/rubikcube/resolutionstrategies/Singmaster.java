@@ -16,11 +16,12 @@ import it.univr.rubikcube.moves.L;
 import it.univr.rubikcube.moves.R;
 import it.univr.rubikcube.moves.U;
 import it.univr.rubikcube.moves.X;
+import it.univr.rubikcube.moves.Y;
 import it.univr.rubikcube.moves.Z;
+import java.lang.management.MemoryType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
-
 
 /**
  * Singmaster resolution strategy.
@@ -58,7 +59,6 @@ public class Singmaster extends ResolutionStrategy {
     @Override
     public final List<Move> getNextMoves() throws NoSolutionException,
         TimeoutException {
-        // FIXME Check the algorithm
         final List<Move> listMoves = new ArrayList<>();
         Move currentMove;
         // Get a clone of the existing cube model so that we'll be able to
@@ -66,7 +66,6 @@ public class Singmaster extends ResolutionStrategy {
         final RubikCubeModel m = new RubikCubeModel(this.getModel());
         // Check if the green cross is solved: get the green central facelet
         // and check the other relevant facelets on the same side.
-        boolean greenCrossSolved = true;
         RubikCubeSide greenSide = null;
         for (RubikCubeSide s: RubikCubeSide.values()) {
             if (m.getFace(s, 1, 1) == RubikCubeFaceColor.GREEN) {
@@ -83,22 +82,33 @@ public class Singmaster extends ResolutionStrategy {
                 || m.getFace(greenSide, 1, 1) != RubikCubeFaceColor.GREEN
                 || m.getFace(greenSide, 1, 2) != RubikCubeFaceColor.GREEN
                 || m.getFace(greenSide, 2, 1) != RubikCubeFaceColor.GREEN) {
+            // FIXME più edge!
             // Move the green side up
             switch (greenSide) {
                 case BACK:
-                    m.rotateCube(CubeRotation.DOWNWISE);
+                    currentMove = new X(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
                     break;
                 case DOWN:
-                    m.rotateCube(CubeRotation.UPWISE);
+                    currentMove = new X(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
                     // fall through
                 case FRONT:
-                    m.rotateCube(CubeRotation.UPWISE);
+                    currentMove = new X(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
                     break;
                 case LEFT:
-                    m.rotateCube(CubeRotation.CLOCKWISE_FROM_FRONT);
+                    currentMove = new Z(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
                     break;
                 case RIGHT:
-                    m.rotateCube(CubeRotation.ANTICLOCKWISE_FROM_FRONT);
+                    currentMove = new Z(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
                     break;
                 case UP:
                 default:
@@ -106,6 +116,7 @@ public class Singmaster extends ResolutionStrategy {
                     break;
             }
             // Until the green cross on the top is formed...
+            // FIXME edges as well
             while (m.getFace(RubikCubeSide.UP, 0, 1) != RubikCubeFaceColor.GREEN
                    || m.getFace(RubikCubeSide.UP, 1, 0) != RubikCubeFaceColor.GREEN
                    || m.getFace(RubikCubeSide.UP, 1, 1) != RubikCubeFaceColor.GREEN
@@ -146,7 +157,7 @@ public class Singmaster extends ResolutionStrategy {
                     break;
                 }
                 if (edge == null) {
-                    throw new NoSolutionException("No green edge found");
+                    // FIXME Just need to perform an equator move to get the edges right
                 }
                 // ...move it to the down side...
                 RubikCubeModel3Edge edgeOnDown;
@@ -377,9 +388,7 @@ public class Singmaster extends ResolutionStrategy {
         }
         // Check the first layer green side corners: rotate a clone of the
         // model and check the corners.
-        boolean greenCornersSolved = true;
         final RubikCubeModel mClone = new RubikCubeModel(m);
-        RubikCubeCornerColor upperCorner;
         switch (greenSide) {
             case UP:
                 // Nothing to do
@@ -403,27 +412,10 @@ public class Singmaster extends ResolutionStrategy {
             default:
                 throw new NoSolutionException("Green side on unknown face");
         }
-        upperCorner = mClone.getCorner(RubikCubeCorner.UFL);
-        greenCornersSolved = greenCornersSolved
-                && upperCorner.getFirstColor() == RubikCubeFaceColor.GREEN
-                && upperCorner.getSecondColor() == mClone.getFace(RubikCubeSide.FRONT, 1, 1)
-                && upperCorner.getThirdColor() == mClone.getFace(RubikCubeSide.LEFT, 1, 1);
-        upperCorner = mClone.getCorner(RubikCubeCorner.URF);
-        greenCornersSolved = greenCornersSolved
-                && upperCorner.getFirstColor() == RubikCubeFaceColor.GREEN
-                && upperCorner.getSecondColor() == mClone.getFace(RubikCubeSide.RIGHT, 1, 1)
-                && upperCorner.getThirdColor() == mClone.getFace(RubikCubeSide.FRONT, 1, 1);
-        upperCorner = mClone.getCorner(RubikCubeCorner.UBR);
-        greenCornersSolved = greenCornersSolved
-                && upperCorner.getFirstColor() == RubikCubeFaceColor.GREEN
-                && upperCorner.getSecondColor() == mClone.getFace(RubikCubeSide.BACK, 1, 1)
-                && upperCorner.getThirdColor() == mClone.getFace(RubikCubeSide.RIGHT, 1, 1);
-        upperCorner = mClone.getCorner(RubikCubeCorner.ULB);
-        greenCornersSolved = greenCornersSolved
-                && upperCorner.getFirstColor() == RubikCubeFaceColor.GREEN
-                && upperCorner.getSecondColor() == mClone.getFace(RubikCubeSide.LEFT, 1, 1)
-                && upperCorner.getThirdColor() == mClone.getFace(RubikCubeSide.BACK, 1, 1);
-        if (!greenCornersSolved) {
+        if (!RubikCubeModel.isCornerInPlace(mClone, RubikCubeCorner.UFL)
+                || !RubikCubeModel.isCornerInPlace(mClone, RubikCubeCorner.URF)
+                || !RubikCubeModel.isCornerInPlace(mClone, RubikCubeCorner.UBR)
+                || !RubikCubeModel.isCornerInPlace(mClone, RubikCubeCorner.ULB)) {
             // Rotate the cube to get the green side up, if necessary.
             switch (greenSide) {
                 case UP:
@@ -461,13 +453,107 @@ public class Singmaster extends ResolutionStrategy {
                     throw new NoSolutionException("Green side on unknown face");
             }
             // Fix the green side corners:
-            // * find a green corner and get it directly under where it should go
-            //   (match the other two colors on the corner piece to the other two
-            //   side colors)
-            // * with the piece you are working on in the bottom right corner, do
-            //   R' D' R D from 1-6 times (keeping the same face forward at all
-            //   times)
-            // * repeat for the other three corners
+            do {
+                // * find a green corner that is not already in place
+                RubikCubeCorner foundGreenCorner = null;
+                RubikCubeCornerColor cornerColor;
+                for (RubikCubeCorner c : RubikCubeCorner.values()) {
+                    cornerColor = m.getCorner(c);
+                    if (!RubikCubeModel.isCornerInPlace(m, c)
+                            && (cornerColor.getFirstColor() == RubikCubeFaceColor.GREEN
+                            || cornerColor.getSecondColor() == RubikCubeFaceColor.GREEN
+                            | cornerColor.getThirdColor() == RubikCubeFaceColor.GREEN)) {
+                        foundGreenCorner = c;
+                        break;
+                    }
+                }
+                if (foundGreenCorner == null) {
+                    throw new NoSolutionException("No green corners found");
+                }
+                // * get it directly under where it should go (match the other two
+                //   colors on the corner piece to the other two side colors).
+                //   As corners remain in corner positions:
+                //   - if it's in the top row but it's wrongly placed, perform
+                //     R' D' R (for the UFR case) or a similar move, then the cube
+                //     will be moved to the bottom row;
+                //   - if it's in the bottom row, just rotate the bottom row (D)
+                //     until the central facelets match, then rotate the cube
+                //     so that the other colors of the angle are on the front and
+                //     right sides.
+                // First, move the corner to DFR.
+                if (foundGreenCorner.getUpDownSide() == RubikCubeSide.UP) {
+                    switch (foundGreenCorner.getLeftSide()) {
+                        case FRONT:
+                            // Nothing to do
+                            break;
+                        case RIGHT:
+                            currentMove = new Y(m);
+                            listMoves.add(currentMove);
+                            currentMove.perform();
+                            break;
+                        case BACK:
+                            currentMove = new Y(m);
+                            listMoves.add(currentMove);
+                            currentMove.perform();
+                            currentMove = new Y(m);
+                            listMoves.add(currentMove);
+                            currentMove.perform();
+                            break;
+                        case LEFT:
+                            currentMove = new Y(m, true);
+                            listMoves.add(currentMove);
+                            currentMove.perform();
+                            break;
+                        default:
+                            throw new NoSolutionException("Left side on top or bottom");
+                    }
+                    // FIXME If on left...?
+                    currentMove = new R(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new D(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new R(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    foundGreenCorner = RubikCubeCorner.DFR;
+                }
+                // * Do R' D' R D 1-6 times (keeping the same face forward at
+                //   all times) until the facelets are oriented correctly
+                switch (foundGreenCorner.getLeftSide()) {
+                    case FRONT:
+                        for (int i = 0; i < 6; ++i) {
+                            currentMove = new R(m, true);
+                            currentMove.perform();
+                            listMoves.add(currentMove);
+                            currentMove = new D(m, true);
+                            currentMove.perform();
+                            listMoves.add(currentMove);
+                            currentMove = new R(m);
+                            currentMove.perform();
+                            listMoves.add(currentMove);
+                            currentMove = new D(m);
+                            currentMove.perform();
+                            listMoves.add(currentMove);
+                            // FIXME facelets OK
+                            if (true) {
+                                break;
+                            }
+                        }
+                        break;
+                    case RIGHT:
+                        break;
+                    case BACK:
+                        break;
+                    case LEFT:
+                        break;
+                }
+                // * Repeat the algorithm until all corners are in place
+            } while (!RubikCubeModel.isCornerInPlace(mClone, RubikCubeCorner.UFL)
+                    || !RubikCubeModel.isCornerInPlace(mClone, RubikCubeCorner.URF)
+                    || !RubikCubeModel.isCornerInPlace(mClone, RubikCubeCorner.UBR)
+                    || !RubikCubeModel.isCornerInPlace(mClone, RubikCubeCorner.ULB));
         }
         // Check if the second layer is solved
         /*
