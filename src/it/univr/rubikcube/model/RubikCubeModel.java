@@ -754,6 +754,60 @@ public class RubikCubeModel extends Observable {
         return true;
     }
     /**
+     * Checks whether a corner is in place.
+     * @param m Model to be checked.
+     * @param c Corner to be checked.
+     * @return <tt>true</tt> if and only if the corner is in place.
+     * @throws IllegalArgumentException Thrown if <tt>c</tt> is not in the
+     * enum.
+     * @throws NullPointerException Thrown if <tt>m</tt> is <tt>null</tt>.
+     */
+    public static boolean isCornerInPlace(final RubikCubeModel m,
+        final RubikCubeCorner c) throws IllegalArgumentException,
+        NullPointerException {
+        if (m == null) {
+            throw new NullPointerException("m must not be null");
+        }
+        final RubikCubeCornerColor col = m.getCorner(c);
+        final int halfDim = m.getDimension() / 2;
+        switch (c) {
+            case URF:
+                return col.getFirstColor() == m.getFace(RubikCubeSide.UP, halfDim, halfDim)
+                    && col.getSecondColor() == m.getFace(RubikCubeSide.RIGHT, halfDim, halfDim)
+                    && col.getThirdColor() == m.getFace(RubikCubeSide.FRONT, halfDim, halfDim);
+            case UFL:
+                return col.getFirstColor() == m.getFace(RubikCubeSide.UP, halfDim, halfDim)
+                    && col.getSecondColor() == m.getFace(RubikCubeSide.FRONT, halfDim, halfDim)
+                    && col.getThirdColor() == m.getFace(RubikCubeSide.LEFT, halfDim, halfDim);
+            case ULB:
+                return col.getFirstColor() == m.getFace(RubikCubeSide.UP, halfDim, halfDim)
+                    && col.getSecondColor() == m.getFace(RubikCubeSide.LEFT, halfDim, halfDim)
+                    && col.getThirdColor() == m.getFace(RubikCubeSide.BACK, halfDim, halfDim);
+            case UBR:
+                return col.getFirstColor() == m.getFace(RubikCubeSide.UP, halfDim, halfDim)
+                    && col.getSecondColor() == m.getFace(RubikCubeSide.BACK, halfDim, halfDim)
+                    && col.getThirdColor() == m.getFace(RubikCubeSide.RIGHT, halfDim, halfDim);
+            case DFR:
+                return col.getFirstColor() == m.getFace(RubikCubeSide.DOWN, halfDim, halfDim)
+                    && col.getSecondColor() == m.getFace(RubikCubeSide.FRONT, halfDim, halfDim)
+                    && col.getThirdColor() == m.getFace(RubikCubeSide.RIGHT, halfDim, halfDim);
+            case DLF:
+                return col.getFirstColor() == m.getFace(RubikCubeSide.DOWN, halfDim, halfDim)
+                    && col.getSecondColor() == m.getFace(RubikCubeSide.LEFT, halfDim, halfDim)
+                    && col.getThirdColor() == m.getFace(RubikCubeSide.FRONT, halfDim, halfDim);
+            case DBL:
+                return col.getFirstColor() == m.getFace(RubikCubeSide.DOWN, halfDim, halfDim)
+                    && col.getSecondColor() == m.getFace(RubikCubeSide.BACK, halfDim, halfDim)
+                    && col.getThirdColor() == m.getFace(RubikCubeSide.LEFT, halfDim, halfDim);
+            case DRB:
+                return col.getFirstColor() == m.getFace(RubikCubeSide.DOWN, halfDim, halfDim)
+                    && col.getSecondColor() == m.getFace(RubikCubeSide.RIGHT, halfDim, halfDim)
+                    && col.getThirdColor() == m.getFace(RubikCubeSide.BACK, halfDim, halfDim);
+            default:
+                throw new IllegalArgumentException("corner not in enum");
+        }
+    }
+    /**
      * Deep copies a face of the Rubik cube to another face.
      * @param src Source face.
      * @param dst Destination face.
