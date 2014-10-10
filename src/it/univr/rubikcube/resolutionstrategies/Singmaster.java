@@ -556,26 +556,327 @@ public class Singmaster extends ResolutionStrategy {
                     || !RubikCubeModel.isCornerInPlace(mClone, RubikCubeCorner.ULB));
         }
         // Check if the second layer is solved
-        /*
-         * 2. Solve the second layer...
-
- > turn green side down, blue side up
- > find an edge piece without blue in it (see ** if can't do this)
- > twist the top blue side so edge piece matches side color
- > with that piece front and center, look for which side (left
-   or right) matches top color and do one of these:
-
- top matches right side: U R U' R' U' F' U F
-
-  top matches left side: U' L' U L U F U' F'
-   > repeat for all edge pieces of second layer....
-
-** if you can't find a top edge piece without blue in it, find
-   one that is an edge piece in the middle layer and make it the 
-     front-right-middle, then do this: U R U' R' U' F' U F
-
- at this point you should have two layers done!
-         */
+        boolean secondLayerSolved = true;
+        switch (greenSide) {
+            case UP:
+            case DOWN:
+                for (int i = 0; i < 3; ++i) {
+                    if (m.getFace(RubikCubeSide.FRONT, 1, i) != RubikCubeSide.FRONT.getStandardColor()) {
+                        secondLayerSolved = false;
+                    }
+                }
+                for (int i = 0; i < 3; ++i) {
+                    if (m.getFace(RubikCubeSide.RIGHT, 1, i) != RubikCubeSide.RIGHT.getStandardColor()) {
+                        secondLayerSolved = false;
+                    }
+                }
+                for (int i = 0; i < 3; ++i) {
+                    if (m.getFace(RubikCubeSide.BACK, 1, i) != RubikCubeSide.BACK.getStandardColor()) {
+                        secondLayerSolved = false;
+                    }
+                }
+                for (int i = 0; i < 3; ++i) {
+                    if (m.getFace(RubikCubeSide.LEFT, 1, i) != RubikCubeSide.LEFT.getStandardColor()) {
+                        secondLayerSolved = false;
+                    }
+                }
+                break;
+            case LEFT:
+            case RIGHT:
+                for (int i = 0; i < 3; ++i) {
+                    if (m.getFace(RubikCubeSide.FRONT, i, 1) != RubikCubeSide.FRONT.getStandardColor()) {
+                        secondLayerSolved = false;
+                    }
+                }
+                for (int i = 0; i < 3; ++i) {
+                    if (m.getFace(RubikCubeSide.DOWN, i, 1) != RubikCubeSide.DOWN.getStandardColor()) {
+                        secondLayerSolved = false;
+                    }
+                }
+                for (int i = 0; i < 3; ++i) {
+                    if (m.getFace(RubikCubeSide.BACK, i, 1) != RubikCubeSide.BACK.getStandardColor()) {
+                        secondLayerSolved = false;
+                    }
+                }
+                for (int i = 0; i < 3; ++i) {
+                    if (m.getFace(RubikCubeSide.UP, i, 1) != RubikCubeSide.UP.getStandardColor()) {
+                        secondLayerSolved = false;
+                    }
+                }
+                break;
+            case FRONT:
+            case BACK:
+                for (int i = 0; i < 3; ++i) {
+                    if (m.getFace(RubikCubeSide.UP, 1, i) != RubikCubeSide.UP.getStandardColor()) {
+                        secondLayerSolved = false;
+                    }
+                }
+                for (int i = 0; i < 3; ++i) {
+                    if (m.getFace(RubikCubeSide.RIGHT, i, 1) != RubikCubeSide.RIGHT.getStandardColor()) {
+                        secondLayerSolved = false;
+                    }
+                }
+                for (int i = 0; i < 3; ++i) {
+                    if (m.getFace(RubikCubeSide.DOWN, 1, i) != RubikCubeSide.DOWN.getStandardColor()) {
+                        secondLayerSolved = false;
+                    }
+                }
+                for (int i = 0; i < 3; ++i) {
+                    if (m.getFace(RubikCubeSide.LEFT, i, 1) != RubikCubeSide.LEFT.getStandardColor()) {
+                        secondLayerSolved = false;
+                    }
+                }
+                break;
+        }
+        if (!secondLayerSolved) {
+            // FIXME Change: Move the green side down
+            switch (greenSide) {
+                case BACK:
+                    currentMove = new X(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    break;
+                case UP:
+                    currentMove = new X(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    // fall through
+                case FRONT:
+                    currentMove = new X(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    break;
+                case LEFT:
+                    currentMove = new Z(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    break;
+                case RIGHT:
+                    currentMove = new Z(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    break;
+                case DOWN:
+                default:
+                    // Nothing to do
+                    break;
+            }
+            // * Find an edge piece without blue in it, if there is one.
+            RubikCubeModel3Edge edgeWithoutBlue = null;
+            RubikCubeEdgeColor tmp = m.get3DEdge(RubikCubeModel3Edge.UF);
+            if (tmp.getFirstColor() != RubikCubeFaceColor.BLUE && tmp.getSecondColor() != RubikCubeFaceColor.BLUE) {
+                edgeWithoutBlue = RubikCubeModel3Edge.UF;
+            } else {
+                tmp = m.get3DEdge(RubikCubeModel3Edge.UR);
+                if (tmp.getFirstColor() != RubikCubeFaceColor.BLUE && tmp.getSecondColor() != RubikCubeFaceColor.BLUE) {
+                    edgeWithoutBlue = RubikCubeModel3Edge.UR;
+                } else {
+                    tmp = m.get3DEdge(RubikCubeModel3Edge.UB);
+                    if (tmp.getFirstColor() != RubikCubeFaceColor.BLUE && tmp.getSecondColor() != RubikCubeFaceColor.BLUE) {
+                        edgeWithoutBlue = RubikCubeModel3Edge.UB;
+                    } else {
+                        tmp = m.get3DEdge(RubikCubeModel3Edge.UL);
+                        if (tmp.getFirstColor() != RubikCubeFaceColor.BLUE && tmp.getSecondColor() != RubikCubeFaceColor.BLUE) {
+                            edgeWithoutBlue = RubikCubeModel3Edge.UL;
+                        }
+                    }
+                }
+            }
+            if (edgeWithoutBlue != null) {
+                // twist the top blue side so edge piece matches side color
+                final RubikCubeFaceColor edgeColor = m.get3DEdge(edgeWithoutBlue).getSecondColor();
+                int numberOfRotations = 0;
+                RubikCubeSide edgeSide = edgeWithoutBlue.getLateralSide();
+                while (m.getFace(edgeSide, 1, 1) != edgeColor) {
+                    ++numberOfRotations;
+                    switch (edgeSide) {
+                        case LEFT:
+                            edgeSide = RubikCubeSide.FRONT;
+                            break;
+                        case FRONT:
+                            edgeSide = RubikCubeSide.RIGHT;
+                            break;
+                        case RIGHT:
+                            edgeSide = RubikCubeSide.BACK;
+                            break;
+                        case BACK:
+                            edgeSide = RubikCubeSide.LEFT;
+                            break;
+                        default:
+                            throw new NoSolutionException("Edge side in an unconsistent state");
+                    }
+                }
+                switch (numberOfRotations) {
+                    case 3:
+                        currentMove = new U(m);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                        break;
+                    case 2:
+                        currentMove = new U(m, true);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                        // fall through
+                    case 1:
+                        currentMove = new U(m, true);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                        break;
+                    case 0:
+                    default:
+                        // Nothing to do
+                        break;
+                }
+                // Put that piece front and center (rotate the cube)
+                switch (edgeSide) {
+                    case LEFT:
+                        currentMove = new Y(m, true);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                        break;
+                    case BACK:
+                        currentMove = new Y(m);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                        // fall through
+                    case RIGHT:
+                        currentMove = new Y(m);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                        break;
+                    case FRONT:
+                    default:
+                        // Nothing to do
+                        break;
+                }
+                if (m.get3DEdge(RubikCubeModel3Edge.UF).getFirstColor()
+                        == m.getFace(RubikCubeSide.RIGHT, 1, 1)) {
+                    // if top matches right side: U R U' R' U' F' U F
+                    currentMove = new U(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new R(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new U(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new R(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new U(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new F(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new U(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new F(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                } else {
+                    // if top matches left side: U' L' U L U F U' F'
+                    currentMove = new U(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new L(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new U(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new L(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new U(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new F(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new U(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new F(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                }
+            } else {
+                // Find an edge without blue in the middle layer (better if
+                // it's not in place)
+                RubikCubeModel3Edge edgeInMiddle = null;
+                for (RubikCubeModel3Edge e : new RubikCubeModel3Edge[]
+                        {RubikCubeModel3Edge.FR, RubikCubeModel3Edge.BR,
+                         RubikCubeModel3Edge.BL, RubikCubeModel3Edge.FL, }) {
+                    if (m.get3DEdge(e).getFirstColor() == RubikCubeFaceColor.BLUE
+                            || m.get3DEdge(e).getSecondColor() == RubikCubeFaceColor.BLUE) {
+                        continue;
+                    }
+                    if (RubikCubeModel.isEdgeInPlace(m, e)) {
+                        if (edgeInMiddle == null) {
+                            // TODO: is this acceptable (even if the edge is in place)?
+                            edgeInMiddle = e;
+                        }
+                    } else {
+                        edgeInMiddle = e;
+                    }
+                }
+                if (edgeInMiddle == null) {
+                    throw new NoSolutionException("Must have a suitable edge in middle");
+                }
+                // ...put it in the FR edge by rotating the cube...
+                switch (edgeInMiddle) {
+                    case FR:
+                        // Nothing to do
+                        break;
+                    case BL:
+                        currentMove = new Y(m);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                        // fall through
+                    case BR:
+                        currentMove = new Y(m);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                        break;
+                    case FL:
+                        currentMove = new Y(m, true);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                        break;
+                    default:
+                        throw new NoSolutionException("Edge seems not to be in the middle layer");
+                }
+                // ...then perform U R U' R' U' F' U F
+                currentMove = new U(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new R(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new U(m, true);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new R(m, true);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new U(m, true);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new F(m, true);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new U(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new F(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+            }
+            // FIXME Repeat until 2nd layer is done
+        }
         // Check if the blue cross is solved
         /*
          * 3. Solve the BLUE CROSS....

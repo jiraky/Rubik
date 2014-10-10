@@ -808,6 +808,62 @@ public class RubikCubeModel extends Observable {
         }
     }
     /**
+     * Checks if an edge is in place.
+     * @param m Cube to be checked.
+     * @param e Edge to be checked.
+     * @return <tt>true</tt> if and only if the edge is in place.
+     * @throws IllegalArgumentException Thrown if <tt>e</tt> is not a supported
+     * edge.
+     * @throws NullPointerException Thrown if <tt>m</tt> is <tt>null</tt>.
+     */
+    public static boolean isEdgeInPlace(final RubikCubeModel m,
+        final RubikCubeModel3Edge e) throws IllegalArgumentException,
+        NullPointerException {
+        if (m == null) {
+            throw new NullPointerException("m must not be null");
+        }
+        switch (e) {
+            case UR:
+                return m.getFace(RubikCubeSide.UP, 1, 2) == e.getTopSide().getStandardColor()
+                    && m.getFace(RubikCubeSide.RIGHT, 0, 1) == e.getLateralSide().getStandardColor();
+            case UF:
+                return m.getFace(RubikCubeSide.UP, 2, 1) == e.getTopSide().getStandardColor()
+                    && m.getFace(RubikCubeSide.FRONT, 0, 1) == e.getLateralSide().getStandardColor();
+            case UL:
+                return m.getFace(RubikCubeSide.UP, 1, 0) == e.getTopSide().getStandardColor()
+                    && m.getFace(RubikCubeSide.LEFT, 0, 1) == e.getLateralSide().getStandardColor();
+            case UB:
+                return m.getFace(RubikCubeSide.UP, 0, 1) == e.getTopSide().getStandardColor()
+                    && m.getFace(RubikCubeSide.BACK, 0, 1) == e.getLateralSide().getStandardColor();
+            case DR:
+                return m.getFace(RubikCubeSide.DOWN, 1, 2) == e.getTopSide().getStandardColor()
+                    && m.getFace(RubikCubeSide.RIGHT, 2, 1) == e.getLateralSide().getStandardColor();
+            case DF:
+                return m.getFace(RubikCubeSide.DOWN, 0, 1) == e.getTopSide().getStandardColor()
+                    && m.getFace(RubikCubeSide.FRONT, 2, 1) == e.getLateralSide().getStandardColor();
+            case DL:
+                return m.getFace(RubikCubeSide.DOWN, 1, 0) == e.getTopSide().getStandardColor()
+                    && m.getFace(RubikCubeSide.LEFT, 2, 1) == e.getLateralSide().getStandardColor();
+            case DB:
+                return m.getFace(RubikCubeSide.DOWN, 2, 1) == e.getTopSide().getStandardColor()
+                    && m.getFace(RubikCubeSide.BACK, 2, 1) == e.getLateralSide().getStandardColor();
+            case FR:
+                return m.getFace(RubikCubeSide.FRONT, 1, 2) == e.getTopSide().getStandardColor()
+                    && m.getFace(RubikCubeSide.RIGHT, 1, 0) == e.getLateralSide().getStandardColor();
+            case FL:
+                return m.getFace(RubikCubeSide.FRONT, 1, 0) == e.getTopSide().getStandardColor()
+                    && m.getFace(RubikCubeSide.RIGHT, 1, 2) == e.getLateralSide().getStandardColor();
+            case BL:
+                return m.getFace(RubikCubeSide.BACK, 1, 2) == e.getTopSide().getStandardColor()
+                    && m.getFace(RubikCubeSide.LEFT, 1, 0) == e.getLateralSide().getStandardColor();
+            case BR:
+                return m.getFace(RubikCubeSide.BACK, 1, 0) == e.getTopSide().getStandardColor()
+                    && m.getFace(RubikCubeSide.RIGHT, 1, 2) == e.getLateralSide().getStandardColor();
+            default:
+                throw new IllegalArgumentException("Edge not in enum");
+        }
+    }
+    /**
      * Deep copies a face of the Rubik cube to another face.
      * @param src Source face.
      * @param dst Destination face.
