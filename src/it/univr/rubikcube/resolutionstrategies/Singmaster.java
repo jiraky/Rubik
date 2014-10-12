@@ -74,11 +74,11 @@ public class Singmaster extends ResolutionStrategy {
         }
         final RubikCubeModel mGreenUp = new RubikCubeModel(m);
         moveGreenSideUp(mGreenUp);
-        if (!areCrossAndEdgesDoneOnGreenUp(mGreenUp)) {
+        if (!areCrossAndEdgesDoneOnFaceUp(mGreenUp, RubikCubeFaceColor.GREEN)) {
             // Move the green side up
             listMoves.addAll(moveGreenSideUp(m));
             // Until the green cross on the top is formed and the edges are done...
-            while (!areCrossAndEdgesDoneOnGreenUp(m)) {
+            while (!areCrossAndEdgesDoneOnFaceUp(m, RubikCubeFaceColor.GREEN)) {
                 // ...find a green edge piece that is not already in place...
                 RubikCubeEdgeColor c;
                 RubikCubeModel3Edge edge = null;
@@ -739,67 +739,160 @@ public class Singmaster extends ResolutionStrategy {
             }
         }
         // Check if the blue cross is solved
-        /*
-         * 3. Solve the BLUE CROSS....
-
- > look at top blue layer for one of these cases:
-     no small L: do F R U R' U' F' to get small L
-        small L: make it top back left, do F R U R' U' F'
-
-   the "L" you are looking for is made up out of three blue pieces,
-   the center and two edge pieces
-        you should now have three in a row.
-     make the 3-in-a-row go left to right across the top
-          and again do F R U R' U' F' to get blue cross
-         */
-        /*
-         *  > try twisting top blue side so two edge pieces line up
-   with their correct sides
-
-     if you can't get two lined up do R U R' U R 2U R'
-
-     if you get two lined up, and they are 
-     across from each other, make the lined-up edges
-     the front and back sides and do R U R' U R 2U R'
-     (this should make the two lined-up sides adjacent)
-
-     if the two lined up are adjacent, make
-     them the right and back sides and do R U R' U R 2U R'
-          should now have blue cross on top and be able to twist
-     top to get all edge pieces lined up
-         */
+        final RubikCubeModel mBlueClone = new RubikCubeModel(m);
+        moveGreenSideDown(mBlueClone);
+        if (!isBlueCrossSolved(mBlueClone)) {
+            // Rotate the blue layer on the top
+            listMoves.addAll(moveGreenSideDown(m));
+            // Look at the top blue layer and check for a small L. If it is
+            // there, make it top back left.
+            // Since in each case one blue face must be in (1,0) or (1,2),
+            // just check those facelets.
+            if (m.getFace(RubikCubeSide.UP, 1, 0) != RubikCubeFaceColor.BLUE
+                    && m.getFace(RubikCubeSide.UP, 1, 2) != RubikCubeFaceColor.BLUE) {
+                // Do F R U R' U' F' to get small L
+                currentMove = new F(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new R(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new U(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new R(m, true);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new U(m, true);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new F(m, true);
+                listMoves.add(currentMove);
+                currentMove.perform();
+            }
+            // Search for the small L and make it top back left
+            boolean foundBlueSmallL = false;
+            if (!foundBlueSmallL
+                    && m.getFace(RubikCubeSide.UP, 1, 2) == RubikCubeFaceColor.BLUE) {
+                if (m.getFace(RubikCubeSide.UP, 0, 1) == RubikCubeFaceColor.BLUE) {
+                    // Top right
+                    foundBlueSmallL = true;
+                    currentMove = new Y(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                } else if (m.getFace(RubikCubeSide.UP, 2, 1) == RubikCubeFaceColor.BLUE) {
+                    // Right bottom
+                    foundBlueSmallL = true;
+                    currentMove = new Y(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new Y(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                }
+            }
+            if (!foundBlueSmallL
+                    && m.getFace(RubikCubeSide.UP, 2, 1) == RubikCubeFaceColor.BLUE) {
+                // Left bottom
+                foundBlueSmallL = true;
+                currentMove = new Y(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+            }
+            // Do F R U R' U' F'
+            currentMove = new F(m);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            currentMove = new R(m);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            currentMove = new U(m);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            currentMove = new R(m, true);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            currentMove = new U(m, true);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            currentMove = new F(m, true);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            // Make the three pieces in a row go left to right across the top
+            if (m.getFace(RubikCubeSide.UP, 0, 1) == RubikCubeFaceColor.BLUE) {
+                currentMove = new Y(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+            }
+            // and again do F R U R' U' F' to get blue cross
+            currentMove = new F(m);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            currentMove = new R(m);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            currentMove = new U(m);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            currentMove = new R(m, true);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            currentMove = new U(m, true);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            currentMove = new F(m, true);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            // Try twisting the blue side so two edge pieces line up with their
+            // correct sides
+            // FIXME
+            // If you can't get two lined up do R U R' U R 2U R'
+            // FIXME Check
+            currentMove = new R(m);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            currentMove = new U(m);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            currentMove = new R(m, true);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            currentMove = new U(m);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            currentMove = new R(m);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            currentMove = new U(m);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            currentMove = new U(m);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            currentMove = new R(m, true);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            // If you get two lined up, and they are across from each other, make the lined-up edges the
+            // front and back sides and do R U R' U R 2U R'
+            // FIXME check + as before
+            // if the two lined up are adjacent, make them the right and back sides and do R U R' U R 2U R'
+            // FIXME Rotate
+            // should now have blue cross on top and be able to twist top to get all edge pieces lined up
+        }
         // Check the final four corners on the blue side
-        /*
-         * 4. solve the final 4 corners!!!
-
- > check the corners to see if they are in their correct
-   locations (even though they may be flipped). You should
-   either have 0, 1, or all 4 in their correct spots.
-       if 0: do U R U' L' U R' U' L with blue cross on top
-
-       this should get 1 or more corners correct
-
-    if 1: do U R U' L' U R' U' L with blue cross on top and
-          correct corner as upper right of front face
-
-       this should get 4 corners correct, but you may need
-       to repeat this U R U' L' U R' U' L once
-
-    if 4: go to next step...
-     > with 4 corners correct (but flipped), pick a side and make
-   it the front, with a corner to flip in the top right
-      NOTE: always keep this front side the same during the next
-         few steps!!!!
-
-     do   R' D' R D  twice and see if that corner is flipped correctly
-
-     if no, do R' D' R D twice again
-
-   if yes, turn up face 90 degrees and repeat with next corner, always
-   keeping the same front face (even though it looks like you're 
-   messing things up!)
-    NOW TWIST THE TOP AND THE CUBE IS SOLVED!!!
-         */
+        // FIXME Check
+        // Check the number of corners in their correct locations
+        // If 0: do U R U' L' U R' U' L to get at least one corner correct
+        // If 1: put the corner as upper right of front face...
+        // ... and perform U R U' L' U R' U' L one or two times
+        // If 4, do nothing
+        // If the four corners are flipped, pick a side with a corner to flip
+        // in the top right
+        // Do R' D' R D twice and see if that corner is flipped correctly
+        // If not, do R' D' R D twice again
+        // If yes, turn up face 90 degrees, repeat with next corner, always keeping
+        // tha same front face
+        // Twist the top and the cube is solved
         return listMoves;
     }
     /**
@@ -903,6 +996,14 @@ public class Singmaster extends ResolutionStrategy {
         }
         return secondLayerSolved;
     }
+    private static boolean isBlueCrossSolved(final RubikCubeModel m) {
+        final RubikCubeSide blueSide = getSide(m, RubikCubeFaceColor.BLUE);
+        return m.getFace(blueSide, 0, 1) == RubikCubeFaceColor.BLUE
+               && m.getFace(blueSide, 1, 0) == RubikCubeFaceColor.BLUE
+               && m.getFace(blueSide, 1, 1) == RubikCubeFaceColor.BLUE
+               && m.getFace(blueSide, 1, 2) == RubikCubeFaceColor.BLUE
+               && m.getFace(blueSide, 2, 1) == RubikCubeFaceColor.BLUE;
+    }
     private static List<Move> moveGreenSideUp(RubikCubeModel m) {
         Move currentMove;
         final List<Move> listMoves = new ArrayList<>();
@@ -975,12 +1076,13 @@ public class Singmaster extends ResolutionStrategy {
         }
         return listMoves;
     }
-    private static boolean areCrossAndEdgesDoneOnGreenUp(final RubikCubeModel m) {
-        if (m.getFace(RubikCubeSide.UP, 0, 1) != RubikCubeFaceColor.GREEN
-            || m.getFace(RubikCubeSide.UP, 1, 0) != RubikCubeFaceColor.GREEN
-            || m.getFace(RubikCubeSide.UP, 1, 1) != RubikCubeFaceColor.GREEN
-            || m.getFace(RubikCubeSide.UP, 1, 2) != RubikCubeFaceColor.GREEN
-            || m.getFace(RubikCubeSide.UP, 2, 1) != RubikCubeFaceColor.GREEN) {
+    private static boolean areCrossAndEdgesDoneOnFaceUp(final RubikCubeModel m,
+                                                        final RubikCubeFaceColor c) {
+        if (m.getFace(RubikCubeSide.UP, 0, 1) != c
+            || m.getFace(RubikCubeSide.UP, 1, 0) != c
+            || m.getFace(RubikCubeSide.UP, 1, 1) != c
+            || m.getFace(RubikCubeSide.UP, 1, 2) != c
+            || m.getFace(RubikCubeSide.UP, 2, 1) != c) {
             return false;
         }
         for (RubikCubeSide s: new RubikCubeSide[]{RubikCubeSide.FRONT,
