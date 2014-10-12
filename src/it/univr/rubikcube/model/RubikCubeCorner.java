@@ -6,6 +6,8 @@ package it.univr.rubikcube.model;
  * @author Alessandro Menti
  */
 public enum RubikCubeCorner {
+    // DO NOT ALTER the order as some parts of the application depend on the
+    // ordinal.
     /**
      * Corner between the up, right and front faces.
      */

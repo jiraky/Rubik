@@ -754,7 +754,7 @@ public class RubikCubeModel extends Observable {
         return true;
     }
     /**
-     * Checks whether a corner is in place.
+     * Checks whether a corner is in place (against row 0).
      * @param m Model to be checked.
      * @param c Corner to be checked.
      * @return <tt>true</tt> if and only if the corner is in place.
@@ -772,40 +772,123 @@ public class RubikCubeModel extends Observable {
         final int halfDim = m.getDimension() / 2;
         switch (c) {
             case URF:
-                return col.getFirstColor() == m.getFace(RubikCubeSide.UP, halfDim, halfDim)
-                    && col.getSecondColor() == m.getFace(RubikCubeSide.RIGHT, halfDim, halfDim)
-                    && col.getThirdColor() == m.getFace(RubikCubeSide.FRONT, halfDim, halfDim);
+                return col.getFirstColor() == m.getFace(RubikCubeSide.UP, 0, halfDim)
+                    && col.getSecondColor() == m.getFace(RubikCubeSide.RIGHT, 0, halfDim)
+                    && col.getThirdColor() == m.getFace(RubikCubeSide.FRONT, 0, halfDim);
             case UFL:
-                return col.getFirstColor() == m.getFace(RubikCubeSide.UP, halfDim, halfDim)
-                    && col.getSecondColor() == m.getFace(RubikCubeSide.FRONT, halfDim, halfDim)
-                    && col.getThirdColor() == m.getFace(RubikCubeSide.LEFT, halfDim, halfDim);
+                return col.getFirstColor() == m.getFace(RubikCubeSide.UP, 0, halfDim)
+                    && col.getSecondColor() == m.getFace(RubikCubeSide.FRONT, 0, halfDim)
+                    && col.getThirdColor() == m.getFace(RubikCubeSide.LEFT, 0, halfDim);
             case ULB:
-                return col.getFirstColor() == m.getFace(RubikCubeSide.UP, halfDim, halfDim)
-                    && col.getSecondColor() == m.getFace(RubikCubeSide.LEFT, halfDim, halfDim)
-                    && col.getThirdColor() == m.getFace(RubikCubeSide.BACK, halfDim, halfDim);
+                return col.getFirstColor() == m.getFace(RubikCubeSide.UP, 0, halfDim)
+                    && col.getSecondColor() == m.getFace(RubikCubeSide.LEFT, 0, halfDim)
+                    && col.getThirdColor() == m.getFace(RubikCubeSide.BACK, 0, halfDim);
             case UBR:
-                return col.getFirstColor() == m.getFace(RubikCubeSide.UP, halfDim, halfDim)
-                    && col.getSecondColor() == m.getFace(RubikCubeSide.BACK, halfDim, halfDim)
-                    && col.getThirdColor() == m.getFace(RubikCubeSide.RIGHT, halfDim, halfDim);
+                return col.getFirstColor() == m.getFace(RubikCubeSide.UP, 0, halfDim)
+                    && col.getSecondColor() == m.getFace(RubikCubeSide.BACK, 0, halfDim)
+                    && col.getThirdColor() == m.getFace(RubikCubeSide.RIGHT, 0, halfDim);
             case DFR:
-                return col.getFirstColor() == m.getFace(RubikCubeSide.DOWN, halfDim, halfDim)
-                    && col.getSecondColor() == m.getFace(RubikCubeSide.FRONT, halfDim, halfDim)
-                    && col.getThirdColor() == m.getFace(RubikCubeSide.RIGHT, halfDim, halfDim);
+                return col.getFirstColor() == m.getFace(RubikCubeSide.DOWN, 0, halfDim)
+                    && col.getSecondColor() == m.getFace(RubikCubeSide.FRONT, 0, halfDim)
+                    && col.getThirdColor() == m.getFace(RubikCubeSide.RIGHT, 0, halfDim);
             case DLF:
-                return col.getFirstColor() == m.getFace(RubikCubeSide.DOWN, halfDim, halfDim)
-                    && col.getSecondColor() == m.getFace(RubikCubeSide.LEFT, halfDim, halfDim)
-                    && col.getThirdColor() == m.getFace(RubikCubeSide.FRONT, halfDim, halfDim);
+                return col.getFirstColor() == m.getFace(RubikCubeSide.DOWN, 0, halfDim)
+                    && col.getSecondColor() == m.getFace(RubikCubeSide.LEFT, 0, halfDim)
+                    && col.getThirdColor() == m.getFace(RubikCubeSide.FRONT, 0, halfDim);
             case DBL:
-                return col.getFirstColor() == m.getFace(RubikCubeSide.DOWN, halfDim, halfDim)
-                    && col.getSecondColor() == m.getFace(RubikCubeSide.BACK, halfDim, halfDim)
-                    && col.getThirdColor() == m.getFace(RubikCubeSide.LEFT, halfDim, halfDim);
+                return col.getFirstColor() == m.getFace(RubikCubeSide.DOWN, 0, halfDim)
+                    && col.getSecondColor() == m.getFace(RubikCubeSide.BACK, 0, halfDim)
+                    && col.getThirdColor() == m.getFace(RubikCubeSide.LEFT, 0, halfDim);
             case DRB:
-                return col.getFirstColor() == m.getFace(RubikCubeSide.DOWN, halfDim, halfDim)
-                    && col.getSecondColor() == m.getFace(RubikCubeSide.RIGHT, halfDim, halfDim)
-                    && col.getThirdColor() == m.getFace(RubikCubeSide.BACK, halfDim, halfDim);
+                return col.getFirstColor() == m.getFace(RubikCubeSide.DOWN, 0, halfDim)
+                    && col.getSecondColor() == m.getFace(RubikCubeSide.RIGHT, 0, halfDim)
+                    && col.getThirdColor() == m.getFace(RubikCubeSide.BACK, 0, halfDim);
             default:
                 throw new IllegalArgumentException("corner not in enum");
         }
+    }
+    /**
+     * Checks whether a corner is in place (or in place but flipped, against
+     * row 0).
+     * @param m Model to be checked.
+     * @param c Corner to be checked.
+     * @return <tt>true</tt> if and only if the corner is in place/in place but
+     * flipped.
+     * @throws IllegalArgumentException Thrown if <tt>c</tt> is not in the
+     * enum.
+     * @throws NullPointerException Thrown if <tt>m</tt> is <tt>null</tt>.
+     */
+    public static boolean isCornerInPlaceMaybeFlipped(final RubikCubeModel m,
+        final RubikCubeCorner c) throws IllegalArgumentException,
+        NullPointerException {
+        if (m == null) {
+            throw new NullPointerException("m must not be null");
+        }
+        final RubikCubeCornerColor col = m.getCorner(c);
+        final int halfDim = m.getDimension() / 2;
+        final RubikCubeSide[] faces = new RubikCubeSide[3];
+        switch (c) {
+            case URF:
+                faces[0] = RubikCubeSide.UP;
+                faces[1] = RubikCubeSide.RIGHT;
+                faces[2] = RubikCubeSide.FRONT;
+                break;
+            case UFL:
+                faces[0] = RubikCubeSide.UP;
+                faces[1] = RubikCubeSide.FRONT;
+                faces[2] = RubikCubeSide.LEFT;
+                break;
+            case ULB:
+                faces[0] = RubikCubeSide.UP;
+                faces[1] = RubikCubeSide.LEFT;
+                faces[2] = RubikCubeSide.BACK;
+                break;
+            case UBR:
+                faces[0] = RubikCubeSide.UP;
+                faces[1] = RubikCubeSide.BACK;
+                faces[2] = RubikCubeSide.RIGHT;
+                break;
+            case DFR:
+                faces[0] = RubikCubeSide.DOWN;
+                faces[1] = RubikCubeSide.FRONT;
+                faces[2] = RubikCubeSide.RIGHT;
+                break;
+            case DLF:
+                faces[0] = RubikCubeSide.DOWN;
+                faces[1] = RubikCubeSide.LEFT;
+                faces[2] = RubikCubeSide.FRONT;
+                break;
+            case DBL:
+                faces[0] = RubikCubeSide.DOWN;
+                faces[1] = RubikCubeSide.BACK;
+                faces[2] = RubikCubeSide.LEFT;
+                break;
+            case DRB:
+                faces[0] = RubikCubeSide.DOWN;
+                faces[1] = RubikCubeSide.RIGHT;
+                faces[2] = RubikCubeSide.BACK;
+                break;
+            default:
+                throw new IllegalArgumentException("corner not in enum");
+        }
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                if (i == j) {
+                    continue;
+                }
+                for (int k = 0; k < 3; ++k) {
+                    if (j == k) {
+                        continue;
+                    }
+                    if (col.getFirstColor() == m.getFace(faces[i], 0, halfDim)
+                        && col.getSecondColor() == m.getFace(faces[j], 0, halfDim)
+                        && col.getThirdColor() == m.getFace(faces[k], 0, halfDim)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
     /**
      * Checks if an edge is in place.

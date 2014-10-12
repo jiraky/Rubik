@@ -843,56 +843,276 @@ public class Singmaster extends ResolutionStrategy {
             currentMove = new F(m, true);
             listMoves.add(currentMove);
             currentMove.perform();
-            // Try twisting the blue side so two edge pieces line up with their
-            // correct sides
-            // FIXME
-            // If you can't get two lined up do R U R' U R 2U R'
-            // FIXME Check
-            currentMove = new R(m);
-            listMoves.add(currentMove);
-            currentMove.perform();
-            currentMove = new U(m);
-            listMoves.add(currentMove);
-            currentMove.perform();
-            currentMove = new R(m, true);
-            listMoves.add(currentMove);
-            currentMove.perform();
-            currentMove = new U(m);
-            listMoves.add(currentMove);
-            currentMove.perform();
-            currentMove = new R(m);
-            listMoves.add(currentMove);
-            currentMove.perform();
-            currentMove = new U(m);
-            listMoves.add(currentMove);
-            currentMove.perform();
-            currentMove = new U(m);
-            listMoves.add(currentMove);
-            currentMove.perform();
-            currentMove = new R(m, true);
-            listMoves.add(currentMove);
-            currentMove.perform();
-            // If you get two lined up, and they are across from each other, make the lined-up edges the
-            // front and back sides and do R U R' U R 2U R'
-            // FIXME check + as before
-            // if the two lined up are adjacent, make them the right and back sides and do R U R' U R 2U R'
-            // FIXME Rotate
-            // should now have blue cross on top and be able to twist top to get all edge pieces lined up
+            if (!twistBlueSideTwoEdges(m, listMoves)) {
+                // Can't get two edges lined up, do R U R' U R 2U R'
+                currentMove = new R(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new U(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new R(m, true);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new U(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new R(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new U(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new U(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new R(m, true);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                // FIXME - and check again?
+                twistBlueSideTwoEdges(m, listMoves);
+            }
+            // The blue cross is on top, twist the top to get the pieces lined up
+            // Might need to do it more than once.
+            int matchingEdges = 0;
+            do {
+                final RubikCubeModel mCloneTop = new RubikCubeModel(m);
+                int i;
+                for (i = 0; i < 4; ++i) {
+                    matchingEdges = 0;
+                    for (RubikCubeSide s : new RubikCubeSide[]{RubikCubeSide.FRONT, RubikCubeSide.RIGHT, RubikCubeSide.BACK, RubikCubeSide.LEFT, }) {
+                        if (m.getFace(s, 0, 1) == m.getFace(s, 1, 1)) {
+                            ++matchingEdges;
+                        }
+                    }
+                    if (matchingEdges == 4) {
+                        break;
+                    }
+                    new U(mCloneTop, true).perform();
+                }
+                switch (i) {
+                    case 3:
+                        currentMove = new U(m, true);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                        break;
+                    case 2:
+                        currentMove = new U(m);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                        // fall through
+                    case 1:
+                        currentMove = new U(m);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                        break;
+                    case 0:
+                    default:
+                        // Nothing to do
+                        break;
+                }
+            } while (matchingEdges != 4);
         }
         // Check the final four corners on the blue side
-        // FIXME Check
-        // Check the number of corners in their correct locations
-        // If 0: do U R U' L' U R' U' L to get at least one corner correct
-        // If 1: put the corner as upper right of front face...
-        // ... and perform U R U' L' U R' U' L one or two times
-        // If 4, do nothing
-        // If the four corners are flipped, pick a side with a corner to flip
-        // in the top right
-        // Do R' D' R D twice and see if that corner is flipped correctly
-        // If not, do R' D' R D twice again
-        // If yes, turn up face 90 degrees, repeat with next corner, always keeping
-        // tha same front face
-        // Twist the top and the cube is solved
+        // FIXME Corners must be checked against row 0!!!
+        int correctCorners;
+        do {
+            final boolean[] flippedCorners = new boolean[4];
+            final RubikCubeCorner[] cornersToCheck = new RubikCubeCorner[] {RubikCubeCorner.URF, RubikCubeCorner.UFL, RubikCubeCorner.ULB, RubikCubeCorner.UBR, };
+            correctCorners = 0;
+            for (RubikCubeCorner c : cornersToCheck) {
+                if (RubikCubeModel.isCornerInPlace(m, c)) {
+                    ++correctCorners;
+                    continue;
+                }
+                if (RubikCubeModel.isCornerInPlaceMaybeFlipped(m, c)) {
+                    flippedCorners[c.ordinal()] = true;
+                    ++correctCorners;
+                }
+            }
+            // Check the number of corners in their correct locations
+            switch (correctCorners) {
+                case 1:
+                    // If 1: put the corner as upper right of front face...
+                    int flippedCorner;
+                    for (flippedCorner = 0; flippedCorner < 4; ++flippedCorner) {
+                        if (flippedCorners[flippedCorner]) {
+                            break;
+                        }
+                    }
+                    if (flippedCorner == RubikCubeCorner.UFL.ordinal()) {
+                        currentMove = new Y(m, true);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                    } else if (flippedCorner == RubikCubeCorner.ULB.ordinal()) {
+                        currentMove = new Y(m);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                        currentMove = new Y(m);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                    } else if (flippedCorner == RubikCubeCorner.UBR.ordinal()) {
+                        currentMove = new Y(m);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                    }
+                    // ... and perform U R U' L' U R' U' L. This might either get
+                    // all four corners correct, or less than four, in which case
+                    // we repeat the procedure.
+                    // fall through
+                case 2:
+                    // TODO: check if there is a possible loop here.
+                    // Specifically, in case two corners are correct and the two other
+                    // ones are flipped, there might be an infinite loop. Could rotating
+                    // the cube be a solution?
+                case 0:
+                case 3:
+                    // Do U R U' L' U R' U' L to get at least one corner correct
+                    currentMove = new U(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new R(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new U(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new L(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new U(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new R(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new U(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new L(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    break;
+                case 4:
+                    // Nothing to do.
+                    break;
+                default:
+                    throw new NoSolutionException("Inconsistent state");
+            }
+        } while (correctCorners != 4);
+        if (!RubikCubeModel.isCornerInPlace(m, RubikCubeCorner.UBR)
+                || !RubikCubeModel.isCornerInPlace(m, RubikCubeCorner.UFL)
+                || !RubikCubeModel.isCornerInPlace(m, RubikCubeCorner.ULB)
+                || !RubikCubeModel.isCornerInPlace(m, RubikCubeCorner.URF)) {
+            // If some corners are flipped, put one of the corners in the
+            // URF angle.
+            if (!RubikCubeModel.isCornerInPlace(m, RubikCubeCorner.UBR)) {
+                currentMove = new Y(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+            } else if (!RubikCubeModel.isCornerInPlace(m, RubikCubeCorner.UFL)) {
+                currentMove = new Y(m, true);
+                listMoves.add(currentMove);
+                currentMove.perform();
+            } else if (!RubikCubeModel.isCornerInPlace(m, RubikCubeCorner.ULB)) {
+                currentMove = new Y(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new Y(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+            }
+            do {
+                // Do R' D' R D twice and see if that corner is flipped correctly
+                currentMove = new R(m, true);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new D(m, true);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new R(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new D(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new R(m, true);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new D(m, true);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new R(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new D(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                if (!RubikCubeModel.isCornerInPlace(m, RubikCubeCorner.URF)) {
+                    // If not, do R' D' R D twice again
+                    currentMove = new R(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new D(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new R(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new D(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new R(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new D(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new R(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new D(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                }
+                // Turn the up face 90 degrees until we find another suitable
+                // corner
+                if (!RubikCubeModel.isCornerInPlace(m, RubikCubeCorner.UBR)) {
+                    currentMove = new Y(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                } else if (!RubikCubeModel.isCornerInPlace(m, RubikCubeCorner.UFL)) {
+                    currentMove = new Y(m, true);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                } else if (!RubikCubeModel.isCornerInPlace(m, RubikCubeCorner.ULB)) {
+                    currentMove = new Y(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                    currentMove = new Y(m);
+                    listMoves.add(currentMove);
+                    currentMove.perform();
+                }
+            } while (!RubikCubeModel.isCornerInPlace(m, RubikCubeCorner.URF));
+        }
+        // Twist the top if necessary and the cube is solved
+        final RubikCubeFaceColor frontColor = m.getFace(RubikCubeSide.FRONT, 1, 1);
+        if (frontColor == m.getFace(RubikCubeSide.LEFT, 0, 1)) {
+            currentMove = new Y(m, true);
+            listMoves.add(currentMove);
+            currentMove.perform();            
+        } else if (frontColor == m.getFace(RubikCubeSide.RIGHT, 0, 1)) {
+            currentMove = new Y(m);
+            listMoves.add(currentMove);
+            currentMove.perform();
+        } else if (frontColor == m.getFace(RubikCubeSide.BACK, 0, 1)) {
+            currentMove = new Y(m);
+            listMoves.add(currentMove);
+            currentMove.perform();
+            currentMove = new Y(m);
+            listMoves.add(currentMove);
+            currentMove.perform();
+        }
         return listMoves;
     }
     /**
@@ -1092,5 +1312,112 @@ public class Singmaster extends ResolutionStrategy {
             }
         }
         return true;
+    }
+    private static boolean twistBlueSideTwoEdges(RubikCubeModel m, List<Move> listMoves) {
+        Move currentMove;
+        // Try twisting the blue side so two edge pieces line up with their
+        // correct sides.
+        int matchingEdges = 0;
+        final RubikCubeModel mBlue = new RubikCubeModel(m);
+        final RubikCubeSide[] edgesToCheck = new RubikCubeSide[]{RubikCubeSide.FRONT, RubikCubeSide.RIGHT, RubikCubeSide.BACK, RubikCubeSide.LEFT, };
+        for (int i = 0; i < 4; ++i) {
+            final boolean[] edges = new boolean[4];
+            for (int j = 0; j < 4; ++j) {
+                edges[i] = false;
+            }
+            matchingEdges = 0;
+            for (RubikCubeSide s : edgesToCheck) {
+                if (m.getFace(s, 0, 1) == m.getFace(s, 1, 1)) {
+                    ++matchingEdges;
+                    edges[s.ordinal()] = true;
+                }
+            }
+            // If we get four lined up, we're lucky. Just rotate the blue side if needed.
+            if (matchingEdges == 4) {
+                switch (i) {
+                    case 2:
+                        currentMove = new U(m);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                        // fall through
+                    case 1:
+                        currentMove = new U(m);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                        break;
+                    case 3:
+                        currentMove = new U(m, true);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                        break;
+                    case 0:
+                    default:
+                        // Nothing to do
+                        break;
+                }
+                break;
+            }
+            if (matchingEdges == 2) {
+                // Check if the matching edges are across from each other or adjacent.
+                if (edges[0] == edges[2]) {
+                    // Make the lined-up edges the front and back sides
+                    if (!edges[0]) {
+                        currentMove = new Y(m);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                    }
+                } else {
+                    // If the two lined up are adjacent, make them the right and back sides
+                    if (edges[3] && edges[0]) {
+                        // Left-front
+                        currentMove = new Y(m);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                        currentMove = new Y(m);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                    } else if (edges[3] && edges[2]) {
+                        // Left-back
+                        currentMove = new Y(m);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                    } else if (edges[0] && edges[1]) {
+                        // Front-right
+                        currentMove = new Y(m, true);
+                        listMoves.add(currentMove);
+                        currentMove.perform();
+                    }
+                }
+                // In each case, do R U R' U R 2U R'
+                currentMove = new R(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new U(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new R(m, true);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new U(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new R(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new U(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new U(m);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                currentMove = new R(m, true);
+                listMoves.add(currentMove);
+                currentMove.perform();
+                break;
+            }
+            // We did not find any matching edges - rotate the top side.
+            new U(mBlue).perform();
+        }
+        return matchingEdges != 0;
     }
 }
