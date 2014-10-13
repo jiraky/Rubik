@@ -158,7 +158,7 @@ public class MainWindow extends javax.swing.JFrame {
         rp_control = new javax.swing.JPanel();
         rp_control_reset = new javax.swing.JButton();
         rp_control_shuffle = new javax.swing.JButton();
-        rp_control_autosolve = new javax.swing.JButton();
+        rp_control_toString = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         Logo = new javax.swing.JLabel();
         rp_move_preview = new javax.swing.JPanel();
@@ -1113,16 +1113,16 @@ public class MainWindow extends javax.swing.JFrame {
         });
         rp_control.add(rp_control_shuffle);
 
-        rp_control_autosolve.setText("Auto Solve");
-        rp_control_autosolve.setMaximumSize(new java.awt.Dimension(85, 30));
-        rp_control_autosolve.setMinimumSize(new java.awt.Dimension(85, 30));
-        rp_control_autosolve.setPreferredSize(new java.awt.Dimension(85, 30));
-        rp_control_autosolve.addActionListener(new java.awt.event.ActionListener() {
+        rp_control_toString.setText("toString");
+        rp_control_toString.setMaximumSize(new java.awt.Dimension(85, 30));
+        rp_control_toString.setMinimumSize(new java.awt.Dimension(85, 30));
+        rp_control_toString.setPreferredSize(new java.awt.Dimension(85, 30));
+        rp_control_toString.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rp_control_autosolveActionPerformed(evt);
+                rp_control_toStringActionPerformed(evt);
             }
         });
-        rp_control.add(rp_control_autosolve);
+        rp_control.add(rp_control_toString);
 
         javax.swing.GroupLayout MainRightPanelLayout = new javax.swing.GroupLayout(MainRightPanel);
         MainRightPanel.setLayout(MainRightPanelLayout);
@@ -1547,16 +1547,9 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lp_move_inverse_noActionPerformed
 
-    private void rp_control_autosolveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_control_autosolveActionPerformed
-        if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(
-                rootPane,
-                "This action will autosolve the cube. Are you sure?",
-                "Confirm AutoSolve",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE)) {
-            initCube();
-        }
-    }//GEN-LAST:event_rp_control_autosolveActionPerformed
+    private void rp_control_toStringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_control_toStringActionPerformed
+        JOptionPane.showMessageDialog(this, this.cube.toString(), "Cube", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_rp_control_toStringActionPerformed
 
     private void rp_control_shuffleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_control_shuffleActionPerformed
         if (JOptionPane.YES_OPTION != JOptionPane.showConfirmDialog(
@@ -1622,6 +1615,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void rp_nextmoves_calculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_nextmoves_calculateActionPerformed
         this.rp_nextmoves_value.setText(this.getNextMoves());
+        if(!this.rp_nextmoves_value.getText().isEmpty()) this.rp_nextmoves_doit.setEnabled(true);
     }//GEN-LAST:event_rp_nextmoves_calculateActionPerformed
 
     /**
@@ -1738,9 +1732,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel rp_algorithm_title;
     private javax.swing.JLabel rp_algorithm_value;
     private javax.swing.JPanel rp_control;
-    private javax.swing.JButton rp_control_autosolve;
     private javax.swing.JButton rp_control_reset;
     private javax.swing.JButton rp_control_shuffle;
+    private javax.swing.JButton rp_control_toString;
     private javax.swing.JLabel rp_cubedimension_title;
     private javax.swing.JLabel rp_cubedimension_value;
     private javax.swing.JPanel rp_move_preview;
@@ -1757,6 +1751,8 @@ public class MainWindow extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     // CHECKSTYLE:ON
 
+    private boolean isNextMove = false;
+    
     /**
      * Rubik cube model.
      */
@@ -1794,6 +1790,10 @@ public class MainWindow extends javax.swing.JFrame {
         this.actualStrategy = this.availableStrategy.get(0);
 
         this.MovesCounter = 0;
+        
+        this.rp_previousmoves_value.setText("");
+        this.rp_nextmoves_value.setText("");
+        this.rp_nextmoves_doit.setEnabled(false);
 
         updateInterface();
     }

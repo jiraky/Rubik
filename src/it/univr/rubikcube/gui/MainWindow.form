@@ -2056,9 +2056,9 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rp_control_shuffleActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="rp_control_autosolve">
+            <Component class="javax.swing.JButton" name="rp_control_toString">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Auto Solve"/>
+                <Property name="text" type="java.lang.String" value="toString"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[85, 30]"/>
                 </Property>
@@ -2070,7 +2070,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rp_control_autosolveActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rp_control_toStringActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
