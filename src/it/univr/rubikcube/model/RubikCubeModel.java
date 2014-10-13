@@ -95,6 +95,23 @@ public class RubikCubeModel extends Observable {
         }
     }
     /**
+     * Gets the side having a given color.
+     * @param c The color to be searched for.
+     * @return The side having color <tt>c</tt>, or <tt>null</tt> if no such
+     * color was found.
+     */
+    public final RubikCubeSide getSide(final RubikCubeFaceColor c) {
+        RubikCubeSide side = null;
+        final int halfDim = this.dimension / 2;
+        for (RubikCubeSide s: RubikCubeSide.values()) {
+            if (this.configuration[s.ordinal()][halfDim][halfDim] == c) {
+                side = s;
+                break;
+            }
+        }
+        return side;
+    }
+    /**
      * Gets the color of a face.
      * @param s Side of the cube.
      * @param x X coordinate of the face.

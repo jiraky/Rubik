@@ -331,4 +331,69 @@ public class RubikCubeModelTest {
         Assert.assertFalse("A simple rotation marks the cube as unsolved",
                            RubikCubeModel.isSolved(c));
     }
+    /**
+     * Check that getSide() returns the correct side.
+     */
+    @Test
+    public final void getSide() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        Assert.assertTrue("Up side in standard configuration has standard color",
+                          c.getSide(RubikCubeSide.UP.getStandardColor()) == RubikCubeSide.UP);
+        Assert.assertTrue("Down side in standard configuration has standard color",
+                          c.getSide(RubikCubeSide.DOWN.getStandardColor()) == RubikCubeSide.DOWN);
+        Assert.assertTrue("Left side in standard configuration has standard color",
+                          c.getSide(RubikCubeSide.LEFT.getStandardColor()) == RubikCubeSide.LEFT);
+        Assert.assertTrue("Right side in standard configuration has standard color",
+                          c.getSide(RubikCubeSide.RIGHT.getStandardColor()) == RubikCubeSide.RIGHT);
+        Assert.assertTrue("Front side in standard configuration has standard color",
+                          c.getSide(RubikCubeSide.FRONT.getStandardColor()) == RubikCubeSide.FRONT);
+        Assert.assertTrue("Back side in standard configuration has standard color",
+                          c.getSide(RubikCubeSide.BACK.getStandardColor()) == RubikCubeSide.BACK);
+        Assert.assertTrue("The red side in the standard configuration is not the top one",
+                          c.getSide(RubikCubeFaceColor.RED) != RubikCubeSide.UP);
+        // Rotate the cube to the left
+        c.rotateCube(CubeRotation.ANTICLOCKWISE_FROM_FRONT);
+        Assert.assertTrue("Front side stays red",
+                          c.getSide(RubikCubeFaceColor.RED) == RubikCubeSide.FRONT);
+        Assert.assertTrue("Back side stays orange",
+                          c.getSide(RubikCubeFaceColor.ORANGE) == RubikCubeSide.BACK);
+        Assert.assertTrue("Left side is now white",
+                          c.getSide(RubikCubeFaceColor.WHITE) == RubikCubeSide.LEFT);
+        Assert.assertTrue("Down side is now green",
+                          c.getSide(RubikCubeFaceColor.GREEN) == RubikCubeSide.DOWN);
+        Assert.assertTrue("Right side is now yellow",
+                          c.getSide(RubikCubeFaceColor.YELLOW) == RubikCubeSide.RIGHT);
+        Assert.assertTrue("Up side is now blue",
+                          c.getSide(RubikCubeFaceColor.BLUE) == RubikCubeSide.UP);
+        c.resetToStandardConfiguration();
+        // Rotate the cube to the top
+        c.rotateCube(CubeRotation.UPWISE);
+        Assert.assertTrue("Front side is now yellow",
+                          c.getSide(RubikCubeFaceColor.YELLOW) == RubikCubeSide.FRONT);
+        Assert.assertTrue("Back side is now white",
+                          c.getSide(RubikCubeFaceColor.WHITE) == RubikCubeSide.BACK);
+        Assert.assertTrue("Left side stays green",
+                          c.getSide(RubikCubeFaceColor.GREEN) == RubikCubeSide.LEFT);
+        Assert.assertTrue("Down side is now orange",
+                          c.getSide(RubikCubeFaceColor.ORANGE) == RubikCubeSide.DOWN);
+        Assert.assertTrue("Right side stays blue",
+                          c.getSide(RubikCubeFaceColor.BLUE) == RubikCubeSide.RIGHT);
+        Assert.assertTrue("Up side is now red",
+                          c.getSide(RubikCubeFaceColor.RED) == RubikCubeSide.UP);
+        c.resetToStandardConfiguration();
+        // Rotate the equator row
+        c.rotateLateralColumn(1, LateralColumnRotation.LEFT);
+        Assert.assertTrue("Front side stays red",
+                          c.getSide(RubikCubeFaceColor.RED) == RubikCubeSide.FRONT);
+        Assert.assertTrue("Back side stays orange",
+                          c.getSide(RubikCubeFaceColor.ORANGE) == RubikCubeSide.BACK);
+        Assert.assertTrue("Left side is now white",
+                          c.getSide(RubikCubeFaceColor.WHITE) == RubikCubeSide.LEFT);
+        Assert.assertTrue("Down side is now green",
+                          c.getSide(RubikCubeFaceColor.GREEN) == RubikCubeSide.DOWN);
+        Assert.assertTrue("Right side is now yellow",
+                          c.getSide(RubikCubeFaceColor.YELLOW) == RubikCubeSide.RIGHT);
+        Assert.assertTrue("Up side is now blue",
+                          c.getSide(RubikCubeFaceColor.BLUE) == RubikCubeSide.UP);
+    }
 }

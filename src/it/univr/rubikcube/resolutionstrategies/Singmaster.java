@@ -67,7 +67,7 @@ public class Singmaster extends ResolutionStrategy {
         // Check if the green cross is solved: get the green central facelet
         // and check the other relevant facelets on the same side (plus the
         // edges).
-        final RubikCubeSide greenSide = getSide(m, RubikCubeFaceColor.GREEN);
+        final RubikCubeSide greenSide = m.getSide(RubikCubeFaceColor.GREEN);
         if (greenSide == null) {
             throw new NoSolutionException("Malformed cube, no green side"
                     + " found");
@@ -914,7 +914,6 @@ public class Singmaster extends ResolutionStrategy {
             } while (matchingEdges != 4);
         }
         // Check the final four corners on the blue side
-        // FIXME Corners must be checked against row 0!!!
         int correctCorners;
         do {
             final boolean[] flippedCorners = new boolean[4];
@@ -1131,38 +1130,51 @@ public class Singmaster extends ResolutionStrategy {
     public final String getDescription() {
         return "Singmaster's method solves the cube layer by layer.";
     }
-    private static RubikCubeSide getSide(final RubikCubeModel m, final RubikCubeFaceColor c) {
-        RubikCubeSide side = null;
-        for (RubikCubeSide s: RubikCubeSide.values()) {
-            if (m.getFace(s, 1, 1) == c) {
-                side = s;
-                break;
-            }
-        }
-        return side;
-    }
+    /**
+     * Checks if the cross and the edges on the up face of the cube are done.
+     * @param m Model to be checked.
+     * @param c Cross color.
+     * @return <tt>true</tt> only if the cross and edges are done.
+     */
+    public static boolean areCrossAndEdgesDoneOnFaceUp(final RubikCubeModel m,
+                                                       final RubikCubeFaceColor c) {
+       if (m.getFace(RubikCubeSide.UP, 0, 1) != c
+           || m.getFace(RubikCubeSide.UP, 1, 0) != c
+           || m.getFace(RubikCubeSide.UP, 1, 1) != c
+           || m.getFace(RubikCubeSide.UP, 1, 2) != c
+           || m.getFace(RubikCubeSide.UP, 2, 1) != c) {
+           return false;
+       }
+       for (RubikCubeSide s: new RubikCubeSide[]{RubikCubeSide.FRONT,
+           RubikCubeSide.RIGHT, RubikCubeSide.BACK, RubikCubeSide.LEFT, }) {
+           if (m.getFace(s, 0, 1) != m.getFace(s, 1, 1)) {
+               return false;
+           }
+       }
+       return true;
+   }
     private static boolean isSecondLayerSolved(final RubikCubeModel m) {
         boolean secondLayerSolved = true;
-        switch (getSide(m, RubikCubeFaceColor.GREEN)) {
+        switch (m.getSide(RubikCubeFaceColor.GREEN)) {
             case UP:
             case DOWN:
                 for (int i = 0; i < 3; ++i) {
-                    if (m.getFace(RubikCubeSide.FRONT, 1, i) != RubikCubeSide.FRONT.getStandardColor()) {
+                    if (m.getFace(RubikCubeSide.FRONT, 1, i) != m.getFace(RubikCubeSide.FRONT, 1, 1)) {
                         secondLayerSolved = false;
                     }
                 }
                 for (int i = 0; i < 3; ++i) {
-                    if (m.getFace(RubikCubeSide.RIGHT, 1, i) != RubikCubeSide.RIGHT.getStandardColor()) {
+                    if (m.getFace(RubikCubeSide.RIGHT, 1, i) != m.getFace(RubikCubeSide.RIGHT, 1, 1)) {
                         secondLayerSolved = false;
                     }
                 }
                 for (int i = 0; i < 3; ++i) {
-                    if (m.getFace(RubikCubeSide.BACK, 1, i) != RubikCubeSide.BACK.getStandardColor()) {
+                    if (m.getFace(RubikCubeSide.BACK, 1, i) != m.getFace(RubikCubeSide.BACK, 1, 1)) {
                         secondLayerSolved = false;
                     }
                 }
                 for (int i = 0; i < 3; ++i) {
-                    if (m.getFace(RubikCubeSide.LEFT, 1, i) != RubikCubeSide.LEFT.getStandardColor()) {
+                    if (m.getFace(RubikCubeSide.LEFT, 1, i) != m.getFace(RubikCubeSide.LEFT, 1, 1)) {
                         secondLayerSolved = false;
                     }
                 }
@@ -1170,22 +1182,22 @@ public class Singmaster extends ResolutionStrategy {
             case LEFT:
             case RIGHT:
                 for (int i = 0; i < 3; ++i) {
-                    if (m.getFace(RubikCubeSide.FRONT, i, 1) != RubikCubeSide.FRONT.getStandardColor()) {
+                    if (m.getFace(RubikCubeSide.FRONT, i, 1) != m.getFace(RubikCubeSide.FRONT, 1, 1)) {
                         secondLayerSolved = false;
                     }
                 }
                 for (int i = 0; i < 3; ++i) {
-                    if (m.getFace(RubikCubeSide.DOWN, i, 1) != RubikCubeSide.DOWN.getStandardColor()) {
+                    if (m.getFace(RubikCubeSide.DOWN, i, 1) != m.getFace(RubikCubeSide.DOWN, 1, 1)) {
                         secondLayerSolved = false;
                     }
                 }
                 for (int i = 0; i < 3; ++i) {
-                    if (m.getFace(RubikCubeSide.BACK, i, 1) != RubikCubeSide.BACK.getStandardColor()) {
+                    if (m.getFace(RubikCubeSide.BACK, i, 1) != m.getFace(RubikCubeSide.BACK, 1, 1)) {
                         secondLayerSolved = false;
                     }
                 }
                 for (int i = 0; i < 3; ++i) {
-                    if (m.getFace(RubikCubeSide.UP, i, 1) != RubikCubeSide.UP.getStandardColor()) {
+                    if (m.getFace(RubikCubeSide.UP, i, 1) != m.getFace(RubikCubeSide.UP, 1, 1)) {
                         secondLayerSolved = false;
                     }
                 }
@@ -1193,22 +1205,22 @@ public class Singmaster extends ResolutionStrategy {
             case FRONT:
             case BACK:
                 for (int i = 0; i < 3; ++i) {
-                    if (m.getFace(RubikCubeSide.UP, 1, i) != RubikCubeSide.UP.getStandardColor()) {
+                    if (m.getFace(RubikCubeSide.UP, 1, i) != m.getFace(RubikCubeSide.UP, 1, 1)) {
                         secondLayerSolved = false;
                     }
                 }
                 for (int i = 0; i < 3; ++i) {
-                    if (m.getFace(RubikCubeSide.RIGHT, i, 1) != RubikCubeSide.RIGHT.getStandardColor()) {
+                    if (m.getFace(RubikCubeSide.RIGHT, i, 1) != m.getFace(RubikCubeSide.RIGHT, 1, 1)) {
                         secondLayerSolved = false;
                     }
                 }
                 for (int i = 0; i < 3; ++i) {
-                    if (m.getFace(RubikCubeSide.DOWN, 1, i) != RubikCubeSide.DOWN.getStandardColor()) {
+                    if (m.getFace(RubikCubeSide.DOWN, 1, i) != m.getFace(RubikCubeSide.DOWN, 1, 1)) {
                         secondLayerSolved = false;
                     }
                 }
                 for (int i = 0; i < 3; ++i) {
-                    if (m.getFace(RubikCubeSide.LEFT, i, 1) != RubikCubeSide.LEFT.getStandardColor()) {
+                    if (m.getFace(RubikCubeSide.LEFT, i, 1) != m.getFace(RubikCubeSide.LEFT, 1, 1)) {
                         secondLayerSolved = false;
                     }
                 }
@@ -1217,7 +1229,7 @@ public class Singmaster extends ResolutionStrategy {
         return secondLayerSolved;
     }
     private static boolean isBlueCrossSolved(final RubikCubeModel m) {
-        final RubikCubeSide blueSide = getSide(m, RubikCubeFaceColor.BLUE);
+        final RubikCubeSide blueSide = m.getSide(RubikCubeFaceColor.BLUE);
         return m.getFace(blueSide, 0, 1) == RubikCubeFaceColor.BLUE
                && m.getFace(blueSide, 1, 0) == RubikCubeFaceColor.BLUE
                && m.getFace(blueSide, 1, 1) == RubikCubeFaceColor.BLUE
@@ -1227,7 +1239,7 @@ public class Singmaster extends ResolutionStrategy {
     private static List<Move> moveGreenSideUp(RubikCubeModel m) {
         Move currentMove;
         final List<Move> listMoves = new ArrayList<>();
-        switch (getSide(m, RubikCubeFaceColor.GREEN)) {
+        switch (m.getSide(RubikCubeFaceColor.GREEN)) {
             case BACK:
                 currentMove = new X(m, true);
                 listMoves.add(currentMove);
@@ -1263,7 +1275,7 @@ public class Singmaster extends ResolutionStrategy {
     private static List<Move> moveGreenSideDown(final RubikCubeModel m) {
         Move currentMove;
         final List<Move> listMoves = new ArrayList<>();
-        switch (getSide(m, RubikCubeFaceColor.GREEN)) {
+        switch (m.getSide(RubikCubeFaceColor.GREEN)) {
             case BACK:
                 currentMove = new X(m);
                 listMoves.add(currentMove);
@@ -1295,23 +1307,6 @@ public class Singmaster extends ResolutionStrategy {
                 break;
         }
         return listMoves;
-    }
-    private static boolean areCrossAndEdgesDoneOnFaceUp(final RubikCubeModel m,
-                                                        final RubikCubeFaceColor c) {
-        if (m.getFace(RubikCubeSide.UP, 0, 1) != c
-            || m.getFace(RubikCubeSide.UP, 1, 0) != c
-            || m.getFace(RubikCubeSide.UP, 1, 1) != c
-            || m.getFace(RubikCubeSide.UP, 1, 2) != c
-            || m.getFace(RubikCubeSide.UP, 2, 1) != c) {
-            return false;
-        }
-        for (RubikCubeSide s: new RubikCubeSide[]{RubikCubeSide.FRONT,
-            RubikCubeSide.RIGHT, RubikCubeSide.BACK, RubikCubeSide.LEFT, }) {
-            if (m.getFace(s, 0, 1) != s.getStandardColor()) {
-                return false;
-            }
-        }
-        return true;
     }
     private static boolean twistBlueSideTwoEdges(RubikCubeModel m, List<Move> listMoves) {
         Move currentMove;
