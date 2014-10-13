@@ -1623,7 +1623,7 @@ public class MainWindow extends javax.swing.JFrame {
         }
         
         
-        //this.rp_previousmoves_value.setText("");
+        this.rp_previousmoves_value.setText("");
         this.MovesCounter = 0;
         JOptionPane.showMessageDialog(this, "Shuffle completed!\n" + moves, "Shuffle result", JOptionPane.PLAIN_MESSAGE);
         updateInterface();
