@@ -123,6 +123,19 @@ public class RubikCubeModel extends Observable {
         return this.configuration[s.ordinal()][x][y];
     }
     /**
+     * Sets the color of a face. <strong>WARNING:</strong> this may leave the
+     * cube in an inconsistent state. It is your responsibility to check that
+     * what you do is valid.
+     * @param s Side of the cube.
+     * @param x X coordinate of the face.
+     * @param y Y coordinate of the face.
+     * @param c Color to be set.
+     */
+    public final void setFace(final RubikCubeSide s, final int x,
+                              final int y, final RubikCubeFaceColor c) {
+        this.configuration[s.ordinal()][x][y] = c;
+    }
+    /**
      * Gets the color of two edge facelets.
      * @param e Edge to be considered.
      * @return The color of the two facelets making the edge.
