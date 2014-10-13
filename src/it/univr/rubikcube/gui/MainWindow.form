@@ -92,10 +92,10 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="MainLeftPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="Logo" alignment="0" max="32767" attributes="0"/>
                   <Component id="MainRightPanel" alignment="0" pref="0" max="32767" attributes="0"/>
                   <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
@@ -2102,7 +2102,6 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="rp_move_preview_image" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -2150,9 +2149,11 @@
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="rp_nextmoves_doit" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="rp_nextmoves_doit" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="rp_nextmoves_progressbar" max="32767" attributes="0"/>
+                  <Component id="rp_nextmoves_calculate" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="rp_nextmoves_progressbar" pref="0" max="32767" attributes="0"/>
               </Group>
               <Component id="rp_previousmoves_container" alignment="0" max="32767" attributes="0"/>
           </Group>
@@ -2172,10 +2173,10 @@
                   <Component id="rp_nextmoves_value" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="rp_nextmoves_doit" min="-2" max="-2" attributes="0"/>
-                      <Component id="rp_nextmoves_progressbar" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="rp_nextmoves_progressbar" max="32767" attributes="0"/>
+                      <Component id="rp_nextmoves_calculate" pref="29" max="32767" attributes="0"/>
+                      <Component id="rp_nextmoves_doit" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -2231,12 +2232,21 @@
         <Component class="javax.swing.JButton" name="rp_nextmoves_doit">
           <Properties>
             <Property name="text" type="java.lang.String" value="Do it!"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rp_nextmoves_doitActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JProgressBar" name="rp_nextmoves_progressbar">
+        </Component>
+        <Component class="javax.swing.JButton" name="rp_nextmoves_calculate">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Calculate"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rp_nextmoves_calculateActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

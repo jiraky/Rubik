@@ -116,7 +116,7 @@ public class KociembaLib extends ResolutionStrategy {
             else if(side==RubikCubeSide.LEFT) side = RubikCubeSide.BACK;
             else if(side==RubikCubeSide.BACK) break;
         }
-        JOptionPane.showMessageDialog(null, result,"MappedCube",JOptionPane.INFORMATION_MESSAGE);
+        //JOptionPane.showMessageDialog(null, result,"MappedCube",JOptionPane.INFORMATION_MESSAGE);
         return result;
     }
     
