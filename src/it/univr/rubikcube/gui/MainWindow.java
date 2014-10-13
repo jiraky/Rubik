@@ -17,6 +17,7 @@ import it.univr.rubikcube.moves.Y;
 import it.univr.rubikcube.moves.Z;
 import it.univr.rubikcube.resolutionstrategies.Fridrich;
 import it.univr.rubikcube.resolutionstrategies.Kociemba;
+import it.univr.rubikcube.resolutionstrategies.KociembaLib;
 import it.univr.rubikcube.resolutionstrategies.NoSolutionException;
 import it.univr.rubikcube.resolutionstrategies.ResolutionStrategy;
 import it.univr.rubikcube.resolutionstrategies.Singmaster;
@@ -1767,8 +1768,8 @@ public class MainWindow extends javax.swing.JFrame {
         this.availableStrategy = new LinkedList<>();
         this.availableStrategy.add(new Fridrich(this.cube));
         // FIXME: COMMENT THE FOLLOWING LINE
-        this.availableStrategy.add(new Singmaster(this.cube));
-        this.availableStrategy.add(new Kociemba(this.cube));
+        //this.availableStrategy.add(new Singmaster(this.cube));
+        this.availableStrategy.add(new KociembaLib(this.cube));
         this.actualStrategy = this.availableStrategy.get(0);
         
         this.MovesCounter = 0;
@@ -1956,6 +1957,7 @@ public class MainWindow extends javax.swing.JFrame {
         this.D32.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 2, 1).getColor());
         this.D33.setBackground(this.cube.getFace(RubikCubeSide.DOWN, 2, 2).getColor());
         
+        
         if (this.next_moves_update) {
             resetNextMoves();
         } else {
@@ -1988,12 +1990,14 @@ public class MainWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, this.actualStrategy.toString()+" cannot found a solution.\nError: "+ex.getMessage(), "Error while looking for the next moves", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
+        /*
         for (int i = this.next_moves_pointer; i < this.next_moves.size(); ++i) {
             this.rp_nextmoves_value.setText(this.rp_nextmoves_value.getText() + this.next_moves.get(i).toString() + "");
         }
         this.rp_nextmoves_progressbar.setMinimum(0);
         this.rp_nextmoves_progressbar.setValue(this.next_moves_pointer);
         this.rp_nextmoves_progressbar.setMaximum(this.next_moves.size());
+        */
     }
     /**
      * Resets the list of next moves.
@@ -2008,11 +2012,13 @@ public class MainWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, this.actualStrategy.toString()+" cannot found a solution.\nError: "+ex.getMessage(), "Error while looking for the next moves", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
+        /*
         for (Move nextMove: this.next_moves) {
             this.rp_nextmoves_value.setText(this.rp_nextmoves_value.getText() + nextMove.toString() + "");
         }
         this.rp_nextmoves_progressbar.setMinimum(0);
         this.rp_nextmoves_progressbar.setValue(0);
         this.rp_nextmoves_progressbar.setMaximum(this.next_moves.size());
+        */
     }
 }

@@ -35,6 +35,8 @@ graphics/moves/Z_inv.png -text
 graphics/moves/shuffle.png -text
 graphics/moves/solved.png -text
 /launchRubik.sh -text
+lib/KociembaOriginal.jar -text
+lib/RubikCube.jar -text
 lib/beansbinding-1.2.1.jar -text
 /manifest.txt -text svneol=unset#text/plain
 /rubikcube.jnlp -text svneol=unset#application/x-java-jnlp-file
@@ -89,6 +91,7 @@ src/it/univr/rubikcube/resolutionstrategies/Fridrich.java -text svneol=unset#tex
 src/it/univr/rubikcube/resolutionstrategies/Kociemba.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/resolutionstrategies/KociembaCoordinateCube.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/resolutionstrategies/KociembaCubieCube.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/resolutionstrategies/KociembaLib.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/resolutionstrategies/NoSolutionException.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/resolutionstrategies/ResolutionStrategy.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/resolutionstrategies/Singmaster.java -text svneol=unset#text/x-java-source
