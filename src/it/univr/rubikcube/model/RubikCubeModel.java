@@ -625,64 +625,71 @@ public class RubikCubeModel extends Observable {
      */
     @Override
     public final String toString() {
+        // FIXME
         final StringBuilder sb = new StringBuilder("");
-        for (int i = this.dimension; i >= 0; --i) {
-            for (int j = 0; j < this.dimension; ++j) {
-                sb.append(" ");
-            }
-            sb.append(" | ");
-            for (int j = this.dimension; j >= 0; --j) {
-                sb.append(this.configuration[RubikCubeSide.BACK.ordinal()][i][j]);
-            }
-            sb.append(" |\n");
+        // First separator
+        for (int i = 0; i < this.dimension + 1; ++i) {
+            sb.append(" ");
         }
-        for (int j = 0; j < 3; ++j) {
-            for (int k = 0; k < this.dimension; ++k) {
-                sb.append("-");
-            }
-            sb.append("---");
-        }
-        for (int j = 0; j < this.dimension; ++j) {
+        for (int i = 0; i < this.dimension + 2; ++i) {
             sb.append("-");
         }
         sb.append("\n");
-        for (int i = 0; i <= this.dimension; ++i) {
-            for (int j = this.dimension; j >= 0; --j) {
-                sb.append(this.configuration[RubikCubeSide.LEFT.ordinal()][j][i]);
+        // Up face
+        for (int i = 0; i < this.dimension; ++i) {
+            for (int j = 0; j < this.dimension + 1; ++j) {
+                sb.append(" ");
             }
-            sb.append(" | ");
-            for (int j = 0; j <= this.dimension; ++j) {
-                System.out.print(this.configuration[RubikCubeSide.UP.ordinal()][i][j]);
+            sb.append("|");
+            for (int j = 0; j < this.dimension; ++j) {
+                sb.append(this.configuration[RubikCubeSide.UP.ordinal()][i][j]);
             }
-            sb.append(" | ");
-            for (int j = 0; j <= this.dimension; ++j) {
-                sb.append(this.configuration[RubikCubeSide.RIGHT.ordinal()][j][this.dimension - i]);
-            }
-            sb.append(" | ");
-            for (int j = this.dimension; j >= 0; --j) {
-                sb.append(this.configuration[RubikCubeSide.DOWN.ordinal()][this.dimension - i][j]);
-            }
-            sb.append("\n");
+            sb.append("|\n");
         }
-        for (int j = 0; j < 3; ++j) {
-            for (int k = 0; k < this.dimension; ++k) {
-                sb.append("-");
-            }
-            sb.append("---");
-        }
-        for (int j = 0; j < this.dimension; ++j) {
+        // Second separator
+        for (int i = 0; i < (this.dimension + 1) * 4 + 1; ++i) {
             sb.append("-");
         }
         sb.append("\n");
-        for (int i = 0; i <= this.dimension; ++i) {
+        // Left, front, right, back faces
+        for (int i = 0; i < this.dimension; ++i) {
+            sb.append("|");
             for (int j = 0; j < this.dimension; ++j) {
-                sb.append(" ");
+                sb.append(this.configuration[RubikCubeSide.LEFT.ordinal()][i][j]);
             }
-            sb.append(" | ");
-            for (int j = 0; j <= this.dimension; ++j) {
+            sb.append("|");
+            for (int j = 0; j < this.dimension; ++j) {
                 sb.append(this.configuration[RubikCubeSide.FRONT.ordinal()][i][j]);
             }
-            sb.append(" |\n");
+            sb.append("|");
+            for (int j = 0; j < this.dimension; ++j) {
+                sb.append(this.configuration[RubikCubeSide.RIGHT.ordinal()][i][j]);
+            }
+            sb.append("|");
+            for (int j = 0; j < this.dimension; ++j) {
+                sb.append(this.configuration[RubikCubeSide.BACK.ordinal()][i][j]);
+            }
+            sb.append("|\n");
+        }
+        // Third separator
+        for (int i = 0; i < (this.dimension + 1) * 4 + 1; ++i) {
+            sb.append("-");
+        }
+        sb.append("\n");
+        // Down face
+        for (int i = 0; i < this.dimension; ++i) {
+            for (int j = 0; j < this.dimension + 1; ++j) {
+                sb.append(" ");
+            }
+            sb.append("|");
+            for (int j = 0; j < this.dimension; ++j) {
+                sb.append(this.configuration[RubikCubeSide.DOWN.ordinal()][i][j]);
+            }
+            sb.append("|\n");
+        }
+        // Fourth separator
+        for (int i = 0; i < (this.dimension + 1) * 4 + 1; ++i) {
+            sb.append("-");
         }
         return sb.toString();
     }
