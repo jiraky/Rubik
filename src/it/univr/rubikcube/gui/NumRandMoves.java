@@ -115,6 +115,7 @@ public class NumRandMoves extends javax.swing.JDialog {
         slider.setMinorTickSpacing(1);
         slider.setSnapToTicks(true);
         slider.setToolTipText("");
+        slider.setValue(5);
         slider.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

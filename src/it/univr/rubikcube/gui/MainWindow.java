@@ -1222,6 +1222,9 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        rp_nextmoves_progressbar.setString("");
+        rp_nextmoves_progressbar.setStringPainted(true);
+
         rp_nextmoves_calculate.setText("Calculate");
         rp_nextmoves_calculate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1523,11 +1526,15 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_help_creditsActionPerformed
 
     private void rp_nextmoves_doitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_nextmoves_doitActionPerformed
-        String moves = this.rp_nextmoves_value.getText();
-        for (int i = 0; i < moves.length(); i++) {
-            performMove("" + moves.charAt(i));
-            this.rp_nextmoves_progressbar.setValue(i);
+        String[] moves = this.rp_nextmoves_value.getText().split(" ");
+        for (String move : moves) {
+            boolean inverted = move.contains("'");
+            this.lp_move_inverse_yes.setSelected(inverted);
+            this.lp_move_inverse_no.setSelected(!inverted);
+            move = move.replaceAll("'", "");
+            this.performMove(move);
         }
+        this.rp_nextmoves_value.setText("");
     }//GEN-LAST:event_rp_nextmoves_doitActionPerformed
 
     private void lp_move_inverse_yesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_inverse_yesActionPerformed
@@ -1561,9 +1568,10 @@ public class MainWindow extends javax.swing.JFrame {
             return;
         }
 
-        String moves = "";
+        String moves;
         Map<String, String[]> successors = new HashMap<>();
 
+        /*
         successors.put("L", new String[]{"F", "B", "U", "D", "S", "E"});
         successors.put("R", new String[]{"F", "B", "U", "D", "S", "E"});
         successors.put("M", new String[]{"F", "B", "U", "D", "S", "E"});
@@ -1573,8 +1581,21 @@ public class MainWindow extends javax.swing.JFrame {
         successors.put("F", new String[]{"L", "R", "U", "D", "M", "E"});
         successors.put("B", new String[]{"L", "R", "U", "D", "M", "E"});
         successors.put("S", new String[]{"L", "R", "U", "D", "M", "E"});
+        */
+        successors.put("L", new String[]{"F", "B", "U", "D"});
+        successors.put("R", new String[]{"F", "B", "U", "D"});
+        //successors.put("M", new String[]{"F", "B", "U", "D"});
+        successors.put("U", new String[]{"F", "B", "L", "R"});
+        successors.put("D", new String[]{"F", "B", "L", "R"});
+        //successors.put("E", new String[]{"F", "B", "L", "R"});
+        successors.put("F", new String[]{"L", "R", "U", "D"});
+        successors.put("B", new String[]{"L", "R", "U", "D"});
+        //successors.put("S", new String[]{"L", "R", "U", "D"});
 
-        String[] words = {"L", "R", "M", "U", "D", "E", "F", "B", "S"};
+
+        String[] words = {"L", "R", "U", "D", "F", "B"};
+        //String[] words = {"L", "R", "M", "U", "D", "E", "F", "B", "S"};
+        
         NumRandMoves diag = new NumRandMoves(this, true);
         diag.setVisible(true);
 
@@ -1582,11 +1603,15 @@ public class MainWindow extends javax.swing.JFrame {
         SecureRandom S = new SecureRandom();
 
         String prevMoves = words[S.nextInt(words.length)];
+        boolean inverted = S.nextBoolean();
+        this.lp_move_inverse_yes.setSelected(inverted);
+        this.lp_move_inverse_no.setSelected(!inverted);
+        
         performMove(prevMoves);
         moves = prevMoves;
 
         for (int i = 1; i < num_rand_moves; i++) {
-            boolean inverted = S.nextBoolean();
+            inverted = S.nextBoolean();
             this.lp_move_inverse_yes.setSelected(inverted);
             this.lp_move_inverse_no.setSelected(!inverted);
 
@@ -1596,7 +1621,9 @@ public class MainWindow extends javax.swing.JFrame {
 
             moves += (i % 20 == 0 ? "\n" : ", ") + prevMoves + (inverted ? "'" : "");
         }
-        this.rp_previousmoves_value.setText("");
+        
+        
+        //this.rp_previousmoves_value.setText("");
         this.MovesCounter = 0;
         JOptionPane.showMessageDialog(this, "Shuffle completed!\n" + moves, "Shuffle result", JOptionPane.PLAIN_MESSAGE);
         updateInterface();
@@ -1614,8 +1641,14 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_rp_control_resetActionPerformed
 
     private void rp_nextmoves_calculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_nextmoves_calculateActionPerformed
+        this.rp_nextmoves_progressbar.setIndeterminate(true);
+        this.rp_nextmoves_progressbar.setStringPainted(true);
+        this.rp_nextmoves_progressbar.setString("Please wait");
         this.rp_nextmoves_value.setText(this.getNextMoves());
         if(!this.rp_nextmoves_value.getText().isEmpty()) this.rp_nextmoves_doit.setEnabled(true);
+        this.rp_nextmoves_progressbar.setIndeterminate(false);
+        this.rp_nextmoves_progressbar.setStringPainted(false);
+        this.rp_nextmoves_progressbar.setString("");
     }//GEN-LAST:event_rp_nextmoves_calculateActionPerformed
 
     /**
@@ -1783,10 +1816,11 @@ public class MainWindow extends javax.swing.JFrame {
         this.cube = new RubikCubeModel(this.getCubeDimension());
 
         this.availableStrategy = new LinkedList<>();
-        this.availableStrategy.add(new Fridrich(this.cube));
-        // FIXME: COMMENT THE FOLLOWING LINE
-        //this.availableStrategy.add(new Singmaster(this.cube));
         this.availableStrategy.add(new KociembaLib(this.cube));
+        //this.availableStrategy.add(new Fridrich(this.cube));
+        // FIXME: COMMENT THE FOLLOWING LINE
+        this.availableStrategy.add(new Singmaster(this.cube));
+        
         this.actualStrategy = this.availableStrategy.get(0);
 
         this.MovesCounter = 0;
@@ -1794,6 +1828,9 @@ public class MainWindow extends javax.swing.JFrame {
         this.rp_previousmoves_value.setText("");
         this.rp_nextmoves_value.setText("");
         this.rp_nextmoves_doit.setEnabled(false);
+        this.rp_nextmoves_progressbar.setIndeterminate(false);
+        this.rp_nextmoves_progressbar.setStringPainted(false);
+        this.rp_nextmoves_progressbar.setString("");
 
         updateInterface();
     }
