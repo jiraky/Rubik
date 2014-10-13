@@ -1152,33 +1152,99 @@ public class Singmaster extends ResolutionStrategy {
            }
        }
        return true;
-   }
-    private static boolean isSecondLayerSolved(final RubikCubeModel m) {
-        boolean secondLayerSolved = true;
-        switch (m.getSide(RubikCubeFaceColor.GREEN)) {
+    }
+    /**
+     * Checks if the blue cross is solved (including the edges).
+     * @param m Model to be checked.
+     * @return <tt>true</tt> if and only if the cross and edges are solved.
+     */
+    public static boolean isBlueCrossSolved(final RubikCubeModel m) {
+        final RubikCubeSide blueSide = m.getSide(RubikCubeFaceColor.BLUE);
+        if (m.getFace(blueSide, 0, 1) != RubikCubeFaceColor.BLUE
+                || m.getFace(blueSide, 1, 0) != RubikCubeFaceColor.BLUE
+                || m.getFace(blueSide, 1, 1) != RubikCubeFaceColor.BLUE
+                || m.getFace(blueSide, 1, 2) != RubikCubeFaceColor.BLUE
+                || m.getFace(blueSide, 2, 1) != RubikCubeFaceColor.BLUE) {
+            return false;
+        }
+        switch (blueSide) {
             case UP:
             case DOWN:
-                for (int i = 0; i < 3; ++i) {
-                    if (m.getFace(RubikCubeSide.FRONT, 1, i) != m.getFace(RubikCubeSide.FRONT, 1, 1)) {
-                        secondLayerSolved = false;
-                    }
-                }
-                for (int i = 0; i < 3; ++i) {
-                    if (m.getFace(RubikCubeSide.RIGHT, 1, i) != m.getFace(RubikCubeSide.RIGHT, 1, 1)) {
-                        secondLayerSolved = false;
-                    }
-                }
-                for (int i = 0; i < 3; ++i) {
-                    if (m.getFace(RubikCubeSide.BACK, 1, i) != m.getFace(RubikCubeSide.BACK, 1, 1)) {
-                        secondLayerSolved = false;
-                    }
-                }
-                for (int i = 0; i < 3; ++i) {
-                    if (m.getFace(RubikCubeSide.LEFT, 1, i) != m.getFace(RubikCubeSide.LEFT, 1, 1)) {
-                        secondLayerSolved = false;
+                for (RubikCubeSide s: new RubikCubeSide[] {RubikCubeSide.FRONT, RubikCubeSide.RIGHT, RubikCubeSide.BACK, RubikCubeSide.LEFT, }) {
+                    if (m.getFace(s, 1, 1) != m.getFace(s, 0, 1)) {
+                        return false;
                     }
                 }
                 break;
+            case LEFT:
+                if (m.getFace(RubikCubeSide.UP, 1, 1) != m.getFace(RubikCubeSide.UP, 1, 0)) {
+                    return false;
+                }
+                if (m.getFace(RubikCubeSide.FRONT, 1, 1) != m.getFace(RubikCubeSide.FRONT, 1, 0)) {
+                    return false;
+                }
+                if (m.getFace(RubikCubeSide.DOWN, 1, 1) != m.getFace(RubikCubeSide.DOWN, 1, 0)) {
+                    return false;
+                }
+                if (m.getFace(RubikCubeSide.BACK, 1, 1) != m.getFace(RubikCubeSide.BACK, 1, 2)) {
+                    return false;
+                }
+                break;
+            case RIGHT:
+                if (m.getFace(RubikCubeSide.UP, 1, 1) != m.getFace(RubikCubeSide.UP, 1, 2)) {
+                    return false;
+                }
+                if (m.getFace(RubikCubeSide.FRONT, 1, 1) != m.getFace(RubikCubeSide.FRONT, 1, 2)) {
+                    return false;
+                }
+                if (m.getFace(RubikCubeSide.DOWN, 1, 1) != m.getFace(RubikCubeSide.DOWN, 1, 2)) {
+                    return false;
+                }
+                if (m.getFace(RubikCubeSide.BACK, 1, 1) != m.getFace(RubikCubeSide.BACK, 1, 0)) {
+                    return false;
+                }
+                break;
+            case BACK:
+                if (m.getFace(RubikCubeSide.UP, 1, 1) != m.getFace(RubikCubeSide.UP, 0, 1)) {
+                    return false;
+                }
+                if (m.getFace(RubikCubeSide.RIGHT, 1, 1) != m.getFace(RubikCubeSide.RIGHT, 1, 2)) {
+                    return false;
+                }
+                if (m.getFace(RubikCubeSide.DOWN, 1, 1) != m.getFace(RubikCubeSide.DOWN, 2, 1)) {
+                    return false;
+                }
+                if (m.getFace(RubikCubeSide.LEFT, 1, 1) != m.getFace(RubikCubeSide.LEFT, 1, 0)) {
+                    return false;
+                }
+                break;
+            case FRONT:                
+            default:
+                if (m.getFace(RubikCubeSide.UP, 1, 1) != m.getFace(RubikCubeSide.UP, 2, 1)) {
+                    return false;
+                }
+                if (m.getFace(RubikCubeSide.RIGHT, 1, 1) != m.getFace(RubikCubeSide.RIGHT, 1, 0)) {
+                    return false;
+                }
+                if (m.getFace(RubikCubeSide.DOWN, 1, 1) != m.getFace(RubikCubeSide.DOWN, 0, 1)) {
+                    return false;
+                }
+                if (m.getFace(RubikCubeSide.LEFT, 1, 1) != m.getFace(RubikCubeSide.LEFT, 1, 2)) {
+                    return false;
+                }
+                break;
+        }
+        return true;
+    }
+    /**
+     * Checks if the second layer of a cube is solved with the green side up.
+     * @param m The model to be checked.
+     * @return <tt>true</tt> if and only if the second layer is solved with the
+     * green side up.
+     */
+    private static boolean isSecondLayerSolved(final RubikCubeModel m) {
+        boolean secondLayerSolved = true;
+        switch (m.getSide(RubikCubeFaceColor.GREEN)) {
             case LEFT:
             case RIGHT:
                 for (int i = 0; i < 3; ++i) {
@@ -1225,16 +1291,32 @@ public class Singmaster extends ResolutionStrategy {
                     }
                 }
                 break;
+            case UP:
+            case DOWN:
+            default:
+                for (int i = 0; i < 3; ++i) {
+                    if (m.getFace(RubikCubeSide.FRONT, 1, i) != m.getFace(RubikCubeSide.FRONT, 1, 1)) {
+                        secondLayerSolved = false;
+                    }
+                }
+                for (int i = 0; i < 3; ++i) {
+                    if (m.getFace(RubikCubeSide.RIGHT, 1, i) != m.getFace(RubikCubeSide.RIGHT, 1, 1)) {
+                        secondLayerSolved = false;
+                    }
+                }
+                for (int i = 0; i < 3; ++i) {
+                    if (m.getFace(RubikCubeSide.BACK, 1, i) != m.getFace(RubikCubeSide.BACK, 1, 1)) {
+                        secondLayerSolved = false;
+                    }
+                }
+                for (int i = 0; i < 3; ++i) {
+                    if (m.getFace(RubikCubeSide.LEFT, 1, i) != m.getFace(RubikCubeSide.LEFT, 1, 1)) {
+                        secondLayerSolved = false;
+                    }
+                }
+                break;
         }
         return secondLayerSolved;
-    }
-    private static boolean isBlueCrossSolved(final RubikCubeModel m) {
-        final RubikCubeSide blueSide = m.getSide(RubikCubeFaceColor.BLUE);
-        return m.getFace(blueSide, 0, 1) == RubikCubeFaceColor.BLUE
-               && m.getFace(blueSide, 1, 0) == RubikCubeFaceColor.BLUE
-               && m.getFace(blueSide, 1, 1) == RubikCubeFaceColor.BLUE
-               && m.getFace(blueSide, 1, 2) == RubikCubeFaceColor.BLUE
-               && m.getFace(blueSide, 2, 1) == RubikCubeFaceColor.BLUE;
     }
     private static List<Move> moveGreenSideUp(RubikCubeModel m) {
         Move currentMove;
