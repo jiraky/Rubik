@@ -70,7 +70,7 @@ public class KociembaLib extends ResolutionStrategy {
     public List<Move> getNextMoves() throws NoSolutionException, TimeoutException {
         List<Move> result = new LinkedList<>();
         String solution = Search.solution(KociembaLib.mapOurCubeModelToKociemba(getModel()), 21, 6000, true);
-        JOptionPane.showMessageDialog(null, solution);
+        //JOptionPane.showMessageDialog(null, solution);
         if(solution.contains("rror"))
             if (solution.contains("1")) throw new NoSolutionException("There is not exactly one facelet of each colour");
             else if(solution.contains("2")) throw new NoSolutionException("Not all 12 edges exist exactly once");

@@ -1623,7 +1623,7 @@ public class MainWindow extends javax.swing.JFrame {
         }
         
         
-        this.rp_previousmoves_value.setText("");
+        this.previousmoves_value.setText("");
         this.MovesCounter = 0;
         JOptionPane.showMessageDialog(this, "Shuffle completed!\n" + moves, "Shuffle result", JOptionPane.PLAIN_MESSAGE);
         updateInterface();
@@ -1644,7 +1644,15 @@ public class MainWindow extends javax.swing.JFrame {
         this.nextmoves_progressbar.setIndeterminate(true);
         this.nextmoves_progressbar.setStringPainted(true);
         this.nextmoves_progressbar.setString("Please wait");
-        this.nextmoves_value.setText(this.getNextMoves());
+        
+        try {
+            this.nextmoves_value.setText(this.getNextMoves());
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Error while search for next moves.", "Error", JOptionPane.ERROR_MESSAGE);
+            
+        }
+        
         if(!this.nextmoves_value.getText().isEmpty()) this.nextmoves_doit.setEnabled(true);
         this.nextmoves_progressbar.setIndeterminate(false);
         this.nextmoves_progressbar.setStringPainted(false);
@@ -1997,12 +2005,29 @@ public class MainWindow extends javax.swing.JFrame {
 
     }
 
-    private String getNextMoves() {
+    public List<Move> nextMovesList;
+    
+    private String getNextMoves() throws InterruptedException {
         String nextMoves = "";
-        List<Move> nextMovesList = new LinkedList<>();
+        nextMovesList = new LinkedList<>();
         try {
-            nextMovesList = this.actualStrategy.getNextMoves();
-        } catch (NoSolutionException | TimeoutException ex) {
+            
+            
+            MyRunnable nextMovesRunnable = new MyRunnable(actualStrategy);
+            Thread t = new Thread(nextMovesRunnable);
+            
+            synchronized (t){
+                t.start();
+               
+                t.join();
+                
+               
+            }
+            
+            if(nextMovesRunnable.hasException) throw nextMovesRunnable.exception;
+            
+            //nextMovesList = this.actualStrategy.getNextMoves();
+        } catch (Exception ex) {
             this.nextmoves_value.setText("");
             JOptionPane.showMessageDialog(this, this.actualStrategy.toString() + " cannot found a solution.\nError: " + ex.getMessage(), "Error while looking for the next moves", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
@@ -2015,5 +2040,39 @@ public class MainWindow extends javax.swing.JFrame {
         }
         
         return nextMoves;
+    }
+    private class MyRunnable implements Runnable {
+
+        public boolean isHasException() {
+            return hasException;
+        }
+
+        public void setHasException(boolean hasException) {
+            this.hasException = hasException;
+        }
+
+        public Exception getException() {
+            return exception;
+        }
+
+        public void setException(Exception exception) {
+            this.exception = exception;
+        }
+        private boolean hasException;
+        private Exception exception;
+        
+        public MyRunnable(ResolutionStrategy res) {
+            
+        }
+        @Override
+        public void run() {
+            try {
+                nextMovesList = actualStrategy.getNextMoves();
+            } catch (NoSolutionException | TimeoutException ex) {
+                this.hasException = true;
+                this.exception = ex;
+            }
+        }
+        
     }
 }
