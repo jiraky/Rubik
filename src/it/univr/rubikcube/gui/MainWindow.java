@@ -19,6 +19,7 @@ import it.univr.rubikcube.resolutionstrategies.Fridrich;
 import it.univr.rubikcube.resolutionstrategies.Kociemba;
 import it.univr.rubikcube.resolutionstrategies.NoSolutionException;
 import it.univr.rubikcube.resolutionstrategies.ResolutionStrategy;
+import it.univr.rubikcube.resolutionstrategies.Singmaster;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.security.SecureRandom;
@@ -1765,6 +1766,8 @@ public class MainWindow extends javax.swing.JFrame {
         
         this.availableStrategy = new LinkedList<>();
         this.availableStrategy.add(new Fridrich(this.cube));
+        // FIXME: COMMENT THE FOLLOWING LINE
+        this.availableStrategy.add(new Singmaster(this.cube));
         this.availableStrategy.add(new Kociemba(this.cube));
         this.actualStrategy = this.availableStrategy.get(0);
         
