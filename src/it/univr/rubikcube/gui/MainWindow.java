@@ -963,7 +963,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         lp_move_useinverse_btngroup.add(lp_move_inverse_yes);
         lp_move_inverse_yes.setSelected(true);
-        lp_move_inverse_yes.setText("Forward Move");
+        lp_move_inverse_yes.setText("Inverse Move");
         lp_move_inverse_yes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lp_move_inverse_yesActionPerformed(evt);
@@ -972,7 +972,7 @@ public class MainWindow extends javax.swing.JFrame {
         lp_move_details.add(lp_move_inverse_yes);
 
         lp_move_useinverse_btngroup.add(lp_move_inverse_no);
-        lp_move_inverse_no.setText("Inverse Move");
+        lp_move_inverse_no.setText("Forward Move");
         lp_move_inverse_no.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lp_move_inverse_noActionPerformed(evt);
@@ -1810,6 +1810,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void lp_move_preview_LoadImage(String move) {
+        this.rp_cubedimension_value.setText(move+" "+(lp_move_inverse_yes.isSelected()?"INV YES":"")+(lp_move_inverse_no.isSelected()?"INV NO":""));
         if (this.lp_move_inverse_yes.isSelected()) {
             this.rp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/"+move+"_inv.png")));
         } else {

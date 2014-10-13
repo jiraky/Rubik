@@ -85,7 +85,7 @@ public class KociembaLib extends ResolutionStrategy {
         String[] sols = solution.split(" ");
         
         for (String sol : sols) {
-            JOptionPane.showMessageDialog(null, sol);
+            //JOptionPane.showMessageDialog(null, sol);
             if(sol.contains("2")) {
                 sol = sol.replaceAll("2", "");
                 result.add(Move.convertFromString(this.getModel(),sol));
@@ -101,7 +101,8 @@ public class KociembaLib extends ResolutionStrategy {
         JOptionPane.showMessageDialog(null, Search.solution("UUUUUUUUURRRRRRRRRFFFFFFFFFDDDDDDDDDLLLLLLLLLBBBBBBBBB", 21, 5000, true));
     }
     
-    public static String mapOurCubeModelToKociemba(RubikCubeModel cube) {   
+    public static String mapOurCubeModelToKociemba(RubikCubeModel cube) {  
+        
         String result = "";
         for(RubikCubeSide side = RubikCubeSide.UP;;) { 
             for(int i=0; i<3; i++)
@@ -115,6 +116,7 @@ public class KociembaLib extends ResolutionStrategy {
             else if(side==RubikCubeSide.LEFT) side = RubikCubeSide.BACK;
             else if(side==RubikCubeSide.BACK) break;
         }
+        JOptionPane.showMessageDialog(null, result,"MappedCube",JOptionPane.INFORMATION_MESSAGE);
         return result;
     }
     
