@@ -98,8 +98,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="Logo" alignment="0" max="32767" attributes="0"/>
                   <Component id="MainRightPanel" alignment="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="rp_move_preview" alignment="0" max="32767" attributes="0"/>
+                  <Component id="nexmoves_panel" alignment="0" max="32767" attributes="0"/>
+                  <Component id="move_preview" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -116,9 +116,9 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="MainRightPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="nexmoves_panel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="rp_move_preview" max="32767" attributes="0"/>
+                      <Component id="move_preview" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -132,14 +132,14 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="lp_cube" pref="403" max="32767" attributes="0"/>
+              <Component id="cube_panel" pref="403" max="32767" attributes="0"/>
               <Component id="lp_move" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <Component id="lp_cube" min="-2" pref="403" max="-2" attributes="0"/>
+                  <Component id="cube_panel" min="-2" pref="403" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lp_move" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -148,7 +148,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="lp_cube">
+        <Container class="javax.swing.JPanel" name="cube_panel">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1684,13 +1684,13 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lp_move_details" max="32767" attributes="0"/>
+                  <Component id="move_details" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="lp_move_basic" min="-2" pref="207" max="-2" attributes="0"/>
+                      <Component id="move_basic" min="-2" pref="207" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lp_move_advanced" max="32767" attributes="0"/>
-                          <Component id="lp_move_rotate" max="32767" attributes="0"/>
+                          <Component id="move_advanced" max="32767" attributes="0"/>
+                          <Component id="move_rotate" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -1700,20 +1700,20 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="lp_move_advanced" min="-2" max="-2" attributes="0"/>
+                              <Component id="move_advanced" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lp_move_rotate" min="-2" max="-2" attributes="0"/>
+                              <Component id="move_rotate" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="lp_move_basic" max="32767" attributes="0"/>
+                          <Component id="move_basic" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="lp_move_details" min="-2" max="-2" attributes="0"/>
+                      <Component id="move_details" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="lp_move_basic">
+            <Container class="javax.swing.JPanel" name="move_basic">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1728,69 +1728,69 @@
                 <Property name="rows" type="int" value="2"/>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="lp_move_L">
+                <Component class="javax.swing.JButton" name="move_L">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="L"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_LMouseEntered"/>
-                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_LMouseExited"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lp_move_LActionPerformed"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_LMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_LMouseExited"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="move_LActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="lp_move_U">
+                <Component class="javax.swing.JButton" name="move_U">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="U"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_UMouseEntered"/>
-                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_UMouseExited"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lp_move_UActionPerformed"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_UMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_UMouseExited"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="move_UActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="lp_move_R">
+                <Component class="javax.swing.JButton" name="move_R">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="R"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_RMouseEntered"/>
-                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_RMouseExited"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lp_move_RActionPerformed"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_RMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_RMouseExited"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="move_RActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="lp_move_D">
+                <Component class="javax.swing.JButton" name="move_D">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="D"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_DMouseEntered"/>
-                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_DMouseExited"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lp_move_DActionPerformed"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_DMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_DMouseExited"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="move_DActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="lp_move_F">
+                <Component class="javax.swing.JButton" name="move_F">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="F"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_FMouseEntered"/>
-                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_FMouseExited"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lp_move_FActionPerformed"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_FMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_FMouseExited"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="move_FActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="lp_move_B">
+                <Component class="javax.swing.JButton" name="move_B">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="B"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_BMouseEntered"/>
-                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_BMouseExited"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lp_move_BActionPerformed"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_BMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_BMouseExited"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="move_BActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="lp_move_advanced">
+            <Container class="javax.swing.JPanel" name="move_advanced">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1805,39 +1805,39 @@
                 <Property name="rows" type="int" value="1"/>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="lp_move_M">
+                <Component class="javax.swing.JButton" name="move_M">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="M"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_MMouseEntered"/>
-                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_MMouseExited"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lp_move_MActionPerformed"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_MMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_MMouseExited"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="move_MActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="lp_move_E">
+                <Component class="javax.swing.JButton" name="move_E">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="E"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_EMouseEntered"/>
-                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_EMouseExited"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lp_move_EActionPerformed"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_EMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_EMouseExited"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="move_EActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="lp_move_S">
+                <Component class="javax.swing.JButton" name="move_S">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="S"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_SMouseEntered"/>
-                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_SMouseExited"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lp_move_SActionPerformed"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_SMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_SMouseExited"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="move_SActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="lp_move_details">
+            <Container class="javax.swing.JPanel" name="move_details">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1851,7 +1851,7 @@
                 <Property name="rows" type="int" value="1"/>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JToggleButton" name="lp_move_inverse_yes">
+                <Component class="javax.swing.JToggleButton" name="move_inverse_yes">
                   <Properties>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="lp_move_useinverse_btngroup"/>
@@ -1860,10 +1860,10 @@
                     <Property name="text" type="java.lang.String" value="Inverse Move"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lp_move_inverse_yesActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="move_inverse_yesActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JToggleButton" name="lp_move_inverse_no">
+                <Component class="javax.swing.JToggleButton" name="move_inverse_no">
                   <Properties>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="lp_move_useinverse_btngroup"/>
@@ -1871,12 +1871,12 @@
                     <Property name="text" type="java.lang.String" value="Forward Move"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lp_move_inverse_noActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="move_inverse_noActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="lp_move_rotate">
+            <Container class="javax.swing.JPanel" name="move_rotate">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -1891,34 +1891,34 @@
                 <Property name="rows" type="int" value="1"/>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="lp_move_X">
+                <Component class="javax.swing.JButton" name="move_X">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="X"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_XMouseEntered"/>
-                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_XMouseExited"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lp_move_XActionPerformed"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_XMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_XMouseExited"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="move_XActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="lp_move_Y">
+                <Component class="javax.swing.JButton" name="move_Y">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Y"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_YMouseEntered"/>
-                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_YMouseExited"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lp_move_YActionPerformed"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_YMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_YMouseExited"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="move_YActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="lp_move_Z">
+                <Component class="javax.swing.JButton" name="move_Z">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Z"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_ZMouseEntered"/>
-                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lp_move_ZMouseExited"/>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lp_move_ZActionPerformed"/>
+                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_ZMouseEntered"/>
+                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="move_ZMouseExited"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="move_ZActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -1941,20 +1941,20 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="rp_control" alignment="1" pref="285" max="32767" attributes="0"/>
+                      <Component id="control_panel" alignment="1" pref="285" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jSeparator2" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="rp_algorithm_title" linkSize="2" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="rp_cubedimension_title" linkSize="2" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="algorithm_title" linkSize="2" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="cubedimension_title" linkSize="2" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="rp_algorithm_value" pref="151" max="32767" attributes="0"/>
-                                      <Component id="rp_cubedimension_value" max="32767" attributes="0"/>
+                                      <Component id="algorithm_value" pref="151" max="32767" attributes="0"/>
+                                      <Component id="cubedimension_value" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -1969,24 +1969,24 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace pref="14" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="rp_cubedimension_title" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="rp_cubedimension_value" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cubedimension_title" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cubedimension_value" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="rp_algorithm_title" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="rp_algorithm_value" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="algorithm_title" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="algorithm_value" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="6" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="rp_control" min="-2" max="-2" attributes="0"/>
+                  <Component id="control_panel" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="rp_cubedimension_title">
+        <Component class="javax.swing.JLabel" name="cubedimension_title">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
@@ -1994,7 +1994,7 @@
             <Property name="text" type="java.lang.String" value="Cube dimension:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="rp_algorithm_title">
+        <Component class="javax.swing.JLabel" name="algorithm_title">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
@@ -2002,7 +2002,7 @@
             <Property name="text" type="java.lang.String" value="Algorithm for ints:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="rp_cubedimension_value">
+        <Component class="javax.swing.JLabel" name="cubedimension_value">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="0"/>
@@ -2010,7 +2010,7 @@
             <Property name="text" type="java.lang.String" value=" "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="rp_algorithm_value">
+        <Component class="javax.swing.JLabel" name="algorithm_value">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="0"/>
@@ -2018,11 +2018,11 @@
             <Property name="text" type="java.lang.String" value=" "/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="rp_control">
+        <Container class="javax.swing.JPanel" name="control_panel">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="rp_control_reset">
+            <Component class="javax.swing.JButton" name="control_reset">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Reset"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -2036,10 +2036,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rp_control_resetActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="control_resetActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="rp_control_shuffle">
+            <Component class="javax.swing.JButton" name="control_shuffle">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Shuffle"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -2053,10 +2053,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rp_control_shuffleActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="control_shuffleActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="rp_control_toString">
+            <Component class="javax.swing.JButton" name="control_toString">
               <Properties>
                 <Property name="text" type="java.lang.String" value="toString"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -2070,7 +2070,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rp_control_toStringActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="control_toStringActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -2087,7 +2087,7 @@
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JPanel" name="rp_move_preview">
+    <Container class="javax.swing.JPanel" name="move_preview">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -2101,7 +2101,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="rp_move_preview_image" max="32767" attributes="0"/>
+                  <Component id="move_preview_image" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -2109,14 +2109,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
-                  <Component id="rp_move_preview_image" max="32767" attributes="0"/>
+                  <Component id="move_preview_image" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="rp_move_preview_image">
+        <Component class="javax.swing.JLabel" name="move_preview_image">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -2128,7 +2128,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="nexmoves_panel">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -2140,49 +2140,49 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="rp_nextmoves_title" alignment="1" max="32767" attributes="0"/>
-              <Component id="rp_nextmoves_value" max="32767" attributes="0"/>
+              <Component id="nextmoves_title" alignment="1" max="32767" attributes="0"/>
+              <Component id="nextmoves_value" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="rp_nummoves_title" min="-2" max="-2" attributes="0"/>
+                  <Component id="nummoves_title" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="rp_nummoves_value" min="-2" pref="152" max="-2" attributes="0"/>
+                  <Component id="nummoves_value" min="-2" pref="152" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="rp_nextmoves_doit" min="-2" max="-2" attributes="0"/>
+                  <Component id="nextmoves_doit" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="rp_nextmoves_calculate" min="-2" max="-2" attributes="0"/>
+                  <Component id="nextmoves_calculate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="rp_nextmoves_progressbar" pref="0" max="32767" attributes="0"/>
+                  <Component id="nextmoves_progressbar" pref="0" max="32767" attributes="0"/>
               </Group>
-              <Component id="rp_previousmoves_container" alignment="0" max="32767" attributes="0"/>
+              <Component id="previousmoves_container" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="rp_nummoves_title" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="rp_nummoves_value" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nummoves_title" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nummoves_value" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="rp_previousmoves_container" min="-2" pref="81" max="-2" attributes="0"/>
+                  <Component id="previousmoves_container" min="-2" pref="81" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="rp_nextmoves_title" min="-2" max="-2" attributes="0"/>
+                  <Component id="nextmoves_title" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="rp_nextmoves_value" min="-2" max="-2" attributes="0"/>
+                  <Component id="nextmoves_value" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="rp_nextmoves_progressbar" max="32767" attributes="0"/>
-                      <Component id="rp_nextmoves_calculate" pref="29" max="32767" attributes="0"/>
-                      <Component id="rp_nextmoves_doit" alignment="0" max="32767" attributes="0"/>
+                      <Component id="nextmoves_progressbar" max="32767" attributes="0"/>
+                      <Component id="nextmoves_calculate" pref="29" max="32767" attributes="0"/>
+                      <Component id="nextmoves_doit" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="rp_nummoves_title">
+        <Component class="javax.swing.JLabel" name="nummoves_title">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
@@ -2190,7 +2190,7 @@
             <Property name="text" type="java.lang.String" value="Number of moves:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="rp_nummoves_value">
+        <Component class="javax.swing.JLabel" name="nummoves_value">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="0"/>
@@ -2198,11 +2198,11 @@
             <Property name="text" type="java.lang.String" value=" "/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="rp_previousmoves_container">
+        <Container class="javax.swing.JScrollPane" name="previousmoves_container">
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="rp_previousmoves_value">
+            <Component class="javax.swing.JTextArea" name="previousmoves_value">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="columns" type="int" value="20"/>
@@ -2215,7 +2215,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="rp_nextmoves_title">
+        <Component class="javax.swing.JLabel" name="nextmoves_title">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
@@ -2223,33 +2223,33 @@
             <Property name="text" type="java.lang.String" value="Next suggested moves"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="rp_nextmoves_value">
+        <Component class="javax.swing.JTextField" name="nextmoves_value">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="text" type="java.lang.String" value=" "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="rp_nextmoves_doit">
+        <Component class="javax.swing.JButton" name="nextmoves_doit">
           <Properties>
             <Property name="text" type="java.lang.String" value="Do it!"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rp_nextmoves_doitActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nextmoves_doitActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JProgressBar" name="rp_nextmoves_progressbar">
+        <Component class="javax.swing.JProgressBar" name="nextmoves_progressbar">
           <Properties>
             <Property name="string" type="java.lang.String" value=""/>
             <Property name="stringPainted" type="boolean" value="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="rp_nextmoves_calculate">
+        <Component class="javax.swing.JButton" name="nextmoves_calculate">
           <Properties>
             <Property name="text" type="java.lang.String" value="Calculate"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rp_nextmoves_calculateActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nextmoves_calculateActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

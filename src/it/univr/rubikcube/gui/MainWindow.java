@@ -67,7 +67,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         lp_move_useinverse_btngroup = new javax.swing.ButtonGroup();
         MainLeftPanel = new javax.swing.JPanel();
-        lp_cube = new javax.swing.JPanel();
+        cube_panel = new javax.swing.JPanel();
         rotate_X = new javax.swing.JPanel();
         U = new javax.swing.JPanel();
         U11 = new javax.swing.JLabel();
@@ -132,47 +132,47 @@ public class MainWindow extends javax.swing.JFrame {
         D33 = new javax.swing.JLabel();
         rotate_Z = new javax.swing.JPanel();
         lp_move = new javax.swing.JPanel();
-        lp_move_basic = new javax.swing.JPanel();
-        lp_move_L = new javax.swing.JButton();
-        lp_move_U = new javax.swing.JButton();
-        lp_move_R = new javax.swing.JButton();
-        lp_move_D = new javax.swing.JButton();
-        lp_move_F = new javax.swing.JButton();
-        lp_move_B = new javax.swing.JButton();
-        lp_move_advanced = new javax.swing.JPanel();
-        lp_move_M = new javax.swing.JButton();
-        lp_move_E = new javax.swing.JButton();
-        lp_move_S = new javax.swing.JButton();
-        lp_move_details = new javax.swing.JPanel();
-        lp_move_inverse_yes = new javax.swing.JToggleButton();
-        lp_move_inverse_no = new javax.swing.JToggleButton();
-        lp_move_rotate = new javax.swing.JPanel();
-        lp_move_X = new javax.swing.JButton();
-        lp_move_Y = new javax.swing.JButton();
-        lp_move_Z = new javax.swing.JButton();
+        move_basic = new javax.swing.JPanel();
+        move_L = new javax.swing.JButton();
+        move_U = new javax.swing.JButton();
+        move_R = new javax.swing.JButton();
+        move_D = new javax.swing.JButton();
+        move_F = new javax.swing.JButton();
+        move_B = new javax.swing.JButton();
+        move_advanced = new javax.swing.JPanel();
+        move_M = new javax.swing.JButton();
+        move_E = new javax.swing.JButton();
+        move_S = new javax.swing.JButton();
+        move_details = new javax.swing.JPanel();
+        move_inverse_yes = new javax.swing.JToggleButton();
+        move_inverse_no = new javax.swing.JToggleButton();
+        move_rotate = new javax.swing.JPanel();
+        move_X = new javax.swing.JButton();
+        move_Y = new javax.swing.JButton();
+        move_Z = new javax.swing.JButton();
         MainRightPanel = new javax.swing.JPanel();
-        rp_cubedimension_title = new javax.swing.JLabel();
-        rp_algorithm_title = new javax.swing.JLabel();
-        rp_cubedimension_value = new javax.swing.JLabel();
-        rp_algorithm_value = new javax.swing.JLabel();
-        rp_control = new javax.swing.JPanel();
-        rp_control_reset = new javax.swing.JButton();
-        rp_control_shuffle = new javax.swing.JButton();
-        rp_control_toString = new javax.swing.JButton();
+        cubedimension_title = new javax.swing.JLabel();
+        algorithm_title = new javax.swing.JLabel();
+        cubedimension_value = new javax.swing.JLabel();
+        algorithm_value = new javax.swing.JLabel();
+        control_panel = new javax.swing.JPanel();
+        control_reset = new javax.swing.JButton();
+        control_shuffle = new javax.swing.JButton();
+        control_toString = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         Logo = new javax.swing.JLabel();
-        rp_move_preview = new javax.swing.JPanel();
-        rp_move_preview_image = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        rp_nummoves_title = new javax.swing.JLabel();
-        rp_nummoves_value = new javax.swing.JLabel();
-        rp_previousmoves_container = new javax.swing.JScrollPane();
-        rp_previousmoves_value = new javax.swing.JTextArea();
-        rp_nextmoves_title = new javax.swing.JLabel();
-        rp_nextmoves_value = new javax.swing.JTextField();
-        rp_nextmoves_doit = new javax.swing.JButton();
-        rp_nextmoves_progressbar = new javax.swing.JProgressBar();
-        rp_nextmoves_calculate = new javax.swing.JButton();
+        move_preview = new javax.swing.JPanel();
+        move_preview_image = new javax.swing.JLabel();
+        nexmoves_panel = new javax.swing.JPanel();
+        nummoves_title = new javax.swing.JLabel();
+        nummoves_value = new javax.swing.JLabel();
+        previousmoves_container = new javax.swing.JScrollPane();
+        previousmoves_value = new javax.swing.JTextArea();
+        nextmoves_title = new javax.swing.JLabel();
+        nextmoves_value = new javax.swing.JTextField();
+        nextmoves_doit = new javax.swing.JButton();
+        nextmoves_progressbar = new javax.swing.JProgressBar();
+        nextmoves_calculate = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         menu_file = new javax.swing.JMenu();
         menu_file_exit = new javax.swing.JMenuItem();
@@ -187,8 +187,8 @@ public class MainWindow extends javax.swing.JFrame {
         setName("MainFrame"); // NOI18N
         setResizable(false);
 
-        lp_cube.setBorder(javax.swing.BorderFactory.createTitledBorder("Cube"));
-        lp_cube.setLayout(new java.awt.GridLayout(3, 3, 1, 1));
+        cube_panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Cube"));
+        cube_panel.setLayout(new java.awt.GridLayout(3, 3, 1, 1));
 
         rotate_X.setBackground(new java.awt.Color(255, 255, 255));
         rotate_X.setMaximumSize(new java.awt.Dimension(100, 100));
@@ -196,7 +196,7 @@ public class MainWindow extends javax.swing.JFrame {
         rotate_X.setName(""); // NOI18N
         rotate_X.setPreferredSize(new java.awt.Dimension(100, 100));
         rotate_X.setLayout(new java.awt.GridLayout(3, 1));
-        lp_cube.add(rotate_X);
+        cube_panel.add(rotate_X);
 
         U.setMaximumSize(new java.awt.Dimension(100, 100));
         U.setMinimumSize(new java.awt.Dimension(100, 100));
@@ -295,7 +295,7 @@ public class MainWindow extends javax.swing.JFrame {
         U33.setPreferredSize(new java.awt.Dimension(20, 20));
         U.add(U33);
 
-        lp_cube.add(U);
+        cube_panel.add(U);
 
         B.setMaximumSize(new java.awt.Dimension(100, 100));
         B.setMinimumSize(new java.awt.Dimension(100, 100));
@@ -394,7 +394,7 @@ public class MainWindow extends javax.swing.JFrame {
         B33.setPreferredSize(new java.awt.Dimension(20, 20));
         B.add(B33);
 
-        lp_cube.add(B);
+        cube_panel.add(B);
 
         L.setMaximumSize(new java.awt.Dimension(100, 100));
         L.setMinimumSize(new java.awt.Dimension(100, 100));
@@ -493,7 +493,7 @@ public class MainWindow extends javax.swing.JFrame {
         L33.setPreferredSize(new java.awt.Dimension(20, 20));
         L.add(L33);
 
-        lp_cube.add(L);
+        cube_panel.add(L);
 
         F.setMaximumSize(new java.awt.Dimension(100, 100));
         F.setMinimumSize(new java.awt.Dimension(100, 100));
@@ -592,7 +592,7 @@ public class MainWindow extends javax.swing.JFrame {
         F33.setPreferredSize(new java.awt.Dimension(20, 20));
         F.add(F33);
 
-        lp_cube.add(F);
+        cube_panel.add(F);
 
         R.setMaximumSize(new java.awt.Dimension(100, 100));
         R.setMinimumSize(new java.awt.Dimension(100, 100));
@@ -691,7 +691,7 @@ public class MainWindow extends javax.swing.JFrame {
         R33.setPreferredSize(new java.awt.Dimension(20, 20));
         R.add(R33);
 
-        lp_cube.add(R);
+        cube_panel.add(R);
 
         rotate_Y.setBackground(new java.awt.Color(255, 255, 255));
         rotate_Y.setMaximumSize(new java.awt.Dimension(100, 100));
@@ -699,7 +699,7 @@ public class MainWindow extends javax.swing.JFrame {
         rotate_Y.setName(""); // NOI18N
         rotate_Y.setPreferredSize(new java.awt.Dimension(100, 100));
         rotate_Y.setLayout(new java.awt.GridLayout(3, 1));
-        lp_cube.add(rotate_Y);
+        cube_panel.add(rotate_Y);
 
         D.setMaximumSize(new java.awt.Dimension(100, 100));
         D.setMinimumSize(new java.awt.Dimension(100, 100));
@@ -798,7 +798,7 @@ public class MainWindow extends javax.swing.JFrame {
         D33.setPreferredSize(new java.awt.Dimension(20, 20));
         D.add(D33);
 
-        lp_cube.add(D);
+        cube_panel.add(D);
 
         rotate_Z.setBackground(new java.awt.Color(255, 255, 255));
         rotate_Z.setMaximumSize(new java.awt.Dimension(100, 100));
@@ -806,272 +806,272 @@ public class MainWindow extends javax.swing.JFrame {
         rotate_Z.setName(""); // NOI18N
         rotate_Z.setPreferredSize(new java.awt.Dimension(100, 100));
         rotate_Z.setLayout(new java.awt.GridLayout(3, 3));
-        lp_cube.add(rotate_Z);
+        cube_panel.add(rotate_Z);
 
         lp_move.setBorder(javax.swing.BorderFactory.createTitledBorder("Perform move"));
 
-        lp_move_basic.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Basic", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
-        lp_move_basic.setToolTipText("");
-        lp_move_basic.setLayout(new java.awt.GridLayout(2, 3));
+        move_basic.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Basic", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+        move_basic.setToolTipText("");
+        move_basic.setLayout(new java.awt.GridLayout(2, 3));
 
-        lp_move_L.setText("L");
-        lp_move_L.addMouseListener(new java.awt.event.MouseAdapter() {
+        move_L.setText("L");
+        move_L.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lp_move_LMouseEntered(evt);
+                move_LMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lp_move_LMouseExited(evt);
+                move_LMouseExited(evt);
             }
         });
-        lp_move_L.addActionListener(new java.awt.event.ActionListener() {
+        move_L.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lp_move_LActionPerformed(evt);
+                move_LActionPerformed(evt);
             }
         });
-        lp_move_basic.add(lp_move_L);
+        move_basic.add(move_L);
 
-        lp_move_U.setText("U");
-        lp_move_U.addMouseListener(new java.awt.event.MouseAdapter() {
+        move_U.setText("U");
+        move_U.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lp_move_UMouseEntered(evt);
+                move_UMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lp_move_UMouseExited(evt);
+                move_UMouseExited(evt);
             }
         });
-        lp_move_U.addActionListener(new java.awt.event.ActionListener() {
+        move_U.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lp_move_UActionPerformed(evt);
+                move_UActionPerformed(evt);
             }
         });
-        lp_move_basic.add(lp_move_U);
+        move_basic.add(move_U);
 
-        lp_move_R.setText("R");
-        lp_move_R.addMouseListener(new java.awt.event.MouseAdapter() {
+        move_R.setText("R");
+        move_R.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lp_move_RMouseEntered(evt);
+                move_RMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lp_move_RMouseExited(evt);
+                move_RMouseExited(evt);
             }
         });
-        lp_move_R.addActionListener(new java.awt.event.ActionListener() {
+        move_R.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lp_move_RActionPerformed(evt);
+                move_RActionPerformed(evt);
             }
         });
-        lp_move_basic.add(lp_move_R);
+        move_basic.add(move_R);
 
-        lp_move_D.setText("D");
-        lp_move_D.addMouseListener(new java.awt.event.MouseAdapter() {
+        move_D.setText("D");
+        move_D.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lp_move_DMouseEntered(evt);
+                move_DMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lp_move_DMouseExited(evt);
+                move_DMouseExited(evt);
             }
         });
-        lp_move_D.addActionListener(new java.awt.event.ActionListener() {
+        move_D.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lp_move_DActionPerformed(evt);
+                move_DActionPerformed(evt);
             }
         });
-        lp_move_basic.add(lp_move_D);
+        move_basic.add(move_D);
 
-        lp_move_F.setText("F");
-        lp_move_F.addMouseListener(new java.awt.event.MouseAdapter() {
+        move_F.setText("F");
+        move_F.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lp_move_FMouseEntered(evt);
+                move_FMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lp_move_FMouseExited(evt);
+                move_FMouseExited(evt);
             }
         });
-        lp_move_F.addActionListener(new java.awt.event.ActionListener() {
+        move_F.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lp_move_FActionPerformed(evt);
+                move_FActionPerformed(evt);
             }
         });
-        lp_move_basic.add(lp_move_F);
+        move_basic.add(move_F);
 
-        lp_move_B.setText("B");
-        lp_move_B.addMouseListener(new java.awt.event.MouseAdapter() {
+        move_B.setText("B");
+        move_B.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lp_move_BMouseEntered(evt);
+                move_BMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lp_move_BMouseExited(evt);
+                move_BMouseExited(evt);
             }
         });
-        lp_move_B.addActionListener(new java.awt.event.ActionListener() {
+        move_B.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lp_move_BActionPerformed(evt);
+                move_BActionPerformed(evt);
             }
         });
-        lp_move_basic.add(lp_move_B);
+        move_basic.add(move_B);
 
-        lp_move_advanced.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Advanced", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
-        lp_move_advanced.setToolTipText("");
-        lp_move_advanced.setLayout(new java.awt.GridLayout(1, 0));
+        move_advanced.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Advanced", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+        move_advanced.setToolTipText("");
+        move_advanced.setLayout(new java.awt.GridLayout(1, 0));
 
-        lp_move_M.setText("M");
-        lp_move_M.addMouseListener(new java.awt.event.MouseAdapter() {
+        move_M.setText("M");
+        move_M.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lp_move_MMouseEntered(evt);
+                move_MMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lp_move_MMouseExited(evt);
+                move_MMouseExited(evt);
             }
         });
-        lp_move_M.addActionListener(new java.awt.event.ActionListener() {
+        move_M.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lp_move_MActionPerformed(evt);
+                move_MActionPerformed(evt);
             }
         });
-        lp_move_advanced.add(lp_move_M);
+        move_advanced.add(move_M);
 
-        lp_move_E.setText("E");
-        lp_move_E.addMouseListener(new java.awt.event.MouseAdapter() {
+        move_E.setText("E");
+        move_E.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lp_move_EMouseEntered(evt);
+                move_EMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lp_move_EMouseExited(evt);
+                move_EMouseExited(evt);
             }
         });
-        lp_move_E.addActionListener(new java.awt.event.ActionListener() {
+        move_E.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lp_move_EActionPerformed(evt);
+                move_EActionPerformed(evt);
             }
         });
-        lp_move_advanced.add(lp_move_E);
+        move_advanced.add(move_E);
 
-        lp_move_S.setText("S");
-        lp_move_S.addMouseListener(new java.awt.event.MouseAdapter() {
+        move_S.setText("S");
+        move_S.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lp_move_SMouseEntered(evt);
+                move_SMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lp_move_SMouseExited(evt);
+                move_SMouseExited(evt);
             }
         });
-        lp_move_S.addActionListener(new java.awt.event.ActionListener() {
+        move_S.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lp_move_SActionPerformed(evt);
+                move_SActionPerformed(evt);
             }
         });
-        lp_move_advanced.add(lp_move_S);
+        move_advanced.add(move_S);
 
-        lp_move_details.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Use inverse", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
-        lp_move_details.setLayout(new java.awt.GridLayout(1, 0));
+        move_details.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Use inverse", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+        move_details.setLayout(new java.awt.GridLayout(1, 0));
 
-        lp_move_useinverse_btngroup.add(lp_move_inverse_yes);
-        lp_move_inverse_yes.setSelected(true);
-        lp_move_inverse_yes.setText("Inverse Move");
-        lp_move_inverse_yes.addActionListener(new java.awt.event.ActionListener() {
+        lp_move_useinverse_btngroup.add(move_inverse_yes);
+        move_inverse_yes.setSelected(true);
+        move_inverse_yes.setText("Inverse Move");
+        move_inverse_yes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lp_move_inverse_yesActionPerformed(evt);
+                move_inverse_yesActionPerformed(evt);
             }
         });
-        lp_move_details.add(lp_move_inverse_yes);
+        move_details.add(move_inverse_yes);
 
-        lp_move_useinverse_btngroup.add(lp_move_inverse_no);
-        lp_move_inverse_no.setText("Forward Move");
-        lp_move_inverse_no.addActionListener(new java.awt.event.ActionListener() {
+        lp_move_useinverse_btngroup.add(move_inverse_no);
+        move_inverse_no.setText("Forward Move");
+        move_inverse_no.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lp_move_inverse_noActionPerformed(evt);
+                move_inverse_noActionPerformed(evt);
             }
         });
-        lp_move_details.add(lp_move_inverse_no);
+        move_details.add(move_inverse_no);
 
-        lp_move_rotate.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Rotate", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
-        lp_move_rotate.setToolTipText("");
-        lp_move_rotate.setLayout(new java.awt.GridLayout(1, 0));
+        move_rotate.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Rotate", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+        move_rotate.setToolTipText("");
+        move_rotate.setLayout(new java.awt.GridLayout(1, 0));
 
-        lp_move_X.setText("X");
-        lp_move_X.addMouseListener(new java.awt.event.MouseAdapter() {
+        move_X.setText("X");
+        move_X.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lp_move_XMouseEntered(evt);
+                move_XMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lp_move_XMouseExited(evt);
+                move_XMouseExited(evt);
             }
         });
-        lp_move_X.addActionListener(new java.awt.event.ActionListener() {
+        move_X.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lp_move_XActionPerformed(evt);
+                move_XActionPerformed(evt);
             }
         });
-        lp_move_rotate.add(lp_move_X);
+        move_rotate.add(move_X);
 
-        lp_move_Y.setText("Y");
-        lp_move_Y.addMouseListener(new java.awt.event.MouseAdapter() {
+        move_Y.setText("Y");
+        move_Y.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lp_move_YMouseEntered(evt);
+                move_YMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lp_move_YMouseExited(evt);
+                move_YMouseExited(evt);
             }
         });
-        lp_move_Y.addActionListener(new java.awt.event.ActionListener() {
+        move_Y.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lp_move_YActionPerformed(evt);
+                move_YActionPerformed(evt);
             }
         });
-        lp_move_rotate.add(lp_move_Y);
+        move_rotate.add(move_Y);
 
-        lp_move_Z.setText("Z");
-        lp_move_Z.addMouseListener(new java.awt.event.MouseAdapter() {
+        move_Z.setText("Z");
+        move_Z.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lp_move_ZMouseEntered(evt);
+                move_ZMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                lp_move_ZMouseExited(evt);
+                move_ZMouseExited(evt);
             }
         });
-        lp_move_Z.addActionListener(new java.awt.event.ActionListener() {
+        move_Z.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lp_move_ZActionPerformed(evt);
+                move_ZActionPerformed(evt);
             }
         });
-        lp_move_rotate.add(lp_move_Z);
+        move_rotate.add(move_Z);
 
         javax.swing.GroupLayout lp_moveLayout = new javax.swing.GroupLayout(lp_move);
         lp_move.setLayout(lp_moveLayout);
         lp_moveLayout.setHorizontalGroup(
             lp_moveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lp_move_details, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(move_details, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(lp_moveLayout.createSequentialGroup()
-                .addComponent(lp_move_basic, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(move_basic, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(lp_moveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lp_move_advanced, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lp_move_rotate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(move_advanced, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(move_rotate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         lp_moveLayout.setVerticalGroup(
             lp_moveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(lp_moveLayout.createSequentialGroup()
                 .addGroup(lp_moveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(lp_moveLayout.createSequentialGroup()
-                        .addComponent(lp_move_advanced, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(move_advanced, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lp_move_rotate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lp_move_basic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(move_rotate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(move_basic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lp_move_details, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(move_details, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout MainLeftPanelLayout = new javax.swing.GroupLayout(MainLeftPanel);
         MainLeftPanel.setLayout(MainLeftPanelLayout);
         MainLeftPanelLayout.setHorizontalGroup(
             MainLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lp_cube, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+            .addComponent(cube_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
             .addComponent(lp_move, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         MainLeftPanelLayout.setVerticalGroup(
             MainLeftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainLeftPanelLayout.createSequentialGroup()
-                .addComponent(lp_cube, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cube_panel, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lp_move, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1079,50 +1079,50 @@ public class MainWindow extends javax.swing.JFrame {
 
         MainRightPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Information"));
 
-        rp_cubedimension_title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        rp_cubedimension_title.setText("Cube dimension:");
+        cubedimension_title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cubedimension_title.setText("Cube dimension:");
 
-        rp_algorithm_title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        rp_algorithm_title.setText("Algorithm for ints:");
+        algorithm_title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        algorithm_title.setText("Algorithm for ints:");
 
-        rp_cubedimension_value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        rp_cubedimension_value.setText(" ");
+        cubedimension_value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cubedimension_value.setText(" ");
 
-        rp_algorithm_value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        rp_algorithm_value.setText(" ");
+        algorithm_value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        algorithm_value.setText(" ");
 
-        rp_control_reset.setText("Reset");
-        rp_control_reset.setMaximumSize(new java.awt.Dimension(85, 30));
-        rp_control_reset.setMinimumSize(new java.awt.Dimension(85, 30));
-        rp_control_reset.setPreferredSize(new java.awt.Dimension(85, 30));
-        rp_control_reset.addActionListener(new java.awt.event.ActionListener() {
+        control_reset.setText("Reset");
+        control_reset.setMaximumSize(new java.awt.Dimension(85, 30));
+        control_reset.setMinimumSize(new java.awt.Dimension(85, 30));
+        control_reset.setPreferredSize(new java.awt.Dimension(85, 30));
+        control_reset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rp_control_resetActionPerformed(evt);
+                control_resetActionPerformed(evt);
             }
         });
-        rp_control.add(rp_control_reset);
+        control_panel.add(control_reset);
 
-        rp_control_shuffle.setText("Shuffle");
-        rp_control_shuffle.setMaximumSize(new java.awt.Dimension(85, 30));
-        rp_control_shuffle.setMinimumSize(new java.awt.Dimension(85, 30));
-        rp_control_shuffle.setPreferredSize(new java.awt.Dimension(85, 30));
-        rp_control_shuffle.addActionListener(new java.awt.event.ActionListener() {
+        control_shuffle.setText("Shuffle");
+        control_shuffle.setMaximumSize(new java.awt.Dimension(85, 30));
+        control_shuffle.setMinimumSize(new java.awt.Dimension(85, 30));
+        control_shuffle.setPreferredSize(new java.awt.Dimension(85, 30));
+        control_shuffle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rp_control_shuffleActionPerformed(evt);
+                control_shuffleActionPerformed(evt);
             }
         });
-        rp_control.add(rp_control_shuffle);
+        control_panel.add(control_shuffle);
 
-        rp_control_toString.setText("toString");
-        rp_control_toString.setMaximumSize(new java.awt.Dimension(85, 30));
-        rp_control_toString.setMinimumSize(new java.awt.Dimension(85, 30));
-        rp_control_toString.setPreferredSize(new java.awt.Dimension(85, 30));
-        rp_control_toString.addActionListener(new java.awt.event.ActionListener() {
+        control_toString.setText("toString");
+        control_toString.setMaximumSize(new java.awt.Dimension(85, 30));
+        control_toString.setMinimumSize(new java.awt.Dimension(85, 30));
+        control_toString.setPreferredSize(new java.awt.Dimension(85, 30));
+        control_toString.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rp_control_toStringActionPerformed(evt);
+                control_toStringActionPerformed(evt);
             }
         });
-        rp_control.add(rp_control_toString);
+        control_panel.add(control_toString);
 
         javax.swing.GroupLayout MainRightPanelLayout = new javax.swing.GroupLayout(MainRightPanel);
         MainRightPanel.setLayout(MainRightPanelLayout);
@@ -1130,144 +1130,144 @@ public class MainWindow extends javax.swing.JFrame {
             MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainRightPanelLayout.createSequentialGroup()
                 .addGroup(MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(rp_control, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                    .addComponent(control_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, MainRightPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jSeparator2)
                             .addGroup(MainRightPanelLayout.createSequentialGroup()
                                 .addGroup(MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(rp_algorithm_title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(rp_cubedimension_title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(algorithm_title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cubedimension_title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rp_algorithm_value, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                                    .addComponent(rp_cubedimension_value, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(algorithm_value, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                                    .addComponent(cubedimension_value, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        MainRightPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rp_algorithm_title, rp_cubedimension_title});
+        MainRightPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {algorithm_title, cubedimension_title});
 
         MainRightPanelLayout.setVerticalGroup(
             MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainRightPanelLayout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rp_cubedimension_title)
-                    .addComponent(rp_cubedimension_value))
+                    .addComponent(cubedimension_title)
+                    .addComponent(cubedimension_value))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(MainRightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rp_algorithm_title)
-                    .addComponent(rp_algorithm_value))
+                    .addComponent(algorithm_title)
+                    .addComponent(algorithm_value))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rp_control, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(control_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        MainRightPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {rp_algorithm_title, rp_algorithm_value, rp_cubedimension_title, rp_cubedimension_value});
+        MainRightPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {algorithm_title, algorithm_value, cubedimension_title, cubedimension_value});
 
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.png"))); // NOI18N
         Logo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        rp_move_preview.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Preview", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
+        move_preview.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Preview", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP));
 
-        rp_move_preview_image.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        rp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/shuffle.png"))); // NOI18N
-        rp_move_preview_image.setText(" ");
-        rp_move_preview_image.setToolTipText("");
+        move_preview_image.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/shuffle.png"))); // NOI18N
+        move_preview_image.setText(" ");
+        move_preview_image.setToolTipText("");
 
-        javax.swing.GroupLayout rp_move_previewLayout = new javax.swing.GroupLayout(rp_move_preview);
-        rp_move_preview.setLayout(rp_move_previewLayout);
-        rp_move_previewLayout.setHorizontalGroup(
-            rp_move_previewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rp_move_previewLayout.createSequentialGroup()
+        javax.swing.GroupLayout move_previewLayout = new javax.swing.GroupLayout(move_preview);
+        move_preview.setLayout(move_previewLayout);
+        move_previewLayout.setHorizontalGroup(
+            move_previewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(move_previewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rp_move_preview_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(move_preview_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        rp_move_previewLayout.setVerticalGroup(
-            rp_move_previewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rp_move_previewLayout.createSequentialGroup()
+        move_previewLayout.setVerticalGroup(
+            move_previewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(move_previewLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(rp_move_preview_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(move_preview_image, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Moves"));
+        nexmoves_panel.setBorder(javax.swing.BorderFactory.createTitledBorder("Moves"));
 
-        rp_nummoves_title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        rp_nummoves_title.setText("Number of moves:");
+        nummoves_title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nummoves_title.setText("Number of moves:");
 
-        rp_nummoves_value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        rp_nummoves_value.setText(" ");
+        nummoves_value.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        nummoves_value.setText(" ");
 
-        rp_previousmoves_value.setEditable(false);
-        rp_previousmoves_value.setColumns(20);
-        rp_previousmoves_value.setRows(5);
-        rp_previousmoves_value.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        rp_previousmoves_value.setEnabled(false);
-        rp_previousmoves_container.setViewportView(rp_previousmoves_value);
+        previousmoves_value.setEditable(false);
+        previousmoves_value.setColumns(20);
+        previousmoves_value.setRows(5);
+        previousmoves_value.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        previousmoves_value.setEnabled(false);
+        previousmoves_container.setViewportView(previousmoves_value);
 
-        rp_nextmoves_title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        rp_nextmoves_title.setText("Next suggested moves");
+        nextmoves_title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nextmoves_title.setText("Next suggested moves");
 
-        rp_nextmoves_value.setEditable(false);
-        rp_nextmoves_value.setText(" ");
+        nextmoves_value.setEditable(false);
+        nextmoves_value.setText(" ");
 
-        rp_nextmoves_doit.setText("Do it!");
-        rp_nextmoves_doit.setEnabled(false);
-        rp_nextmoves_doit.addActionListener(new java.awt.event.ActionListener() {
+        nextmoves_doit.setText("Do it!");
+        nextmoves_doit.setEnabled(false);
+        nextmoves_doit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rp_nextmoves_doitActionPerformed(evt);
+                nextmoves_doitActionPerformed(evt);
             }
         });
 
-        rp_nextmoves_progressbar.setString("");
-        rp_nextmoves_progressbar.setStringPainted(true);
+        nextmoves_progressbar.setString("");
+        nextmoves_progressbar.setStringPainted(true);
 
-        rp_nextmoves_calculate.setText("Calculate");
-        rp_nextmoves_calculate.addActionListener(new java.awt.event.ActionListener() {
+        nextmoves_calculate.setText("Calculate");
+        nextmoves_calculate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rp_nextmoves_calculateActionPerformed(evt);
+                nextmoves_calculateActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(rp_nextmoves_title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(rp_nextmoves_value)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(rp_nummoves_title)
+        javax.swing.GroupLayout nexmoves_panelLayout = new javax.swing.GroupLayout(nexmoves_panel);
+        nexmoves_panel.setLayout(nexmoves_panelLayout);
+        nexmoves_panelLayout.setHorizontalGroup(
+            nexmoves_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(nextmoves_title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(nextmoves_value)
+            .addGroup(nexmoves_panelLayout.createSequentialGroup()
+                .addComponent(nummoves_title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rp_nummoves_value, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nummoves_value, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(rp_nextmoves_doit)
+            .addGroup(nexmoves_panelLayout.createSequentialGroup()
+                .addComponent(nextmoves_doit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rp_nextmoves_calculate)
+                .addComponent(nextmoves_calculate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rp_nextmoves_progressbar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-            .addComponent(rp_previousmoves_container)
+                .addComponent(nextmoves_progressbar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+            .addComponent(previousmoves_container)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rp_nummoves_title)
-                    .addComponent(rp_nummoves_value))
+        nexmoves_panelLayout.setVerticalGroup(
+            nexmoves_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nexmoves_panelLayout.createSequentialGroup()
+                .addGroup(nexmoves_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nummoves_title)
+                    .addComponent(nummoves_value))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rp_previousmoves_container, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(previousmoves_container, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rp_nextmoves_title)
+                .addComponent(nextmoves_title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rp_nextmoves_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nextmoves_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rp_nextmoves_progressbar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rp_nextmoves_calculate, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                    .addComponent(rp_nextmoves_doit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(nexmoves_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nextmoves_progressbar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nextmoves_calculate, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(nextmoves_doit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         menu_file.setMnemonic('f');
@@ -1330,8 +1330,8 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(MainRightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rp_move_preview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(nexmoves_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(move_preview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -1345,9 +1345,9 @@ public class MainWindow extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(MainRightPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nexmoves_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rp_move_preview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(move_preview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
 
@@ -1372,193 +1372,193 @@ public class MainWindow extends javax.swing.JFrame {
         c.setVisible(true);
         if (c.getReturnStatus()) {
             this.actualStrategy = c.getSelected_option();
-            this.rp_algorithm_value.setText(this.actualStrategy.toString());
+            this.algorithm_value.setText(this.actualStrategy.toString());
         }
         updateInterface();
     }//GEN-LAST:event_menu_edit_algorithmActionPerformed
 
-    private void lp_move_LMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_LMouseEntered
+    private void move_LMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_LMouseEntered
         lp_move_preview_LoadImage("L");
-    }//GEN-LAST:event_lp_move_LMouseEntered
+    }//GEN-LAST:event_move_LMouseEntered
 
-    private void lp_move_LMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_LMouseExited
+    private void move_LMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_LMouseExited
         lp_move_preview_UnloadImage();
-    }//GEN-LAST:event_lp_move_LMouseExited
+    }//GEN-LAST:event_move_LMouseExited
 
-    private void lp_move_RMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_RMouseEntered
+    private void move_RMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_RMouseEntered
         lp_move_preview_LoadImage("R");
-    }//GEN-LAST:event_lp_move_RMouseEntered
+    }//GEN-LAST:event_move_RMouseEntered
 
-    private void lp_move_RMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_RMouseExited
+    private void move_RMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_RMouseExited
         lp_move_preview_UnloadImage();
-    }//GEN-LAST:event_lp_move_RMouseExited
+    }//GEN-LAST:event_move_RMouseExited
 
-    private void lp_move_UMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_UMouseEntered
+    private void move_UMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_UMouseEntered
         lp_move_preview_LoadImage("U");
-    }//GEN-LAST:event_lp_move_UMouseEntered
+    }//GEN-LAST:event_move_UMouseEntered
 
-    private void lp_move_UMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_UMouseExited
+    private void move_UMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_UMouseExited
         lp_move_preview_UnloadImage();
-    }//GEN-LAST:event_lp_move_UMouseExited
+    }//GEN-LAST:event_move_UMouseExited
 
-    private void lp_move_DMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_DMouseEntered
+    private void move_DMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_DMouseEntered
         lp_move_preview_LoadImage("D");
-    }//GEN-LAST:event_lp_move_DMouseEntered
+    }//GEN-LAST:event_move_DMouseEntered
 
-    private void lp_move_DMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_DMouseExited
+    private void move_DMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_DMouseExited
         lp_move_preview_UnloadImage();
-    }//GEN-LAST:event_lp_move_DMouseExited
+    }//GEN-LAST:event_move_DMouseExited
 
-    private void lp_move_FMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_FMouseEntered
+    private void move_FMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_FMouseEntered
         lp_move_preview_LoadImage("F");
-    }//GEN-LAST:event_lp_move_FMouseEntered
+    }//GEN-LAST:event_move_FMouseEntered
 
-    private void lp_move_FMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_FMouseExited
+    private void move_FMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_FMouseExited
         lp_move_preview_UnloadImage();
-    }//GEN-LAST:event_lp_move_FMouseExited
+    }//GEN-LAST:event_move_FMouseExited
 
-    private void lp_move_BMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_BMouseEntered
+    private void move_BMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_BMouseEntered
         lp_move_preview_LoadImage("B");
-    }//GEN-LAST:event_lp_move_BMouseEntered
+    }//GEN-LAST:event_move_BMouseEntered
 
-    private void lp_move_BMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_BMouseExited
+    private void move_BMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_BMouseExited
         lp_move_preview_UnloadImage();
-    }//GEN-LAST:event_lp_move_BMouseExited
+    }//GEN-LAST:event_move_BMouseExited
 
-    private void lp_move_MMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_MMouseEntered
+    private void move_MMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_MMouseEntered
         lp_move_preview_LoadImage("M");
-    }//GEN-LAST:event_lp_move_MMouseEntered
+    }//GEN-LAST:event_move_MMouseEntered
 
-    private void lp_move_MMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_MMouseExited
+    private void move_MMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_MMouseExited
         lp_move_preview_UnloadImage();
-    }//GEN-LAST:event_lp_move_MMouseExited
+    }//GEN-LAST:event_move_MMouseExited
 
-    private void lp_move_SMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_SMouseEntered
+    private void move_SMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_SMouseEntered
         lp_move_preview_LoadImage("S");
-    }//GEN-LAST:event_lp_move_SMouseEntered
+    }//GEN-LAST:event_move_SMouseEntered
 
-    private void lp_move_SMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_SMouseExited
+    private void move_SMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_SMouseExited
         lp_move_preview_UnloadImage();
-    }//GEN-LAST:event_lp_move_SMouseExited
+    }//GEN-LAST:event_move_SMouseExited
 
-    private void lp_move_EMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_EMouseEntered
+    private void move_EMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_EMouseEntered
         lp_move_preview_LoadImage("E");
-    }//GEN-LAST:event_lp_move_EMouseEntered
+    }//GEN-LAST:event_move_EMouseEntered
 
-    private void lp_move_EMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_EMouseExited
+    private void move_EMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_EMouseExited
         lp_move_preview_UnloadImage();
-    }//GEN-LAST:event_lp_move_EMouseExited
+    }//GEN-LAST:event_move_EMouseExited
 
-    private void lp_move_XMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_XMouseEntered
+    private void move_XMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_XMouseEntered
         lp_move_preview_LoadImage("X");
-    }//GEN-LAST:event_lp_move_XMouseEntered
+    }//GEN-LAST:event_move_XMouseEntered
 
-    private void lp_move_XMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_XMouseExited
+    private void move_XMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_XMouseExited
         lp_move_preview_UnloadImage();
-    }//GEN-LAST:event_lp_move_XMouseExited
+    }//GEN-LAST:event_move_XMouseExited
 
-    private void lp_move_YMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_YMouseEntered
+    private void move_YMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_YMouseEntered
         lp_move_preview_LoadImage("Y");
-    }//GEN-LAST:event_lp_move_YMouseEntered
+    }//GEN-LAST:event_move_YMouseEntered
 
-    private void lp_move_YMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_YMouseExited
+    private void move_YMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_YMouseExited
         lp_move_preview_UnloadImage();
-    }//GEN-LAST:event_lp_move_YMouseExited
+    }//GEN-LAST:event_move_YMouseExited
 
-    private void lp_move_ZMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_ZMouseEntered
+    private void move_ZMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_ZMouseEntered
         lp_move_preview_LoadImage("Z");
-    }//GEN-LAST:event_lp_move_ZMouseEntered
+    }//GEN-LAST:event_move_ZMouseEntered
 
-    private void lp_move_ZMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lp_move_ZMouseExited
+    private void move_ZMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_move_ZMouseExited
         lp_move_preview_UnloadImage();
-    }//GEN-LAST:event_lp_move_ZMouseExited
+    }//GEN-LAST:event_move_ZMouseExited
 
-    private void lp_move_LActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_LActionPerformed
+    private void move_LActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move_LActionPerformed
         performMove("L");
-    }//GEN-LAST:event_lp_move_LActionPerformed
+    }//GEN-LAST:event_move_LActionPerformed
 
-    private void lp_move_RActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_RActionPerformed
+    private void move_RActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move_RActionPerformed
         performMove("R");
-    }//GEN-LAST:event_lp_move_RActionPerformed
+    }//GEN-LAST:event_move_RActionPerformed
 
-    private void lp_move_UActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_UActionPerformed
+    private void move_UActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move_UActionPerformed
         performMove("U");
-    }//GEN-LAST:event_lp_move_UActionPerformed
+    }//GEN-LAST:event_move_UActionPerformed
 
-    private void lp_move_DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_DActionPerformed
+    private void move_DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move_DActionPerformed
         performMove("D");
-    }//GEN-LAST:event_lp_move_DActionPerformed
+    }//GEN-LAST:event_move_DActionPerformed
 
-    private void lp_move_FActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_FActionPerformed
+    private void move_FActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move_FActionPerformed
         performMove("F");
-    }//GEN-LAST:event_lp_move_FActionPerformed
+    }//GEN-LAST:event_move_FActionPerformed
 
-    private void lp_move_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_BActionPerformed
+    private void move_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move_BActionPerformed
         performMove("B");
-    }//GEN-LAST:event_lp_move_BActionPerformed
+    }//GEN-LAST:event_move_BActionPerformed
 
-    private void lp_move_MActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_MActionPerformed
+    private void move_MActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move_MActionPerformed
         performMove("M");
-    }//GEN-LAST:event_lp_move_MActionPerformed
+    }//GEN-LAST:event_move_MActionPerformed
 
-    private void lp_move_SActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_SActionPerformed
+    private void move_SActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move_SActionPerformed
         performMove("S");
-    }//GEN-LAST:event_lp_move_SActionPerformed
+    }//GEN-LAST:event_move_SActionPerformed
 
-    private void lp_move_EActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_EActionPerformed
+    private void move_EActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move_EActionPerformed
         performMove("E");
-    }//GEN-LAST:event_lp_move_EActionPerformed
+    }//GEN-LAST:event_move_EActionPerformed
 
-    private void lp_move_XActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_XActionPerformed
+    private void move_XActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move_XActionPerformed
         performMove("X");
-    }//GEN-LAST:event_lp_move_XActionPerformed
+    }//GEN-LAST:event_move_XActionPerformed
 
-    private void lp_move_YActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_YActionPerformed
+    private void move_YActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move_YActionPerformed
         performMove("Y");
-    }//GEN-LAST:event_lp_move_YActionPerformed
+    }//GEN-LAST:event_move_YActionPerformed
 
-    private void lp_move_ZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_ZActionPerformed
+    private void move_ZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move_ZActionPerformed
         performMove("Z");
-    }//GEN-LAST:event_lp_move_ZActionPerformed
+    }//GEN-LAST:event_move_ZActionPerformed
 
     private void menu_help_creditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_help_creditsActionPerformed
         new Credits(this, true).setVisible(true);
     }//GEN-LAST:event_menu_help_creditsActionPerformed
 
-    private void rp_nextmoves_doitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_nextmoves_doitActionPerformed
-        String[] moves = this.rp_nextmoves_value.getText().split(" ");
+    private void nextmoves_doitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextmoves_doitActionPerformed
+        String[] moves = this.nextmoves_value.getText().split(" ");
         for (String move : moves) {
             boolean inverted = move.contains("'");
-            this.lp_move_inverse_yes.setSelected(inverted);
-            this.lp_move_inverse_no.setSelected(!inverted);
+            this.move_inverse_yes.setSelected(inverted);
+            this.move_inverse_no.setSelected(!inverted);
             move = move.replaceAll("'", "");
             this.performMove(move);
         }
-        this.rp_nextmoves_value.setText("");
-    }//GEN-LAST:event_rp_nextmoves_doitActionPerformed
+        this.nextmoves_value.setText("");
+    }//GEN-LAST:event_nextmoves_doitActionPerformed
 
-    private void lp_move_inverse_yesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_inverse_yesActionPerformed
-        if (this.lp_move_inverse_yes.isSelected()) {
-            this.lp_move_inverse_no.setSelected(false);
+    private void move_inverse_yesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move_inverse_yesActionPerformed
+        if (this.move_inverse_yes.isSelected()) {
+            this.move_inverse_no.setSelected(false);
         } else {
-            this.lp_move_inverse_no.setSelected(true);
+            this.move_inverse_no.setSelected(true);
         }
-        this.inverse = this.lp_move_inverse_yes.isSelected();
-    }//GEN-LAST:event_lp_move_inverse_yesActionPerformed
+        this.inverse = this.move_inverse_yes.isSelected();
+    }//GEN-LAST:event_move_inverse_yesActionPerformed
 
-    private void lp_move_inverse_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lp_move_inverse_noActionPerformed
-        if (this.lp_move_inverse_no.isSelected()) {
-            this.lp_move_inverse_yes.setSelected(false);
+    private void move_inverse_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move_inverse_noActionPerformed
+        if (this.move_inverse_no.isSelected()) {
+            this.move_inverse_yes.setSelected(false);
         } else {
-            this.lp_move_inverse_yes.setSelected(true);
+            this.move_inverse_yes.setSelected(true);
         }
-    }//GEN-LAST:event_lp_move_inverse_noActionPerformed
+    }//GEN-LAST:event_move_inverse_noActionPerformed
 
-    private void rp_control_toStringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_control_toStringActionPerformed
+    private void control_toStringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_control_toStringActionPerformed
         JOptionPane.showMessageDialog(this, this.cube.toString(), "Cube", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_rp_control_toStringActionPerformed
+    }//GEN-LAST:event_control_toStringActionPerformed
 
-    private void rp_control_shuffleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_control_shuffleActionPerformed
+    private void control_shuffleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_control_shuffleActionPerformed
         if (JOptionPane.YES_OPTION != JOptionPane.showConfirmDialog(
                 rootPane,
                 "This action will shuffle the cube. Are you sure?",
@@ -1604,16 +1604,16 @@ public class MainWindow extends javax.swing.JFrame {
 
         String prevMoves = words[S.nextInt(words.length)];
         boolean inverted = S.nextBoolean();
-        this.lp_move_inverse_yes.setSelected(inverted);
-        this.lp_move_inverse_no.setSelected(!inverted);
+        this.move_inverse_yes.setSelected(inverted);
+        this.move_inverse_no.setSelected(!inverted);
         
         performMove(prevMoves);
         moves = prevMoves;
 
         for (int i = 1; i < num_rand_moves; i++) {
             inverted = S.nextBoolean();
-            this.lp_move_inverse_yes.setSelected(inverted);
-            this.lp_move_inverse_no.setSelected(!inverted);
+            this.move_inverse_yes.setSelected(inverted);
+            this.move_inverse_no.setSelected(!inverted);
 
             words = successors.get(prevMoves);
             prevMoves = words[S.nextInt(words.length)];
@@ -1627,9 +1627,9 @@ public class MainWindow extends javax.swing.JFrame {
         this.MovesCounter = 0;
         JOptionPane.showMessageDialog(this, "Shuffle completed!\n" + moves, "Shuffle result", JOptionPane.PLAIN_MESSAGE);
         updateInterface();
-    }//GEN-LAST:event_rp_control_shuffleActionPerformed
+    }//GEN-LAST:event_control_shuffleActionPerformed
 
-    private void rp_control_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_control_resetActionPerformed
+    private void control_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_control_resetActionPerformed
         if (JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog(
                 rootPane,
                 "This action will reset the cube. Are you sure?",
@@ -1638,18 +1638,18 @@ public class MainWindow extends javax.swing.JFrame {
                 JOptionPane.WARNING_MESSAGE)) {
             initCube();
         }
-    }//GEN-LAST:event_rp_control_resetActionPerformed
+    }//GEN-LAST:event_control_resetActionPerformed
 
-    private void rp_nextmoves_calculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rp_nextmoves_calculateActionPerformed
-        this.rp_nextmoves_progressbar.setIndeterminate(true);
-        this.rp_nextmoves_progressbar.setStringPainted(true);
-        this.rp_nextmoves_progressbar.setString("Please wait");
-        this.rp_nextmoves_value.setText(this.getNextMoves());
-        if(!this.rp_nextmoves_value.getText().isEmpty()) this.rp_nextmoves_doit.setEnabled(true);
-        this.rp_nextmoves_progressbar.setIndeterminate(false);
-        this.rp_nextmoves_progressbar.setStringPainted(false);
-        this.rp_nextmoves_progressbar.setString("");
-    }//GEN-LAST:event_rp_nextmoves_calculateActionPerformed
+    private void nextmoves_calculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextmoves_calculateActionPerformed
+        this.nextmoves_progressbar.setIndeterminate(true);
+        this.nextmoves_progressbar.setStringPainted(true);
+        this.nextmoves_progressbar.setString("Please wait");
+        this.nextmoves_value.setText(this.getNextMoves());
+        if(!this.nextmoves_value.getText().isEmpty()) this.nextmoves_doit.setEnabled(true);
+        this.nextmoves_progressbar.setIndeterminate(false);
+        this.nextmoves_progressbar.setStringPainted(false);
+        this.nextmoves_progressbar.setString("");
+    }//GEN-LAST:event_nextmoves_calculateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1728,28 +1728,17 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel U31;
     private javax.swing.JLabel U32;
     private javax.swing.JLabel U33;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel algorithm_title;
+    private javax.swing.JLabel algorithm_value;
+    private javax.swing.JPanel control_panel;
+    private javax.swing.JButton control_reset;
+    private javax.swing.JButton control_shuffle;
+    private javax.swing.JButton control_toString;
+    private javax.swing.JPanel cube_panel;
+    private javax.swing.JLabel cubedimension_title;
+    private javax.swing.JLabel cubedimension_value;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JPanel lp_cube;
     private javax.swing.JPanel lp_move;
-    private javax.swing.JButton lp_move_B;
-    private javax.swing.JButton lp_move_D;
-    private javax.swing.JButton lp_move_E;
-    private javax.swing.JButton lp_move_F;
-    private javax.swing.JButton lp_move_L;
-    private javax.swing.JButton lp_move_M;
-    private javax.swing.JButton lp_move_R;
-    private javax.swing.JButton lp_move_S;
-    private javax.swing.JButton lp_move_U;
-    private javax.swing.JButton lp_move_X;
-    private javax.swing.JButton lp_move_Y;
-    private javax.swing.JButton lp_move_Z;
-    private javax.swing.JPanel lp_move_advanced;
-    private javax.swing.JPanel lp_move_basic;
-    private javax.swing.JPanel lp_move_details;
-    private javax.swing.JToggleButton lp_move_inverse_no;
-    private javax.swing.JToggleButton lp_move_inverse_yes;
-    private javax.swing.JPanel lp_move_rotate;
     private javax.swing.ButtonGroup lp_move_useinverse_btngroup;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menu_edit;
@@ -1759,28 +1748,39 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem menu_file_exit;
     private javax.swing.JMenu menu_help;
     private javax.swing.JMenuItem menu_help_credits;
+    private javax.swing.JButton move_B;
+    private javax.swing.JButton move_D;
+    private javax.swing.JButton move_E;
+    private javax.swing.JButton move_F;
+    private javax.swing.JButton move_L;
+    private javax.swing.JButton move_M;
+    private javax.swing.JButton move_R;
+    private javax.swing.JButton move_S;
+    private javax.swing.JButton move_U;
+    private javax.swing.JButton move_X;
+    private javax.swing.JButton move_Y;
+    private javax.swing.JButton move_Z;
+    private javax.swing.JPanel move_advanced;
+    private javax.swing.JPanel move_basic;
+    private javax.swing.JPanel move_details;
+    private javax.swing.JToggleButton move_inverse_no;
+    private javax.swing.JToggleButton move_inverse_yes;
+    private javax.swing.JPanel move_preview;
+    private javax.swing.JLabel move_preview_image;
+    private javax.swing.JPanel move_rotate;
+    private javax.swing.JPanel nexmoves_panel;
+    private javax.swing.JButton nextmoves_calculate;
+    private javax.swing.JButton nextmoves_doit;
+    private javax.swing.JProgressBar nextmoves_progressbar;
+    private javax.swing.JLabel nextmoves_title;
+    private javax.swing.JTextField nextmoves_value;
+    private javax.swing.JLabel nummoves_title;
+    private javax.swing.JLabel nummoves_value;
+    private javax.swing.JScrollPane previousmoves_container;
+    private javax.swing.JTextArea previousmoves_value;
     private javax.swing.JPanel rotate_X;
     private javax.swing.JPanel rotate_Y;
     private javax.swing.JPanel rotate_Z;
-    private javax.swing.JLabel rp_algorithm_title;
-    private javax.swing.JLabel rp_algorithm_value;
-    private javax.swing.JPanel rp_control;
-    private javax.swing.JButton rp_control_reset;
-    private javax.swing.JButton rp_control_shuffle;
-    private javax.swing.JButton rp_control_toString;
-    private javax.swing.JLabel rp_cubedimension_title;
-    private javax.swing.JLabel rp_cubedimension_value;
-    private javax.swing.JPanel rp_move_preview;
-    private javax.swing.JLabel rp_move_preview_image;
-    private javax.swing.JButton rp_nextmoves_calculate;
-    private javax.swing.JButton rp_nextmoves_doit;
-    private javax.swing.JProgressBar rp_nextmoves_progressbar;
-    private javax.swing.JLabel rp_nextmoves_title;
-    private javax.swing.JTextField rp_nextmoves_value;
-    private javax.swing.JLabel rp_nummoves_title;
-    private javax.swing.JLabel rp_nummoves_value;
-    private javax.swing.JScrollPane rp_previousmoves_container;
-    private javax.swing.JTextArea rp_previousmoves_value;
     // End of variables declaration//GEN-END:variables
     // CHECKSTYLE:ON
 
@@ -1825,12 +1825,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         this.MovesCounter = 0;
         
-        this.rp_previousmoves_value.setText("");
-        this.rp_nextmoves_value.setText("");
-        this.rp_nextmoves_doit.setEnabled(false);
-        this.rp_nextmoves_progressbar.setIndeterminate(false);
-        this.rp_nextmoves_progressbar.setStringPainted(false);
-        this.rp_nextmoves_progressbar.setString("");
+        this.previousmoves_value.setText("");
+        this.nextmoves_value.setText("");
+        this.nextmoves_doit.setEnabled(false);
+        this.nextmoves_progressbar.setIndeterminate(false);
+        this.nextmoves_progressbar.setStringPainted(false);
+        this.nextmoves_progressbar.setString("");
 
         updateInterface();
     }
@@ -1863,20 +1863,20 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void lp_move_preview_LoadImage(String move) {
         // this.rp_cubedimension_value.setText(move+" "+(lp_move_inverse_yes.isSelected()?"INV YES":"")+(lp_move_inverse_no.isSelected()?"INV NO":""));
-        if (this.lp_move_inverse_yes.isSelected()) {
-            this.rp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/" + move + "_inv.png")));
+        if (this.move_inverse_yes.isSelected()) {
+            this.move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/" + move + "_inv.png")));
         } else {
-            this.rp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/" + move + ".png")));
+            this.move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/" + move + ".png")));
         }
     }
 
     private void lp_move_preview_UnloadImage() {
-        this.rp_move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/shuffle.png")));
+        this.move_preview_image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/moves/shuffle.png")));
     }
 
     private void performMove(String move) {
         ++this.MovesCounter;
-        this.rp_previousmoves_value.setText(this.rp_previousmoves_value.getText() + move + (this.lp_move_inverse_yes.isSelected() ? "'" : "") + "\n");
+        this.previousmoves_value.setText(this.previousmoves_value.getText() + move + (this.move_inverse_yes.isSelected() ? "'" : "") + "\n");
         /*
          if(lp_move_inverse_yes.isSelected()) {
          JOptionPane.showMessageDialog(rootPane, "Perform "+move+" inverse move");
@@ -1887,40 +1887,40 @@ public class MainWindow extends javax.swing.JFrame {
 
         switch (move) {
             case "L":
-                new L(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
+                new L(this.cube, this.move_inverse_yes.isSelected()).perform();
                 break;
             case "R":
-                new R(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
+                new R(this.cube, this.move_inverse_yes.isSelected()).perform();
                 break;
             case "U":
-                new U(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
+                new U(this.cube, this.move_inverse_yes.isSelected()).perform();
                 break;
             case "D":
-                new D(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
+                new D(this.cube, this.move_inverse_yes.isSelected()).perform();
                 break;
             case "F":
-                new F(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
+                new F(this.cube, this.move_inverse_yes.isSelected()).perform();
                 break;
             case "B":
-                new B(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
+                new B(this.cube, this.move_inverse_yes.isSelected()).perform();
                 break;
             case "M":
-                new M(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
+                new M(this.cube, this.move_inverse_yes.isSelected()).perform();
                 break;
             case "S":
-                new S(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
+                new S(this.cube, this.move_inverse_yes.isSelected()).perform();
                 break;
             case "E":
-                new E(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
+                new E(this.cube, this.move_inverse_yes.isSelected()).perform();
                 break;
             case "X":
-                new X(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
+                new X(this.cube, this.move_inverse_yes.isSelected()).perform();
                 break;
             case "Y":
-                new Y(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
+                new Y(this.cube, this.move_inverse_yes.isSelected()).perform();
                 break;
             case "Z":
-                new Z(this.cube, this.lp_move_inverse_yes.isSelected()).perform();
+                new Z(this.cube, this.move_inverse_yes.isSelected()).perform();
                 break;
         }
 
@@ -1931,9 +1931,9 @@ public class MainWindow extends javax.swing.JFrame {
      * Updates the interface.
      */
     public final void updateInterface() {
-        this.rp_cubedimension_value.setText("" + this.RubikCubeDimension);
-        this.rp_algorithm_value.setText("" + this.actualStrategy.toString());
-        this.rp_nummoves_value.setText("" + this.MovesCounter);
+        this.cubedimension_value.setText("" + this.RubikCubeDimension);
+        this.algorithm_value.setText("" + this.actualStrategy.toString());
+        this.nummoves_value.setText("" + this.MovesCounter);
 
         this.F11.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 0, 0).getColor());
         this.F12.setBackground(this.cube.getFace(RubikCubeSide.FRONT, 0, 1).getColor());
@@ -2003,7 +2003,7 @@ public class MainWindow extends javax.swing.JFrame {
         try {
             nextMovesList = this.actualStrategy.getNextMoves();
         } catch (NoSolutionException | TimeoutException ex) {
-            this.rp_nextmoves_value.setText("");
+            this.nextmoves_value.setText("");
             JOptionPane.showMessageDialog(this, this.actualStrategy.toString() + " cannot found a solution.\nError: " + ex.getMessage(), "Error while looking for the next moves", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
