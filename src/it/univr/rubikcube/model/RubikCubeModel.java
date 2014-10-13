@@ -312,18 +312,18 @@ public class RubikCubeModel extends Observable {
         } else {
             throw new IllegalArgumentException();
         }
-        // Rotate the lateral face if needed.
+        // Rotate the top/bottom face if needed.
         if (index == 0) {
             final RubikCubeFaceColor[][] tmp = new RubikCubeFaceColor
                     [this.dimension][this.dimension];
             this.rotateFace(this.configuration[RubikCubeSide.UP.ordinal()],
-                    tmp, rotation == RowRotation.CLOCKWISE);
+                    tmp, rotation == RowRotation.ANTICLOCKWISE);
             this.copyArray(tmp, this.configuration[RubikCubeSide.UP.ordinal()]);
         } else if (index == this.dimension - 1) {
             final RubikCubeFaceColor[][] tmp = new RubikCubeFaceColor
                     [this.dimension][this.dimension];
             this.rotateFace(this.configuration[RubikCubeSide.DOWN.ordinal()],
-                    tmp, rotation == RowRotation.ANTICLOCKWISE);
+                    tmp, rotation == RowRotation.CLOCKWISE);
             this.copyArray(tmp, this.configuration[RubikCubeSide.DOWN.ordinal()]);
         }
         // Notify the listeners that the row has changed
@@ -625,7 +625,6 @@ public class RubikCubeModel extends Observable {
      */
     @Override
     public final String toString() {
-        // FIXME
         final StringBuilder sb = new StringBuilder("");
         // First separator
         for (int i = 0; i < this.dimension + 1; ++i) {
