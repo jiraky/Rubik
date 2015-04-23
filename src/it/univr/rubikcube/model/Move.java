@@ -74,9 +74,9 @@ public abstract class Move {
      */
     public final void perform() {
         if (!this.isReversed) {
-            performInternal();
+            this.performInternal();
         } else {
-            reverseInternal();
+            this.reverseInternal();
         }
     }
     /**
@@ -84,9 +84,9 @@ public abstract class Move {
      */
     public final void reverse() {
         if (this.isReversed) {
-            performInternal();
+            this.performInternal();
         } else {
-            reverseInternal();
+            this.reverseInternal();
         }
     }
     /**
@@ -98,7 +98,7 @@ public abstract class Move {
      */
     protected abstract void reverseInternal();
     
-    public void setCube(RubikCubeModel m) {
+    public final void setCube(RubikCubeModel m) {
         this.cubeModel = m;
     }
     

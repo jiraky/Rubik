@@ -1,6 +1,5 @@
 package it.univr.rubikcube.resolutionstrategies;
 
-import it.univr.rubikcube.model.CubeRotation;
 import it.univr.rubikcube.model.Move;
 import it.univr.rubikcube.model.RubikCubeCorner;
 import it.univr.rubikcube.model.RubikCubeCornerColor;
@@ -18,7 +17,6 @@ import it.univr.rubikcube.moves.U;
 import it.univr.rubikcube.moves.X;
 import it.univr.rubikcube.moves.Y;
 import it.univr.rubikcube.moves.Z;
-import java.lang.management.MemoryType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeoutException;

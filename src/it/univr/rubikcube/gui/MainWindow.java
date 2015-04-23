@@ -16,11 +16,9 @@ import it.univr.rubikcube.moves.X;
 import it.univr.rubikcube.moves.Y;
 import it.univr.rubikcube.moves.Z;
 import it.univr.rubikcube.resolutionstrategies.Fridrich;
-import it.univr.rubikcube.resolutionstrategies.Kociemba;
 import it.univr.rubikcube.resolutionstrategies.KociembaLib;
 import it.univr.rubikcube.resolutionstrategies.NoSolutionException;
 import it.univr.rubikcube.resolutionstrategies.ResolutionStrategy;
-import it.univr.rubikcube.resolutionstrategies.Singmaster;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.security.SecureRandom;
@@ -49,7 +47,7 @@ public class MainWindow extends javax.swing.JFrame {
      * Creates a new instance of the main window.
      */
     public MainWindow() {
-        initComponents();
+        this.initComponents();
         final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2,
                 dim.height / 2 - this.getSize().height / 2);

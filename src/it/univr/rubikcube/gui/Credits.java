@@ -21,7 +21,7 @@ public class Credits extends javax.swing.JDialog {
      */
     public Credits(final java.awt.Frame parent, final boolean modal) {
         super(parent, modal);
-        initComponents();
+        this.initComponents();
         setLocationRelativeTo(parent);
     }
     /**

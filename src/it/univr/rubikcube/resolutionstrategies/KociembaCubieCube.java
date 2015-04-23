@@ -2,8 +2,8 @@ package it.univr.rubikcube.resolutionstrategies;
 
 import it.univr.rubikcube.model.RubikCubeFaceColor;
 import it.univr.rubikcube.model.RubikCubeModel;
-import it.univr.rubikcube.model.RubikCubeModelCorner;
 import it.univr.rubikcube.model.RubikCubeModel3Edge;
+import it.univr.rubikcube.model.RubikCubeModelCorner;
 import it.univr.rubikcube.model.RubikCubeModelFacelet;
 import it.univr.rubikcube.model.RubikCubeSide;
 

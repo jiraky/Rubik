@@ -40,7 +40,7 @@ public class NumRandMoves extends javax.swing.JDialog {
      */
     public NumRandMoves(final java.awt.Frame parent, final boolean modal) {
         super(parent, modal);
-        initComponents();
+        this.initComponents();
         setLocationRelativeTo(parent);
         // Close the dialog when Esc is pressed
         final String cancelName = "cancel";

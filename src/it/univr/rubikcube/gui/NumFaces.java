@@ -40,7 +40,7 @@ public class NumFaces extends javax.swing.JDialog {
      */
     public NumFaces(final java.awt.Frame parent, final boolean modal) {
         super(parent, modal);
-        initComponents();
+        this.initComponents();
         setLocationRelativeTo(parent);
         // Close the dialog when Esc is pressed
         final String cancelName = "cancel";

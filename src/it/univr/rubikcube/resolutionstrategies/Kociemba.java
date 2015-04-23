@@ -2,7 +2,6 @@ package it.univr.rubikcube.resolutionstrategies;
 
 import it.univr.rubikcube.model.Move;
 import it.univr.rubikcube.model.RubikCubeModel;
-import it.univr.rubikcube.model.RubikCubeSide;
 import it.univr.rubikcube.moves.B;
 import it.univr.rubikcube.moves.D;
 import it.univr.rubikcube.moves.F;

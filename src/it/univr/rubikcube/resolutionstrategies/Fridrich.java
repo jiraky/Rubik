@@ -37,7 +37,7 @@ public class Fridrich extends ResolutionStrategy {
         // next moves.
         // Phase 1 (pre-cross): the central faces on the top, front and right
         // cube faces must be respectively yellow, red and green.
-        List<Move> result = new LinkedList<>();
+        final List<Move> result = new LinkedList<>();
         result.add(new it.univr.rubikcube.moves.F(m));
         result.add(new it.univr.rubikcube.moves.F(m));
         result.add(new it.univr.rubikcube.moves.F(m));
