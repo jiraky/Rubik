@@ -19,6 +19,8 @@ import it.univr.rubikcube.resolutionstrategies.Fridrich;
 import it.univr.rubikcube.resolutionstrategies.KociembaLib;
 import it.univr.rubikcube.resolutionstrategies.NoSolutionException;
 import it.univr.rubikcube.resolutionstrategies.ResolutionStrategy;
+import it.univr.rubikcube.resolutionstrategies.Singmaster;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.security.SecureRandom;
@@ -29,6 +31,7 @@ import java.util.Map;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
 
 /**

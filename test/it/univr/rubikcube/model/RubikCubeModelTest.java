@@ -396,4 +396,20 @@ public class RubikCubeModelTest {
         Assert.assertTrue("Up side is now blue",
                           c.getSide(RubikCubeFaceColor.BLUE) == RubikCubeSide.UP);
     }
+    /**
+     * Check that the URUF sequence can be inverted.
+     */
+    @Test
+    public final void checkURUFWorks() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        c.rotateRow(0, RowRotation.ANTICLOCKWISE);
+        c.rotateColumn(2, ColumnRotation.TOP);
+        c.rotateRow(0, RowRotation.ANTICLOCKWISE);
+        c.rotateLateralColumn(0, LateralColumnRotation.RIGHT);
+        c.rotateLateralColumn(0, LateralColumnRotation.LEFT);
+        c.rotateRow(0, RowRotation.CLOCKWISE);
+        c.rotateColumn(2, ColumnRotation.BOTTOM);
+        c.rotateRow(0, RowRotation.CLOCKWISE);
+        Assert.assertTrue(RubikCubeModel.isInStandardConfiguration(c));
+    }
 }
