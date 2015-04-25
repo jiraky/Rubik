@@ -28,7 +28,7 @@ import java.util.concurrent.TimeoutException;
  */
 public class Singmaster extends ResolutionStrategy {
     /**
-     * Creates a new instance of the Kociemba method.
+     * Creates a new instance of the Singmaster method.
      * @param m Rubik cube model.
      * @throws IllegalArgumentException Thrown if the dimension of the cube is
      * not equal to three, if the cube has not nine faces per color, if there
