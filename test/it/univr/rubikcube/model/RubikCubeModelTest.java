@@ -410,6 +410,738 @@ public class RubikCubeModelTest {
         c.rotateRow(0, RowRotation.CLOCKWISE);
         c.rotateColumn(2, ColumnRotation.BOTTOM);
         c.rotateRow(0, RowRotation.CLOCKWISE);
-        Assert.assertTrue(RubikCubeModel.isInStandardConfiguration(c));
+        Assert.assertTrue("URUF*(URUF)^(-1) = identity",
+                RubikCubeModel.isInStandardConfiguration(c));
+    }
+    /**
+     * Starting from a randomly mixed cube, rotate the three rows and check
+     * that each move performs correctly.
+     */
+    @Test
+    public final void rotateRowMixed() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        this.mixCube(c);
+        c.rotateRow(0, RowRotation.ANTICLOCKWISE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 1) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 0) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 1) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 2) == RubikCubeFaceColor.RED);
+        c.rotateRow(0, RowRotation.CLOCKWISE);
+        Assert.assertTrue(this.isInMixedConfiguration(c));
+        c.rotateRow(1, RowRotation.ANTICLOCKWISE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 0) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 1) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 2) == RubikCubeFaceColor.RED);
+        c.rotateRow(1, RowRotation.CLOCKWISE);
+        Assert.assertTrue(this.isInMixedConfiguration(c));
+        c.rotateRow(2, RowRotation.ANTICLOCKWISE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 0) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 1) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 0) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 1) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 2) == RubikCubeFaceColor.WHITE);
+        c.rotateRow(2, RowRotation.CLOCKWISE);
+        Assert.assertTrue(this.isInMixedConfiguration(c));
+    }
+    /**
+     * Starting from a randomly mixed cube, rotate the three columns and check
+     * that each move performs correctly.
+     */
+    @Test
+    public final void rotateColumnMixed() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        this.mixCube(c);
+        c.rotateColumn(0, ColumnRotation.TOP);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 0) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 0) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 1) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 0) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 2) == RubikCubeFaceColor.RED);
+        c.rotateColumn(0, ColumnRotation.BOTTOM);
+        Assert.assertTrue(this.isInMixedConfiguration(c));
+        c.rotateColumn(1, ColumnRotation.TOP);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 0) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 1) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 2) == RubikCubeFaceColor.RED);
+        c.rotateColumn(1, ColumnRotation.BOTTOM);
+        Assert.assertTrue(this.isInMixedConfiguration(c));
+        c.rotateColumn(2, ColumnRotation.TOP);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 0) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 1) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 2) == RubikCubeFaceColor.WHITE);
+        c.rotateColumn(2, ColumnRotation.BOTTOM);
+        Assert.assertTrue(this.isInMixedConfiguration(c));
+    }
+    /**
+     * Starting from a randomly mixed cube, rotate the three lateral columns
+     * and check that each move performs correctly.
+     */
+    @Test
+    public final void rotateLateralColumnMixed() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        this.mixCube(c);
+        c.rotateLateralColumn(0, LateralColumnRotation.LEFT);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 1) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 0) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 2) == RubikCubeFaceColor.GREEN);
+        c.rotateLateralColumn(0, LateralColumnRotation.RIGHT);
+        Assert.assertTrue(this.isInMixedConfiguration(c));
+        c.rotateLateralColumn(1, LateralColumnRotation.LEFT);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 1) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 1) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 1) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 0) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 0) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 2) == RubikCubeFaceColor.RED);
+        c.rotateLateralColumn(1, LateralColumnRotation.RIGHT);
+        Assert.assertTrue(this.isInMixedConfiguration(c));
+        c.rotateLateralColumn(2, LateralColumnRotation.LEFT);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 0) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 1) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 0) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 1) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 1) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 2) == RubikCubeFaceColor.RED);
+        c.rotateLateralColumn(2, LateralColumnRotation.RIGHT);
+        Assert.assertTrue(this.isInMixedConfiguration(c));
+    }
+    /**
+     * Perform a sample sequence of moves (URUF) and check that the cube
+     * ends in the correct state.
+     */
+    @Test
+    public final void checkSequenceMoves1() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        this.mixCube(c);
+        c.rotateRow(0, RowRotation.CLOCKWISE);
+        c.rotateColumn(2, ColumnRotation.TOP);
+        c.rotateRow(0, RowRotation.CLOCKWISE);
+        c.rotateLateralColumn(0, LateralColumnRotation.RIGHT);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 0, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 0) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.UP, 2, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 1) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 0, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 1, 2) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.LEFT, 2, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 0, 2) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 1, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 1) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.RIGHT, 2, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 0, 2) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 0) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 1) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.BACK, 2, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 0, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 0) == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 1) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 1, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 0) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.DOWN, 2, 2) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 0) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 1) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 0, 2) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 0) == RubikCubeFaceColor.BLUE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 1) == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 1, 2) == RubikCubeFaceColor.RED);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 0) == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 1) == RubikCubeFaceColor.GREEN);
+        Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 2) == RubikCubeFaceColor.YELLOW);
+    }
+    /**
+     * Put the 3x3 cube c in a "good" random state.
+     * @param c 3x3 cube to be mixed.
+     */
+    private void mixCube(final RubikCubeModel c) {
+        // For easy visualization, go to http://thecube.guru/online-3d-rubiks-cube/
+        // and import the following string:
+        // 3,3,2,5,6,6,2,3,4,6,3,2,4,3,4,3,5,5,7,5,3,7,7,6,4,2,4,6,2,4,2,5,6,5,3,5,7,7,2,7,4,4,5,6,3,6,7,6,4,2,5,7,2,7
+        c.setFace(RubikCubeSide.UP, 0, 0, RubikCubeFaceColor.RED);
+        c.setFace(RubikCubeSide.UP, 0, 1, RubikCubeFaceColor.ORANGE);
+        c.setFace(RubikCubeSide.UP, 0, 2, RubikCubeFaceColor.RED);
+        c.setFace(RubikCubeSide.UP, 1, 0, RubikCubeFaceColor.GREEN);
+        c.setFace(RubikCubeSide.UP, 1, 1, RubikCubeFaceColor.BLUE);
+        c.setFace(RubikCubeSide.UP, 1, 2, RubikCubeFaceColor.YELLOW);
+        c.setFace(RubikCubeSide.UP, 2, 0, RubikCubeFaceColor.ORANGE);
+        c.setFace(RubikCubeSide.UP, 2, 1, RubikCubeFaceColor.BLUE);
+        c.setFace(RubikCubeSide.UP, 2, 2, RubikCubeFaceColor.ORANGE);
+        c.setFace(RubikCubeSide.LEFT, 0, 0, RubikCubeFaceColor.GREEN);
+        c.setFace(RubikCubeSide.LEFT, 0, 1, RubikCubeFaceColor.WHITE);
+        c.setFace(RubikCubeSide.LEFT, 0, 2, RubikCubeFaceColor.BLUE);
+        c.setFace(RubikCubeSide.LEFT, 1, 0, RubikCubeFaceColor.RED);
+        c.setFace(RubikCubeSide.LEFT, 1, 1, RubikCubeFaceColor.RED);
+        c.setFace(RubikCubeSide.LEFT, 1, 2, RubikCubeFaceColor.YELLOW);
+        c.setFace(RubikCubeSide.LEFT, 2, 0, RubikCubeFaceColor.BLUE);
+        c.setFace(RubikCubeSide.LEFT, 2, 1, RubikCubeFaceColor.WHITE);
+        c.setFace(RubikCubeSide.LEFT, 2, 2, RubikCubeFaceColor.WHITE);
+        c.setFace(RubikCubeSide.RIGHT, 0, 0, RubikCubeFaceColor.GREEN);
+        c.setFace(RubikCubeSide.RIGHT, 0, 1, RubikCubeFaceColor.BLUE);
+        c.setFace(RubikCubeSide.RIGHT, 0, 2, RubikCubeFaceColor.GREEN);
+        c.setFace(RubikCubeSide.RIGHT, 1, 0, RubikCubeFaceColor.RED);
+        c.setFace(RubikCubeSide.RIGHT, 1, 1, RubikCubeFaceColor.ORANGE);
+        c.setFace(RubikCubeSide.RIGHT, 1, 2, RubikCubeFaceColor.ORANGE);
+        c.setFace(RubikCubeSide.RIGHT, 2, 0, RubikCubeFaceColor.WHITE);
+        c.setFace(RubikCubeSide.RIGHT, 2, 1, RubikCubeFaceColor.YELLOW);
+        c.setFace(RubikCubeSide.RIGHT, 2, 2, RubikCubeFaceColor.ORANGE);
+        c.setFace(RubikCubeSide.BACK, 0, 0, RubikCubeFaceColor.YELLOW);
+        c.setFace(RubikCubeSide.BACK, 0, 1, RubikCubeFaceColor.YELLOW);
+        c.setFace(RubikCubeSide.BACK, 0, 2, RubikCubeFaceColor.WHITE);
+        c.setFace(RubikCubeSide.BACK, 1, 0, RubikCubeFaceColor.GREEN);
+        c.setFace(RubikCubeSide.BACK, 1, 1, RubikCubeFaceColor.WHITE);
+        c.setFace(RubikCubeSide.BACK, 1, 2, RubikCubeFaceColor.GREEN);
+        c.setFace(RubikCubeSide.BACK, 2, 0, RubikCubeFaceColor.BLUE);
+        c.setFace(RubikCubeSide.BACK, 2, 1, RubikCubeFaceColor.WHITE);
+        c.setFace(RubikCubeSide.BACK, 2, 2, RubikCubeFaceColor.RED);
+        c.setFace(RubikCubeSide.DOWN, 0, 0, RubikCubeFaceColor.ORANGE);
+        c.setFace(RubikCubeSide.DOWN, 0, 1, RubikCubeFaceColor.ORANGE);
+        c.setFace(RubikCubeSide.DOWN, 0, 2, RubikCubeFaceColor.BLUE);
+        c.setFace(RubikCubeSide.DOWN, 1, 0, RubikCubeFaceColor.ORANGE);
+        c.setFace(RubikCubeSide.DOWN, 1, 1, RubikCubeFaceColor.GREEN);
+        c.setFace(RubikCubeSide.DOWN, 1, 2, RubikCubeFaceColor.GREEN);
+        c.setFace(RubikCubeSide.DOWN, 2, 0, RubikCubeFaceColor.YELLOW);
+        c.setFace(RubikCubeSide.DOWN, 2, 1, RubikCubeFaceColor.RED);
+        c.setFace(RubikCubeSide.DOWN, 2, 2, RubikCubeFaceColor.WHITE);
+        c.setFace(RubikCubeSide.FRONT, 0, 0, RubikCubeFaceColor.YELLOW);
+        c.setFace(RubikCubeSide.FRONT, 0, 1, RubikCubeFaceColor.WHITE);
+        c.setFace(RubikCubeSide.FRONT, 0, 2, RubikCubeFaceColor.YELLOW);
+        c.setFace(RubikCubeSide.FRONT, 1, 0, RubikCubeFaceColor.RED);
+        c.setFace(RubikCubeSide.FRONT, 1, 1, RubikCubeFaceColor.YELLOW);
+        c.setFace(RubikCubeSide.FRONT, 1, 2, RubikCubeFaceColor.BLUE);
+        c.setFace(RubikCubeSide.FRONT, 2, 0, RubikCubeFaceColor.GREEN);
+        c.setFace(RubikCubeSide.FRONT, 2, 1, RubikCubeFaceColor.BLUE);
+        c.setFace(RubikCubeSide.FRONT, 2, 2, RubikCubeFaceColor.RED);
+    }
+    /**
+     * Checks if <tt>c</tt> is in the "good" random state specified in <tt>mixCube</tt>.
+     * @param c 3x3 cube to check.
+     * @return <tt>true</tt> if and only if the cube is in the "good" random state.
+     */
+    private boolean isInMixedConfiguration(final RubikCubeModel c) {
+        return c.getFace(RubikCubeSide.UP, 0, 0) == RubikCubeFaceColor.RED
+               && c.getFace(RubikCubeSide.UP, 0, 1) == RubikCubeFaceColor.ORANGE
+               && c.getFace(RubikCubeSide.UP, 0, 2) == RubikCubeFaceColor.RED
+               && c.getFace(RubikCubeSide.UP, 1, 0) == RubikCubeFaceColor.GREEN
+               && c.getFace(RubikCubeSide.UP, 1, 1) == RubikCubeFaceColor.BLUE
+               && c.getFace(RubikCubeSide.UP, 1, 2) == RubikCubeFaceColor.YELLOW
+               && c.getFace(RubikCubeSide.UP, 2, 0) == RubikCubeFaceColor.ORANGE
+               && c.getFace(RubikCubeSide.UP, 2, 1) == RubikCubeFaceColor.BLUE
+               && c.getFace(RubikCubeSide.UP, 2, 2) == RubikCubeFaceColor.ORANGE
+               && c.getFace(RubikCubeSide.LEFT, 0, 0) == RubikCubeFaceColor.GREEN
+               && c.getFace(RubikCubeSide.LEFT, 0, 1) == RubikCubeFaceColor.WHITE
+               && c.getFace(RubikCubeSide.LEFT, 0, 2) == RubikCubeFaceColor.BLUE
+               && c.getFace(RubikCubeSide.LEFT, 1, 0) == RubikCubeFaceColor.RED
+               && c.getFace(RubikCubeSide.LEFT, 1, 1) == RubikCubeFaceColor.RED
+               && c.getFace(RubikCubeSide.LEFT, 1, 2) == RubikCubeFaceColor.YELLOW
+               && c.getFace(RubikCubeSide.LEFT, 2, 0) == RubikCubeFaceColor.BLUE
+               && c.getFace(RubikCubeSide.LEFT, 2, 1) == RubikCubeFaceColor.WHITE
+               && c.getFace(RubikCubeSide.LEFT, 2, 2) == RubikCubeFaceColor.WHITE
+               && c.getFace(RubikCubeSide.RIGHT, 0, 0) == RubikCubeFaceColor.GREEN
+               && c.getFace(RubikCubeSide.RIGHT, 0, 1) == RubikCubeFaceColor.BLUE
+               && c.getFace(RubikCubeSide.RIGHT, 0, 2) == RubikCubeFaceColor.GREEN
+               && c.getFace(RubikCubeSide.RIGHT, 1, 0) == RubikCubeFaceColor.RED
+               && c.getFace(RubikCubeSide.RIGHT, 1, 1) == RubikCubeFaceColor.ORANGE
+               && c.getFace(RubikCubeSide.RIGHT, 1, 2) == RubikCubeFaceColor.ORANGE
+               && c.getFace(RubikCubeSide.RIGHT, 2, 0) == RubikCubeFaceColor.WHITE
+               && c.getFace(RubikCubeSide.RIGHT, 2, 1) == RubikCubeFaceColor.YELLOW
+               && c.getFace(RubikCubeSide.RIGHT, 2, 2) == RubikCubeFaceColor.ORANGE
+               && c.getFace(RubikCubeSide.BACK, 0, 0) == RubikCubeFaceColor.YELLOW
+               && c.getFace(RubikCubeSide.BACK, 0, 1) == RubikCubeFaceColor.YELLOW
+               && c.getFace(RubikCubeSide.BACK, 0, 2) == RubikCubeFaceColor.WHITE
+               && c.getFace(RubikCubeSide.BACK, 1, 0) == RubikCubeFaceColor.GREEN
+               && c.getFace(RubikCubeSide.BACK, 1, 1) == RubikCubeFaceColor.WHITE
+               && c.getFace(RubikCubeSide.BACK, 1, 2) == RubikCubeFaceColor.GREEN
+               && c.getFace(RubikCubeSide.BACK, 2, 0) == RubikCubeFaceColor.BLUE
+               && c.getFace(RubikCubeSide.BACK, 2, 1) == RubikCubeFaceColor.WHITE
+               && c.getFace(RubikCubeSide.BACK, 2, 2) == RubikCubeFaceColor.RED
+               && c.getFace(RubikCubeSide.DOWN, 0, 0) == RubikCubeFaceColor.ORANGE
+               && c.getFace(RubikCubeSide.DOWN, 0, 1) == RubikCubeFaceColor.ORANGE
+               && c.getFace(RubikCubeSide.DOWN, 0, 2) == RubikCubeFaceColor.BLUE
+               && c.getFace(RubikCubeSide.DOWN, 1, 0) == RubikCubeFaceColor.ORANGE
+               && c.getFace(RubikCubeSide.DOWN, 1, 1) == RubikCubeFaceColor.GREEN
+               && c.getFace(RubikCubeSide.DOWN, 1, 2) == RubikCubeFaceColor.GREEN
+               && c.getFace(RubikCubeSide.DOWN, 2, 0) == RubikCubeFaceColor.YELLOW
+               && c.getFace(RubikCubeSide.DOWN, 2, 1) == RubikCubeFaceColor.RED
+               && c.getFace(RubikCubeSide.DOWN, 2, 2) == RubikCubeFaceColor.WHITE
+               && c.getFace(RubikCubeSide.FRONT, 0, 0) == RubikCubeFaceColor.YELLOW
+               && c.getFace(RubikCubeSide.FRONT, 0, 1) == RubikCubeFaceColor.WHITE
+               && c.getFace(RubikCubeSide.FRONT, 0, 2) == RubikCubeFaceColor.YELLOW
+               && c.getFace(RubikCubeSide.FRONT, 1, 0) == RubikCubeFaceColor.RED
+               && c.getFace(RubikCubeSide.FRONT, 1, 1) == RubikCubeFaceColor.YELLOW
+               && c.getFace(RubikCubeSide.FRONT, 1, 2) == RubikCubeFaceColor.BLUE
+               && c.getFace(RubikCubeSide.FRONT, 2, 0) == RubikCubeFaceColor.GREEN
+               && c.getFace(RubikCubeSide.FRONT, 2, 1) == RubikCubeFaceColor.BLUE
+               && c.getFace(RubikCubeSide.FRONT, 2, 2) == RubikCubeFaceColor.RED;
     }
 }

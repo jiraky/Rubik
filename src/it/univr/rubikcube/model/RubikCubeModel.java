@@ -292,7 +292,9 @@ public class RubikCubeModel extends Observable {
         }
         tmpRow = new RubikCubeFaceColor[this.dimension];
         // Backup the front row and rotate the row in the specified direction
-        tmpRow = this.configuration[RubikCubeSide.FRONT.ordinal()][index];
+        for (int i = 0; i < this.dimension; ++i) {
+            tmpRow[i] = this.configuration[RubikCubeSide.FRONT.ordinal()][index][i];
+        }
         if (rotation == RowRotation.ANTICLOCKWISE) {
             this.configuration[RubikCubeSide.FRONT.ordinal()][index] =
                     this.configuration[RubikCubeSide.LEFT.ordinal()][index];
