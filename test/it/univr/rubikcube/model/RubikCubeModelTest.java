@@ -21,6 +21,7 @@ public class RubikCubeModelTest {
     /**
      * Checks that the cube is set up correctly with the specified dimension
      * and all the faces in the standard configuration.
+     * Cube Guru string: 4,4,4,4,4,4,4,4,4,7,7,7,7,7,7,7,7,7,2,2,2,2,2,2,2,2,2,6,6,6,6,6,6,6,6,6,5,5,5,5,5,5,5,5,5,3,3,3,3,3,3,3,3,3
      */
     @Test
     public final void setupTest() {
