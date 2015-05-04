@@ -80,6 +80,7 @@ src/it/univr/rubikcube/moves/E.java -text
 src/it/univr/rubikcube/moves/F.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/moves/L.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/moves/M.java -text
+src/it/univr/rubikcube/moves/NullMove.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/moves/R.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/moves/S.java -text
 src/it/univr/rubikcube/moves/U.java -text svneol=unset#text/x-java-source
@@ -88,6 +89,9 @@ src/it/univr/rubikcube/moves/Y.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/moves/Z.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/moves/package-info.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/resolutionstrategies/Fridrich.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/resolutionstrategies/IDAStar.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/resolutionstrategies/IDAStarComparator.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/resolutionstrategies/IDAStarNode.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/resolutionstrategies/Kociemba.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/resolutionstrategies/KociembaCoordinateCube.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/resolutionstrategies/KociembaCubieCube.java -text svneol=unset#text/x-java-source
