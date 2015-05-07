@@ -1,25 +1,15 @@
 package it.univr.rubikcube.resolutionstrategies;
 
-import it.univr.rubikcube.model.CubeRotation;
 import it.univr.rubikcube.model.Move;
 import it.univr.rubikcube.model.RubikCubeFaceColor;
 import it.univr.rubikcube.model.RubikCubeModel;
 import it.univr.rubikcube.model.RubikCubeSide;
-import it.univr.rubikcube.moves.B;
-import it.univr.rubikcube.moves.D;
-import it.univr.rubikcube.moves.F;
-import it.univr.rubikcube.moves.L;
-import it.univr.rubikcube.moves.R;
-import it.univr.rubikcube.moves.U;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 import javax.swing.JOptionPane;
 import org.kociemba.twophase.Facelet;
 import org.kociemba.twophase.Search;
-import org.kociemba.twophase.Tools;
 
 /**
  * Kociemba two-phase algorithm for 3x3 cubes.
