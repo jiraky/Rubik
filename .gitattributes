@@ -5,6 +5,7 @@
 .settings/org.eclipse.jdt.core.prefs -text
 /checkstyle.xml -text svneol=unset#application/xml
 graphics/cubeicon.ico -text
+graphics/loader.gif -text
 graphics/logo.png -text
 graphics/logo.psd -text
 graphics/logo_univr.jpg -text
@@ -50,6 +51,8 @@ src/it/univr/rubikcube/gui/NumFaces.form -text
 src/it/univr/rubikcube/gui/NumFaces.java -text
 src/it/univr/rubikcube/gui/NumRandMoves.form -text
 src/it/univr/rubikcube/gui/NumRandMoves.java -text
+src/it/univr/rubikcube/gui/WaitForComplete.form -text
+src/it/univr/rubikcube/gui/WaitForComplete.java -text
 src/it/univr/rubikcube/gui/package-info.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/model/ColumnRotation.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/model/CubeRotation.java -text svneol=unset#text/x-java-source
