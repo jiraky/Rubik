@@ -40,7 +40,7 @@ public abstract class ResolutionStrategy {
      * @throws NoSolutionException Thrown in case the resolution strategy fails
      * to find a solution.
      * @throws TimeoutException Thrown in case the resolution strategy fails to
-     * find a solution before the specified timeout (if any).
+     * find a solution before the specified timeout (if any) or was interrupted.
      */
     public abstract List<Move> getNextMoves() throws NoSolutionException,
         TimeoutException;

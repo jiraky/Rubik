@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeSet;
 import java.util.concurrent.TimeoutException;
 
@@ -31,11 +32,11 @@ public class IDAStar extends ResolutionStrategy {
     /**
      * Open branches hash map.
      */
-    private HashMap<RubikCubeModel, IDAStarNode> openBranches;
+    private Map<RubikCubeModel, IDAStarNode> openBranches;
     /**
      * Closed branches hash map.
      */
-    private HashMap<RubikCubeModel, IDAStarNode> closedBranches;
+    private Map<RubikCubeModel, IDAStarNode> closedBranches;
     /**
      * Priority queue containing the nodes.
      */
@@ -63,7 +64,7 @@ public class IDAStar extends ResolutionStrategy {
      * @throws NoSolutionException Thrown in case the algorithm does not find a
      * solution.
      * @throws TimeoutException Thrown in case the algorithm fails to find a
-     * solution before the timeout.
+     * solution before the timeout (if any) or was interrupted.
      */
     @Override
     public final List<Move> getNextMoves() throws NoSolutionException,
@@ -93,6 +94,13 @@ public class IDAStar extends ResolutionStrategy {
                 initialNode.parent = null;
                 this.openBranches.put(this.getModel(), initialNode);
                 this.nodesToAnalyze.add(initialNode);
+            }
+            // Sleep to allow the GUI to repaint and to check if the execution
+            // was interrupted.
+            try {
+                Thread.sleep(5L);
+            } catch (InterruptedException e) {
+                throw new TimeoutException("Execution interrupted");
             }
             // Remove the best node from the queue, then remove the branch from the
             // "open" list and add it to the "closed" list.
@@ -156,11 +164,6 @@ public class IDAStar extends ResolutionStrategy {
                         break;
                     default:
                         throw new IllegalStateException();
-                }
-                if (!(bestNode.move instanceof NullMove)) {
-                    // FIXME
-                    // Prendi altra mossa : notAllowedMove= BESTNODE.move%2==0?BESTNODE.move-1:BESTNODE.move+1;
-                    // if (notAllowedMove == successors[i].move) continue;
                 }
                 successors[i].move.perform();
                 successors[i].depth = bestNode.depth + 1;

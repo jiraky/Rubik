@@ -16,7 +16,6 @@ import it.univr.rubikcube.moves.X;
 import it.univr.rubikcube.moves.Y;
 import it.univr.rubikcube.moves.Z;
 import it.univr.rubikcube.resolutionstrategies.IDAStar;
-import it.univr.rubikcube.resolutionstrategies.NoSolutionException;
 import it.univr.rubikcube.resolutionstrategies.ResolutionStrategy;
 
 import java.awt.Dimension;
@@ -26,11 +25,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeoutException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
 
 /**
  * Main Rubik Cube Solver window.
@@ -1542,7 +1539,7 @@ public class MainWindow extends javax.swing.JFrame {
         } else {
             this.move_inverse_no.setSelected(true);
         }
-        this.inverse = this.move_inverse_yes.isSelected();
+        this.move_inverse_yes.isSelected();
     }//GEN-LAST:event_move_inverse_yesActionPerformed
 
     private void move_inverse_noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_move_inverse_noActionPerformed
@@ -1640,22 +1637,38 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_control_resetActionPerformed
 
     private void nextmoves_calculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextmoves_calculateActionPerformed
-        this.nextmoves_progressbar.setIndeterminate(true);
-        this.nextmoves_progressbar.setStringPainted(true);
-        this.nextmoves_progressbar.setString("Please wait");
-        
-        try {
-            this.nextmoves_value.setText(this.getNextMoves());
-        } catch (InterruptedException ex) {
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "Error while search for next moves.", "Error", JOptionPane.ERROR_MESSAGE);
-            
+        if (this.strategySolver == null || this.strategySolver.isDone()) {
+            this.nextmoves_progressbar.setIndeterminate(true);
+            this.nextmoves_progressbar.setStringPainted(true);
+            this.nextmoves_progressbar.setString("Please wait");
+            this.control_reset.setEnabled(false);
+            this.control_shuffle.setEnabled(false);
+            this.control_toString.setEnabled(false);
+            this.menu_edit_algorithm.setEnabled(false);
+            this.menu_edit_numfaces.setEnabled(false);
+            this.move_B.setEnabled(false);
+            this.move_D.setEnabled(false);
+            this.move_E.setEnabled(false);
+            this.move_F.setEnabled(false);
+            this.move_L.setEnabled(false);
+            this.move_M.setEnabled(false);
+            this.move_R.setEnabled(false);
+            this.move_S.setEnabled(false);
+            this.move_U.setEnabled(false);
+            this.move_X.setEnabled(false);
+            this.move_Y.setEnabled(false);
+            this.move_Z.setEnabled(false);
+            this.move_inverse_no.setEnabled(false);
+            this.move_inverse_yes.setEnabled(false);
+            this.nextmoves_calculate.setText("Cancel");
+            this.nextmoves_doit.setEnabled(false);
+            this.strategySolver = new SolverStrategyWorker();
+            strategySolver.execute();
+        } else {
+            this.nextmoves_calculate.setEnabled(false);
+            this.nextmoves_calculate.setText("Cancelling...");
+            strategySolver.cancel(true);
         }
-        
-        if(!this.nextmoves_value.getText().isEmpty()) this.nextmoves_doit.setEnabled(true);
-        this.nextmoves_progressbar.setIndeterminate(false);
-        this.nextmoves_progressbar.setStringPainted(false);
-        this.nextmoves_progressbar.setString("");
     }//GEN-LAST:event_nextmoves_calculateActionPerformed
 
     /**
@@ -1791,8 +1804,6 @@ public class MainWindow extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     // CHECKSTYLE:ON
 
-    private boolean isNextMove = false;
-    
     /**
      * Rubik cube model.
      */
@@ -1806,6 +1817,10 @@ public class MainWindow extends javax.swing.JFrame {
      */
     private ResolutionStrategy actualStrategy;
     /**
+     * Strategy solver worker.
+     */
+    private SolverStrategyWorker strategySolver;
+    /**
      * Rubik cube dimension.
      */
     private int RubikCubeDimension = 3;
@@ -1814,8 +1829,6 @@ public class MainWindow extends javax.swing.JFrame {
      */
     private int MovesCounter = 0;
 
-    private boolean inverse = false;
-
     /**
      * Initializes the Rubik cube.
      */
@@ -1823,7 +1836,7 @@ public class MainWindow extends javax.swing.JFrame {
         this.cube = new RubikCubeModel(this.getCubeDimension());
 
         this.availableStrategy = new LinkedList<>();
-        // FIXME: Edit the algorithms
+        // TODO: add more algorithms if needed
         this.availableStrategy.add(new IDAStar(this.cube));
         
         this.actualStrategy = this.availableStrategy.get(0);
@@ -1882,13 +1895,6 @@ public class MainWindow extends javax.swing.JFrame {
     private void performMove(String move) {
         ++this.MovesCounter;
         this.previousmoves_value.setText(this.previousmoves_value.getText() + move + (this.move_inverse_yes.isSelected() ? "'" : "") + "\n");
-        /*
-         if(lp_move_inverse_yes.isSelected()) {
-         JOptionPane.showMessageDialog(rootPane, "Perform "+move+" inverse move");
-         } else {
-         JOptionPane.showMessageDialog(rootPane, "Perform "+move+" move");
-         }
-         */
 
         switch (move) {
             case "L":
@@ -2002,74 +2008,75 @@ public class MainWindow extends javax.swing.JFrame {
 
     }
 
-    public List<Move> nextMovesList;
-    
-    private String getNextMoves() throws InterruptedException {
-        String nextMoves = "";
-        nextMovesList = new LinkedList<>();
-        try {
-            
-            
-            MyRunnable nextMovesRunnable = new MyRunnable(actualStrategy);
-            Thread t = new Thread(nextMovesRunnable);
-            
-            synchronized (t){
-                t.start();
-               
-                t.join();
-                
-               
-            }
-            
-            if(nextMovesRunnable.hasException) throw nextMovesRunnable.exception;
-            
-            //nextMovesList = this.actualStrategy.getNextMoves();
-        } catch (Exception ex) {
-            this.nextmoves_value.setText("");
-            JOptionPane.showMessageDialog(this, this.actualStrategy.toString() + " cannot found a solution.\nError: " + ex.getMessage(), "Error while looking for the next moves", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+    /**
+     * Callable that executes a solver strategy on a cube and returns
+     * a list of moves.
+     * @author Alessandro Menti
+     * @author Mattia Zago <dev@zagomattia.it>
+     */
+    class SolverStrategyWorker extends SwingWorker<List<Move>, Object> {
+        /**
+         * Creates a new instance of SolverStrategyWorker.
+         */
+        SolverStrategyWorker() {
+            // Nothing to do
         }
-        
-        if(!nextMovesList.isEmpty()) {
-            for (Move move : nextMovesList) {
-                nextMoves += move.toString()+" ";
-            }
-        }
-        
-        return nextMoves;
-    }
-    private class MyRunnable implements Runnable {
-
-        public boolean isHasException() {
-            return hasException;
-        }
-
-        public void setHasException(boolean hasException) {
-            this.hasException = hasException;
-        }
-
-        public Exception getException() {
-            return exception;
-        }
-
-        public void setException(Exception exception) {
-            this.exception = exception;
-        }
-        private boolean hasException;
-        private Exception exception;
-        
-        public MyRunnable(ResolutionStrategy res) {
-            
+        /**
+         * Executes the solver.
+         * @return List of next moves (possibly empty).
+         * @throws Exception Thrown if no solution is found or a timeout is reached.
+         */
+        @Override
+        protected final List<Move> doInBackground() throws Exception {
+            // CHECKSTYLE:OFF Rationale: no this. in inner classes
+            return actualStrategy.getNextMoves();
+            // CHECKSTYLE:ON
         }
         @Override
-        public void run() {
+        protected void done() {
             try {
-                nextMovesList = actualStrategy.getNextMoves();
-            } catch (NoSolutionException | TimeoutException ex) {
-                this.hasException = true;
-                this.exception = ex;
+                final List<Move> nextMoves = this.get();
+                final StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < nextMoves.size(); ++i) {
+                    sb.append(nextMoves.get(i).toString());
+                    if (i < nextMoves.size() - 1) {
+                        sb.append(' ');
+                    }
+                }
+                nextmoves_value.setText(sb.toString());
+                if (!nextmoves_value.getText().isEmpty()) {
+                    nextmoves_doit.setEnabled(true);
+                }
+            } catch (Exception e) {
+                // Empty, nothing to do
+            } finally {
+                nextmoves_progressbar.setIndeterminate(false);
+                nextmoves_progressbar.setStringPainted(false);
+                nextmoves_progressbar.setString("");
+                control_reset.setEnabled(true);
+                control_shuffle.setEnabled(true);
+                control_toString.setEnabled(true);
+                menu_edit_algorithm.setEnabled(true);
+                menu_edit_numfaces.setEnabled(true);
+                move_B.setEnabled(true);
+                move_D.setEnabled(true);
+                move_E.setEnabled(true);
+                move_F.setEnabled(true);
+                move_L.setEnabled(true);
+                move_M.setEnabled(true);
+                move_R.setEnabled(true);
+                move_S.setEnabled(true);
+                move_U.setEnabled(true);
+                move_X.setEnabled(true);
+                move_Y.setEnabled(true);
+                move_Z.setEnabled(true);
+                move_inverse_no.setEnabled(true);
+                move_inverse_yes.setEnabled(true);
+                nextmoves_calculate.setText("Calculate");
+                nextmoves_calculate.setEnabled(true);
+                nextmoves_doit.setEnabled(true);
             }
         }
-        
     }
 }
+
