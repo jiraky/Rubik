@@ -8,11 +8,14 @@ import java.util.HashSet;
  * @author Alessandro Menti
  */
 public class IDAStarNode {
+    /**
+     * Search factor.
+     */
     public float f;
     /**
      * Cost of getting from the original configuration to this node.
      */
-    public float cost; // ex g
+    public float cost;
     /**
      * Heuristic coefficient for IDA*.
      */
@@ -33,4 +36,12 @@ public class IDAStarNode {
      * Tree depth for this node.
      */
     public int depth;
+    /**
+     * Creates a new IDA* node.
+     */
+    public IDAStarNode() {
+        this.f = -1;
+        this.cost = -1;
+        this.successors = new HashSet<IDAStarNode>();
+    }
 }
