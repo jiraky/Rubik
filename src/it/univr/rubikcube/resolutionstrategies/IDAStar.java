@@ -258,6 +258,7 @@ public class IDAStar extends ResolutionStrategy {
             // Get the edge distances between the edge we're considering
             // and the edge having the same colors in the standard configuration
             final RubikCubeEdgeColor actualEdgeColors = c.get3DEdge(edge);
+            // FIXME
             final RubikCubeModel3Edge standardEdge = RubikCubeModel3Edge.getStandardEdgeFromColors(
                     actualEdgeColors.getFirstColor(),
                     actualEdgeColors.getSecondColor());

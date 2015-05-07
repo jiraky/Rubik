@@ -55,15 +55,15 @@ public enum RubikCubeCorner {
      */
     private RubikCubeSide thirdSide;
     /**
-     * X coordinate.
+     * X coordinate in the "X-Y-Z at bottom" system.
      */
     private int xCoord;
     /**
-     * Y coordinate.
+     * Y coordinate in the "X-Y-Z at bottom" system.
      */
     private int yCoord;
     /**
-     * Z coordinate.
+     * Z coordinate in the "X-Y-Z at bottom" system.
      */
     private int zCoord;
     /**

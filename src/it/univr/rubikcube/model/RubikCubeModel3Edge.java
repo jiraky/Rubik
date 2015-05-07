@@ -64,15 +64,15 @@ public enum RubikCubeModel3Edge {
      */
     private RubikCubeSide lateralSide;
     /**
-     * X coordinate.
+     * X coordinate in the "X-Y-Z at bottom" system.
      */
     private int xCoord;
     /**
-     * Y coordinate.
+     * Y coordinate in the "X-Y-Z at bottom" system.
      */
     private int yCoord;
     /**
-     * Z coordinate.
+     * Z coordinate in the "X-Y-Z at bottom" system.
      */
     private int zCoord;
     /**
@@ -171,7 +171,7 @@ public enum RubikCubeModel3Edge {
             if ((c1 == e.getLateralSide().getStandardColor()
                     && c2 == e.getTopSide().getStandardColor())
                 || (c2 == e.getLateralSide().getStandardColor()
-                && c1 == e.getTopSide().getStandardColor())) {
+                    && c1 == e.getTopSide().getStandardColor())) {
                 return e;
             }
         }
