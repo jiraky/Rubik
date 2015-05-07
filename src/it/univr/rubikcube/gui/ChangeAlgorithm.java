@@ -32,7 +32,7 @@ public class ChangeAlgorithm extends javax.swing.JDialog {
     /**
      * List of available resolution strategies.
      */
-    private List<ResolutionStrategy> algorithms;
+    private final List<ResolutionStrategy> algorithms;
     /**
      * Default return status.
      */
@@ -58,6 +58,8 @@ public class ChangeAlgorithm extends javax.swing.JDialog {
         super(parent, modal);
         this.algorithms = algs;
         initComponents();
+        this.algorithms_list.setSelectedIndex(0);
+        algorithms_listActionPerformed(null);
         
         setLocationRelativeTo(parent);
         // Close the dialog when Esc is pressed
