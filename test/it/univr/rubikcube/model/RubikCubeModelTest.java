@@ -1022,6 +1022,51 @@ public class RubikCubeModelTest {
         Assert.assertTrue(c.getFace(RubikCubeSide.FRONT, 2, 2) == RubikCubeFaceColor.YELLOW);
     }
     /**
+     * Checks that the 3D edges of a cube in standard configuration are
+     * returned correctly.
+     */
+    @Test
+    public final void check3DEdge() {
+        final RubikCubeModel c = new RubikCubeModel(this.standardCubeDimension);
+        RubikCubeEdgeColor ec;
+        ec = c.get3DEdge(RubikCubeModel3Edge.BL);
+        Assert.assertTrue(ec.getFirstColor() == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(ec.getSecondColor() == RubikCubeFaceColor.GREEN);
+        ec = c.get3DEdge(RubikCubeModel3Edge.BR);
+        Assert.assertTrue(ec.getFirstColor() == RubikCubeFaceColor.ORANGE);
+        Assert.assertTrue(ec.getSecondColor() == RubikCubeFaceColor.BLUE);
+        ec = c.get3DEdge(RubikCubeModel3Edge.DB);
+        Assert.assertTrue(ec.getFirstColor() == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(ec.getSecondColor() == RubikCubeFaceColor.ORANGE);
+        ec = c.get3DEdge(RubikCubeModel3Edge.DF);
+        Assert.assertTrue(ec.getFirstColor() == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(ec.getSecondColor() == RubikCubeFaceColor.RED);
+        ec = c.get3DEdge(RubikCubeModel3Edge.DL);
+        Assert.assertTrue(ec.getFirstColor() == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(ec.getSecondColor() == RubikCubeFaceColor.GREEN);
+        ec = c.get3DEdge(RubikCubeModel3Edge.DR);
+        Assert.assertTrue(ec.getFirstColor() == RubikCubeFaceColor.YELLOW);
+        Assert.assertTrue(ec.getSecondColor() == RubikCubeFaceColor.BLUE);
+        ec = c.get3DEdge(RubikCubeModel3Edge.FL);
+        Assert.assertTrue(ec.getFirstColor() == RubikCubeFaceColor.RED);
+        Assert.assertTrue(ec.getSecondColor() == RubikCubeFaceColor.GREEN);
+        ec = c.get3DEdge(RubikCubeModel3Edge.FR);
+        Assert.assertTrue(ec.getFirstColor() == RubikCubeFaceColor.RED);
+        Assert.assertTrue(ec.getSecondColor() == RubikCubeFaceColor.BLUE);
+        ec = c.get3DEdge(RubikCubeModel3Edge.UB);
+        Assert.assertTrue(ec.getFirstColor() == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(ec.getSecondColor() == RubikCubeFaceColor.ORANGE);
+        ec = c.get3DEdge(RubikCubeModel3Edge.UF);
+        Assert.assertTrue(ec.getFirstColor() == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(ec.getSecondColor() == RubikCubeFaceColor.RED);
+        ec = c.get3DEdge(RubikCubeModel3Edge.UL);
+        Assert.assertTrue(ec.getFirstColor() == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(ec.getSecondColor() == RubikCubeFaceColor.GREEN);
+        ec = c.get3DEdge(RubikCubeModel3Edge.UR);
+        Assert.assertTrue(ec.getFirstColor() == RubikCubeFaceColor.WHITE);
+        Assert.assertTrue(ec.getSecondColor() == RubikCubeFaceColor.BLUE);
+    }
+    /**
      * Put the 3x3 cube c in a "good" random state.
      * @param c 3x3 cube to be mixed.
      */

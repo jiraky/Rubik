@@ -211,7 +211,7 @@ public class RubikCubeModel extends Observable {
             case BL:
                 return new RubikCubeEdgeColor(
                     this.configuration[RubikCubeSide.BACK.ordinal()][1][0],
-                    this.configuration[RubikCubeSide.LEFT.ordinal()][1][2]);
+                    this.configuration[RubikCubeSide.LEFT.ordinal()][1][0]);
             case BR:
                 return new RubikCubeEdgeColor(
                     this.configuration[RubikCubeSide.BACK.ordinal()][1][2],
