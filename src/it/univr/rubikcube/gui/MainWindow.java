@@ -16,6 +16,7 @@ import it.univr.rubikcube.moves.X;
 import it.univr.rubikcube.moves.Y;
 import it.univr.rubikcube.moves.Z;
 import it.univr.rubikcube.resolutionstrategies.IDAStar;
+import it.univr.rubikcube.resolutionstrategies.Kociemba;
 import it.univr.rubikcube.resolutionstrategies.ResolutionStrategy;
 
 import java.awt.Dimension;
@@ -1838,6 +1839,7 @@ public class MainWindow extends javax.swing.JFrame {
         this.availableStrategy = new LinkedList<>();
         // TODO: add more algorithms if needed
         this.availableStrategy.add(new IDAStar(this.cube));
+        this.availableStrategy.add(new Kociemba(this.cube));
         
         this.actualStrategy = this.availableStrategy.get(0);
 
