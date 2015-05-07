@@ -214,8 +214,8 @@ public class RubikCubeModel extends Observable {
                     this.configuration[RubikCubeSide.LEFT.ordinal()][1][0]);
             case BR:
                 return new RubikCubeEdgeColor(
-                    this.configuration[RubikCubeSide.BACK.ordinal()][1][2],
-                    this.configuration[RubikCubeSide.RIGHT.ordinal()][1][0]);
+                    this.configuration[RubikCubeSide.BACK.ordinal()][1][0],
+                    this.configuration[RubikCubeSide.RIGHT.ordinal()][1][2]);
             default:
                 throw new IllegalArgumentException("Edge not in enum");
         }
@@ -235,12 +235,11 @@ public class RubikCubeModel extends Observable {
             throw new IllegalStateException("The cube must be a 3x3 one");
         }
         switch (e) {
-            // TODO: check
             case UR:
                 if (a == RubikCubeModelAxis.Y) {
                     return this.configuration[RubikCubeSide.UP.ordinal()][1][2];
                 } else if (a == RubikCubeModelAxis.X) {
-                    return this.configuration[RubikCubeSide.RIGHT.ordinal()][0][1]; 
+                    return this.configuration[RubikCubeSide.RIGHT.ordinal()][0][1];
                 } else {
                     return null;
                 }
@@ -248,7 +247,7 @@ public class RubikCubeModel extends Observable {
                 if (a == RubikCubeModelAxis.Y) {
                     return this.configuration[RubikCubeSide.UP.ordinal()][2][1];
                 } else if (a == RubikCubeModelAxis.Z) {
-                    return this.configuration[RubikCubeSide.FRONT.ordinal()][0][1]; 
+                    return this.configuration[RubikCubeSide.FRONT.ordinal()][0][1];
                 } else {
                     return null;
                 }
@@ -256,7 +255,7 @@ public class RubikCubeModel extends Observable {
                 if (a == RubikCubeModelAxis.Y) {
                     return this.configuration[RubikCubeSide.UP.ordinal()][1][0];
                 } else if (a == RubikCubeModelAxis.X) {
-                    return this.configuration[RubikCubeSide.LEFT.ordinal()][0][1]; 
+                    return this.configuration[RubikCubeSide.LEFT.ordinal()][0][1];
                 } else {
                     return null;
                 }
@@ -264,7 +263,7 @@ public class RubikCubeModel extends Observable {
                 if (a == RubikCubeModelAxis.Y) {
                     return this.configuration[RubikCubeSide.UP.ordinal()][0][1];
                 } else if (a == RubikCubeModelAxis.Z) {
-                    return this.configuration[RubikCubeSide.BACK.ordinal()][0][1]; 
+                    return this.configuration[RubikCubeSide.BACK.ordinal()][0][1];
                 } else {
                     return null;
                 }
@@ -272,7 +271,7 @@ public class RubikCubeModel extends Observable {
                 if (a == RubikCubeModelAxis.Y) {
                     return this.configuration[RubikCubeSide.DOWN.ordinal()][1][2];
                 } else if (a == RubikCubeModelAxis.X) {
-                    return this.configuration[RubikCubeSide.RIGHT.ordinal()][2][1]; 
+                    return this.configuration[RubikCubeSide.RIGHT.ordinal()][2][1];
                 } else {
                     return null;
                 }
@@ -288,7 +287,7 @@ public class RubikCubeModel extends Observable {
                 if (a == RubikCubeModelAxis.Y) {
                     return this.configuration[RubikCubeSide.DOWN.ordinal()][1][0];
                 } else if (a == RubikCubeModelAxis.X) {
-                    return this.configuration[RubikCubeSide.LEFT.ordinal()][2][1]; 
+                    return this.configuration[RubikCubeSide.LEFT.ordinal()][2][1];
                 } else {
                     return null;
                 }
@@ -296,7 +295,7 @@ public class RubikCubeModel extends Observable {
                 if (a == RubikCubeModelAxis.Y) {
                     return this.configuration[RubikCubeSide.DOWN.ordinal()][2][1];
                 } else if (a == RubikCubeModelAxis.Z) {
-                    return this.configuration[RubikCubeSide.BACK.ordinal()][2][1]; 
+                    return this.configuration[RubikCubeSide.BACK.ordinal()][2][1];
                 } else {
                     return null;
                 }
@@ -304,7 +303,7 @@ public class RubikCubeModel extends Observable {
                 if (a == RubikCubeModelAxis.Z) {
                     return this.configuration[RubikCubeSide.FRONT.ordinal()][1][2];
                 } else if (a == RubikCubeModelAxis.X) {
-                    return this.configuration[RubikCubeSide.RIGHT.ordinal()][1][0]; 
+                    return this.configuration[RubikCubeSide.RIGHT.ordinal()][1][0];
                 } else {
                     return null;
                 }
@@ -312,7 +311,7 @@ public class RubikCubeModel extends Observable {
                 if (a == RubikCubeModelAxis.Z) {
                     return this.configuration[RubikCubeSide.FRONT.ordinal()][1][0];
                 } else if (a == RubikCubeModelAxis.X) {
-                    return this.configuration[RubikCubeSide.LEFT.ordinal()][1][2]; 
+                    return this.configuration[RubikCubeSide.LEFT.ordinal()][1][2];
                 } else {
                     return null;
                 }
@@ -320,15 +319,15 @@ public class RubikCubeModel extends Observable {
                 if (a == RubikCubeModelAxis.Z) {
                     return this.configuration[RubikCubeSide.BACK.ordinal()][1][2];
                 } else if (a == RubikCubeModelAxis.X) {
-                    return this.configuration[RubikCubeSide.LEFT.ordinal()][1][0]; 
+                    return this.configuration[RubikCubeSide.LEFT.ordinal()][1][0];
                 } else {
                     return null;
                 }
             case BR:
                 if (a == RubikCubeModelAxis.Z) {
-                    return this.configuration[RubikCubeSide.BACK.ordinal()][1][2];
+                    return this.configuration[RubikCubeSide.BACK.ordinal()][1][0];
                 } else if (a == RubikCubeModelAxis.X) {
-                    return this.configuration[RubikCubeSide.RIGHT.ordinal()][1][0]; 
+                    return this.configuration[RubikCubeSide.RIGHT.ordinal()][1][2];
                 } else {
                     return null;
                 }
