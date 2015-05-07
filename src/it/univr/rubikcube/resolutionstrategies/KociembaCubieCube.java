@@ -434,7 +434,6 @@ public class KociembaCubieCube {
         }
         arr[l] = temp;
     }
-    // FIXME toFaceCube removed
     /**
      * Multiply this CubieCube with another cubiecube b, restricted to the
      * corners.
@@ -781,12 +780,14 @@ public class KociembaCubieCube {
             RubikCubeModel3Edge.FR,
             RubikCubeModel3Edge.FL,
             RubikCubeModel3Edge.BL,
-            RubikCubeModel3Edge.BR
+            RubikCubeModel3Edge.BR,
         };
         int b = idx % 720; // Permutation
         int a = idx / 720; // Combination
-        for (RubikCubeModel3Edge e : RubikCubeModel3Edge.values())
-            this.ep[e.ordinal()] = RubikCubeModel3Edge.BR;// Use BR to invalidate all edges
+        // Invalidate all edges.
+        for (RubikCubeModel3Edge e : RubikCubeModel3Edge.values()) {
+            this.ep[e.ordinal()] = RubikCubeModel3Edge.BR;
+        }
 
         for (int j = 1, k; j < 6; j++)// generate permutation from index b
         {
@@ -796,30 +797,36 @@ public class KociembaCubieCube {
                 rotateRight(edge6, 0, j);
         }
         x = 5;// generate combination and set edges
-        for (int j = RubikCubeModel3Edge.BR.ordinal(); j >= 0; j--)
+        for (int j = RubikCubeModel3Edge.BR.ordinal(); j >= 0; --j) {
             if (a - chooseNK(j, x + 1) >= 0) {
                 this.ep[j] = edge6[x];
                 a -= chooseNK(j, x-- + 1);
             }
+        }
         x = 0; // set the remaining edges DL..BR
-        for (int j = RubikCubeModel3Edge.UR.ordinal(); j <= RubikCubeModel3Edge.BR.ordinal(); j++)
-            if (this.ep[j] == RubikCubeModel3Edge.BR)
+        for (int j = RubikCubeModel3Edge.UR.ordinal(); j <= RubikCubeModel3Edge.BR.ordinal(); ++j) {
+            if (this.ep[j] == RubikCubeModel3Edge.BR) {
                 this.ep[j] = otherEdge[x++];
+            }
+        }
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // Permutation of the six edges UR,UF,UL,UB,DR,DF
-    public static int getURtoDF(short idx1, short idx2) {
-        KociembaCubieCube a = new KociembaCubieCube();
-        KociembaCubieCube b = new KociembaCubieCube();
+    public static int getURtoDF(final short idx1, final short idx2) {
+        final KociembaCubieCube a = new KociembaCubieCube();
+        final KociembaCubieCube b = new KociembaCubieCube();
         a.setURtoUL(idx1);
         b.setUBtoDF(idx2);
-        for (int i = 0; i < 8; i++) {
-            if (a.ep[i] != RubikCubeModel3Edge.BR)
-                if (b.ep[i] != RubikCubeModel3Edge.BR)// collision
+        for (int i = 0; i < 8; ++i) {
+            if (a.ep[i] != RubikCubeModel3Edge.BR) {
+                if (b.ep[i] != RubikCubeModel3Edge.BR) {
+                    // We've got a collision, bail out
                     return -1;
-                else
+                } else {
                     b.ep[i] = a.ep[i];
+                }
+            }
         }
         return b.getURtoDF();
     }
