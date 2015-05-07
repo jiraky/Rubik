@@ -15,10 +15,9 @@ import it.univr.rubikcube.moves.U;
 import it.univr.rubikcube.moves.X;
 import it.univr.rubikcube.moves.Y;
 import it.univr.rubikcube.moves.Z;
-import it.univr.rubikcube.resolutionstrategies.KociembaLib;
+import it.univr.rubikcube.resolutionstrategies.IDAStar;
 import it.univr.rubikcube.resolutionstrategies.NoSolutionException;
 import it.univr.rubikcube.resolutionstrategies.ResolutionStrategy;
-import it.univr.rubikcube.resolutionstrategies.Singmaster;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -1824,10 +1823,8 @@ public class MainWindow extends javax.swing.JFrame {
         this.cube = new RubikCubeModel(this.getCubeDimension());
 
         this.availableStrategy = new LinkedList<>();
-        this.availableStrategy.add(new KociembaLib(this.cube));
-        //this.availableStrategy.add(new Fridrich(this.cube));
-        // FIXME: COMMENT THE FOLLOWING LINE
-        this.availableStrategy.add(new Singmaster(this.cube));
+        // FIXME: Edit the algorithms
+        this.availableStrategy.add(new IDAStar(this.cube));
         
         this.actualStrategy = this.availableStrategy.get(0);
 
