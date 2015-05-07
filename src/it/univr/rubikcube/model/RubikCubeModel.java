@@ -210,7 +210,7 @@ public class RubikCubeModel extends Observable {
                     this.configuration[RubikCubeSide.LEFT.ordinal()][1][2]);
             case BL:
                 return new RubikCubeEdgeColor(
-                    this.configuration[RubikCubeSide.BACK.ordinal()][1][0],
+                    this.configuration[RubikCubeSide.BACK.ordinal()][1][2],
                     this.configuration[RubikCubeSide.LEFT.ordinal()][1][0]);
             case BR:
                 return new RubikCubeEdgeColor(
@@ -318,9 +318,9 @@ public class RubikCubeModel extends Observable {
                 }
             case BL:
                 if (a == RubikCubeModelAxis.Z) {
-                    return this.configuration[RubikCubeSide.BACK.ordinal()][1][0];
+                    return this.configuration[RubikCubeSide.BACK.ordinal()][1][2];
                 } else if (a == RubikCubeModelAxis.X) {
-                    return this.configuration[RubikCubeSide.LEFT.ordinal()][1][2]; 
+                    return this.configuration[RubikCubeSide.LEFT.ordinal()][1][0]; 
                 } else {
                     return null;
                 }
