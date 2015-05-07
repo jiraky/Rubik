@@ -24,6 +24,8 @@ import java.util.concurrent.TimeoutException;
 /**
  * Singmaster resolution strategy.
  * @author Alessandro Menti
+ * @see http://robertovillari.eu/rubik/default.htm
+ * @see http://www.linkedresources.com/teach/rubik/solution.php
  * @see http://www.cs.swarthmore.edu/~knerr/helps/rcube.html
  */
 public class Singmaster extends ResolutionStrategy {
