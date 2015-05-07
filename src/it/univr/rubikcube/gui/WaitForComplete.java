@@ -21,6 +21,7 @@ public class WaitForComplete extends javax.swing.JDialog {
     public WaitForComplete(java.awt.Frame parent, boolean modal, String txt, String title) {
         super(parent, false);
         initComponents();
+        this.setLocationRelativeTo(null);
         this.setTitle(title);
         this.TEXT.setText(txt);
     }
