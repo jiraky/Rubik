@@ -62,6 +62,7 @@ src/it/univr/rubikcube/model/RubikCubeEdgeColor.java -text svneol=unset#text/x-j
 src/it/univr/rubikcube/model/RubikCubeFaceColor.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/model/RubikCubeModel.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/model/RubikCubeModel3Edge.java -text svneol=unset#text/x-java-source
+src/it/univr/rubikcube/model/RubikCubeModelAxis.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/model/RubikCubeModelColumnRotated.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/model/RubikCubeModelCorner.java -text svneol=unset#text/x-java-source
 src/it/univr/rubikcube/model/RubikCubeModelCubeRotated.java -text svneol=unset#text/x-java-source

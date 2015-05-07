@@ -1,7 +1,13 @@
 package it.univr.rubikcube.resolutionstrategies;
 
 import it.univr.rubikcube.model.Move;
+import it.univr.rubikcube.model.RubikCubeCorner;
+import it.univr.rubikcube.model.RubikCubeCornerColor;
+import it.univr.rubikcube.model.RubikCubeEdgeColor;
 import it.univr.rubikcube.model.RubikCubeModel;
+import it.univr.rubikcube.model.RubikCubeModel3Edge;
+import it.univr.rubikcube.model.RubikCubeModelAxis;
+import it.univr.rubikcube.model.RubikCubeSide;
 import it.univr.rubikcube.moves.B;
 import it.univr.rubikcube.moves.D;
 import it.univr.rubikcube.moves.F;
@@ -18,7 +24,7 @@ import java.util.TreeSet;
 import java.util.concurrent.TimeoutException;
 
 /**
- * IDA* resolution strategy.
+ * IDA* resolution strategy inspired by the Uday Bondhugula solver.
  * @author Alessandro Menti
  */
 public class IDAStar extends ResolutionStrategy {
@@ -220,54 +226,74 @@ public class IDAStar extends ResolutionStrategy {
      * @return Heuristic coefficient for c.
      */
     private static float getHeuristicCoefficient(final RubikCubeModel c) {
-        // FIXME
+        float cornerStrength = 0;
+        float edgeStrength = 0;
         if (RubikCubeModel.isSolved(c)) {
+            // Nothing to do
             return 0;
         }
-        /*float cornerStrength=0, edgeStrength=0;
-        Triplet correctPos;
-        int which, deltaX, deltaY, deltaZ;
-        for (int x = 0; x < 3; ++x) {
-                for (int y = 0; y < 3; ++y) {
-                        for (int z = 0; z < 3; ++z) {
-                                if (x*y == 1 || y*z == 1 || z*x == 1) continue;
-                                correctPos = Heuristics.getCorrectPos(cube.cubelet[x][y][z], x, y, z);
-                                deltaX = Math.abs(correctPos.x -x);
-                                deltaY = Math.abs(correctPos.y - y);
-                                deltaZ = Math.abs(correctPos.z -z);
-                                if (x != 1 && y != 1 && z != 1) { // corner cubie
-                                        if (deltaX == 0 && deltaY == 0 && deltaZ == 0) {
-                                                if (Heuristics.face[x][y][z].x == cube.cubelet[x][y][z].getColor(Heuristics.face[x][y][z].x) && Heuristics.face[x][y][z].y == cube.cubelet[x][y][z].getColor(Heuristics.face[x][y][z].y));
-                                                else cornerStrength += 2;
-                                        }
-                                        else
-                                                cornerStrength += (deltaX + deltaY + deltaZ)/2.0+2;
-                                }
-                                else{ // edge cubie
-                                        if (deltaX == 0 && deltaY == 0 && deltaZ == 0) {
-                                                if (Heuristics.face[x][y][z].x != -1) {
-                                                        if (Heuristics.face[x][y][z].x == cube.cubelet[x][y][z].getColor(Heuristics.face[x][y][z].x));
-                                                        else edgeStrength += 3;
-                                                }
-                                                else{
-                                                        if (Heuristics.face[x][y][z].y == cube.cubelet[x][y][z].getColor(Heuristics.face[x][y][z].y));
-                                                        else edgeStrength += 3;
-                                                }
-                                        }
-                                        else if (deltaX != 0 && deltaY != 0 && deltaZ != 0) {
-                                                edgeStrength += (2+3);
-                                        }
-                                        else{
-                                                if ((deltaX == 0 && x == 1) || (deltaY == 0 && y == 1) && (deltaZ == 0 && z == 1)) {
-                                                        edgeStrength += deltaY + deltaZ+3;
-                                                }
-                                                else edgeStrength += 1;
-                                        }
-                                }
-                        }
+        for (RubikCubeCorner cv : RubikCubeCorner.values()) {
+            // Get the corner
+            final RubikCubeCornerColor corner = c.getCorner(cv);
+            // Calculate the offset w.r.t. the standard configuration.
+            final RubikCubeCorner standardCorner = RubikCubeCorner.getStandardCorner(
+                    corner.getFirstColor(), corner.getSecondColor(), corner.getThirdColor());
+            final int distance = Math.abs(cv.getX() - standardCorner.getX())
+                    + Math.abs(cv.getY() - standardCorner.getY()) + Math.abs(cv.getZ() - standardCorner.getZ());
+            if (distance == 0) {
+                // If the side acting on the X/Y coordinates of the face we're
+                // considering has the standard color of that face, do nothing,
+                // else increase the corner strength by 2
+                if (cv.getFaceOnAxis(RubikCubeModelAxis.X).getStandardColor()
+                        != c.getCornerFacelet(RubikCubeModelAxis.X, cv)
+                        || cv.getFaceOnAxis(RubikCubeModelAxis.Y).getStandardColor()
+                        != c.getCornerFacelet(RubikCubeModelAxis.Y, cv)) {
+                    cornerStrength += 2;
                 }
+            } else {
+                cornerStrength += distance / 2.0 + 2;
+            }
         }
-        return (cornerStrength >= edgeStrength) ? cornerStrength/(float)4: edgeStrength/(float)4;*/
+        for (RubikCubeModel3Edge edge : RubikCubeModel3Edge.values()) {
+            // Get the edge distances between the edge we're considering
+            // and the edge having the same colors in the standard configuration
+            final RubikCubeEdgeColor actualEdgeColors = c.get3DEdge(edge);
+            final RubikCubeModel3Edge standardEdge = RubikCubeModel3Edge.getStandardEdgeFromColors(
+                    actualEdgeColors.getFirstColor(),
+                    actualEdgeColors.getSecondColor());
+            final int[] edgeDeltas = new int[3];
+            edgeDeltas[0] = Math.abs(edge.getX() - standardEdge.getX());
+            edgeDeltas[1] = Math.abs(edge.getY() - standardEdge.getY());
+            edgeDeltas[2] = Math.abs(edge.getZ() - standardEdge.getZ());
+            if (edgeDeltas[0] == 0 && edgeDeltas[1] == 0 && edgeDeltas[2] == 0)  {
+                final RubikCubeSide xSide = edge.getFaceOnAxis(RubikCubeModelAxis.X);
+                if (xSide != null) {
+                    if (xSide.getStandardColor() != c.get3DEdgeFacelet(RubikCubeModelAxis.X, edge)) {
+                        edgeStrength += 3;
+                    }
+                } else {
+                    if (edge.getFaceOnAxis(RubikCubeModelAxis.Y).getStandardColor()
+                            != c.get3DEdgeFacelet(RubikCubeModelAxis.Y, edge)) {
+                        edgeStrength += 3;
+                    }
+                }
+            } else if (edgeDeltas[0] != 0 && edgeDeltas[1] != 0 && edgeDeltas[2] != 0) {
+                edgeStrength += 5;
+            } else {
+                if ((edgeDeltas[0] == 0 && (edge == RubikCubeModel3Edge.UL || edge == RubikCubeModel3Edge.UR || edge == RubikCubeModel3Edge.DL || edge == RubikCubeModel3Edge.DR))
+                        || (edgeDeltas[1] == 0 && (edge == RubikCubeModel3Edge.FL || edge == RubikCubeModel3Edge.FR || edge == RubikCubeModel3Edge.BL || edge == RubikCubeModel3Edge.BR)) 
+                        && (edgeDeltas[2] == 0 && (edge == RubikCubeModel3Edge.DB || edge == RubikCubeModel3Edge.DF || edge == RubikCubeModel3Edge.UB || edge == RubikCubeModel3Edge.UF))) {
+                    edgeStrength += edgeDeltas[1] + edgeDeltas[2] + 3;
+                } else {
+                    edgeStrength += 1;
+                }
+            }
+        }
+        if (cornerStrength >= edgeStrength) {
+            return cornerStrength / (float) 4;
+        } else {
+            return edgeStrength / (float) 4;
+        }
     }
     /**
      * Execute a DFS on <tt>n</tt> to update its successors.

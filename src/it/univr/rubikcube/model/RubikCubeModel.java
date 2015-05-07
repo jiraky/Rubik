@@ -7,6 +7,25 @@ import java.util.Observable;
  * @author Alessandro Menti
  */
 public class RubikCubeModel extends Observable {
+    /*
+     * To help you visualize the cube, you might want to refer to The Cube
+     * Guru (http://thecube.guru/online-3d-rubiks-cube/).
+     * Import a string such as this one (standard configuration):
+     * 4,4,4,4,4,4,4,4,4,7,7,7,7,7,7,7,7,7,2,2,2,2,2,2,2,2,2,6,6,6,6,6,6,6,6,6,5,5,5,5,5,5,5,5,5,3,3,3,3,3,3,3,3,3
+     * Each group of nine numbers is a side (sides are listed in this order:
+     * left, back, right, front, down, up). On each side, faces are listed
+     * in this order:
+     * 789
+     * 456
+     * 123
+     * The colors are:
+     * 2 = blue
+     * 3 = white
+     * 4 = green
+     * 5 = yellow
+     * 6 = red
+     * 7 = orange
+     */
     /**
      * Cube dimension.
      */
@@ -141,9 +160,13 @@ public class RubikCubeModel extends Observable {
      * @return The color of the two facelets making the edge.
      * @throws IllegalArgumentException Thrown in case the edge is not in the
      * enum.
+     * @throws IllegalStateException Thrown in case the cube is not a 3x3 one.
      */
     public final RubikCubeEdgeColor get3DEdge(final RubikCubeModel3Edge e)
-            throws IllegalArgumentException {
+            throws IllegalArgumentException, IllegalStateException {
+        if (this.dimension != 3) {
+            throw new IllegalStateException("The cube must be a 3x3 one");
+        }
         switch (e) {
             case UR:
                 return new RubikCubeEdgeColor(
@@ -198,14 +221,134 @@ public class RubikCubeModel extends Observable {
         }
     }
     /**
+     * Gets the color of an edge facelet.
+     * @param a Axis to be considered.
+     * @param e Edge to be considered.
+     * @return The color of the two facelets making the edge.
+     * @throws IllegalArgumentException Thrown in case the edge is not in the
+     * enum.
+     * @throws IllegalStateException Thrown in case the cube is not a 3x3 one.
+     */
+    public final RubikCubeFaceColor get3DEdgeFacelet(final RubikCubeModelAxis a,
+            final RubikCubeModel3Edge e) throws IllegalArgumentException, IllegalStateException {
+        if (this.dimension != 3) {
+            throw new IllegalStateException("The cube must be a 3x3 one");
+        }
+        switch (e) {
+            // TODO: check
+            case UR:
+                if (a == RubikCubeModelAxis.Y) {
+                    return this.configuration[RubikCubeSide.UP.ordinal()][1][2];
+                } else if (a == RubikCubeModelAxis.X) {
+                    return this.configuration[RubikCubeSide.RIGHT.ordinal()][0][1]; 
+                } else {
+                    return null;
+                }
+            case UF:
+                if (a == RubikCubeModelAxis.Y) {
+                    return this.configuration[RubikCubeSide.UP.ordinal()][2][1];
+                } else if (a == RubikCubeModelAxis.Z) {
+                    return this.configuration[RubikCubeSide.FRONT.ordinal()][0][1]; 
+                } else {
+                    return null;
+                }
+            case UL:
+                if (a == RubikCubeModelAxis.Y) {
+                    return this.configuration[RubikCubeSide.UP.ordinal()][1][0];
+                } else if (a == RubikCubeModelAxis.X) {
+                    return this.configuration[RubikCubeSide.LEFT.ordinal()][0][1]; 
+                } else {
+                    return null;
+                }
+            case UB:
+                if (a == RubikCubeModelAxis.Y) {
+                    return this.configuration[RubikCubeSide.UP.ordinal()][0][1];
+                } else if (a == RubikCubeModelAxis.Z) {
+                    return this.configuration[RubikCubeSide.BACK.ordinal()][0][1]; 
+                } else {
+                    return null;
+                }
+            case DR:
+                if (a == RubikCubeModelAxis.Y) {
+                    return this.configuration[RubikCubeSide.DOWN.ordinal()][1][2];
+                } else if (a == RubikCubeModelAxis.X) {
+                    return this.configuration[RubikCubeSide.RIGHT.ordinal()][2][1]; 
+                } else {
+                    return null;
+                }
+            case DF:
+                if (a == RubikCubeModelAxis.Y) {
+                    return this.configuration[RubikCubeSide.DOWN.ordinal()][0][1];
+                } else if (a == RubikCubeModelAxis.Z) {
+                    return this.configuration[RubikCubeSide.FRONT.ordinal()][2][1];
+                } else {
+                    return null;
+                }
+            case DL:
+                if (a == RubikCubeModelAxis.Y) {
+                    return this.configuration[RubikCubeSide.DOWN.ordinal()][1][0];
+                } else if (a == RubikCubeModelAxis.X) {
+                    return this.configuration[RubikCubeSide.LEFT.ordinal()][2][1]; 
+                } else {
+                    return null;
+                }
+            case DB:
+                if (a == RubikCubeModelAxis.Y) {
+                    return this.configuration[RubikCubeSide.DOWN.ordinal()][2][1];
+                } else if (a == RubikCubeModelAxis.Z) {
+                    return this.configuration[RubikCubeSide.BACK.ordinal()][2][1]; 
+                } else {
+                    return null;
+                }
+            case FR:
+                if (a == RubikCubeModelAxis.Z) {
+                    return this.configuration[RubikCubeSide.FRONT.ordinal()][1][2];
+                } else if (a == RubikCubeModelAxis.X) {
+                    return this.configuration[RubikCubeSide.RIGHT.ordinal()][1][0]; 
+                } else {
+                    return null;
+                }
+            case FL:
+                if (a == RubikCubeModelAxis.Z) {
+                    return this.configuration[RubikCubeSide.FRONT.ordinal()][1][0];
+                } else if (a == RubikCubeModelAxis.X) {
+                    return this.configuration[RubikCubeSide.LEFT.ordinal()][1][2]; 
+                } else {
+                    return null;
+                }
+            case BL:
+                if (a == RubikCubeModelAxis.Z) {
+                    return this.configuration[RubikCubeSide.BACK.ordinal()][1][0];
+                } else if (a == RubikCubeModelAxis.X) {
+                    return this.configuration[RubikCubeSide.LEFT.ordinal()][1][2]; 
+                } else {
+                    return null;
+                }
+            case BR:
+                if (a == RubikCubeModelAxis.Z) {
+                    return this.configuration[RubikCubeSide.BACK.ordinal()][1][2];
+                } else if (a == RubikCubeModelAxis.X) {
+                    return this.configuration[RubikCubeSide.RIGHT.ordinal()][1][0]; 
+                } else {
+                    return null;
+                }
+            default:
+                throw new IllegalArgumentException("Edge not in enum");
+        }
+    }
+    /**
      * Gets the color of the facelets in a corner.
      * @param c Corner to be considered.
      * @return The color of the three facelets making the corner.
      * @throws IllegalArgumentException Thrown in case the corner is not in the
      * enum.
+     * @throws IllegalStateException Thrown in case the cube is not a 3x3 one.
      */
     public final RubikCubeCornerColor getCorner(final RubikCubeCorner c)
-        throws IllegalArgumentException {
+        throws IllegalArgumentException, IllegalStateException {
+        if (this.dimension != 3) {
+            throw new IllegalStateException("The cube must be a 3x3 one");
+        }
         switch (c) {
             case URF:
                 return new RubikCubeCornerColor(
@@ -247,6 +390,92 @@ public class RubikCubeModel extends Observable {
                     this.configuration[RubikCubeSide.DOWN.ordinal()][2][2],
                     this.configuration[RubikCubeSide.RIGHT.ordinal()][2][2],
                     this.configuration[RubikCubeSide.BACK.ordinal()][2][0]);
+            default:
+                throw new IllegalArgumentException("Corner not in enum");
+        }
+    }
+    /**
+     * Gets the color of a facelet given an axis and a corner.
+     * @param a Axis to be considered.
+     * @param c Corner to be considered.
+     * @return The color of the three facelets making the corner.
+     * @throws IllegalArgumentException Thrown in case the corner is not in the
+     * enum.
+     * @throws IllegalStateException Thrown in case the cube is not a 3x3 one.
+     */
+    public final RubikCubeFaceColor getCornerFacelet(final RubikCubeModelAxis a,
+        final RubikCubeCorner c) throws IllegalArgumentException, IllegalStateException {
+        if (this.dimension != 3) {
+            throw new IllegalStateException("The cube must be a 3x3 one");
+        }
+        if (a != RubikCubeModelAxis.X && a != RubikCubeModelAxis.Y && a != RubikCubeModelAxis.Z) {
+            throw new IllegalArgumentException("Axis not in enum");
+        }
+        switch (c) {
+            case URF:
+                if (a == RubikCubeModelAxis.X) {
+                    return this.configuration[RubikCubeSide.RIGHT.ordinal()][0][0];
+                } else if (a == RubikCubeModelAxis.Y) {
+                    return this.configuration[RubikCubeSide.UP.ordinal()][2][2];
+                } else {
+                    return this.configuration[RubikCubeSide.FRONT.ordinal()][0][2];
+                }
+            case UFL:
+                if (a == RubikCubeModelAxis.X) {
+                    return this.configuration[RubikCubeSide.LEFT.ordinal()][0][2];
+                } else if (a == RubikCubeModelAxis.Y) {
+                    return this.configuration[RubikCubeSide.UP.ordinal()][2][0];
+                } else {
+                    return this.configuration[RubikCubeSide.FRONT.ordinal()][0][0];
+                }
+            case ULB:
+                if (a == RubikCubeModelAxis.X) {
+                    return this.configuration[RubikCubeSide.LEFT.ordinal()][0][0];
+                } else if (a == RubikCubeModelAxis.Y) {
+                    return this.configuration[RubikCubeSide.UP.ordinal()][0][0];
+                } else {
+                    return this.configuration[RubikCubeSide.BACK.ordinal()][0][2];
+                }
+            case UBR:
+                if (a == RubikCubeModelAxis.X) {
+                    return this.configuration[RubikCubeSide.RIGHT.ordinal()][0][2];
+                } else if (a == RubikCubeModelAxis.Y) {
+                    return this.configuration[RubikCubeSide.UP.ordinal()][0][2];
+                } else {
+                    return this.configuration[RubikCubeSide.BACK.ordinal()][0][0];
+                }
+            case DFR:
+                if (a == RubikCubeModelAxis.X) {
+                    return this.configuration[RubikCubeSide.RIGHT.ordinal()][2][0];
+                } else if (a == RubikCubeModelAxis.Y) {
+                    return this.configuration[RubikCubeSide.DOWN.ordinal()][0][2];
+                } else {
+                    return this.configuration[RubikCubeSide.FRONT.ordinal()][2][2];
+                }
+            case DLF:
+                if (a == RubikCubeModelAxis.X) {
+                    return this.configuration[RubikCubeSide.LEFT.ordinal()][2][2];
+                } else if (a == RubikCubeModelAxis.Y) {
+                    return this.configuration[RubikCubeSide.DOWN.ordinal()][0][0];
+                } else {
+                    return this.configuration[RubikCubeSide.FRONT.ordinal()][2][0];
+                }
+            case DBL:
+                if (a == RubikCubeModelAxis.X) {
+                    return this.configuration[RubikCubeSide.LEFT.ordinal()][2][0];
+                } else if (a == RubikCubeModelAxis.Y) {
+                    return this.configuration[RubikCubeSide.DOWN.ordinal()][2][0];
+                } else {
+                    return this.configuration[RubikCubeSide.BACK.ordinal()][2][2];
+                }
+            case DRB:
+                if (a == RubikCubeModelAxis.X) {
+                    return this.configuration[RubikCubeSide.RIGHT.ordinal()][2][2];
+                } else if (a == RubikCubeModelAxis.Y) {
+                    return this.configuration[RubikCubeSide.DOWN.ordinal()][2][2];
+                } else {
+                    return this.configuration[RubikCubeSide.BACK.ordinal()][2][0];
+                }
             default:
                 throw new IllegalArgumentException("Corner not in enum");
         }
