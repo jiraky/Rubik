@@ -102,3 +102,4 @@ src/it/univr/rubikcube/resolutionstrategies/Singmaster.java -text svneol=unset#t
 src/it/univr/rubikcube/resolutionstrategies/package-info.java -text svneol=unset#text/x-java-source
 test/it/univr/rubikcube/model/RubikCubeModelTest.java -text svneol=unset#text/x-java-source
 test/it/univr/rubikcube/moves/SingmasterMovesTest.java -text svneol=unset#text/x-java-source
+test/it/univr/rubikcube/resolutionstrategies/Kociemba.java -text svneol=unset#text/x-java-source
