@@ -7,8 +7,6 @@ import it.univr.rubikcube.model.RubikCubeEdgeColor;
 import it.univr.rubikcube.model.RubikCubeFaceColor;
 import it.univr.rubikcube.model.RubikCubeModel;
 import it.univr.rubikcube.model.RubikCubeModel3Edge;
-import it.univr.rubikcube.model.RubikCubeModelAxis;
-import it.univr.rubikcube.model.RubikCubeModelCorner;
 import it.univr.rubikcube.model.RubikCubeSide;
 import it.univr.rubikcube.moves.D;
 import it.univr.rubikcube.moves.F;
@@ -20,8 +18,6 @@ import it.univr.rubikcube.moves.Z;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
-
-import com.sun.prism.PhongMaterial.MapType;
 
 /**
  * Singmaster resolution strategy.
@@ -390,6 +386,7 @@ public class Singmaster extends ResolutionStrategy {
             if (edgeToFix != null) {
                 // Get an edge (in the 2nd or 3rd layer) that is not partially yellow and bring it to the front face.
                 RubikCubeModel3Edge moveToFront;
+                
             }
         } while (edgeToFix != null);
         
