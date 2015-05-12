@@ -4,3 +4,7 @@
 /dist
 /manifest.mf
 /nbproject
+/.settings
+/.classpath
+/manifest.txt
+/nbproject
