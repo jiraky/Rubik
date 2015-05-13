@@ -2,27 +2,106 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{fourier}
-\title{Rubik's cube (and how to solve it)}
-\author{Stefano Angeleri, Alessandro Menti, Mattia Zago}
-\date{FIXME}
+\usepackage{listings}
+\lstset{language=Java,
+        basicstyle=\ttfamily\small,
+        keywordstyle=\color{blue},
+        commentstyle=\color{olive}}
+\title{Il cubo di Rubik (e come risolverlo)}
+\author[S.~Angeleri, A.~Menti, M.~Zago]{Stefano Angeleri, Alessandro Menti,
+Mattia Zago}
+\date{}
 \begin{document}
 \begin{frame}
 \maketitle
 \end{frame}
 
 \begin{frame}
-\frametitle{The problem}
-Given a $3\times 3$ cube
+\frametitle{Alcune definizioni}
+\begin{itemize}
+\item Considereremo un cubo $3\times 3$
+\item Ogni faccia (\emph{side}) ha un colore standard a essa associato (vedi
+figura)
+\item Ognuno dei nove pezzi di ogni faccia è detto \emph{facelet}
+\item Il cubo ha $3$ colonne/righe (\emph{columns}/\emph{rows}), $3$ colonne
+laterali (\emph{lateral columns}), $4$ angoli (\emph{corners}) e $8$ spigoli
+(\emph{edges})
+\end{itemize}
+% FIXME Picture
 \end{frame}
+
 \begin{frame}
-\frametitle{Singmaster notation}
+\frametitle{Il problema}
+Riarrangia il cubo (ruotando righe, colonne e/o colonne laterali) finché tutte
+le facelet su ogni faccia non hanno lo stesso colore.
 \end{frame}
+
 \begin{frame}
-\frametitle{Our cube model}
+\frametitle{Notazione di Singmaster}
+\begin{itemize}
+\item Ogni faccia è descritta da una lettera: \textbf{F} (Front), \textbf{B}
+(Back), \textbf{U} (Up), \textbf{D} (Down), \textbf{L} (Left), \textbf{R}
+(Right)
+\item Ogni mossa può essere vista come una rotazione di un quarto di giro di
+una faccia in senso orario (N.B.: si assume che il solutore abbia la faccia di
+fronte a sé): \textbf{U} = ruota la faccia ``Up'' di un quarto di giro in senso
+orario
+\item Il simbolo $'$ indica una rotazione in senso antiorario
+\item Le rotazioni di righe/colonne/colonne laterali centrali sono denotate da
+\textbf{M} (livello fra L e R), \textbf{E} (livello fra U e D), \textbf{S}
+(livello fra F e B)
+\end{itemize}
+% FIXME Picture
 \end{frame}
+
 \begin{frame}
-\frametitle{Events}
+\frametitle{Notazione di Singmaster}
+\begin{itemize}
+\item Per denotare le rotazioni del cubo si usano altre lettere: \textbf{X}
+(rotazione su R), \textbf{Y} (rotazione su U), \textbf{Z} (rotazione su F)
+\end{itemize}
+% FIXME Picture
 \end{frame}
+
+\begin{frame}
+\frametitle{Il nostro modello}
+\begin{itemize}
+\item Il cubo è memorizzato in un oggetto \texttt{RubikCubeModel}
+\item Ogni faccia è memorizzata in un array $2\times 2$; le righe/colonne sono
+numerate dall'alto verso il basso e da sinistra a destra (supponendo che il
+solutore abbia la faccia di fronte)
+\item \texttt{getSide} determina la faccia che in tale momento ha il colore dato
+\item \texttt{getFace} recupera il colore di una facelet
+\item Altri metodi autoesplicativi: \texttt{get3DEdge} (per gli angoli),
+\texttt{get3DEdgeFacelet} (facelet di un angolo), \texttt{getCorner},
+\texttt{getCornerFacelet}
+\item Metodi \texttt{rotate*} per ruotare il cubo
+\item Test standard: \texttt{isInStandardConfiguration},
+\texttt{isWithSaneColors}, \texttt{isSolved}, \texttt{isCornerInPlace},
+\texttt{isCornerInPlaceMaybeFlipped}, \texttt{isEdgeInPlace},
+\texttt{isEdgeInPlaceMaybeFlipped}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Mosse di Singmaster}
+\begin{itemize}
+\item Sono state implementate le mosse standard di Singmaster
+\item Ogni mossa (per motivi di astrazione) è una sottoclasse di \texttt{Move}
+\item Il costruttore accetta come parametri il modello del cubo (in modo che il
+cubo originale rimanga inalterato) e un parametro \texttt{reversed} (per sapere
+se la mossa è diretta o inversa)
+\item Per applicare una mossa, basta crearla e chiamare
+\texttt{perform}/\texttt{reverse}:
+\begin{center}
+\begin{lstlisting}
+(new B(m, reversed)).perform();
+\end{lstlisting}
+\end{center}
+\item Ogni mossa genera un evento per comunicare i cambiamenti all'interfaccia
+\end{itemize}
+\end{frame}
+
 \begin{frame}
 \frametitle{IDA*}
 \end{frame}
