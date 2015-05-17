@@ -2,12 +2,16 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{fourier}
+\usepackage{amssymb}
 \usepackage{listings}
 \usepackage{graphicx}
+\usepackage{clrscode3e}
+\usepackage{braket}
 \lstset{language=Java,
         basicstyle=\ttfamily\small,
         keywordstyle=\color{blue},
         commentstyle=\color{olive}}
+\renewcommand{\emptyset}{\varnothing}
 \title{Il cubo di Rubik (e come risolverlo)}
 \author[S.~Angeleri, A.~Menti, M.~Zago]{Stefano Angeleri, Alessandro Menti,
 Mattia Zago}
@@ -36,7 +40,7 @@ laterali (\emph{lateral columns}), $4$ angoli (\emph{corners}) e $8$ spigoli
 \only<1>{\includegraphics[width=\textwidth,keepaspectratio]{%
 RubikCubeFaint.png}
 
-\phantom{Colonna}}
+\phantom{Cg}}
 \pause
 \only<2>{\includegraphics[width=\textwidth,keepaspectratio]{%
 RubikCubeColumn.png}
@@ -196,25 +200,73 @@ valutare, un'altra \emph{(closed list)} per i nodi già valutati
 \item Fisso una funzione \emph{costo} per ogni nodo: esso deve essere,
 intuitivamente, tanto minore quanto minore è il ``disordine'' rispetto al cubo
 risolto
-\item Calcolo per ogni nodo un indice
+\item Calcolo per ogni nodo $N$ un indice
 \[
-f(n) = g(n) + h(n)
+f(N) = g(N) + h(N)
 \]
-dove $g(n)$ è il costo minimo dei nodi nella closed list e $h(n)$ è una stima
-del costo del nodo $n$
+dove $g(N)$ è il costo minimo dei nodi nella closed list e $h(N)$ è una stima
+del costo del nodo $N$
 \item A ogni passo sposto il nodo considerato dalla open alla closed list (ad
-eccezione del caso in cui $g(n)$ diminuisca) e genero i suoi successori
+eccezione del caso in cui $g(N)$ diminuisca) e genero i suoi successori
 (tenendo traccia di tale legame)
-\item Al termine, estraendo il nodo con il minimo $f(n)$ e seguendo i genitori
+\item Al termine, estraendo il nodo con il minimo $f(N)$ e seguendo i genitori
 ho la sequenza di mosse cercata (al contrario)
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{A*}
+\tiny
+\begin{codebox}
+\Procname{$\proc{A*}(N, \id{goalNode})$}
+\li $\id{openList}\gets\Set{N}$
+\li $\id{closedList}\gets\emptyset$
+\li $g(N)\gets 0$
+\li $f(N)\gets h(N)$
+\li \While $\id{openList}\neq\emptyset$
+\li     \Do
+            $\id{currentNode}\gets\proc{Extract-Min-f}(\id{openList})$
+\li         \If $\id{currentNode}\isequal\id{goalNode}$
+\li         \Then
+                $\id{path}\gets\Braket{\id{currentNode}}$
+\li             \While $\attrib{currentNode}{parent}\neq\const{nil}$
+\li             \Do
+                    $\id{currentNode}\gets\attrib{currentNode}{parent}$
+\li                 $\proc{Append}(\id{path}, \id{currentNode})$
+                \End
+\li             \Return \id{path}
+            \End
+\li         $\id{openList}\gets\id{openList}\cap\Set{currentNode}$
+\li         $\id{closedList}\gets\id{closedList}\cup\Set{currentNode}$
+\li         \For ogni nodo $N'$ vicino di $\id{currentNode}$
+\li         \Do
+                \If $\id{currentNode}\notin\id{closedList}$
+\li             \Then
+                    $\id{tentativeG}\gets g(\id{currentNode}) +
+\proc{Distance}(\id{currentNode}, N')$
+\li                 \If $N'\notin\id{openList}$ o $\id{tentativeG} < g(N')$
+\li                 \Then
+                        $\attrib{N'}{parent} = \id{currentNode}$
+\li                     $g(N')\gets\id{tentativeG}$
+\li                     $f(N')\gets g(N') + h(N')$
+\li                     \If $N'\notin\id{openList}$
+\li                     \Then
+                        $\id{openList}\gets\id{openList}\cup N'$
+                        \End
+                    \End
+                \End
+            \End
+        \End
+\li     \Error ``Nessuna soluzione trovata''
+\end{codebox}
 \end{frame}
 
 \begin{frame}
 \frametitle{IDA*}
 \begin{itemize}
 \item A* ha un difetto: richiede di esplorare tutto l'albero
-\item Non fattibile per il cubo di Rubik (x configurazioni possibili!)
+\item Non fattibile per il cubo di Rubik ($\sim 4,3\times 10^{19}$
+configurazioni possibili!)
 \item Basta non analizzare i rami per cui non crediamo di ottenere risultati
 \item IDA* fa questo: per ogni nodo, se $f(n)$ è maggiore di un certo valore
 limite che fissiamo, pota il ramo
@@ -222,18 +274,76 @@ limite che fissiamo, pota il ramo
 \end{frame}
 
 \begin{frame}
+\frametitle{IDA*}
+\begin{codebox}
+\Procname{$\proc{IDA*}(N, \id{goalNode})$}
+\li $\id{IDABound}\gets h(N)$
+\li \While \const{true}
+\li \Do
+        $t\gets\proc{search}(N, 0, \id{IDAbound})$
+\li     \If $t\isequal\const{found}$
+\li     \Then
+            \Return \const{found}
+        \End
+\li     \If $t\isequal\infty$
+\li     \Then
+            \Return \const{not-found}
+        \End
+\li     $\id{IDABound}\gets t$
+    \End
+\end{codebox}
+\end{frame}
+
+\begin{frame}
+\frametitle{IDA*}
+\begin{codebox}
+\Procname{$\proc{search}(N, g, \id{IDAbound})$}
+\li $f(N)\gets g + h(N)$
+\li \If $f > \id{IDAbound}$
+\li \Then
+        \Return $f(N)$
+    \End
+\li \If $N\isequal g$
+\li \Then
+        \Return $\const{found}$
+    \End
+\li $\id{min}\gets\infty$
+\li \For ogni nodo $N'$ vicino di $N$
+\li \Do
+        $\id{t}\gets\proc{search}(N', g + \proc{cost}(N, N'), \id{IDAbound})$
+\li     \If $t\isequal\const{found}$
+\li     \Then
+            \Return $\const{found}$
+        \End
+\li     \If $t < \id{min}$
+\li     \Then
+            $\id{min}\gets t$
+        \End
+    \End
+\li \Return $\id{min}$
+\end{codebox}
+\end{frame}
+
+\begin{frame}
 \frametitle{Fissare un'euristica}
-Rimane solo un problema: fissare un'euristica $h(n)$ sufficientemente buona per
-i nostri scopi
+\begin{itemize}
+\item Rimane solo un problema: fissare un'euristica $h(n)$ sufficientemente 
+``buona'' per i nostri scopi
+\item Deve essere \emph{consistente}: per ogni nodo $N$,
+\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{L'algoritmo di Thistletwaite}
 \begin{itemize}
-\item Thistletwaite nel xxxx scoprì che era possibile dividere le mosse in
-quattro gruppi:
+\item Thistletwaite scoprì che era possibile dividere le configurazioni in
+quattro gruppi a seconda delle mosse da usare per risolvere il cubo:
 \begin{align*}
-1 & 2 \\
+G_0 &= \langle L,R,F,B,U,D\rangle \\
+G_1 &= \langle L,R,F,B,U^2,D^2\rangle \\
+G_2 &= \langle L,R,F^2,B^2,U^2,D^2\rangle \\
+G_3 &= \langle L^2,R^2,F^2,B^2,U^2,D^2\rangle \\
+G_4 &= \{1\}
 \end{align*}
 \item Si noti che ogni gruppo è chiaramente incluso nel precedente e che 
 l'ultimo gruppo comprende il cubo risolto
