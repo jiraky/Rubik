@@ -329,7 +329,13 @@ limite che fissiamo, pota il ramo
 \begin{itemize}
 \item Rimane solo un problema: fissare un'euristica $h(n)$ sufficientemente 
 ``buona'' per i nostri scopi
-\item Deve essere \emph{consistente}: per ogni nodo $N$,
+\item Preferibilmente tale da soddisfare le seguenti proprietà:
+\begin{description}
+\item[ammissibile:] non negativa % FIXME
+\item[consistente:] vale $0$ in un nodo obiettivo e preserva una disuguaglianza
+triangolare: per ogni nodo $N$, $h(N)\le h(\text{genitore di N}) + \text{costo 
+path}$ % FIXME
+\end{description}
 \end{itemize}
 \end{frame}
 
@@ -337,7 +343,7 @@ limite che fissiamo, pota il ramo
 \frametitle{L'algoritmo di Thistletwaite}
 \begin{itemize}
 \item Thistletwaite scoprì che era possibile dividere le configurazioni in
-quattro gruppi a seconda delle mosse da usare per risolvere il cubo:
+cinque gruppi a seconda delle mosse da usare per risolvere il cubo:
 \begin{align*}
 G_0 &= \langle L,R,F,B,U,D\rangle \\
 G_1 &= \langle L,R,F,B,U^2,D^2\rangle \\
@@ -350,8 +356,30 @@ l'ultimo gruppo comprende il cubo risolto
 \item Idea: portare il cubo da una configurazione risolubile con tutte le mosse 
 possibili (primo gruppo) in una risolubile solamente con mosse appartenenti al
 secondo gruppo, quindi al terzo\dots
-\item Esaminando le configurazioni possibili si può ricavare un buon 
-coefficiente euristico FIXME cosa pesa di più?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{L'algoritmo di Thistletwaite}
+\begin{itemize}
+\item Implementazione originaria: \emph{lookup tables} di notevoli dimensioni
+calcolate a mano (!)
+\item Esaminando le configurazioni possibili si può ricavare un buon
+coefficiente euristico
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{L'algoritmo di Thistletwaite e l'euristica}
+\begin{itemize}
+\item Idea: partire dalla distanza di Manhattan tra lo spigolo/l'angolo
+esaminato e quelli nella posizione standard con i medesimi colori, quindi
+applicare opportuni fattori correttivi (ad es. incrementare il coefficiente se
+lo spigolo/angolo è molto vicino alla posizione corretta)
+\item Gli incrementi sono decisi sperimentalmente e/o aiutandosi con le tabelle
+viste in precedenza
+\item Si veda il metodo \texttt{getHeuristicCoefficient} in
+\texttt{IDAStar.java}
 \end{itemize}
 \end{frame}
 
@@ -361,5 +389,17 @@ coefficiente euristico FIXME cosa pesa di più?
 
 \begin{frame}
 \frametitle{L'algoritmo di Singmaster}
+\begin{itemize}
+\item Risolve il cubo ``per strati'' in diverse fasi:
+\begin{enumerate}
+\item si sposta la faccia bianca in alto
+\item si posizionano prima gli spigoli e poi gli angoli del livello superiore
+\item si posizionano gli spigoli del livello centrale
+\item si completa il livello inferiore
+\end{enumerate}
+\item Ampio uso di mosse del tipo $A B A' B'$ (sposto uno spigolo/angolo
+lasciando invariati gli altri)
+\item Molto lineare
+\end{itemize}
 \end{frame}
 \end{document}
