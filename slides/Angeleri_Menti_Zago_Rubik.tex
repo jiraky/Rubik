@@ -205,7 +205,7 @@ risolto
 f(N) = g(N) + h(N)
 \]
 dove $g(N)$ è il costo minimo dei nodi nella closed list e $h(N)$ è una stima
-del costo del nodo $N$
+del costo del nodo $N$ (\emph{euristica})
 \item A ogni passo sposto il nodo considerato dalla open alla closed list (ad
 eccezione del caso in cui $g(N)$ diminuisca) e genero i suoi successori
 (tenendo traccia di tale legame)
@@ -268,7 +268,7 @@ ho la sequenza di mosse cercata (al contrario)
 \item Non fattibile per il cubo di Rubik ($\sim 4,3\times 10^{19}$
 configurazioni possibili!)
 \item Basta non analizzare i rami per cui non crediamo di ottenere risultati
-\item IDA* fa questo: per ogni nodo, se $f(n)$ è maggiore di un certo valore
+\item IDA* fa questo: per ogni nodo, se $f(N)$ è maggiore di un certo valore
 limite che fissiamo, pota il ramo
 \end{itemize}
 \end{frame}
@@ -327,15 +327,18 @@ limite che fissiamo, pota il ramo
 \begin{frame}
 \frametitle{Fissare un'euristica}
 \begin{itemize}
-\item Rimane solo un problema: fissare un'euristica $h(n)$ sufficientemente 
-``buona'' per i nostri scopi
+\item Rimane il problema di stabilire una buona $h(N)$
 \item Preferibilmente tale da soddisfare le seguenti proprietà:
 \begin{description}
-\item[ammissibile:] non negativa % FIXME
+\item[ammissibile:] per ogni nodo, $h(N)$ è minore o uguale del costo effettivo
+per raggiungere $N$ (per cui A* non restituisce mai una soluzione subottimale)
 \item[consistente:] vale $0$ in un nodo obiettivo e preserva una disuguaglianza
-triangolare: per ogni nodo $N$, $h(N)\le h(\text{genitore di N}) + \text{costo 
-path}$ % FIXME
+triangolare: per ogni nodo $N$ con figlio $D$, $h(N)\le h(D) + \text{costo
+path da $N$ a $D$}$ (così in A*, ogni volta in cui esamino un nodo, so già che
+il costo per raggiungerlo è il minimo possibile; non devo ricalcolarlo se trovo
+un path a costo minore)
 \end{description}
+\item Nota: un'euristica consistente è automaticamente ammissibile
 \end{itemize}
 \end{frame}
 
@@ -385,6 +388,35 @@ viste in precedenza
 
 \begin{frame}
 \frametitle{L'algoritmo a due fasi di Kociemba}
+\begin{itemize}
+\item Osservazione: dato un cubo risolto, quelli ottenibili non usando le mosse
+R, R', L, L', F, F', B o B' mantengono invariati l'orientamento di spigoli e
+angoli (tale gruppo si denota con $G_{K1} = \langle U, D, R^2, L^2, F^2,
+B^2\rangle$)
+\item Prima fase: si riconduce il cubo a uno di quelli appartenenti a $G_{K1}$
+con IDA* e un'euristica $h_1$ (nell'implementazione di Kociemba questa è
+implementata con una lookup table che consente un lookahead fino a $12$ mosse).
+I cubi sono descritti da triple (orientamento angoli, orientamento spigoli,
+posizioni spigoli UD senza tener conto dell'ordine) che sono pari a $(0, 0, 0)$
+se e solo tali cubi appartengono a $G_{K1}$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{L'algoritmo a due fasi di Kociemba}
+\begin{itemize}
+\item Seconda fase: usando solo mosse di $G_{K1}$ si permutano spigoli e angoli
+per ottenere la disposizione corretta
+\item Si adottano triple (permutazione angoli, permutazione spigoli, coordinate
+spigoli UD); $(0, 0, 0)$ se il cubo è risolto
+\item Depth-first search o IDA* (a seconda dei limiti di memoria/spazio su
+disco)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{L'algoritmo a due fasi di Kociemba}
+Alcuni solutori e spiegazioni approfondite: \url{http://kociemba.org/cube.htm}
 \end{frame}
 
 \begin{frame}
