@@ -281,7 +281,7 @@ limite che fissiamo, pota il ramo
 \li $\id{IDABound}\gets h(N)$
 \li \While \const{true}
 \li \Do
-        $t\gets\proc{search}(N, 0, \id{IDAbound})$
+        $t\gets\proc{search}(N, 0, \id{IDABound}, \id{goalNode})$
 \li     \If $t\isequal\const{found}$
 \li     \Then
             \Return \const{found}
@@ -298,20 +298,20 @@ limite che fissiamo, pota il ramo
 \begin{frame}
 \frametitle{IDA*}
 \begin{codebox}
-\Procname{$\proc{search}(N, g, \id{IDAbound})$}
+\Procname{$\proc{search}(N, g, \id{IDABound}, \id{goalNode})$}
 \li $f(N)\gets g + h(N)$
-\li \If $f > \id{IDAbound}$
+\li \If $f > \id{IDABound}$
 \li \Then
         \Return $f(N)$
     \End
-\li \If $N\isequal g$
+\li \If $N\isequal \id{goalNode}$
 \li \Then
         \Return $\const{found}$
     \End
 \li $\id{min}\gets\infty$
 \li \For ogni nodo $N'$ vicino di $N$
 \li \Do
-        $\id{t}\gets\proc{search}(N', g + \proc{cost}(N, N'), \id{IDAbound})$
+        $\id{t}\gets\proc{search}(N', g + \proc{cost}(N, N'), \id{IDABound})$
 \li     \If $t\isequal\const{found}$
 \li     \Then
             \Return $\const{found}$
